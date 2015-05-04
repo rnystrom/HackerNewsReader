@@ -1,0 +1,311 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2944A8801AD63EAE00A2A251 /* HNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944A87F1AD63EAE00A2A251 /* HNComment.m */; };
+		295DB77F1AF82B6B004B119F /* HackerNewsKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2990B3601AD1FEB10053DB80 /* HackerNewsKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		295DB7801AF82B6B004B119F /* HNComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 2944A87E1AD63EAE00A2A251 /* HNComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		295DB7811AF82B6B004B119F /* HNCommentComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 29D411641ADB1AC400C491DA /* HNCommentComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		295DB7821AF82B6B004B119F /* HNFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 2990B38E1AD204850053DB80 /* HNFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		295DB7831AF82B6B004B119F /* HNPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 2990B3771AD1FFA50053DB80 /* HNPost.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		295DB7841AF82B6B004B119F /* HNUser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2990B3881AD200360053DB80 /* HNUser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2990B3791AD1FFA50053DB80 /* HNPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3781AD1FFA50053DB80 /* HNPost.m */; };
+		2990B38A1AD200360053DB80 /* HNUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3891AD200360053DB80 /* HNUser.m */; };
+		2990B3901AD204850053DB80 /* HNFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B38F1AD204850053DB80 /* HNFeed.m */; };
+		29D411661ADB1AC400C491DA /* HNCommentComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D411651ADB1AC400C491DA /* HNCommentComponent.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2990B35B1AD1FEB10053DB80 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "include/$(TARGET_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2944A87E1AD63EAE00A2A251 /* HNComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNComment.h; sourceTree = "<group>"; };
+		2944A87F1AD63EAE00A2A251 /* HNComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNComment.m; sourceTree = "<group>"; };
+		2990B35D1AD1FEB10053DB80 /* libHackerNewsKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHackerNewsKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2990B3601AD1FEB10053DB80 /* HackerNewsKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HackerNewsKit.h; sourceTree = "<group>"; };
+		2990B3771AD1FFA50053DB80 /* HNPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNPost.h; sourceTree = "<group>"; };
+		2990B3781AD1FFA50053DB80 /* HNPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNPost.m; sourceTree = "<group>"; };
+		2990B3881AD200360053DB80 /* HNUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNUser.h; sourceTree = "<group>"; };
+		2990B3891AD200360053DB80 /* HNUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNUser.m; sourceTree = "<group>"; };
+		2990B38E1AD204850053DB80 /* HNFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeed.h; sourceTree = "<group>"; };
+		2990B38F1AD204850053DB80 /* HNFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeed.m; sourceTree = "<group>"; };
+		29D411641ADB1AC400C491DA /* HNCommentComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentComponent.h; sourceTree = "<group>"; };
+		29D411651ADB1AC400C491DA /* HNCommentComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentComponent.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2990B35A1AD1FEB10053DB80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2990B3541AD1FEB10053DB80 = {
+			isa = PBXGroup;
+			children = (
+				2990B35F1AD1FEB10053DB80 /* HackerNewsKit */,
+				2990B35E1AD1FEB10053DB80 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2990B35E1AD1FEB10053DB80 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2990B35D1AD1FEB10053DB80 /* libHackerNewsKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2990B35F1AD1FEB10053DB80 /* HackerNewsKit */ = {
+			isa = PBXGroup;
+			children = (
+				2990B3601AD1FEB10053DB80 /* HackerNewsKit.h */,
+				2944A87E1AD63EAE00A2A251 /* HNComment.h */,
+				2944A87F1AD63EAE00A2A251 /* HNComment.m */,
+				29D411641ADB1AC400C491DA /* HNCommentComponent.h */,
+				29D411651ADB1AC400C491DA /* HNCommentComponent.m */,
+				2990B38E1AD204850053DB80 /* HNFeed.h */,
+				2990B38F1AD204850053DB80 /* HNFeed.m */,
+				2990B3771AD1FFA50053DB80 /* HNPost.h */,
+				2990B3781AD1FFA50053DB80 /* HNPost.m */,
+				2990B3881AD200360053DB80 /* HNUser.h */,
+				2990B3891AD200360053DB80 /* HNUser.m */,
+			);
+			path = HackerNewsKit;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		295DB77E1AF82B3D004B119F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				295DB77F1AF82B6B004B119F /* HackerNewsKit.h in Headers */,
+				295DB7801AF82B6B004B119F /* HNComment.h in Headers */,
+				295DB7811AF82B6B004B119F /* HNCommentComponent.h in Headers */,
+				295DB7821AF82B6B004B119F /* HNFeed.h in Headers */,
+				295DB7831AF82B6B004B119F /* HNPost.h in Headers */,
+				295DB7841AF82B6B004B119F /* HNUser.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2990B35C1AD1FEB10053DB80 /* HackerNewsKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2990B3711AD1FEB10053DB80 /* Build configuration list for PBXNativeTarget "HackerNewsKit" */;
+			buildPhases = (
+				2990B3591AD1FEB10053DB80 /* Sources */,
+				2990B35A1AD1FEB10053DB80 /* Frameworks */,
+				2990B35B1AD1FEB10053DB80 /* CopyFiles */,
+				295DB77E1AF82B3D004B119F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HackerNewsKit;
+			productName = HackerNewsKit;
+			productReference = 2990B35D1AD1FEB10053DB80 /* libHackerNewsKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2990B3551AD1FEB10053DB80 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Ryan Nystrom";
+				TargetAttributes = {
+					2990B35C1AD1FEB10053DB80 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = 2990B3581AD1FEB10053DB80 /* Build configuration list for PBXProject "HackerNewsKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2990B3541AD1FEB10053DB80;
+			productRefGroup = 2990B35E1AD1FEB10053DB80 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2990B35C1AD1FEB10053DB80 /* HackerNewsKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2990B3591AD1FEB10053DB80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29D411661ADB1AC400C491DA /* HNCommentComponent.m in Sources */,
+				2990B3901AD204850053DB80 /* HNFeed.m in Sources */,
+				2990B3791AD1FFA50053DB80 /* HNPost.m in Sources */,
+				2990B38A1AD200360053DB80 /* HNUser.m in Sources */,
+				2944A8801AD63EAE00A2A251 /* HNComment.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2990B36F1AD1FEB10053DB80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2990B3701AD1FEB10053DB80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2990B3721AD1FEB10053DB80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		2990B3731AD1FEB10053DB80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SDKROOT)/usr/include/libxml2",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2990B3581AD1FEB10053DB80 /* Build configuration list for PBXProject "HackerNewsKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2990B36F1AD1FEB10053DB80 /* Debug */,
+				2990B3701AD1FEB10053DB80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2990B3711AD1FEB10053DB80 /* Build configuration list for PBXNativeTarget "HackerNewsKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2990B3721AD1FEB10053DB80 /* Debug */,
+				2990B3731AD1FEB10053DB80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2990B3551AD1FEB10053DB80 /* Project object */;
+}

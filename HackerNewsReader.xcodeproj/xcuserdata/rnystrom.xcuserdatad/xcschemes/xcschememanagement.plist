@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>HackerNewsReader.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2990B2DF1AD1FC600053DB80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2990B2F81AD1FC600053DB80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2990B30C1AD1FCB70053DB80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2990B3161AD1FCB70053DB80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2990B3271AD1FCCC0053DB80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2990B3311AD1FCCC0053DB80</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

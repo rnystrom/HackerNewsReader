@@ -1,0 +1,10 @@
+PODS:
+  - TUSafariActivity (1.0.4)
+
+DEPENDENCIES:
+  - TUSafariActivity (~> 1.0)
+
+SPEC CHECKSUMS:
+  TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
+
+COCOAPODS: 0.35.0
