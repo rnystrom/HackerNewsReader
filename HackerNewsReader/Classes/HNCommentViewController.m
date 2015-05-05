@@ -67,8 +67,6 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.width = CGRectGetWidth(self.view.bounds);
-
     self.title = NSLocalizedString(@"Comments", @"Title for the controller displaying a comments thread");
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
@@ -96,16 +94,20 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     }
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        [self.tableView reloadData];
+    } completion:nil];
+}
+
 
 #pragma mark - Config
 
 - (void)configureCommentCell:(HNCommentCell *)cell forIndexPath:(NSIndexPath *)indexPath {
     HNComment *comment = self.comments[indexPath.section];
-    NSUInteger indent = comment.indent;
-    UIEdgeInsets insets = [HNCommentCell contentInsetsForIndentationLevel:indent indentationWidth:kCommentCellIndentationWidth];
-    CGSize size = CGSizeMake(self.width - insets.left - insets.right, CGFLOAT_MAX);
+    CGFloat width = [self indentedWidthForComment:comment];
     NSAttributedString *str = self.attributedCommentStrings[comment];
-    cell.commentContentView.layer.contents = [self.textStorage renderedContentForAttributedString:str size:size];
+    cell.commentContentView.layer.contents = [self.textStorage renderedContentForAttributedString:str width:width];
 
     cell.delegate = self;
     cell.indentationWidth = comment.indent;
@@ -156,6 +158,15 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     [self.tableView deleteSections:deletes withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView reloadSections:reloads withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
+}
+
+- (UIEdgeInsets)insetsForComment:(HNComment *)comment {
+    return [HNCommentCell contentInsetsForIndentationLevel:comment.indent indentationWidth:kCommentCellIndentationWidth];
+}
+
+- (CGFloat)indentedWidthForComment:(HNComment *)comment {
+    UIEdgeInsets insets = [self insetsForComment:comment];
+    return CGRectGetWidth(self.view.bounds) - insets.left - insets.right;
 }
 
 
@@ -210,9 +221,9 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
             HNComment *comment = self.comments[indexPath.section];
             NSUInteger indent = comment.indent;
             UIEdgeInsets insets = [HNCommentCell contentInsetsForIndentationLevel:indent indentationWidth:kCommentCellIndentationWidth];
-            CGSize size = CGSizeMake(self.width - insets.left - insets.right, CGFLOAT_MAX);
             NSAttributedString *str = self.attributedCommentStrings[comment];
-            CGFloat height = [self.textStorage heightForAttributedString:str size:size];
+            CGFloat width = [self indentedWidthForComment:comment];
+            CGFloat height = [self.textStorage heightForAttributedString:str width:width];
             return height + insets.top + insets.bottom;
         }
     }
@@ -268,9 +279,9 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
             NSUInteger indent = comment.indent;
             UIEdgeInsets insets = [HNCommentCell contentInsetsForIndentationLevel:indent indentationWidth:kCommentCellIndentationWidth];
-            CGSize size = CGSizeMake(self.width - insets.left - insets.right, CGFLOAT_MAX);
+            CGFloat width = CGRectGetWidth(self.view.bounds) - insets.left - insets.right;
             // warms the store
-            [self.textStorage heightForAttributedString:str size:size];
+            [self.textStorage heightForAttributedString:str width:width];
         }
     }
     self.attributedCommentStrings = [strings copy];
@@ -290,6 +301,20 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 
 #pragma mark - HNCommentCellDelegate
+
+- (void)commentCell:(HNCommentCell *)commentCell didTapCommentAtPoint:(CGPoint)point {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:commentCell];
+    HNComment *comment = self.comments[indexPath.section];
+    CGFloat width = [self indentedWidthForComment:comment];
+    NSAttributedString *str = self.attributedCommentStrings[comment];
+    NSDictionary *attributes = [self.textStorage attributesForAttributedString:str width:width point:point];
+    NSString *urlString = attributes[HNCommentLinkAttributeName];
+    if (urlString) {
+        NSURL *url = [NSURL URLWithString:urlString];
+        HNWebViewController *webController = [[HNWebViewController alloc] initWithURL:url];
+        [self.navigationController pushViewController:webController animated:YES];
+    }
+}
 
 - (void)commentCell:(HNCommentCell *)commentCell didTapURL:(NSURL *)url {
     if (url) {

@@ -25,6 +25,4 @@
 @property (nonatomic, weak) id <HNCommentCellDelegate> delegate;
 @property (nonatomic, strong, readonly) UIView *commentContentView;
 
-//- (void)setAttributedString:(NSAttributedString *)attributedString;
-
 @end

@@ -10,8 +10,10 @@
 
 @interface HNTextStorage : NSObject
 
-- (CGFloat)heightForAttributedString:(NSAttributedString *)attributedString size:(CGSize)size;
+- (CGFloat)heightForAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width;
 
-- (id)renderedContentForAttributedString:(NSAttributedString *)attributedString size:(CGSize)size;
+- (id)renderedContentForAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width;
+
+- (NSDictionary *)attributesForAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width point:(CGPoint)point;
 
 @end

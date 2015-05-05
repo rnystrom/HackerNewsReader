@@ -28,15 +28,16 @@
 @synthesize contents = _contents;
 @synthesize height = _height;
 
-- (instancetype)initWithAttributedString:(NSAttributedString *)attributedString size:(CGSize)size {
+- (instancetype)initWithAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width {
     if (self = [super init]) {
         _height = HNTextRendererHeightNotCalculated;
+        _width = width;
         _heightLock = OS_SPINLOCK_INIT;
         _contentsLock = OS_SPINLOCK_INIT;
 
         _attributedString = attributedString;
 
-        _textContainer = [[NSTextContainer alloc] initWithSize:size];
+        _textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(_width, CGFLOAT_MAX)];
         _textContainer.lineFragmentPadding = 0.0;
 
         _layoutManager = [[NSLayoutManager alloc] init];
@@ -69,6 +70,7 @@
         CGSize size = CGSizeMake(self.textContainer.size.width, self.height);
         UIGraphicsBeginImageContextWithOptions(size, YES, [UIScreen mainScreen].scale);
         [[UIColor whiteColor] setFill];
+        size.height += 1.0;
         [[UIBezierPath bezierPathWithRect:(CGRect){CGPointZero, size}] fill];
         NSRange glyphRange = [self.layoutManager glyphRangeForTextContainer:self.textContainer];
         [self.layoutManager drawBackgroundForGlyphRange:glyphRange atPoint:CGPointZero];
@@ -81,7 +83,16 @@
 }
 
 
-#pragma mark - Actions
+#pragma mark - Public API
+
+- (NSDictionary *)attributesAtPoint:(CGPoint)point {
+    CGFloat fractionDistance;
+    NSUInteger index = [self.layoutManager characterIndexForPoint:point inTextContainer:self.textContainer fractionOfDistanceBetweenInsertionPoints:&fractionDistance];
+    if (index != NSNotFound && fractionDistance < 1.0) {
+        return [self.attributedString attributesAtIndex:index effectiveRange:nil];
+    }
+    return nil;
+}
 
 - (void)invalidate {
     OSSpinLockLock(&_heightLock);

@@ -29,25 +29,37 @@
     return self;
 }
 
-- (HNTextRenderer *)rendererForAttributedString:(NSAttributedString *)attributedString size:(CGSize)size {
+- (HNTextRenderer *)rendererForAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width {
     OSSpinLockLock(&_propertyLock);
-    HNTextRenderer *renderer = self.cachedTextItems[attributedString];
+    id cacheKey = @(width);
+    id rendererKey = attributedString;
+    NSMutableDictionary *sizeCache = self.cachedTextItems[cacheKey];
+    if (!sizeCache) {
+        sizeCache = [[NSMutableDictionary alloc] init];
+        self.cachedTextItems[cacheKey] = sizeCache;
+    }
+    HNTextRenderer *renderer = sizeCache[rendererKey];
     if (!renderer) {
-        renderer = [[HNTextRenderer alloc] initWithAttributedString:attributedString size:size];
-        self.cachedTextItems[attributedString] = renderer;
+        renderer = [[HNTextRenderer alloc] initWithAttributedString:attributedString width:width];
+        sizeCache[rendererKey] = renderer;
     }
     OSSpinLockUnlock(&_propertyLock);
     return renderer;
 }
 
-- (CGFloat)heightForAttributedString:(NSAttributedString *)attributedString size:(CGSize)size {
-    HNTextRenderer *item = [self rendererForAttributedString:attributedString size:size];
+- (CGFloat)heightForAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width {
+    HNTextRenderer *item = [self rendererForAttributedString:attributedString width:width];
     return item.height;
 }
 
-- (id)renderedContentForAttributedString:(NSAttributedString *)attributedString size:(CGSize)size {
-    HNTextRenderer *item = [self rendererForAttributedString:attributedString size:size];
+- (id)renderedContentForAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width {
+    HNTextRenderer *item = [self rendererForAttributedString:attributedString width:width];
     return item.contents;
+}
+
+- (NSDictionary *)attributesForAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width point:(CGPoint)point {
+    HNTextRenderer *item = [self rendererForAttributedString:attributedString width:width];
+    return [item attributesAtPoint:point];
 }
 
 @end

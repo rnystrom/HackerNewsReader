@@ -11,10 +11,13 @@
 @interface HNTextRenderer : NSObject
 
 @property (nonatomic, strong, readonly) NSAttributedString *attributedString;
+@property (nonatomic, assign, readonly) CGFloat width;
 @property (atomic, assign, readonly) CGFloat height;
 @property (atomic, strong, readonly) id contents;
 
-- (instancetype)initWithAttributedString:(NSAttributedString *)attributedString size:(CGSize)size NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width NS_DESIGNATED_INITIALIZER;
+
+- (NSDictionary *)attributesAtPoint:(CGPoint)point;
 
 - (void)invalidate;
 
