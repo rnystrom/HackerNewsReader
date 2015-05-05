@@ -22,10 +22,10 @@
 #import "UITableView+DataDiffing.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
-    HNFeedViewControllerSectionEmpty,
     HNFeedViewControllerSectionData,
-    HNFeedViewControllerSectionLoading,
-    HNFeedViewControllerSectionCount
+    HNFeedViewControllerSectionCount,
+    HNFeedViewControllerSectionEmpty,
+    HNFeedViewControllerSectionLoading
 };
 
 static NSString * const kPostCellIdentifier = @"kPostCellIdentifier";
@@ -133,8 +133,8 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 
 - (void)updateFeed:(HNFeed *)feed {
     void (^updateBlock)(NSMutableArray *, NSMutableArray *, NSMutableArray *) = ^(NSMutableArray *inserts, NSMutableArray *deletes, NSMutableArray *reloads) {
-        [reloads addObject:[self loadingCellIndexPath]];
-        [reloads addObject:[self emptyCellIndexPath]];
+//        [reloads addObject:[self loadingCellIndexPath]];
+//        [reloads addObject:[self emptyCellIndexPath]];
         self.feed = feed;
     };
 
