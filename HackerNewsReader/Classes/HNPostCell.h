@@ -21,6 +21,7 @@
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 @property (nonatomic, strong, readonly) UILabel *subtitleLabel;
 @property (nonatomic, strong) id <HNPostCellDelegate> delegate;
+@property (nonatomic, assign, getter=isRead) BOOL read;
 
 - (void)setCommentCount:(NSUInteger)commentCount;
 

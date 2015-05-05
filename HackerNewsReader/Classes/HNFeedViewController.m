@@ -37,6 +37,7 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 @property (nonatomic, strong) HNDataCoordinator *dataCoordinator;
 @property (nonatomic, copy) HNFeed *feed;
 @property (nonatomic, strong) HNPostCell *prototypeCell;
+@property (nonatomic, strong) NSMutableSet *readPosts;
 
 @end
 
@@ -46,6 +47,8 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
     [super viewDidLoad];
 
     self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
+
+    self.readPosts = [[NSMutableSet alloc] init];
 
     HNFeedParser *parser = [[HNFeedParser alloc] init];
     NSString *cacheName = @"latest.feed";
@@ -99,6 +102,7 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
     if (post.URL.host.length) {
         detailText = [detailText stringByAppendingFormat:@" (%@)",post.URL.host];
     }
+    cell.read = [self.readPosts containsObject:post];
     cell.subtitleLabel.text = detailText;
     [cell setCommentCount:post.commentCount];
     cell.delegate = self;
@@ -216,6 +220,10 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
     }
 
     HNPost *post = self.feed.items[indexPath.row];
+
+    [self.readPosts addObject:post];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+
     HNWebViewController *webViewController = [[HNWebViewController alloc] initWithPost:post];
     if (self.navigationController) {
         [self.navigationController pushViewController:webViewController animated:YES];

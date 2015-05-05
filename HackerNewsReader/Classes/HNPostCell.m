@@ -51,9 +51,20 @@ static CGFloat const kHNPostCellImageSpacing = 10.0;
     return self;
 }
 
+
+#pragma mark - Public API
+
 - (void)setCommentCount:(NSUInteger)commentCount {
     self.commentButton.commentLabel.text = [NSString stringWithFormat:@"%zi",commentCount];
 }
+
+- (void)setRead:(BOOL)read {
+    _read = read;
+    _titleLabel.textColor = read ? [UIColor subtitleTextColor] : [UIColor titleTextColor];
+}
+
+
+#pragma mark - Layout
 
 - (CGSize)sizeThatFits:(CGSize)size {
     CGFloat height = [self titleSizeForWidth:size.width].height + kHNPostCellInset.top + kHNPostCellInset.bottom + self.subtitleLabel.font.pointSize + 4.0 + kHNPostCellLabelSpacing;
