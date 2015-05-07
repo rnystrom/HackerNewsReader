@@ -66,49 +66,51 @@
 - (NSArray *)commentComponentsFromNode:(TFHppleElement *)node {
     NSMutableArray *components = [[NSMutableArray alloc] init];
     for (TFHppleElement *child in node.children) {
-        [self recursiveComponentsFromNode:child bucket:components newline:NO];
+        [self recursiveComponentsFromNode:child bucket:components];
     }
     return components;
 }
 
-- (void)recursiveComponentsFromNode:(TFHppleElement *)node bucket:(NSMutableArray *)bucket newline:(BOOL)newline {
+- (void)recursiveComponentsFromNode:(TFHppleElement *)node bucket:(NSMutableArray *)bucket {
     NSAssert(bucket != nil, @"Cannot traverse and collect comment nodes without a bucket");
 
-    NSDictionary * tagMap = @{
-                              @"p": @(HNCommentTypeText),
-                              @"text": @(HNCommentTypeText),
-                              @"font": @(HNCommentTypeText),
-                              @"i": @(HNCommentTypeItalic),
-                              @"pre": @(HNCommentTypeCode),
-                              @"code": @(HNCommentTypeCode)
-                              };
+    static NSDictionary *tagMap = nil;
 
-    // at a leaf
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        tagMap = @{
+                   @"font": @(HNCommentTypeText),
+                   @"i": @(HNCommentTypeItalic),
+                   @"code": @(HNCommentTypeCode)
+                   };
+    });
+
+    if ([node.tagName isEqualToString:@"p"]) {
+        [bucket addObject:[HNCommentComponent newlineComponent]];
+    }
+
     if ([node.tagName isEqualToString:@"text"]) {
+        // at a leaf
         id typeValue = tagMap[node.parent.tagName];
-        if (typeValue) {
-            HNCommentType type = [typeValue integerValue];
-            NSString *text = [[node content] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-            HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:text type:type newline:newline];
-            [bucket addObject:component];
-        } else{
-            NSLog(@"Node unsupported with parent type %@: %@",node.parent.tagName,node);
-        }
+        HNCommentType type = typeValue != nil ? [typeValue integerValue] : HNCommentTypeText;
+        NSString *text = [node content];
+        HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:text type:type];
+        [bucket addObject:component];
     } else if ([node.tagName isEqualToString:@"a"]) {
-        HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:node.attributes[@"href"] type:HNCommentTypeLink newline:newline];
+        // special-case links
+        HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:node.attributes[@"href"] type:HNCommentTypeLink];
         [bucket addObject:component];
     } else {
-        id first = node.children.firstObject;
+        // recurse
         for (TFHppleElement *child in node.children) {
-            BOOL childNewline = [node.tagName isEqualToString:@"p"] && [child isEqual:first];
-            [self recursiveComponentsFromNode:child bucket:bucket newline:childNewline];
+            [self recursiveComponentsFromNode:child bucket:bucket];
         }
     }
 }
 
 - (HNCommentComponent *)removedComponentFromNode:(TFHppleElement *)node {
     NSString *text = [[node content] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:text type:HNCommentRemoved newline:NO];
+    HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:text type:HNCommentRemoved];
     return component;
 }
 

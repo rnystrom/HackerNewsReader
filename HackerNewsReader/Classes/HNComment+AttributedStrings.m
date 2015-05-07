@@ -22,6 +22,7 @@ NSString * const HNCommentLinkAttributeName = @"HNCommentLinkAttributeName";
         NSDictionary *attributes;
 
         switch (component.type) {
+            case HNCommentNewline:
             case HNCommentTypeCode:
                 attributes = @{
                                NSFontAttributeName: [UIFont commentCodeFont],
@@ -57,7 +58,7 @@ NSString * const HNCommentLinkAttributeName = @"HNCommentLinkAttributeName";
         }
 
         NSString *text = component.text;
-        if (component != self.components.firstObject && component.isNewline) {
+        if (component != self.components.firstObject && component.type == HNCommentNewline) {
             text = [@"\n\n" stringByAppendingString:text];
         }
 

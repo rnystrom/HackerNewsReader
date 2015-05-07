@@ -10,21 +10,23 @@
 
 static NSString * const kHNCommentComponentText = @"kHNCommentComponentText";
 static NSString * const kHNCommentComponentType = @"kHNCommentComponentType";
-static NSString * const kHNCommentComponentNewline = @"kHNCommentComponentNewline";
 
 @implementation HNCommentComponent
 
-- (instancetype)initWithText:(NSString *)text type:(HNCommentType)type newline:(BOOL)newline {
++ (instancetype)newlineComponent {
+    return [[self alloc] initWithText:@"" type:HNCommentNewline];
+}
+
+- (instancetype)initWithText:(NSString *)text type:(HNCommentType)type {
     if (self = [super init]) {
         _text = [text copy] ?: @"";
         _type = type;
-        _newline = newline;
     }
     return self;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p %@, text: %@, newline: %@>",self,NSStringFromClass(self.class),self.text,self.newline?@"YES":@"NO"];
+    return [NSString stringWithFormat:@"<%p %@, text: %@>",self,NSStringFromClass(self.class),self.text];
 }
 
 
@@ -33,14 +35,12 @@ static NSString * const kHNCommentComponentNewline = @"kHNCommentComponentNewlin
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     NSString *text = [aDecoder decodeObjectForKey:kHNCommentComponentText];
     HNCommentType type = [aDecoder decodeIntegerForKey:kHNCommentComponentType];
-    BOOL newline = [aDecoder decodeBoolForKey:kHNCommentComponentNewline];
-    return [self initWithText:text type:type newline:newline];
+    return [self initWithText:text type:type];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_text forKey:kHNCommentComponentText];
     [aCoder encodeInteger:_type forKey:kHNCommentComponentType];
-    [aCoder encodeBool:_newline forKey:kHNCommentComponentNewline];
 }
 
 
@@ -50,7 +50,6 @@ static NSString * const kHNCommentComponentNewline = @"kHNCommentComponentNewlin
     HNCommentComponent *copy = [[HNCommentComponent allocWithZone:zone] init];
     copy->_text = [self.text copy];
     copy->_type = self.type;
-    copy->_newline = self.newline;
     return copy;
 }
 
@@ -60,13 +59,13 @@ static NSString * const kHNCommentComponentNewline = @"kHNCommentComponentNewlin
 - (BOOL)isEqual:(id)object {
     if ([object isKindOfClass:HNCommentComponent.class]) {
         HNCommentComponent *comp = (HNCommentComponent *)object;
-        return comp.type == self.type && [comp.text isEqualToString:self.text] && comp.isNewline == self.isNewline;
+        return comp.type == self.type && [comp.text isEqualToString:self.text];
     }
     return NO;
 }
 
 - (NSUInteger)hash {
-    return self.type ^ [self.text hash] ^ self.isNewline;
+    return self.type ^ [self.text hash];
 }
 
 @end

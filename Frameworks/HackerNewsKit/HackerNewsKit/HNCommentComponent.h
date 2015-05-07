@@ -13,15 +13,17 @@ typedef NS_ENUM(NSUInteger, HNCommentType) {
     HNCommentTypeCode,
     HNCommentTypeText,
     HNCommentTypeItalic,
-    HNCommentRemoved
+    HNCommentRemoved,
+    HNCommentNewline
 };
 
 @interface HNCommentComponent : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong, readonly) NSString *text;
 @property (nonatomic, assign, readonly) HNCommentType type;
-@property (nonatomic, assign, readonly, getter=isNewline) BOOL newline;
 
-- (instancetype)initWithText:(NSString *)text type:(HNCommentType)type newline:(BOOL)newline NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithText:(NSString *)text type:(HNCommentType)type NS_DESIGNATED_INITIALIZER;
+
++ (instancetype)newlineComponent;
 
 @end
