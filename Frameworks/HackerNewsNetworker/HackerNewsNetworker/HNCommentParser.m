@@ -27,7 +27,10 @@
     }
 
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    return [self commentsFromParser:parser];
+}
 
+- (NSArray *)commentsFromParser:(TFHpple *)parser {
     static NSString * const commentQuery = @"//table[@id='hnmain']/tr[3]/td/table[2]/tr";
     static NSString * const userQuery = @"//span[@class='comhead']/a[1]";
     static NSString * const textQuery = @"//span[@class='comment']/font";

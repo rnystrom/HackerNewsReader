@@ -12,6 +12,6 @@
 
 @interface HNCommentViewController : UITableViewController
 
-- (instancetype)initWithPost:(HNPost *)post;
+- (instancetype)initWithPostID:(NSUInteger)postID;
 
 @end

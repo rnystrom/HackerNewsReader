@@ -8,10 +8,9 @@
 
 #import "HNPostCell.h"
 
+#import "HNCommentButton.h"
 #import "UIColor+HackerNews.h"
 #import "UIFont+HackerNews.h"
-
-#import "HNCommentButton.h"
 
 static UIEdgeInsets const kHNPostCellInset = (UIEdgeInsets) {8.0, 15.0, 8.0, 15.0};
 static CGFloat const kHNPostCellLabelSpacing = 5.0;
@@ -32,13 +31,13 @@ static CGFloat const kHNPostCellImageSpacing = 10.0;
 
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.numberOfLines = 0;
-        _titleLabel.font = [UIFont systemFontOfSize:15.0];
+        _titleLabel.font = [UIFont titleFont];
         _titleLabel.textColor = [UIColor titleTextColor];
         _titleLabel.backgroundColor = self.contentView.backgroundColor;
         [self.contentView addSubview:_titleLabel];
 
         _subtitleLabel = [[UILabel alloc] init];
-        _subtitleLabel.font = [UIFont systemFontOfSize:12.0];
+        _subtitleLabel.font = [UIFont subtitleFont];
         _subtitleLabel.textColor = [UIColor subtitleTextColor];
         _subtitleLabel.backgroundColor = self.contentView.backgroundColor;
         [self.contentView addSubview:_subtitleLabel];

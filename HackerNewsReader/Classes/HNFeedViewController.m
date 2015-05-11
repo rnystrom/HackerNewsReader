@@ -19,6 +19,7 @@
 #import "HNEmptyTableCell.h"
 #import "HNLoadingCell.h"
 #import "HNCommentViewController.h"
+#import "NSURL+HackerNews.h"
 #import "UITableView+DataDiffing.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
@@ -37,7 +38,7 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 @property (nonatomic, strong) HNDataCoordinator *dataCoordinator;
 @property (nonatomic, copy) HNFeed *feed;
 @property (nonatomic, strong) HNPostCell *prototypeCell;
-@property (nonatomic, strong) NSMutableSet *readPosts;
+@property (nonatomic, strong) NSMutableIndexSet *readPostIDs;
 
 @end
 
@@ -48,7 +49,7 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 
     self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
 
-    self.readPosts = [[NSMutableSet alloc] init];
+    self.readPostIDs = [[NSMutableIndexSet alloc] init];
 
     HNFeedParser *parser = [[HNFeedParser alloc] init];
     NSString *cacheName = @"latest.feed";
@@ -58,6 +59,7 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
     [self.tableView registerClass:HNPostCell.class forCellReuseIdentifier:kPostCellIdentifier];
     [self.tableView registerClass:HNEmptyTableCell.class forCellReuseIdentifier:kEmptyCellIdentifier];
     [self.tableView registerClass:HNLoadingCell.class forCellReuseIdentifier:kLoadingCellIdentifier];
+    self.tableView.tableFooterView = [[UIView alloc] init];
 
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -98,11 +100,11 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 - (void)configureCell:(HNPostCell *)cell forIndexPath:(NSIndexPath *)indexPath {
     HNPost *post = self.feed.items[indexPath.row];
     cell.titleLabel.text = post.title;
-    NSString *detailText = [NSString stringWithFormat:@"%zi points",post.score];
+    NSString *detailText = [NSString stringWithFormat:NSLocalizedString(@"%zi points", @"Formatted string for the number of points"),post.score];
     if (post.URL.host.length) {
         detailText = [detailText stringByAppendingFormat:@" (%@)",post.URL.host];
     }
-    cell.read = [self.readPosts containsObject:post];
+    cell.read = [self.readPostIDs containsIndex:post.pk];
     cell.subtitleLabel.text = detailText;
     [cell setCommentCount:post.commentCount];
     cell.delegate = self;
@@ -133,8 +135,6 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 
 - (void)updateFeed:(HNFeed *)feed {
     void (^updateBlock)(NSMutableArray *, NSMutableArray *, NSMutableArray *) = ^(NSMutableArray *inserts, NSMutableArray *deletes, NSMutableArray *reloads) {
-//        [reloads addObject:[self loadingCellIndexPath]];
-//        [reloads addObject:[self emptyCellIndexPath]];
         self.feed = feed;
     };
 
@@ -151,7 +151,7 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
     NSIndexPath *indexPath = [self.tableView indexPathForCell:postCell];
     if (indexPath) {
         HNPost *post = self.feed.items[indexPath.row];
-        HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPost:post];
+        HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
         [self.navigationController pushViewController:commentController animated:YES];
     }
 }
@@ -221,14 +221,21 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 
     HNPost *post = self.feed.items[indexPath.row];
 
-    [self.readPosts addObject:post];
+    [self.readPostIDs addIndex:post.pk];
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
-    HNWebViewController *webViewController = [[HNWebViewController alloc] initWithPost:post];
-    if (self.navigationController) {
-        [self.navigationController pushViewController:webViewController animated:YES];
+    UIViewController *controller;
+    if (!post.URL.host || [[post.URL host] isEqualToString:@"news.ycombinator.com"]) {
+        NSUInteger postID = [[post.URL hn_valueForQueryParameter:@"id"] integerValue];
+        controller = [[HNCommentViewController alloc] initWithPostID:postID];
     } else {
-        [self presentViewController:webViewController animated:YES completion:nil];
+        controller = [[HNWebViewController alloc] initWithURL:post.URL];
+    }
+
+    if (self.navigationController) {
+        [self.navigationController pushViewController:controller animated:YES];
+    } else {
+        [self presentViewController:controller animated:YES completion:nil];
     }
 }
 

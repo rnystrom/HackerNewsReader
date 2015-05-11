@@ -22,6 +22,9 @@
 		2944A8A61AD6FAB400A2A251 /* HNCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944A8A51AD6FAB400A2A251 /* HNCommentViewController.m */; };
 		295DB7461AF7DA9D004B119F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295DB7451AF7DA9D004B119F /* WebKit.framework */; };
 		296054B91AD4F0370038818A /* HNCommentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 296054B81AD4F0370038818A /* HNCommentButton.m */; };
+		2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */; };
+		2965ED021AFD3DD800F6E2DE /* AttributedCommentComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED011AFD3DD800F6E2DE /* AttributedCommentComponents.m */; };
+		2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */; };
 		2972C5401AD32598005A2739 /* HNWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2972C53F1AD32598005A2739 /* HNWebViewController.m */; };
 		2990B2E61AD1FC600053DB80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B2E51AD1FC600053DB80 /* main.m */; };
 		2990B2F11AD1FC600053DB80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2990B2F01AD1FC600053DB80 /* Images.xcassets */; };
@@ -65,6 +68,12 @@
 		295DB7451AF7DA9D004B119F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		296054B71AD4F0370038818A /* HNCommentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentButton.h; path = Classes/HNCommentButton.h; sourceTree = "<group>"; };
 		296054B81AD4F0370038818A /* HNCommentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentButton.m; path = Classes/HNCommentButton.m; sourceTree = "<group>"; };
+		2965ECFD1AFC89EF00F6E2DE /* HNPageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPageHeaderView.h; path = Classes/HNPageHeaderView.h; sourceTree = "<group>"; };
+		2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPageHeaderView.m; path = Classes/HNPageHeaderView.m; sourceTree = "<group>"; };
+		2965ED001AFD3DD800F6E2DE /* AttributedCommentComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttributedCommentComponents.h; path = Classes/AttributedCommentComponents.h; sourceTree = "<group>"; };
+		2965ED011AFD3DD800F6E2DE /* AttributedCommentComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttributedCommentComponents.m; path = Classes/AttributedCommentComponents.m; sourceTree = "<group>"; };
+		2965ED0E1AFD98E300F6E2DE /* NSURL+HackerNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+HackerNews.h"; path = "Classes/NSURL+HackerNews.h"; sourceTree = "<group>"; };
+		2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+HackerNews.m"; path = "Classes/NSURL+HackerNews.m"; sourceTree = "<group>"; };
 		2972C53E1AD32598005A2739 /* HNWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNWebViewController.h; path = Classes/HNWebViewController.h; sourceTree = "<group>"; };
 		2972C53F1AD32598005A2739 /* HNWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNWebViewController.m; path = Classes/HNWebViewController.m; sourceTree = "<group>"; };
 		2990B2E01AD1FC600053DB80 /* HackerNewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackerNewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +137,10 @@
 				29E2CB501AD9A2F70010B45D /* UITableView+DataDiffing.m */,
 				2920DDBF1AED9C4900E51B23 /* UIToolbar+HackerNews.h */,
 				2920DDC01AED9C4900E51B23 /* UIToolbar+HackerNews.m */,
+				2965ED001AFD3DD800F6E2DE /* AttributedCommentComponents.h */,
+				2965ED011AFD3DD800F6E2DE /* AttributedCommentComponents.m */,
+				2965ED0E1AFD98E300F6E2DE /* NSURL+HackerNews.h */,
+				2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -180,6 +193,8 @@
 			children = (
 				296054B71AD4F0370038818A /* HNCommentButton.h */,
 				296054B81AD4F0370038818A /* HNCommentButton.m */,
+				2965ECFD1AFC89EF00F6E2DE /* HNPageHeaderView.h */,
+				2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -395,6 +410,9 @@
 				2920DDB71AED9BFF00E51B23 /* HNNavigationController.m in Sources */,
 				2990B3521AD1FE460053DB80 /* AppDelegate.m in Sources */,
 				2920DDC21AED9C4900E51B23 /* UIFont+HackerNews.m in Sources */,
+				2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */,
+				2965ED021AFD3DD800F6E2DE /* AttributedCommentComponents.m in Sources */,
+				2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */,
 				29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */,
 				2944A8941AD6EF6500A2A251 /* HNLoadingCell.m in Sources */,
 				2920DDC11AED9C4900E51B23 /* UIColor+HackerNews.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import <HackerNewsKit/HNComment.h>
 
-extern NSString * const HNCommentLinkAttributeName;
+#import "AttributedCommentComponents.h"
 
 @interface HNComment (AttributedStrings)
 

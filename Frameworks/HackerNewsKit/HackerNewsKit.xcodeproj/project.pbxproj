@@ -17,6 +17,8 @@
 		2990B3791AD1FFA50053DB80 /* HNPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3781AD1FFA50053DB80 /* HNPost.m */; };
 		2990B38A1AD200360053DB80 /* HNUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3891AD200360053DB80 /* HNUser.m */; };
 		2990B3901AD204850053DB80 /* HNFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B38F1AD204850053DB80 /* HNFeed.m */; };
+		29B2D9411AFC810C005C83BA /* HNPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 29B2D93F1AFC810C005C83BA /* HNPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29B2D9421AFC810C005C83BA /* HNPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B2D9401AFC810C005C83BA /* HNPage.m */; };
 		29D411661ADB1AC400C491DA /* HNCommentComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D411651ADB1AC400C491DA /* HNCommentComponent.m */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		2990B3891AD200360053DB80 /* HNUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNUser.m; sourceTree = "<group>"; };
 		2990B38E1AD204850053DB80 /* HNFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNFeed.h; sourceTree = "<group>"; };
 		2990B38F1AD204850053DB80 /* HNFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNFeed.m; sourceTree = "<group>"; };
+		29B2D93F1AFC810C005C83BA /* HNPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNPage.h; sourceTree = "<group>"; };
+		29B2D9401AFC810C005C83BA /* HNPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNPage.m; sourceTree = "<group>"; };
 		29D411641ADB1AC400C491DA /* HNCommentComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentComponent.h; sourceTree = "<group>"; };
 		29D411651ADB1AC400C491DA /* HNCommentComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentComponent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +88,8 @@
 				29D411651ADB1AC400C491DA /* HNCommentComponent.m */,
 				2990B38E1AD204850053DB80 /* HNFeed.h */,
 				2990B38F1AD204850053DB80 /* HNFeed.m */,
+				29B2D93F1AFC810C005C83BA /* HNPage.h */,
+				29B2D9401AFC810C005C83BA /* HNPage.m */,
 				2990B3771AD1FFA50053DB80 /* HNPost.h */,
 				2990B3781AD1FFA50053DB80 /* HNPost.m */,
 				2990B3881AD200360053DB80 /* HNUser.h */,
@@ -104,6 +110,7 @@
 				295DB7811AF82B6B004B119F /* HNCommentComponent.h in Headers */,
 				295DB7821AF82B6B004B119F /* HNFeed.h in Headers */,
 				295DB7831AF82B6B004B119F /* HNPost.h in Headers */,
+				29B2D9411AFC810C005C83BA /* HNPage.h in Headers */,
 				295DB7841AF82B6B004B119F /* HNUser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,6 +176,7 @@
 				2990B3901AD204850053DB80 /* HNFeed.m in Sources */,
 				2990B3791AD1FFA50053DB80 /* HNPost.m in Sources */,
 				2990B38A1AD200360053DB80 /* HNUser.m in Sources */,
+				29B2D9421AFC810C005C83BA /* HNPage.m in Sources */,
 				2944A8801AD63EAE00A2A251 /* HNComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

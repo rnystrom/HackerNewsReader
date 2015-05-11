@@ -20,7 +20,7 @@ static NSString * const kHNUserUsername = @"kHNUserUsername";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p %@ - %@>",self,NSStringFromClass(self.class),self.username];
+    return [NSString stringWithFormat:@"<%p %@ - %@>", self, NSStringFromClass(self.class), self.username];
 }
 
 

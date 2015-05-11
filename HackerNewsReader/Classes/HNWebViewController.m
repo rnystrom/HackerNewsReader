@@ -56,13 +56,6 @@
     return self;
 }
 
-- (instancetype)initWithPost:(HNPost *)post {
-    if (self = [self initWithURL:post.URL]) {
-        _post = [post copy];
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -156,7 +149,7 @@
 
 - (void)onComments:(id)sender {
     NSAssert(self.post != nil, @"Should not be pushing a comment controller for a nil post");
-    HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPost:self.post];
+    HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:self.post.pk];
     [self.navigationController pushViewController:commentController animated:YES];
 }
 

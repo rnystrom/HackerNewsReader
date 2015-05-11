@@ -25,7 +25,7 @@ static NSString * const kHNCommentIndent = @"kHNCommentIndent";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p %@ - %@, indent: %zi>",self,self.user,self.components,self.indent];
+    return [NSString stringWithFormat:@"<%p %@: %@ - %@, indent: %zi>", self, NSStringFromClass(self.class), self.user, self.components, self.indent];
 }
 
 

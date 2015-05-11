@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		295DB7851AF82B8D004B119F /* libHackerNewsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D4116E1ADB9B5600C491DA /* libHackerNewsKit.a */; };
+		2965ECFC1AFC87B500F6E2DE /* HNPageParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29B2D9431AFC8436005C83BA /* HNPageParser.h */; };
 		2990B39E1AD20B910053DB80 /* HackerNewsNetworker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2990B39D1AD20B910053DB80 /* HackerNewsNetworker.h */; };
 		2990B3C21AD20BEE0053DB80 /* HNService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3C11AD20BEE0053DB80 /* HNService.m */; };
 		2990B3C51AD20BF80053DB80 /* HNFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3C41AD20BF80053DB80 /* HNFeedParser.m */; };
@@ -17,6 +18,7 @@
 		2990B3DA1AD2E86F0053DB80 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3D71AD2E86F0053DB80 /* XPathQuery.m */; };
 		2990B3DF1AD2F0880053DB80 /* HNDataCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3DE1AD2F0880053DB80 /* HNDataCoordinator.m */; };
 		2990B3E21AD2F5170053DB80 /* HNDataCoordinator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2990B3DD1AD2F0880053DB80 /* HNDataCoordinator.h */; };
+		29B2D9451AFC8436005C83BA /* HNPageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B2D9441AFC8436005C83BA /* HNPageParser.m */; };
 		29D4116F1ADB9B5600C491DA /* libHackerNewsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D4116E1ADB9B5600C491DA /* libHackerNewsKit.a */; };
 		29E2CB561AD9AA550010B45D /* HNCommentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB551AD9AA550010B45D /* HNCommentParser.m */; };
 		29E2CB571AD9AB7D0010B45D /* HNCommentParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29E2CB541AD9AA550010B45D /* HNCommentParser.h */; };
@@ -41,6 +43,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				2965ECFC1AFC87B500F6E2DE /* HNPageParser.h in CopyFiles */,
 				29E2CB591AD9AB840010B45D /* HNParseProtocol.h in CopyFiles */,
 				29E2CB571AD9AB7D0010B45D /* HNCommentParser.h in CopyFiles */,
 				29E2CB581AD9AB7D0010B45D /* HNFeedParser.h in CopyFiles */,
@@ -71,6 +74,8 @@
 		2990B3DB1AD2E8800053DB80 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		2990B3DD1AD2F0880053DB80 /* HNDataCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNDataCoordinator.h; sourceTree = "<group>"; };
 		2990B3DE1AD2F0880053DB80 /* HNDataCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNDataCoordinator.m; sourceTree = "<group>"; };
+		29B2D9431AFC8436005C83BA /* HNPageParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNPageParser.h; sourceTree = "<group>"; };
+		29B2D9441AFC8436005C83BA /* HNPageParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNPageParser.m; sourceTree = "<group>"; };
 		29D4116E1ADB9B5600C491DA /* libHackerNewsKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHackerNewsKit.a; path = "../../../../Library/Developer/Xcode/DerivedData/HackerNewsReader-citxqvsousoeacbtbcujtwgnuobc/Build/Products/Debug-iphoneos/libHackerNewsKit.a"; sourceTree = "<group>"; };
 		29E2CB531AD9A9D80010B45D /* HNParseProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNParseProtocol.h; sourceTree = "<group>"; };
 		29E2CB541AD9AA550010B45D /* HNCommentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentParser.h; sourceTree = "<group>"; };
@@ -120,13 +125,15 @@
 			isa = PBXGroup;
 			children = (
 				2990B39D1AD20B910053DB80 /* HackerNewsNetworker.h */,
-				2990B3DD1AD2F0880053DB80 /* HNDataCoordinator.h */,
-				2990B3DE1AD2F0880053DB80 /* HNDataCoordinator.m */,
-				29E2CB531AD9A9D80010B45D /* HNParseProtocol.h */,
 				29E2CB541AD9AA550010B45D /* HNCommentParser.h */,
 				29E2CB551AD9AA550010B45D /* HNCommentParser.m */,
+				2990B3DD1AD2F0880053DB80 /* HNDataCoordinator.h */,
+				2990B3DE1AD2F0880053DB80 /* HNDataCoordinator.m */,
 				2990B3C31AD20BF80053DB80 /* HNFeedParser.h */,
 				2990B3C41AD20BF80053DB80 /* HNFeedParser.m */,
+				29B2D9431AFC8436005C83BA /* HNPageParser.h */,
+				29B2D9441AFC8436005C83BA /* HNPageParser.m */,
+				29E2CB531AD9A9D80010B45D /* HNParseProtocol.h */,
 				2990B3C01AD20BEE0053DB80 /* HNService.h */,
 				2990B3C11AD20BEE0053DB80 /* HNService.m */,
 				2990B3C91AD2DE4D0053DB80 /* HNStore.h */,
@@ -260,6 +267,7 @@
 				2990B3D81AD2E86F0053DB80 /* TFHpple.m in Sources */,
 				2990B3DF1AD2F0880053DB80 /* HNDataCoordinator.m in Sources */,
 				2990B3DA1AD2E86F0053DB80 /* XPathQuery.m in Sources */,
+				29B2D9451AFC8436005C83BA /* HNPageParser.m in Sources */,
 				2990B3D91AD2E86F0053DB80 /* TFHppleElement.m in Sources */,
 				29E2CB561AD9AA550010B45D /* HNCommentParser.m in Sources */,
 			);

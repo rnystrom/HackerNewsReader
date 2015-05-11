@@ -9,17 +9,19 @@
 #import "HNCommentViewController.h"
 
 #import <HackerNewsNetworker/HNDataCoordinator.h>
-#import <HackerNewsNetworker/HNCommentParser.h>
+#import <HackerNewsNetworker/HNPageParser.h>
 
-#import <HackerNewsKit/HNPost.h>
-#import <HackerNewsKit/HNComment.h>
+#import <HackerNewsKit/HNPage.h>
 
+#import "AttributedCommentComponents.h"
 #import "HNCommentCell.h"
-#import "UITableView+DataDiffing.h"
 #import "HNComment+AttributedStrings.h"
 #import "HNCommentHeaderCell.h"
 #import "HNWebViewController.h"
 #import "HNTextStorage.h"
+#import "HNPageHeaderView.h"
+#import "NSURL+HackerNews.h"
+#import "UITableView+DataDiffing.h"
 
 typedef NS_ENUM(NSUInteger, HNCommentRow) {
     HNCommentRowUser,
@@ -33,30 +35,28 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 @interface HNCommentViewController() <HNDataCoordinatorDelegate, HNCommentCellDelegate>
 
+@property (nonatomic, assign) NSUInteger postID;
 @property (nonatomic, strong) HNDataCoordinator *dataCoordinator;
-@property (nonatomic, strong, readonly) HNPost *post;
-@property (nonatomic, strong) NSArray *comments;
-//@property (nonatomic, strong) HNCommentCell *prototypeCell;
 @property (nonatomic, strong) NSMutableSet *collapsedPaths;
 @property (nonatomic, strong) NSDictionary *attributedCommentStrings;
 @property (nonatomic, strong) HNTextStorage *textStorage;
 @property (nonatomic, assign) CGFloat width;
 
+@property (nonatomic, strong) HNPage *page;
+
 @end
 
 @implementation HNCommentViewController
 
-- (instancetype)initWithPost:(HNPost *)post {
+- (instancetype)initWithPostID:(NSUInteger)postID {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        _post = [post copy];
+        _postID = postID;
         _collapsedPaths = [[NSMutableSet alloc] init];
         _attributedCommentStrings = [[NSMutableDictionary alloc] init];
         _textStorage = [[HNTextStorage alloc] init];
 
-        NSAssert(_post != nil, @"Initializing a comments controller without a post is useless.");
-
-        HNCommentParser *parser = [[HNCommentParser alloc] init];
-        NSString *cacheName = [NSString stringWithFormat:@"%zi.comments",_post.pk];
+        HNPageParser *parser = [[HNPageParser alloc] init];
+        NSString *cacheName = [NSString stringWithFormat:@"%zi.comments",_postID];
         dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:q path:@"item" parser:parser cacheName:cacheName];
         [self fetch];
@@ -76,6 +76,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
     [self.tableView registerClass:HNCommentCell.class forCellReuseIdentifier:kCommentCellIdentifier];
     [self.tableView registerClass:HNCommentHeaderCell.class forCellReuseIdentifier:kCommentHeaderCellIdentifier];
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -96,6 +98,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        [self setupHeaderViewWithPage:self.page];
         [self.tableView reloadData];
     } completion:nil];
 }
@@ -104,7 +107,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 #pragma mark - Config
 
 - (void)configureCommentCell:(HNCommentCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-    HNComment *comment = self.comments[indexPath.section];
+    HNComment *comment = self.page.comments[indexPath.section];
     CGFloat width = [self indentedWidthForComment:comment];
     NSAttributedString *str = self.attributedCommentStrings[comment];
     cell.commentContentView.layer.contents = [self.textStorage renderedContentForAttributedString:str width:width];
@@ -116,19 +119,45 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 }
 
 - (void)configureHeaderCell:(HNCommentHeaderCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-    HNComment *comment = self.comments[indexPath.section];
-    cell.usernameLabel.text = comment.user.username;
+    HNComment *comment = self.page.comments[indexPath.section];
+    cell.usernameLabel.text = comment.user.username.length ? comment.user.username : NSLocalizedString(@"n/a", @"Not available (abbrev)");
     cell.indentationWidth = comment.indent;
     cell.indentationLevel = kCommentCellIndentationWidth;
 }
 
-- (void)updateComments:(NSArray *)comments {
+- (void)setupHeaderViewWithPage:(HNPage *)page {
+    // bail if our header doesn't really have any content
+    NSString *title = page.post.title;
+    if (!title.length) {
+        return;
+    }
+
+    HNPageHeaderView *headerView = [[HNPageHeaderView alloc] init];
+    [headerView setTitleText:page.post.title];
+    [headerView setTextAttributedString:attributedStringFromComponents(page.textComponents)];
+
+    NSString *detailText = [NSString stringWithFormat:NSLocalizedString(@"%zi points", @"Formatted string for the number of points"),page.post.score];
+    if (page.post.URL.host.length) {
+        detailText = [detailText stringByAppendingFormat:@" (%@)",page.post.URL.host];
+    }
+    [headerView setSubtitleText:detailText];
+    CGSize headerSize = [headerView sizeThatFits:CGSizeMake(CGRectGetWidth(self.view.bounds), CGFLOAT_MAX)];
+    headerView.frame = (CGRect){CGPointZero, headerSize};
+
+    [UIView beginAnimations:nil context:NULL];
+    self.tableView.tableHeaderView = headerView;
+    [UIView commitAnimations];
+}
+
+- (void)updatePage:(HNPage *)page {
     NSAssert([NSThread isMainThread], @"Delegate callbacks should be on the (registered) main thread");
 
     [self.refreshControl endRefreshing];
 
-    NSArray *oldArray = self.comments;
-    NSArray *newArray = comments;
+    [self setupHeaderViewWithPage:page];
+
+    NSArray *oldArray = self.page.comments;
+    NSArray *newArray = page.comments;
 
     BOOL hadItems = oldArray.count > 0;
     NSMutableIndexSet *inserts = [[NSMutableIndexSet alloc] init];
@@ -151,7 +180,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
         }
     }];
 
-    self.comments = comments;
+    self.page = page;
 
     [self.tableView beginUpdates];
     [self.tableView insertSections:inserts withRowAnimation:UITableViewRowAnimationFade];
@@ -177,14 +206,14 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 }
 
 - (void)fetch {
-    [self.dataCoordinator fetchWithParams:@{@"id": @(self.post.pk)}];
+    [self.dataCoordinator fetchWithParams:@{@"id": @(self.postID)}];
 }
 
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.comments.count;
+    return self.page.comments.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -216,9 +245,9 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
     switch (indexPath.row) {
         case HNCommentRowUser:
-            return 30.0;
+            return 28.0;
         case HNCommentRowText: {
-            HNComment *comment = self.comments[indexPath.section];
+            HNComment *comment = self.page.comments[indexPath.section];
             NSUInteger indent = comment.indent;
             UIEdgeInsets insets = [HNCommentCell contentInsetsForIndentationLevel:indent indentationWidth:kCommentCellIndentationWidth];
             NSAttributedString *str = self.attributedCommentStrings[comment];
@@ -234,14 +263,14 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (indexPath.row == HNCommentRowUser) {
-        HNComment *selectedComment = self.comments[indexPath.section];
+        HNComment *selectedComment = self.page.comments[indexPath.section];
         NSMutableSet *indexes = [[NSMutableSet alloc] init];
 
         NSIndexPath *nextPath = [NSIndexPath indexPathForRow:HNCommentRowText inSection:indexPath.section];
         [indexes addObject:nextPath];
 
-        for (NSUInteger i = indexPath.section + 1; i < self.comments.count; i++) {
-            HNComment *followingComment = self.comments[i];
+        for (NSUInteger i = indexPath.section + 1; i < self.page.comments.count; i++) {
+            HNComment *followingComment = self.page.comments[i];
             if (followingComment.indent > selectedComment.indent) {
                 [indexes addObject:[NSIndexPath indexPathForRow:HNCommentRowUser inSection:i]];
                 [indexes addObject:[NSIndexPath indexPathForRow:HNCommentRowText inSection:i]];
@@ -268,11 +297,11 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 #pragma mark - HNDataCoordinatorDelegate
 
-- (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didUpdateObject:(NSArray *)comments {
+- (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didUpdateObject:(HNPage *)page {
     NSAssert(![NSThread isMainThread], @"Delegate callbacks should not be on the (registered) main thread");
 
-    NSMutableDictionary *strings = [[NSMutableDictionary alloc] initWithCapacity:comments.count];
-    for (HNComment *comment in comments) {
+    NSMutableDictionary *strings = [[NSMutableDictionary alloc] initWithCapacity:page.comments.count];
+    for (HNComment *comment in page.comments) {
         NSAttributedString *str = [comment attributedString];
         if (str) {
             strings[comment] = str;
@@ -287,7 +316,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     self.attributedCommentStrings = [strings copy];
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self updateComments:comments];
+        [self updatePage:page];
     });
 }
 
@@ -304,21 +333,20 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 - (void)commentCell:(HNCommentCell *)commentCell didTapCommentAtPoint:(CGPoint)point {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:commentCell];
-    HNComment *comment = self.comments[indexPath.section];
+    HNComment *comment = self.page.comments[indexPath.section];
     CGFloat width = [self indentedWidthForComment:comment];
     NSAttributedString *str = self.attributedCommentStrings[comment];
     NSDictionary *attributes = [self.textStorage attributesForAttributedString:str width:width point:point];
     NSString *urlString = attributes[HNCommentLinkAttributeName];
     if (urlString) {
         NSURL *url = [NSURL URLWithString:urlString];
-        HNWebViewController *webController = [[HNWebViewController alloc] initWithURL:url];
-        [self.navigationController pushViewController:webController animated:YES];
-    }
-}
-
-- (void)commentCell:(HNCommentCell *)commentCell didTapURL:(NSURL *)url {
-    if (url) {
-        HNWebViewController *controller = [[HNWebViewController alloc] initWithURL:url];
+        UIViewController *controller;
+        if (!url.host || [[url host] isEqualToString:@"news.ycombinator.com"]) {
+            NSUInteger postID = [[url hn_valueForQueryParameter:@"id"] integerValue];
+            controller = [[HNCommentViewController alloc] initWithPostID:postID];
+        } else {
+            controller = [[HNWebViewController alloc] initWithURL:url];
+        }
         [self.navigationController pushViewController:controller animated:YES];
     }
 }

@@ -1,6 +1,6 @@
 //
 //  HNPost.h
-//  FetchingHackerNews
+//  HackerNewsKit
 //
 //  Created by Ryan Nystrom on 4/5/15.
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
@@ -18,7 +18,5 @@
 @property (nonatomic, assign, readonly) NSUInteger rank;
 
 - (instancetype)initWithTitle:(NSString *)title url:(NSURL *)url score:(NSUInteger)score commentCount:(NSUInteger)commentCount pk:(NSUInteger)pk rank:(NSUInteger)rank NS_DESIGNATED_INITIALIZER;
-
-- (BOOL)isIdentical:(id)object;
 
 @end

@@ -12,6 +12,7 @@
 
 + (UIFont *)titleFont;
 + (UIFont *)subtitleFont;
++ (UIFont *)pageTitleFont;
 + (UIFont *)navigationFont;
 + (UIFont *)commentFont;
 + (UIFont *)commentLinkFont;

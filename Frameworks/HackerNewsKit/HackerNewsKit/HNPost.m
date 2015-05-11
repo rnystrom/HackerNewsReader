@@ -1,6 +1,6 @@
 //
 //  HNPost.m
-//  FetchingHackerNews
+//  HackerNewsKit
 //
 //  Created by Ryan Nystrom on 4/5/15.
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
@@ -70,14 +70,6 @@ static NSString * const kHNPostRank = @"kHNPostRank";
     if ([object isKindOfClass:HNPost.class]) {
         HNPost *comp = (HNPost *)object;
         return comp.pk == self.pk;
-    }
-    return NO;
-}
-
-- (BOOL)isIdentical:(id)object {
-    if ([object isKindOfClass:HNPost.class]) {
-        HNPost *comp = (HNPost *)object;
-        return comp.pk == self.pk && comp.commentCount == self.commentCount && comp.rank == self.rank && comp.score == self.score && [comp.title isEqualToString:self.title] && [comp.URL isEqual:self.URL];
     }
     return NO;
 }

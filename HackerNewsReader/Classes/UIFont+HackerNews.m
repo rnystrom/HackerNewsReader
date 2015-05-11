@@ -18,6 +18,10 @@
     return [UIFont systemFontOfSize:12.0];
 }
 
++ (UIFont *)pageTitleFont {
+    return [UIFont boldSystemFontOfSize:17.0];
+}
+
 + (UIFont *)navigationFont {
     return [UIFont fontWithName:@"Avenir-Heavy" size:18.0];
 }
