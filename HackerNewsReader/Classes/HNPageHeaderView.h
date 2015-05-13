@@ -8,7 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class HNPageHeaderView;
+
+@protocol HNPageHeaderViewDelegate <NSObject>
+
+@optional
+- (void)pageHeaderDidTapTitle:(HNPageHeaderView *)pageHeader;
+- (void)pageHeader:(HNPageHeaderView *)pageHeader didTapText:(NSAttributedString *)text characterAtIndex:(NSUInteger)index;
+- (void)pageHeader:(HNPageHeaderView *)pageHeader didLongPressAtPoint:(CGPoint)point;
+
+@end
+
 @interface HNPageHeaderView : UIView
+
+@property (nonatomic, weak) id <HNPageHeaderViewDelegate> delegate;
 
 - (void)setTitleText:(NSString *)titleText;
 - (void)setSubtitleText:(NSString *)subtitleText;

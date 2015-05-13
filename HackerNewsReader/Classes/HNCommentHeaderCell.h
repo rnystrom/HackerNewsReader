@@ -10,7 +10,7 @@
 
 @interface HNCommentHeaderCell : UITableViewCell
 
-@property (nonatomic, strong, readonly) UILabel *usernameLabel;
+@property (nonatomic, strong, readonly) UILabel *titleLabel;
 @property (nonatomic, assign, getter=isCollapsed) BOOL collapsed;
 
 @end

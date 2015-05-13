@@ -14,10 +14,17 @@ static NSString * const kHNPostScore = @"kHNPostScore";
 static NSString * const kHNPostCommentCount = @"kHNPostCommentCount";
 static NSString * const kHNPostPK = @"kHNPostPK";
 static NSString * const kHNPostRank = @"kHNPostRank";
+static NSString * const kHNPostAgeText = @"kHNPostAgeText";
 
 @implementation HNPost
 
-- (instancetype)initWithTitle:(NSString *)title url:(NSURL *)url score:(NSUInteger)score commentCount:(NSUInteger)commentCount pk:(NSUInteger)pk rank:(NSUInteger)rank {
+- (instancetype)initWithTitle:(NSString *)title
+                      ageText:(NSString *)ageText
+                          url:(NSURL *)url
+                        score:(NSUInteger)score
+                 commentCount:(NSUInteger)commentCount
+                           pk:(NSUInteger)pk
+                         rank:(NSUInteger)rank {
     if (self = [super init]) {
         _title = [title copy] ?: @"";
         _URL = url ?: [[NSURL alloc] init];
@@ -25,20 +32,13 @@ static NSString * const kHNPostRank = @"kHNPostRank";
         _commentCount = commentCount;
         _pk = pk;
         _rank = rank;
+        _ageText = [ageText copy];
     }
     return self;
 }
 
 - (NSString *)description {
-    NSString *info = [@{
-                        @"title": self.title,
-                        @"link": self.URL,
-                        @"score": @(self.score),
-                        @"comments": @(self.commentCount),
-                        @"pk": @(self.pk),
-                        @"rank": @(self.rank)
-                        } description];
-    return [NSString stringWithFormat:@"<%p %@ - %@>",self,NSStringFromClass(self.class),info];
+    return [NSString stringWithFormat:@"<%p %@; title: %@, pk: %zi, score: %zi, %zi comments>",self, NSStringFromClass(self.class), self.title, self.pk, self.score, self.commentCount];
 }
 
 
@@ -51,7 +51,8 @@ static NSString * const kHNPostRank = @"kHNPostRank";
     NSUInteger commentCount = [aDecoder decodeIntegerForKey:kHNPostCommentCount];
     NSUInteger pk = [aDecoder decodeIntegerForKey:kHNPostPK];
     NSUInteger rank = [aDecoder decodeIntegerForKey:kHNPostRank];
-    return [self initWithTitle:title url:URL score:score commentCount:commentCount pk:pk rank:rank];
+    NSString *ageText = [aDecoder decodeObjectForKey:kHNPostAgeText];
+    return [self initWithTitle:title ageText:ageText url:URL score:score commentCount:commentCount pk:pk rank:rank];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
@@ -61,6 +62,7 @@ static NSString * const kHNPostRank = @"kHNPostRank";
     [aCoder encodeInteger:_commentCount forKey:kHNPostCommentCount];
     [aCoder encodeInteger:_pk forKey:kHNPostPK];
     [aCoder encodeInteger:_rank forKey:kHNPostRank];
+    [aCoder encodeObject:_ageText forKey:kHNPostAgeText];
 }
 
 
@@ -85,7 +87,7 @@ static NSString * const kHNPostRank = @"kHNPostRank";
 }
 
 - (NSUInteger)hash {
-    return self.pk ^ self.score ^ self.commentCount ^ [self.URL hash];
+    return self.pk ^ self.score ^ self.commentCount ^ [self.URL hash] ^ [self.ageText hash];
 }
 
 
@@ -99,6 +101,7 @@ static NSString * const kHNPostRank = @"kHNPostRank";
     copy->_commentCount = self.commentCount;
     copy->_pk = self.pk;
     copy->_rank = self.rank;
+    copy->_ageText = [self.ageText copyWithZone:zone];
     return copy;
 }
 

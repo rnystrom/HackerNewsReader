@@ -35,6 +35,13 @@
 
 @implementation HNWebViewController
 
+- (instancetype)initWithPost:(HNPost *)post {
+    if (self = [self initWithURL:post.URL]) {
+        _post = post;
+    }
+    return self;
+}
+
 - (instancetype)initWithURL:(NSURL *)url {
     if (self = [super initWithCoder:nil]) {
         if (SUPPORTS_WKWEBVIEW) {

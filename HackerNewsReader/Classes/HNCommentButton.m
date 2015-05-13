@@ -30,6 +30,7 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
         _commentIconView = [[UIImageView alloc] initWithImage:image];
         _commentIconView.tintColor = [UIColor subtitleTextColor];
         _commentIconView.contentMode = UIViewContentModeCenter;
+        _commentIconView.userInteractionEnabled = NO;
         [self addSubview:_commentIconView];
 
         CGRect iconFrame = _commentIconView.frame;
@@ -39,6 +40,7 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
         _commentLabel.font = [UIFont systemFontOfSize:commentFontHeight];
         _commentLabel.textColor = [UIColor subtitleTextColor];
         _commentLabel.textAlignment = NSTextAlignmentCenter;
+        _commentLabel.userInteractionEnabled = NO;
         [self addSubview:_commentLabel];
     }
     return self;

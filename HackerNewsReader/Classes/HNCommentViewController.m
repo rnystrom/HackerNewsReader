@@ -13,6 +13,8 @@
 
 #import <HackerNewsKit/HNPage.h>
 
+#import <TUSafariActivity/TUSafariActivity.h>
+
 #import "AttributedCommentComponents.h"
 #import "HNCommentCell.h"
 #import "HNComment+AttributedStrings.h"
@@ -22,6 +24,15 @@
 #import "HNPageHeaderView.h"
 #import "NSURL+HackerNews.h"
 #import "UITableView+DataDiffing.h"
+#import "HNComment+Links.h"
+#import "HNPage+Links.h"
+
+#define SUPPORTS_ALERTCONTROLLER (NSClassFromString(@"UIAlertController") != nil)
+#define COPY_TEXT_ACTION NSLocalizedString(@"Copy Text", @"Copy the text of the comment")
+#define OPEN_SAFARI_ACTION NSLocalizedString(@"Open in Safari", @"Open the comment in Safari")
+#define COPY_LINK_ACTION NSLocalizedString(@"Copy Permalink", @"Copy a link to the comment")
+#define COMMENT_TITLE_FORMAT NSLocalizedString(@"%@'s comment", @"Formatted string for for the title of someone's comment")
+#define CANCEL_ACTION NSLocalizedString(@"Cancel", @"Cancel")
 
 typedef NS_ENUM(NSUInteger, HNCommentRow) {
     HNCommentRowUser,
@@ -33,7 +44,7 @@ static NSString * const kCommentCellIdentifier = @"kCommentCellIdentifier";
 static NSString * const kCommentHeaderCellIdentifier = @"kCommentHeaderCellIdentifier";
 static CGFloat const kCommentCellIndentationWidth = 20.0;
 
-@interface HNCommentViewController() <HNDataCoordinatorDelegate, HNCommentCellDelegate>
+@interface HNCommentViewController() <HNDataCoordinatorDelegate, HNCommentCellDelegate, HNPageHeaderViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, assign) NSUInteger postID;
 @property (nonatomic, strong) HNDataCoordinator *dataCoordinator;
@@ -41,6 +52,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 @property (nonatomic, strong) NSDictionary *attributedCommentStrings;
 @property (nonatomic, strong) HNTextStorage *textStorage;
 @property (nonatomic, assign) CGFloat width;
+@property (nonatomic, strong) HNComment *longPressedComment;
 
 @property (nonatomic, strong) HNPage *page;
 
@@ -78,6 +90,9 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     [self.tableView registerClass:HNCommentHeaderCell.class forCellReuseIdentifier:kCommentHeaderCellIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onShare:)];
+    self.navigationItem.rightBarButtonItem = share;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -120,7 +135,9 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 - (void)configureHeaderCell:(HNCommentHeaderCell *)cell forIndexPath:(NSIndexPath *)indexPath {
     HNComment *comment = self.page.comments[indexPath.section];
-    cell.usernameLabel.text = comment.user.username.length ? comment.user.username : NSLocalizedString(@"n/a", @"Not available (abbrev)");
+    NSString *usernameText = comment.user.username.length ? comment.user.username : NSLocalizedString(@"n/a", @"Not available (abbrev)");
+    NSString *ageText = comment.ageText ?: @"";
+    cell.titleLabel.text = [NSString stringWithFormat:@"%@ %@", usernameText, ageText];
     cell.indentationWidth = comment.indent;
     cell.indentationLevel = kCommentCellIndentationWidth;
 }
@@ -133,6 +150,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     }
 
     HNPageHeaderView *headerView = [[HNPageHeaderView alloc] init];
+    headerView.delegate = self;
     [headerView setTitleText:page.post.title];
     [headerView setTextAttributedString:attributedStringFromComponents(page.textComponents)];
 
@@ -207,6 +225,44 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 - (void)fetch {
     [self.dataCoordinator fetchWithParams:@{@"id": @(self.postID)}];
+}
+
+- (void)didTapURL:(NSURL *)url {
+    UIViewController *controller;
+    if (!url.host || [[url host] isEqualToString:@"news.ycombinator.com"]) {
+        NSUInteger postID = [[url hn_valueForQueryParameter:@"id"] integerValue];
+        controller = [[HNCommentViewController alloc] initWithPostID:postID];
+    } else {
+        controller = [[HNWebViewController alloc] initWithURL:url];
+    }
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)openCommentPermalink:(HNComment *)comment {
+    NSURL *url = [comment permalink];
+    UIApplication *app = [UIApplication sharedApplication];
+    if ([app canOpenURL:url]) {
+        [app openURL:url];
+    }
+}
+
+- (void)copyCommentText:(HNComment *)comment {
+    NSString *text = [attributedStringFromComponents(comment.components) string];
+    [[UIPasteboard generalPasteboard] setString:text];
+}
+
+- (void)copyCommentLink:(HNComment *)comment {
+    [[UIPasteboard generalPasteboard] setString:[[comment permalink] absoluteString]];
+}
+
+- (void)onShare:(id)sender {
+    NSURL *url = [self.page permalink];
+    NSAssert(url != nil, @"Should always have a URL request");
+    if (url) {
+        TUSafariActivity *activity = [[TUSafariActivity alloc] init];
+        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:@[activity]];
+        [self presentViewController:activityController animated:YES completion:nil];
+    }
 }
 
 
@@ -339,16 +395,69 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     NSDictionary *attributes = [self.textStorage attributesForAttributedString:str width:width point:point];
     NSString *urlString = attributes[HNCommentLinkAttributeName];
     if (urlString) {
-        NSURL *url = [NSURL URLWithString:urlString];
-        UIViewController *controller;
-        if (!url.host || [[url host] isEqualToString:@"news.ycombinator.com"]) {
-            NSUInteger postID = [[url hn_valueForQueryParameter:@"id"] integerValue];
-            controller = [[HNCommentViewController alloc] initWithPostID:postID];
-        } else {
-            controller = [[HNWebViewController alloc] initWithURL:url];
-        }
+        [self didTapURL:[NSURL URLWithString:urlString]];
+    }
+}
+
+- (void)commentCellDidLongPress:(HNCommentCell *)commentCell {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:commentCell];
+    HNComment *comment = self.page.comments[indexPath.section];
+    NSString *title = [NSString stringWithFormat:COMMENT_TITLE_FORMAT, comment.user.username];
+
+    if (SUPPORTS_ALERTCONTROLLER) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *openSafari = [UIAlertAction actionWithTitle:OPEN_SAFARI_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self openCommentPermalink:comment];
+        }];
+        UIAlertAction *copyText = [UIAlertAction actionWithTitle:COPY_TEXT_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self copyCommentText:comment];
+        }];
+        UIAlertAction *copyLink = [UIAlertAction actionWithTitle:COPY_LINK_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self copyCommentLink:comment];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:CANCEL_ACTION style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:copyText];
+        [alertController addAction:openSafari];
+        [alertController addAction:copyLink];
+        [alertController addAction:cancel];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        self.longPressedComment = comment;
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:CANCEL_ACTION destructiveButtonTitle:nil otherButtonTitles:COPY_TEXT_ACTION, OPEN_SAFARI_ACTION, COPY_LINK_ACTION, nil];
+        [actionSheet showInView:self.view];
+    }
+}
+
+
+#pragma mark - HNPageHeaderViewDelegate
+
+- (void)pageHeader:(HNPageHeaderView *)pageHeader didTapText:(NSAttributedString *)text characterAtIndex:(NSUInteger)index {
+    NSString *urlString = [text attributesAtIndex:index effectiveRange:nil][HNCommentLinkAttributeName];
+    if (urlString) {
+        [self didTapURL:[NSURL URLWithString:urlString]];
+    }
+}
+
+- (void)pageHeaderDidTapTitle:(HNPageHeaderView *)pageHeader {
+    if (self.page.post.URL && ![[self.page.post.URL host] isEqualToString:@"news.ycombinator.com"]) {
+        HNWebViewController *controller = [[HNWebViewController alloc] initWithPost:self.page.post];
         [self.navigationController pushViewController:controller animated:YES];
     }
+}
+
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:OPEN_SAFARI_ACTION]) {
+        [self openCommentPermalink:self.longPressedComment];
+    } else if ([title isEqualToString:COPY_TEXT_ACTION]) {
+        [self copyCommentText:self.longPressedComment];
+    } else if ([title isEqualToString:COPY_LINK_ACTION]) {
+        [self copyCommentLink:self.longPressedComment];
+    }
+    self.longPressedComment = nil;
 }
 
 

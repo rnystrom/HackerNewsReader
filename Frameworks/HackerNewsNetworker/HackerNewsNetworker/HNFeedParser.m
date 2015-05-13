@@ -69,12 +69,14 @@
     TFHppleElement *commentNode = [[detailNode searchWithXPathQuery:commentsLinkQuery] firstObject];
     NSString *commentString = [commentNode content];
     NSString *commentLink = commentNode.attributes[@"href"];
+    NSString *ageText = [commentNode content];
     NSString *postID = [[commentLink componentsSeparatedByString:@"item?id="] lastObject];
 
     scoreString = [[scoreString componentsSeparatedByString:@" "] firstObject];
     commentString = [[commentString componentsSeparatedByString:@" "] firstObject];
 
     HNPost *post = [[HNPost alloc] initWithTitle:title
+                                         ageText:ageText
                                              url:[NSURL URLWithString:link]
                                            score:[scoreString integerValue]
                                     commentCount:[commentString integerValue]

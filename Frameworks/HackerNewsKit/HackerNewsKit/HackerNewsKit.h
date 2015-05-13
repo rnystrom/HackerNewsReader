@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import <HackerNewsKit/HNPost.h>
+#import <HackerNewsKit/HNPage.h>
 #import <HackerNewsKit/HNUser.h>
 #import <HackerNewsKit/HNFeed.h>
 #import <HackerNewsKit/HNComment.h>

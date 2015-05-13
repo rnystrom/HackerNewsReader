@@ -36,6 +36,7 @@
     static NSString * const textQuery = @"//span[@class='comment']/font";
     static NSString * const removedQuery = @"//span[@class='comment']";
     static NSString * const indentQuery = @"//img[@src='s.gif']";
+    static NSString * const permalinkQuery = @"//span[@class='comhead']/a[2]";
 
     NSArray *commentNodes = [parser searchWithXPathQuery:commentQuery];
 
@@ -45,6 +46,11 @@
         TFHppleElement *userNode = [[commentNode searchWithXPathQuery:userQuery] firstObject];
         NSString *username = [userNode content];
         HNUser *user = [[HNUser alloc] initWithUsername:username];
+
+        TFHppleElement *permalinkNode = [[commentNode searchWithXPathQuery:permalinkQuery] firstObject];
+        NSString *ageText = [permalinkNode content];
+        NSString *postID = [[permalinkNode.attributes[@"href"] componentsSeparatedByString:@"item?id="] lastObject];
+        NSUInteger pk = [postID integerValue];
 
         TFHppleElement *textNode = [[commentNode searchWithXPathQuery:textQuery] firstObject];
         NSArray *components;
@@ -59,7 +65,7 @@
         NSString *indentText = indentNode.attributes[@"width"];
         NSUInteger indent = indentText.integerValue / 40;
 
-        HNComment *comment = [[HNComment alloc] initWithUser:user components:components indent:indent];
+        HNComment *comment = [[HNComment alloc] initWithUser:user components:components indent:indent pk:pk ageText:ageText];
         [comments addObject:comment];
     }];
     

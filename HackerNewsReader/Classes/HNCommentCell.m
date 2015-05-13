@@ -15,6 +15,8 @@
 
 @interface HNCommentCell ()
 
+@property (nonatomic, strong) UIView *overlayView;
+
 @end
 
 @implementation HNCommentCell
@@ -30,6 +32,11 @@
         _commentContentView.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:_commentContentView];
 
+        _overlayView = [[UIView alloc] init];
+        _overlayView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+        _overlayView.hidden = YES;
+        [self.contentView addSubview:_overlayView];
+
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
         tap.numberOfTapsRequired = 1;
         tap.numberOfTouchesRequired = 1;
@@ -37,8 +44,8 @@
         [self.contentView addGestureRecognizer:tap];
 
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] init];
-        longPress.numberOfTapsRequired = 1;
-        longPress.numberOfTouchesRequired = 1;
+        longPress.minimumPressDuration = 0.4;
+        [longPress requireGestureRecognizerToFail:tap];
         [longPress addTarget:self action:@selector(onLongPressGesture:)];
         [self.contentView addGestureRecognizer:longPress];
     }
@@ -59,7 +66,10 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    CGRect frame = UIEdgeInsetsInsetRect(self.bounds, self.contentInsets);
+    CGRect bounds = self.contentView.bounds;
+    self.overlayView.frame = bounds;
+
+    CGRect frame = UIEdgeInsetsInsetRect(bounds, self.contentInsets);
     self.commentContentView.frame = frame;
 }
 
@@ -74,10 +84,29 @@
 }
 
 - (void)onLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
-    CGPoint point = [recognizer locationInView:self.commentContentView];
-    if ([self.delegate respondsToSelector:@selector(commentCell:didLongPressCommentAtPoint:)]) {
-        [self.delegate commentCell:self didLongPressCommentAtPoint:point];
+    if (recognizer.state == UIGestureRecognizerStateBegan &&
+        [self.delegate respondsToSelector:@selector(commentCellDidLongPress:)]) {
+        [self.delegate commentCellDidLongPress:self];
     }
 }
+
+
+#pragma mark - Touches
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    self.overlayView.hidden = NO;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    self.overlayView.hidden = YES;
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesCancelled:touches withEvent:event];
+    self.overlayView.hidden = YES;
+}
+
 
 @end

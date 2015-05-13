@@ -26,10 +26,10 @@ static CGFloat const kHNCommentHeaderPadding = 15.0;
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.clipsToBounds = YES;
         
-        _usernameLabel = [[UILabel alloc] init];
-        _usernameLabel.font = [UIFont subtitleFont];
-        _usernameLabel.textColor = [UIColor subtitleTextColor];
-        [self.contentView addSubview:_usernameLabel];
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = [UIFont subtitleFont];
+        _titleLabel.textColor = [UIColor subtitleTextColor];
+        [self.contentView addSubview:_titleLabel];
 
         _collapsedLabel = [[UILabel alloc] init];
         _collapsedLabel.textColor = [UIColor subtitleTextColor];
@@ -50,7 +50,7 @@ static CGFloat const kHNCommentHeaderPadding = 15.0;
     CGRect bounds = self.contentView.bounds;
     CGFloat left = self.indentationWidth * self.indentationLevel + kHNCommentHeaderPadding;
     CGRect usernameFrame = CGRectInset(bounds, left, 0.0);
-    self.usernameLabel.frame = usernameFrame;
+    self.titleLabel.frame = usernameFrame;
 
     [self.collapsedLabel sizeToFit];
     self.collapsedLabel.center = CGPointMake(CGRectGetWidth(bounds) - kHNCommentHeaderPadding - CGRectGetWidth(self.collapsedLabel.bounds) / 2, CGRectGetMidY(bounds));

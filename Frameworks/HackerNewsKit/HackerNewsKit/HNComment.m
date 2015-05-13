@@ -11,21 +11,29 @@
 static NSString * const kHNCommentUser = @"kHNCommentUser";
 static NSString * const kHNCommentCompents = @"kHNCommentCompents";
 static NSString * const kHNCommentIndent = @"kHNCommentIndent";
+static NSString * const kHNCommentPK = @"kHNCommentPK";
+static NSString * const kHNCommentAgeText = @"kHNCommentAgeText";
 
 @implementation HNComment
 
-- (instancetype)initWithUser:(HNUser *)user components:(NSArray *)components indent:(NSUInteger)indent {
+- (instancetype)initWithUser:(HNUser *)user
+                  components:(NSArray *)components
+                      indent:(NSUInteger)indent
+                          pk:(NSUInteger)pk
+                     ageText:(NSString *)ageText {
     if (self = [super init]) {
         NSAssert(user != nil, @"Cannot initialize a comment without a user");
         _user = [user copy];
         _components = [components copy];
         _indent = indent;
+        _pk = pk;
+        _ageText = [ageText copy];
     }
     return self;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p %@: %@ - %@, indent: %zi>", self, NSStringFromClass(self.class), self.user, self.components, self.indent];
+    return [NSString stringWithFormat:@"<%p %@: %@ - %@, indent: %zi, age: %@, pk: %zi>", self, NSStringFromClass(self.class), self.user, self.components, self.indent, self.ageText, self.pk];
 }
 
 
@@ -35,13 +43,17 @@ static NSString * const kHNCommentIndent = @"kHNCommentIndent";
     HNUser *user = [aDecoder decodeObjectForKey:kHNCommentUser];
     NSArray *components = [aDecoder decodeObjectForKey:kHNCommentCompents];
     NSUInteger indent = [aDecoder decodeIntegerForKey:kHNCommentIndent];
-    return [self initWithUser:user components:components indent:indent];
+    NSUInteger pk = [aDecoder decodeIntegerForKey:kHNCommentPK];
+    NSString *ageText = [aDecoder decodeObjectForKey:kHNCommentAgeText];
+    return [self initWithUser:user components:components indent:indent pk:pk ageText:ageText];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_user forKey:kHNCommentUser];
     [aCoder encodeObject:_components forKey:kHNCommentCompents];
     [aCoder encodeInteger:_indent forKey:kHNCommentIndent];
+    [aCoder encodeObject:_ageText forKey:kHNCommentAgeText];
+    [aCoder encodeInteger:_pk forKey:kHNCommentPK];
 }
 
 
@@ -52,6 +64,8 @@ static NSString * const kHNCommentIndent = @"kHNCommentIndent";
     copy->_user = [self.user copyWithZone:zone];
     copy->_components = [[NSArray alloc] initWithArray:self.components copyItems:YES];
     copy->_indent = self.indent;
+    copy->_pk = self.pk;
+    copy->_ageText = [self.ageText copyWithZone:zone];
     return copy;
 }
 
@@ -61,13 +75,13 @@ static NSString * const kHNCommentIndent = @"kHNCommentIndent";
 - (BOOL)isEqual:(id)object {
     if ([object isKindOfClass:HNComment.class]) {
         HNComment *comp = (HNComment *)object;
-        return comp.indent == self.indent && [comp.user isEqual:self.user] && [comp.components isEqual:self.components];
+        return comp.pk == self.pk;
     }
     return NO;
 }
 
 - (NSUInteger)hash {
-    return [self.components hash] ^ [self.user hash] ^ self.indent;
+    return self.pk;
 }
 
 @end

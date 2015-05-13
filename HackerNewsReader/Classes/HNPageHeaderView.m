@@ -19,7 +19,6 @@ static CGFloat const kHNPageHeaderLabelSpacing = 5.0;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subtitleLabel;
 @property (nonatomic, strong) UILabel *textLabel;
-@property (nonatomic, strong) CALayer *borderLayer;
 
 @end
 
@@ -49,9 +48,8 @@ static CGFloat const kHNPageHeaderLabelSpacing = 5.0;
         _textLabel.backgroundColor = self.backgroundColor;
         [self addSubview:_textLabel];
 
-//        _borderLayer = [CALayer layer];
-//        _borderLayer.backgroundColor = [UIColor colorWithRed:0.783922 green:0.780392 blue:0.8 alpha:1.0].CGColor;
-//        [self.layer addSublayer:_borderLayer];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
+        [self addGestureRecognizer:tap];
     }
     return self;
 }
@@ -100,9 +98,37 @@ static CGFloat const kHNPageHeaderLabelSpacing = 5.0;
         CGSize textSize = [self.textLabel sizeThatFits:inset.size];
         self.textLabel.frame = CGRectMake(kHNPageHeaderInsets.left, CGRectGetMaxY(self.subtitleLabel.frame) + kHNPageHeaderLabelSpacing, textSize.width, textSize.height);
     }
+}
 
-    CGFloat separatorHeight = 1.0 / [UIScreen mainScreen].scale;
-    self.borderLayer.frame = CGRectMake(kHNPageHeaderInsets.left, CGRectGetHeight(self.bounds) - separatorHeight, CGRectGetWidth(self.bounds), separatorHeight);
+
+#pragma mark - Gestures
+
+- (void)onTap:(UITapGestureRecognizer *)recognizer {
+    CGPoint point = [recognizer locationInView:self];
+    if (CGRectContainsPoint(self.textLabel.frame, point) &&
+        [self.delegate respondsToSelector:@selector(pageHeader:didTapText:characterAtIndex:)]) {
+        // http://stackoverflow.com/a/26806991/940936
+        // init text storage
+        NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:self.textLabel.attributedText];
+        NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
+        [textStorage addLayoutManager:layoutManager];
+
+        // init text container
+        NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(self.textLabel.frame.size.width, self.textLabel.frame.size.height+100) ];
+        textContainer.lineFragmentPadding = 0;
+        textContainer.maximumNumberOfLines = self.textLabel.numberOfLines;
+        textContainer.lineBreakMode = self.textLabel.lineBreakMode;
+
+        [layoutManager addTextContainer:textContainer];
+
+        NSUInteger characterIndex = [layoutManager characterIndexForPoint:point
+                                                          inTextContainer:textContainer
+                                 fractionOfDistanceBetweenInsertionPoints:NULL];
+        [self.delegate pageHeader:self didTapText:self.textLabel.attributedText characterAtIndex:characterIndex];
+    } else if (CGRectContainsPoint(self.titleLabel.frame, point) &&
+               [self.delegate respondsToSelector:@selector(pageHeaderDidTapTitle:)]) {
+        [self.delegate pageHeaderDidTapTitle:self];
+    }
 }
 
 @end

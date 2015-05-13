@@ -229,7 +229,7 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
         NSUInteger postID = [[post.URL hn_valueForQueryParameter:@"id"] integerValue];
         controller = [[HNCommentViewController alloc] initWithPostID:postID];
     } else {
-        controller = [[HNWebViewController alloc] initWithURL:post.URL];
+        controller = [[HNWebViewController alloc] initWithPost:post];
     }
 
     if (self.navigationController) {

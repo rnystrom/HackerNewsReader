@@ -14,7 +14,7 @@
 
 @optional
 - (void)commentCell:(HNCommentCell *)commentCell didTapCommentAtPoint:(CGPoint)point;
-- (void)commentCell:(HNCommentCell *)commentCell didLongPressCommentAtPoint:(CGPoint)point;
+- (void)commentCellDidLongPress:(HNCommentCell *)commentCell;
 
 @end
 

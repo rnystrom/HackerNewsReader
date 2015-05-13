@@ -12,9 +12,10 @@
 #import "UIColor+HackerNews.h"
 #import "UIFont+HackerNews.h"
 
-static UIEdgeInsets const kHNPostCellInset = (UIEdgeInsets) {8.0, 15.0, 8.0, 15.0};
+static UIEdgeInsets const kHNPostCellInset = (UIEdgeInsets) {8.0, 15.0, 8.0, 0.0};
 static CGFloat const kHNPostCellLabelSpacing = 5.0;
 static CGFloat const kHNPostCellImageSpacing = 10.0;
+static CGFloat const kHNCommentButtonWidth = 44.0;
 
 @interface HNPostCell ()
 
@@ -44,7 +45,6 @@ static CGFloat const kHNPostCellImageSpacing = 10.0;
 
         _commentButton = [[HNCommentButton alloc] init];
         [_commentButton addTarget:self action:@selector(didTapCommentButton:) forControlEvents:UIControlEventTouchUpInside];
-        [_commentButton sizeToFit];
         [self addSubview:_commentButton];
     }
     return self;
@@ -90,8 +90,7 @@ static CGFloat const kHNPostCellImageSpacing = 10.0;
         return [cachedSize CGSizeValue];
     }
 
-    [self.commentButton sizeToFit];
-    CGSize size = [self.titleLabel sizeThatFits:CGSizeMake(width - kHNPostCellInset.left - kHNPostCellInset.right - CGRectGetWidth(self.commentButton.bounds) - kHNPostCellImageSpacing, CGFLOAT_MAX)];
+    CGSize size = [self.titleLabel sizeThatFits:CGSizeMake(width - kHNPostCellInset.left - kHNPostCellInset.right - kHNCommentButtonWidth - kHNPostCellImageSpacing, CGFLOAT_MAX)];
     sizeCache[key] = [NSValue valueWithCGSize:size];
     return size;
 }
@@ -102,9 +101,7 @@ static CGFloat const kHNPostCellImageSpacing = 10.0;
     CGRect bounds = self.contentView.bounds;
     CGFloat width = CGRectGetWidth(bounds);
 
-    [self.commentButton sizeToFit];
-    CGSize commentSize = self.commentButton.bounds.size;
-    self.commentButton.frame = CGRectMake(width - commentSize.width - self.indentationWidth, 0.0, commentSize.width, CGRectGetHeight(bounds));
+    self.commentButton.frame = CGRectMake(width - kHNCommentButtonWidth, 0.0, kHNCommentButtonWidth, CGRectGetHeight(bounds));
 
     CGSize titleSize = [self titleSizeForWidth:width];
     self.titleLabel.frame = (CGRect){CGPointMake(kHNPostCellInset.left, kHNPostCellInset.top), titleSize};
