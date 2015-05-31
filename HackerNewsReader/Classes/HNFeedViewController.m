@@ -44,24 +44,27 @@ static NSUInteger const kItemsPerPage = 30;
 
 @implementation HNFeedViewController
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
+
+        _readPostIDs = [[NSMutableIndexSet alloc] init];
+
+        HNFeedParser *parser = [[HNFeedParser alloc] init];
+        NSString *cacheName = @"latest.feed";
+        _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue() path:@"news" parser:parser cacheName:cacheName];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
-
-    self.readPostIDs = [[NSMutableIndexSet alloc] init];
-
-    HNFeedParser *parser = [[HNFeedParser alloc] init];
-    NSString *cacheName = @"latest.feed";
-    self.dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue() path:@"news" parser:parser cacheName:cacheName];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     CGRect bounds = self.view.bounds;
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.activityIndicator startAnimating];
-    self.activityIndicator.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds) - self.navigationController.topLayoutGuide.length);
-    self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     [self.view addSubview:self.activityIndicator];
 
     [self fetchWithParams:nil refresh:YES];
@@ -89,6 +92,14 @@ static NSUInteger const kItemsPerPage = 30;
 
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.navigationController setToolbarHidden:YES animated:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+    CGRect bounds = self.view.bounds;
+    self.activityIndicator.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds) - self.navigationController.topLayoutGuide.length);
+    self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
 }
 
 
