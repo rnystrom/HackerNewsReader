@@ -16,6 +16,8 @@ static NSString * const kHNPostPK = @"kHNPostPK";
 static NSString * const kHNPostRank = @"kHNPostRank";
 static NSString * const kHNPostAgeText = @"kHNPostAgeText";
 
+NSUInteger const kHNPostPKIsLinkOnly = 0;
+
 @implementation HNPost
 
 - (instancetype)initWithTitle:(NSString *)title

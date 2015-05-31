@@ -6,7 +6,9 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
+extern NSUInteger const kHNPostPKIsLinkOnly;
 
 @interface HNPost : NSObject <NSCoding, NSCopying>
 

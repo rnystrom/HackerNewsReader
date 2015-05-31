@@ -18,7 +18,7 @@
         self.textLabel.font = [UIFont titleFont];
         self.textLabel.textColor = [UIColor subtitleTextColor];
         self.textLabel.textAlignment = NSTextAlignmentCenter;
-        self.textLabel.text = NSLocalizedString(@"Cannot load list", @"Cannot load data for the list");
+        self.textLabel.numberOfLines = 1;
     }
     return self;
 }

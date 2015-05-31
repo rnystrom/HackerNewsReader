@@ -39,9 +39,7 @@ static NSString * const kHNFeedCreatedDate = @"kHNFeedCreatedDate";
 
 - (instancetype)feedByAppendingItems:(NSArray *)items {
     NSArray *mergedItems = [self.items arrayByAddingObjectsFromArray:items];
-    NSArray *sortedItems = [mergedItems sortedArrayUsingSelector:@selector(compare:)];
-    NSArray *copiedItems = [[NSArray alloc] initWithArray:sortedItems copyItems:YES];
-    HNFeed *newFeed = [[HNFeed alloc] initWithItems:copiedItems createdDate:[self.createdDate copy]];
+    HNFeed *newFeed = [[HNFeed alloc] initWithItems:mergedItems createdDate:[self.createdDate copy]];
     return newFeed;
 }
 

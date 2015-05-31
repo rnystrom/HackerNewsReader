@@ -23,16 +23,9 @@
 #import "HNTextStorage.h"
 #import "HNPageHeaderView.h"
 #import "NSURL+HackerNews.h"
-#import "UITableView+DataDiffing.h"
 #import "HNComment+Links.h"
 #import "HNPage+Links.h"
-
-#define SUPPORTS_ALERTCONTROLLER (NSClassFromString(@"UIAlertController") != nil)
-#define COPY_TEXT_ACTION NSLocalizedString(@"Copy Text", @"Copy the text of the comment")
-#define OPEN_SAFARI_ACTION NSLocalizedString(@"Open in Safari", @"Open the comment in Safari")
-#define COPY_LINK_ACTION NSLocalizedString(@"Copy Permalink", @"Copy a link to the comment")
-#define COMMENT_TITLE_FORMAT NSLocalizedString(@"%@'s comment", @"Formatted string for for the title of someone's comment")
-#define CANCEL_ACTION NSLocalizedString(@"Cancel", @"Cancel")
+#import "UIViewController+HNComment.h"
 
 typedef NS_ENUM(NSUInteger, HNCommentRow) {
     HNCommentRowUser,
@@ -52,9 +45,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 @property (nonatomic, strong) NSDictionary *attributedCommentStrings;
 @property (nonatomic, strong) HNTextStorage *textStorage;
 @property (nonatomic, assign) CGFloat width;
-@property (nonatomic, strong) HNComment *longPressedComment;
-
 @property (nonatomic, strong) HNPage *page;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -80,7 +72,14 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     [super viewDidLoad];
 
     self.title = NSLocalizedString(@"Comments", @"Title for the controller displaying a comments thread");
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    CGRect bounds = self.view.bounds;
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.activityIndicator startAnimating];
+    self.activityIndicator.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+    self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:self.activityIndicator];
 
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -93,6 +92,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onShare:)];
     self.navigationItem.rightBarButtonItem = share;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -104,11 +104,6 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.navigationController setToolbarHidden:YES animated:animated];
-
-    if (self.dataCoordinator.isFetching) {
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-        [self.refreshControl beginRefreshing];
-    }
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -171,6 +166,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     NSAssert([NSThread isMainThread], @"Delegate callbacks should be on the (registered) main thread");
 
     [self.refreshControl endRefreshing];
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
 
     [self setupHeaderViewWithPage:page];
 
@@ -205,6 +202,14 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     [self.tableView deleteSections:deletes withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView reloadSections:reloads withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
+
+    NSUInteger count = page.comments.count;
+    if (count) {
+        NSString *commentFormatString = NSLocalizedString(@"%zi Comments", @"The number of comments in the thread");
+        self.title = [NSString stringWithFormat:commentFormatString, count];
+    } else {
+        self.title = NSLocalizedString(@"No Comments", @"Title when there are no comments for a page");
+    }
 }
 
 - (UIEdgeInsets)insetsForComment:(HNComment *)comment {
@@ -238,26 +243,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)openCommentPermalink:(HNComment *)comment {
-    NSURL *url = [comment permalink];
-    UIApplication *app = [UIApplication sharedApplication];
-    if ([app canOpenURL:url]) {
-        [app openURL:url];
-    }
-}
-
-- (void)copyCommentText:(HNComment *)comment {
-    NSString *text = [attributedStringFromComponents(comment.components) string];
-    [[UIPasteboard generalPasteboard] setString:text];
-}
-
-- (void)copyCommentLink:(HNComment *)comment {
-    [[UIPasteboard generalPasteboard] setString:[[comment permalink] absoluteString]];
-}
-
 - (void)onShare:(id)sender {
     NSURL *url = [self.page permalink];
-    NSAssert(url != nil, @"Should always have a URL request");
     if (url) {
         TUSafariActivity *activity = [[TUSafariActivity alloc] init];
         UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:@[activity]];
@@ -357,6 +344,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     NSAssert(![NSThread isMainThread], @"Delegate callbacks should not be on the (registered) main thread");
 
     NSMutableDictionary *strings = [[NSMutableDictionary alloc] initWithCapacity:page.comments.count];
+
+    // precompute strings and heights for all text
     for (HNComment *comment in page.comments) {
         NSAttributedString *str = [comment attributedString];
         if (str) {
@@ -366,7 +355,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
             UIEdgeInsets insets = [HNCommentCell contentInsetsForIndentationLevel:indent indentationWidth:kCommentCellIndentationWidth];
             CGFloat width = CGRectGetWidth(self.view.bounds) - insets.left - insets.right;
             // warms the store
-            [self.textStorage heightForAttributedString:str width:width];
+            (void)[self.textStorage heightForAttributedString:str width:width];
         }
     }
     self.attributedCommentStrings = [strings copy];
@@ -380,6 +369,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     NSAssert(![NSThread isMainThread], @"Delegate callbacks should not be on the (registered) main thread");
 
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
         [self.refreshControl endRefreshing];
     });
 }
@@ -402,30 +392,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 - (void)commentCellDidLongPress:(HNCommentCell *)commentCell {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:commentCell];
     HNComment *comment = self.page.comments[indexPath.section];
-    NSString *title = [NSString stringWithFormat:COMMENT_TITLE_FORMAT, comment.user.username];
-
-    if (SUPPORTS_ALERTCONTROLLER) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *openSafari = [UIAlertAction actionWithTitle:OPEN_SAFARI_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self openCommentPermalink:comment];
-        }];
-        UIAlertAction *copyText = [UIAlertAction actionWithTitle:COPY_TEXT_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self copyCommentText:comment];
-        }];
-        UIAlertAction *copyLink = [UIAlertAction actionWithTitle:COPY_LINK_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self copyCommentLink:comment];
-        }];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:CANCEL_ACTION style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:copyText];
-        [alertController addAction:openSafari];
-        [alertController addAction:copyLink];
-        [alertController addAction:cancel];
-        [self presentViewController:alertController animated:YES completion:nil];
-    } else {
-        self.longPressedComment = comment;
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:CANCEL_ACTION destructiveButtonTitle:nil otherButtonTitles:COPY_TEXT_ACTION, OPEN_SAFARI_ACTION, COPY_LINK_ACTION, nil];
-        [actionSheet showInView:self.view];
-    }
+    [self showActionSheetForComment:comment];
 }
 
 
@@ -444,21 +411,5 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
         [self.navigationController pushViewController:controller animated:YES];
     }
 }
-
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if ([title isEqualToString:OPEN_SAFARI_ACTION]) {
-        [self openCommentPermalink:self.longPressedComment];
-    } else if ([title isEqualToString:COPY_TEXT_ACTION]) {
-        [self copyCommentText:self.longPressedComment];
-    } else if ([title isEqualToString:COPY_LINK_ACTION]) {
-        [self copyCommentLink:self.longPressedComment];
-    }
-    self.longPressedComment = nil;
-}
-
 
 @end

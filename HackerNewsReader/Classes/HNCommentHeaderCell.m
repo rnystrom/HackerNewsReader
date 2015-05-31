@@ -40,6 +40,10 @@ static CGFloat const kHNCommentHeaderPadding = 15.0;
         _borderLayer = [CALayer layer];
         _borderLayer.backgroundColor = [UIColor colorWithRed:0.783922 green:0.780392 blue:0.8 alpha:1.0].CGColor;
         [self.layer addSublayer:_borderLayer];
+
+        UIView *backgroundView = [[UIView alloc] init];
+        backgroundView.backgroundColor = [UIColor overlayHighlightColor];
+        self.selectedBackgroundView = backgroundView;
     }
     return self;
 }

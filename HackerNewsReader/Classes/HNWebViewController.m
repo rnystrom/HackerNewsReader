@@ -201,20 +201,25 @@
 #pragma mark - WKNavigationDelegate
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    self.title = webView.title;
+
     [self webViewFinishedLoading];
 
-    self.title = webView.title;
     self.backButton.enabled = webView.canGoBack;
     self.forwardButton.enabled = webView.canGoForward;
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    NSLog(@"%@",error);
+#if DEBUG
+    NSLog(@"%@",error.localizedDescription);
+#endif
     [self displayErrorLabel];
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    NSLog(@"%@",error);
+#if DEBUG
+    NSLog(@"%@",error.localizedDescription);
+#endif
     [self displayErrorLabel];
 }
 

@@ -40,4 +40,8 @@ alpha:1.0]
     return [UIColor colorWithWhite:0.375 alpha:1.0];
 }
 
++ (UIColor *)overlayHighlightColor {
+    return [UIColor colorWithWhite:0.0 alpha:0.1];
+}
+
 @end

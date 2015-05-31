@@ -20,6 +20,7 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
 @interface HNPostCell ()
 
 @property (strong, nonatomic, readwrite) HNCommentButton *commentButton;
+@property (nonatomic, assign) BOOL commentCountHidden;
 
 @end
 
@@ -62,11 +63,23 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
     _titleLabel.textColor = read ? [UIColor subtitleTextColor] : [UIColor titleTextColor];
 }
 
+- (void)setCommentButtonHidden:(BOOL)commentButtonHidden {
+    self.commentButton.hidden = commentButtonHidden;
+}
+
+- (void)setCommentCountHidden:(BOOL)commentCountHidden {
+    if (_commentCountHidden != commentCountHidden) {
+        self.commentButton.commentLabel.hidden = commentCountHidden;
+        [self.commentButton setNeedsLayout];
+    }
+}
+
 
 #pragma mark - Layout
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    CGFloat height = [self titleSizeForWidth:size.width].height + kHNPostCellInset.top + kHNPostCellInset.bottom + self.subtitleLabel.font.pointSize + 4.0 + kHNPostCellLabelSpacing;
+    CGFloat subtitleHeight = self.subtitleLabel.text.length ? self.subtitleLabel.font.pointSize + 4.0 + kHNPostCellLabelSpacing: 0.0;
+    CGFloat height = [self titleSizeForWidth:size.width].height + kHNPostCellInset.top + kHNPostCellInset.bottom + subtitleHeight;
     return CGSizeMake(size.width, height);
 }
 

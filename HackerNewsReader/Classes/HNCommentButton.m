@@ -46,6 +46,9 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
     return self;
 }
 
+
+#pragma mark - Layout
+
 - (CGSize)sizeThatFits:(CGSize)size {
     CGRect iconBounds = self.commentIconView.bounds;
     return CGSizeMake(CGRectGetWidth(iconBounds), CGRectGetHeight(iconBounds) + self.commentLabel.font.pointSize + kHNCommentButtonSpacing);
@@ -55,17 +58,23 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
     CGFloat width = CGRectGetWidth(self.bounds);
     CGFloat height = CGRectGetHeight(self.bounds);
     CGSize iconSize = self.commentIconView.bounds.size;
+    CGFloat iconOffset = self.commentLabel.hidden ? 0.0 : iconSize.height / 4;
     self.commentIconView.frame = CGRectMake((width - iconSize.width) / 2,
-                                            (height - iconSize.height) / 2 - iconSize.height / 4,
+                                            (height - iconSize.height) / 2 - iconOffset,
                                             iconSize.width,
                                             iconSize.height);
 
-    [self.commentLabel sizeToFit];
-    self.commentLabel.frame = CGRectMake(0.0,
-                                         CGRectGetMaxY(self.commentIconView.frame) + kHNCommentButtonSpacing,
-                                         width,
-                                         CGRectGetHeight(self.commentLabel.bounds));
+    if (!self.commentLabel.hidden) {
+        [self.commentLabel sizeToFit];
+        self.commentLabel.frame = CGRectMake(0.0,
+                                             CGRectGetMaxY(self.commentIconView.frame) + kHNCommentButtonSpacing,
+                                             width,
+                                             CGRectGetHeight(self.commentLabel.bounds));
+    }
 }
+
+
+#pragma mark - Touches
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];

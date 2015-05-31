@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 #import "HNComment.h"
 #import "HNCommentComponent.h"

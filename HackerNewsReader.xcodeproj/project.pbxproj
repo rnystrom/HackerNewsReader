@@ -20,6 +20,8 @@
 		2944A89F1AD6F58200A2A251 /* hn-comments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2944A89D1AD6F58200A2A251 /* hn-comments.html */; };
 		2944A8A01AD6F58200A2A251 /* hn-front-page.html in Resources */ = {isa = PBXBuildFile; fileRef = 2944A89E1AD6F58200A2A251 /* hn-front-page.html */; };
 		2944A8A61AD6FAB400A2A251 /* HNCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944A8A51AD6FAB400A2A251 /* HNCommentViewController.m */; };
+		294CB8FF1B1B917400FAA09F /* UIViewController+HNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 294CB8FE1B1B917400FAA09F /* UIViewController+HNComment.m */; };
+		294CB9031B1B92D400FAA09F /* HNTableStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 294CB9021B1B92D400FAA09F /* HNTableStatus.m */; };
 		295DB7461AF7DA9D004B119F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295DB7451AF7DA9D004B119F /* WebKit.framework */; };
 		296054B91AD4F0370038818A /* HNCommentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 296054B81AD4F0370038818A /* HNCommentButton.m */; };
 		2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */; };
@@ -36,7 +38,6 @@
 		29D4116A1ADB4D9E00C491DA /* HNComment+AttributedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */; };
 		29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D4116C1ADB601600C491DA /* HNCommentHeaderCell.m */; };
 		29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */; };
-		29E2CB511AD9A2F70010B45D /* UITableView+DataDiffing.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB501AD9A2F70010B45D /* UITableView+DataDiffing.m */; };
 		29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */; };
 		8E967D4A5CD69545E8DA045D /* libPods-HackerNewsReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,10 @@
 		2944A89E1AD6F58200A2A251 /* hn-front-page.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "hn-front-page.html"; sourceTree = "<group>"; };
 		2944A8A41AD6FAB400A2A251 /* HNCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentViewController.h; path = Classes/HNCommentViewController.h; sourceTree = "<group>"; };
 		2944A8A51AD6FAB400A2A251 /* HNCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentViewController.m; path = Classes/HNCommentViewController.m; sourceTree = "<group>"; };
+		294CB8FD1B1B917400FAA09F /* UIViewController+HNComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+HNComment.h"; path = "Classes/UIViewController+HNComment.h"; sourceTree = "<group>"; };
+		294CB8FE1B1B917400FAA09F /* UIViewController+HNComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+HNComment.m"; path = "Classes/UIViewController+HNComment.m"; sourceTree = "<group>"; };
+		294CB9011B1B92D400FAA09F /* HNTableStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNTableStatus.h; path = Classes/HNTableStatus.h; sourceTree = "<group>"; };
+		294CB9021B1B92D400FAA09F /* HNTableStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNTableStatus.m; path = Classes/HNTableStatus.m; sourceTree = "<group>"; };
 		295DB7451AF7DA9D004B119F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		296054B71AD4F0370038818A /* HNCommentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentButton.h; path = Classes/HNCommentButton.h; sourceTree = "<group>"; };
 		296054B81AD4F0370038818A /* HNCommentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentButton.m; path = Classes/HNCommentButton.m; sourceTree = "<group>"; };
@@ -97,8 +102,6 @@
 		29D4116C1ADB601600C491DA /* HNCommentHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentHeaderCell.m; path = Classes/HNCommentHeaderCell.m; sourceTree = "<group>"; };
 		29E2CB491AD9A1200010B45D /* HNCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentCell.h; path = Classes/HNCommentCell.h; sourceTree = "<group>"; };
 		29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentCell.m; path = Classes/HNCommentCell.m; sourceTree = "<group>"; };
-		29E2CB4F1AD9A2F70010B45D /* UITableView+DataDiffing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+DataDiffing.h"; path = "Classes/UITableView+DataDiffing.h"; sourceTree = "<group>"; };
-		29E2CB501AD9A2F70010B45D /* UITableView+DataDiffing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+DataDiffing.m"; path = "Classes/UITableView+DataDiffing.m"; sourceTree = "<group>"; };
 		29EAD15A1B03C96F0076C0C2 /* HNPage+Links.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HNPage+Links.h"; path = "Classes/HNPage+Links.h"; sourceTree = "<group>"; };
 		29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HNPage+Links.m"; path = "Classes/HNPage+Links.m"; sourceTree = "<group>"; };
 		61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackerNewsReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,26 +134,26 @@
 		2920DDB81AED9C4000E51B23 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				2965ED001AFD3DD800F6E2DE /* AttributedCommentComponents.h */,
+				2965ED011AFD3DD800F6E2DE /* AttributedCommentComponents.m */,
+				29D411681ADB4D9E00C491DA /* HNComment+AttributedStrings.h */,
+				29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */,
 				297D7BDD1B02BA230021993B /* HNComment+Links.h */,
 				297D7BDE1B02BA230021993B /* HNComment+Links.m */,
 				29EAD15A1B03C96F0076C0C2 /* HNPage+Links.h */,
 				29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */,
-				29D411681ADB4D9E00C491DA /* HNComment+AttributedStrings.h */,
-				29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */,
+				2965ED0E1AFD98E300F6E2DE /* NSURL+HackerNews.h */,
+				2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */,
 				2920DDB91AED9C4900E51B23 /* UIColor+HackerNews.h */,
 				2920DDBA1AED9C4900E51B23 /* UIColor+HackerNews.m */,
 				2920DDBB1AED9C4900E51B23 /* UIFont+HackerNews.h */,
 				2920DDBC1AED9C4900E51B23 /* UIFont+HackerNews.m */,
 				2920DDBD1AED9C4900E51B23 /* UINavigationBar+HackerNews.h */,
 				2920DDBE1AED9C4900E51B23 /* UINavigationBar+HackerNews.m */,
-				29E2CB4F1AD9A2F70010B45D /* UITableView+DataDiffing.h */,
-				29E2CB501AD9A2F70010B45D /* UITableView+DataDiffing.m */,
 				2920DDBF1AED9C4900E51B23 /* UIToolbar+HackerNews.h */,
 				2920DDC01AED9C4900E51B23 /* UIToolbar+HackerNews.m */,
-				2965ED001AFD3DD800F6E2DE /* AttributedCommentComponents.h */,
-				2965ED011AFD3DD800F6E2DE /* AttributedCommentComponents.m */,
-				2965ED0E1AFD98E300F6E2DE /* NSURL+HackerNews.h */,
-				2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */,
+				294CB8FD1B1B917400FAA09F /* UIViewController+HNComment.h */,
+				294CB8FE1B1B917400FAA09F /* UIViewController+HNComment.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -209,6 +212,15 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		294CB9001B1B92B500FAA09F /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				294CB9011B1B92D400FAA09F /* HNTableStatus.h */,
+				294CB9021B1B92D400FAA09F /* HNTableStatus.m */,
+			);
+			name = Abstract;
+			sourceTree = "<group>";
+		};
 		2990B2D71AD1FC600053DB80 = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +265,7 @@
 		2990B3421AD1FDDE0053DB80 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				294CB9001B1B92B500FAA09F /* Abstract */,
 				2990B3501AD1FE460053DB80 /* AppDelegate.h */,
 				2990B3511AD1FE460053DB80 /* AppDelegate.m */,
 				2920DDB81AED9C4000E51B23 /* Categories */,
@@ -416,7 +429,7 @@
 				2920DDCC1AEDA27500E51B23 /* HNTextRenderer.m in Sources */,
 				29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */,
 				2944A8A61AD6FAB400A2A251 /* HNCommentViewController.m in Sources */,
-				29E2CB511AD9A2F70010B45D /* UITableView+DataDiffing.m in Sources */,
+				294CB9031B1B92D400FAA09F /* HNTableStatus.m in Sources */,
 				296054B91AD4F0370038818A /* HNCommentButton.m in Sources */,
 				297D7BDF1B02BA230021993B /* HNComment+Links.m in Sources */,
 				2920DDB71AED9BFF00E51B23 /* HNNavigationController.m in Sources */,
@@ -432,6 +445,7 @@
 				29D4116A1ADB4D9E00C491DA /* HNComment+AttributedStrings.m in Sources */,
 				2920DDC31AED9C4900E51B23 /* UINavigationBar+HackerNews.m in Sources */,
 				2920DDC41AED9C4900E51B23 /* UIToolbar+HackerNews.m in Sources */,
+				294CB8FF1B1B917400FAA09F /* UIViewController+HNComment.m in Sources */,
 				29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

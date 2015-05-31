@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface UIColor (HackerNews)
 
@@ -16,5 +16,6 @@
 + (UIColor *)subtitleTextColor;
 + (UIColor *)titleTextColor;
 + (UIColor *)highlightedTintColor;
++ (UIColor *)overlayHighlightColor;
 
 @end

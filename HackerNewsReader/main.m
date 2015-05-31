@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {

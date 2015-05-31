@@ -27,7 +27,7 @@
 //  OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface TUSafariActivity : UIActivity
 

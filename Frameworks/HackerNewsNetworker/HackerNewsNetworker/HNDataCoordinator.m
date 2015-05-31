@@ -72,25 +72,34 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
 }
 
 - (void)fetchWithParams:(NSDictionary *)params {
-    [self.service fetchParameters:params completion:^(id data, NSError *error) {
-        self.loadedOnce = YES;
-        if (!data && error && [self.delegate respondsToSelector:@selector(dataCoordinator:didError:)]) {
-            dispatch_async(self.delegateQueue, ^{
-                [self.delegate dataCoordinator:self didError:error];
-            });
-        } else if (data) {
-            id object = [self.parser parseDataFromResponse:data];
-            if (object && [self.store archiveToDisk:object]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:self];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.service fetchParameters:params completion:^(id data, NSError *error) {
+            self.loadedOnce = YES;
+            if (error && [self.delegate respondsToSelector:@selector(dataCoordinator:didError:)]) {
+                dispatch_async(self.delegateQueue, ^{
+                    [self.delegate dataCoordinator:self didError:error];
+                });
+            } else if (data) {
+                id object = [self.parser parseDataFromResponse:data];
+                if (object && [self.store archiveToDisk:object]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:self];
+                    dispatch_async(self.delegateQueue, ^{
+                        [self.delegate dataCoordinator:self didUpdateObject:object];
+                    });
+                }
             }
-        }
-    }];
+        }];
+    });
 }
 
 
 #pragma mark - Notifications
 
 - (void)onStoreUpdated:(NSNotification *)notification {
+    if (notification.object == self) {
+        return;
+    }
+
     id <NSCoding> object = [self.store fetchFromDisk];
 
     dispatch_async(self.delegateQueue, ^{

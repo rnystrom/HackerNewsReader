@@ -20,18 +20,15 @@
 #import "HNLoadingCell.h"
 #import "HNCommentViewController.h"
 #import "NSURL+HackerNews.h"
-#import "UITableView+DataDiffing.h"
+#import "HNTableStatus.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
     HNFeedViewControllerSectionData,
-    HNFeedViewControllerSectionCount,
-    HNFeedViewControllerSectionEmpty,
-    HNFeedViewControllerSectionLoading
+    HNFeedViewControllerSectionCount
 };
 
 static NSString * const kPostCellIdentifier = @"kPostCellIdentifier";
-static NSString * const kEmptyCellIdentifier = @"kEmptyCellIdentifier";
-static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
+static NSUInteger const kItemsPerPage = 30;
 
 @interface HNFeedViewController () <HNDataCoordinatorDelegate, HNPostCellDelegate>
 
@@ -39,6 +36,9 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 @property (nonatomic, copy) HNFeed *feed;
 @property (nonatomic, strong) HNPostCell *prototypeCell;
 @property (nonatomic, strong) NSMutableIndexSet *readPostIDs;
+@property (nonatomic, assign) BOOL didRefresh;
+@property (nonatomic, strong) HNTableStatus *tableStatus;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -54,12 +54,24 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
     HNFeedParser *parser = [[HNFeedParser alloc] init];
     NSString *cacheName = @"latest.feed";
     self.dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue() path:@"news" parser:parser cacheName:cacheName];
-    [self.dataCoordinator fetch];
+
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    CGRect bounds = self.view.bounds;
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.activityIndicator startAnimating];
+    self.activityIndicator.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds) - self.navigationController.topLayoutGuide.length);
+    self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:self.activityIndicator];
+
+    [self fetchWithParams:nil refresh:YES];
 
     [self.tableView registerClass:HNPostCell.class forCellReuseIdentifier:kPostCellIdentifier];
-    [self.tableView registerClass:HNEmptyTableCell.class forCellReuseIdentifier:kEmptyCellIdentifier];
-    [self.tableView registerClass:HNLoadingCell.class forCellReuseIdentifier:kLoadingCellIdentifier];
     self.tableView.tableFooterView = [[UIView alloc] init];
+
+    NSString *emptyMessage = NSLocalizedString(@"Failed loading feed", @"Cannot load data for the list");
+    self.tableStatus = [[HNTableStatus alloc] initWithTableView:self.tableView emptyMessage:emptyMessage];
+    self.tableStatus.sections = HNFeedViewControllerSectionCount;
 
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -77,11 +89,6 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self.navigationController setToolbarHidden:YES animated:animated];
-
-    if ([self.dataCoordinator isFetching]) {
-        [self.tableView setContentOffset:CGPointMake(0, -self.refreshControl.frame.size.height) animated:YES];
-        [self.refreshControl beginRefreshing];
-    }
 }
 
 
@@ -99,49 +106,74 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 
 - (void)configureCell:(HNPostCell *)cell forIndexPath:(NSIndexPath *)indexPath {
     HNPost *post = self.feed.items[indexPath.row];
+    BOOL postIsLink = post.pk == kHNPostPKIsLinkOnly;
     cell.titleLabel.text = post.title;
-    NSString *detailText = [NSString stringWithFormat:NSLocalizedString(@"%zi points", @"Formatted string for the number of points"),post.score];
-    if (post.URL.host.length) {
-        detailText = [detailText stringByAppendingFormat:@" (%@)",post.URL.host];
-    }
     cell.read = [self.readPostIDs containsIndex:post.pk];
-    cell.subtitleLabel.text = detailText;
     [cell setCommentCount:post.commentCount];
+    [cell setCommentButtonHidden:postIsLink];
     cell.delegate = self;
-}
 
-- (void)configureLoadingCell:(HNLoadingCell *)cell {
-    if (self.dataCoordinator.isFetching) {
-        [cell.activityIndicatorView startAnimating];
-    } else {
-        [cell.activityIndicatorView stopAnimating];
+    NSString *detailText = nil;
+    if (!postIsLink) {
+        detailText = [NSString stringWithFormat:NSLocalizedString(@"%zi points", @"Formatted string for the number of points"),post.score];
+        if (post.URL.host.length) {
+            detailText = [detailText stringByAppendingFormat:@" (%@)",post.URL.host];
+        }
     }
-}
-
-- (NSIndexPath *)loadingCellIndexPath {
-    return [NSIndexPath indexPathForRow:0 inSection:HNFeedViewControllerSectionLoading];
-}
-
-- (NSIndexPath *)emptyCellIndexPath {
-    return [NSIndexPath indexPathForRow:0 inSection:HNFeedViewControllerSectionEmpty];
+    cell.subtitleLabel.text = detailText;
 }
 
 
 #pragma mark - Actions
 
+- (void)fetchWithParams:(NSDictionary *)params refresh:(BOOL)refresh {
+    if ([self.dataCoordinator isFetching]) {
+        return;
+    }
+
+    self.didRefresh = refresh;
+
+    [self.dataCoordinator fetchWithParams:params];
+}
+
 - (void)onRefresh:(UIRefreshControl *)refreshControl {
-    [self.dataCoordinator fetch];
+    [self fetchWithParams:nil refresh:YES];
 }
 
 - (void)updateFeed:(HNFeed *)feed {
-    void (^updateBlock)(NSMutableArray *, NSMutableArray *, NSMutableArray *) = ^(NSMutableArray *inserts, NSMutableArray *deletes, NSMutableArray *reloads) {
-        self.feed = feed;
-    };
+    [self.tableStatus hideTailLoader];
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
 
-    [self.tableView performUpdatesWithOldArray:self.feed.items
-                                      newArray:feed.items
-                                       section:HNFeedViewControllerSectionData
-                         dataSourceUpdateBlock:updateBlock];
+    if (feed.items.count == 0) {
+        [self.tableStatus displayEmptyMessage];
+    } else {
+        [self.tableStatus hideEmptyMessage];
+    }
+
+    // if not refreshing, append items
+    if (!self.didRefresh) {
+        feed = [self.feed feedByMergingFeed:feed];
+
+        NSUInteger currentCount = self.feed.items.count;
+        NSMutableArray *inserts = [[NSMutableArray alloc] init];
+        [feed.items enumerateObjectsUsingBlock:^(HNPost *post, NSUInteger idx, BOOL *stop) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:idx inSection:HNFeedViewControllerSectionData];
+            if (idx >= currentCount) {
+                [inserts addObject:indexPath];
+            }
+        }];
+
+        self.feed = feed;
+
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:inserts withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+    } else {
+        self.didRefresh = NO;
+        self.feed = feed;
+        [self.tableView reloadData];
+    }
 }
 
 
@@ -160,53 +192,37 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return HNFeedViewControllerSectionCount;
+    return HNFeedViewControllerSectionCount + [self.tableStatus additionalSectionCount];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case HNFeedViewControllerSectionData:
-            return self.feed.items.count;
-        case HNFeedViewControllerSectionEmpty:
-        case HNFeedViewControllerSectionLoading:
-            return 1;
+    if (section == HNFeedViewControllerSectionData) {
+        return self.feed.items.count;
+    } else {
+        return [self.tableStatus cellCountForSection:section];
     }
-    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *identifier;
     NSUInteger section = indexPath.section;
-    switch (section) {
-        case HNFeedViewControllerSectionData:
-            identifier = kPostCellIdentifier;
-            break;
-        case HNFeedViewControllerSectionEmpty:
-            identifier = kEmptyCellIdentifier;
-            break;
-        case HNFeedViewControllerSectionLoading:
-            identifier = kLoadingCellIdentifier;
-            break;
-    }
-    NSAssert(identifier != nil, @"Unhandled table section");
 
-    id cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     if (section == HNFeedViewControllerSectionData) {
+        id cell = [tableView dequeueReusableCellWithIdentifier:kPostCellIdentifier forIndexPath:indexPath];
         [self configureCell:cell forIndexPath:indexPath];
-    } else if (section == HNFeedViewControllerSectionLoading) {
-        [self configureLoadingCell:cell];
+        return cell;
+    } else {
+        return [self.tableStatus cellForIndexPath:indexPath];
     }
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == HNFeedViewControllerSectionEmpty || indexPath.section == HNFeedViewControllerSectionLoading) {
-        return self.dataCoordinator.isFetching ? 55.0 : 0.0;
+    if (indexPath.section == HNFeedViewControllerSectionData) {
+        [self configureCell:self.prototypeCell forIndexPath:indexPath];
+        CGSize size = [self.prototypeCell sizeThatFits:CGSizeMake(CGRectGetWidth(self.tableView.bounds), CGFLOAT_MAX)];
+        return size.height;
     }
 
-    [self configureCell:self.prototypeCell forIndexPath:indexPath];
-    CGSize size = [self.prototypeCell sizeThatFits:CGSizeMake(CGRectGetWidth(self.tableView.bounds), CGFLOAT_MAX)];
-    return size.height;
+    return 55.0;
 }
 
 
@@ -248,9 +264,8 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
     HNFeed *feed = (HNFeed *)object;
 
     if (self.isViewLoaded) {
-        [self.refreshControl endRefreshing];
-
-        if (self.feed) {
+        if (self.refreshControl.isRefreshing) {
+            [self.refreshControl endRefreshing];
             [self performSelector:@selector(updateFeed:) withObject:feed afterDelay:0.23];
         } else {
             [self updateFeed:feed];
@@ -263,15 +278,29 @@ static NSString * const kLoadingCellIdentifier = @"kLoadingCellIdentifier";
 - (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didError:(NSError *)error {
     NSAssert([NSThread isMainThread], @"Delegate callbacks should be on the (registered) main thread");
 
-    if (!self.isViewLoaded) {
-        return;
-    }
+#if DEBUG
+    NSLog(@"%@",error.localizedDescription);
+#endif
 
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
+    [self.tableStatus displayEmptyMessage];
     [self.refreshControl endRefreshing];
+}
 
-    [self.tableView beginUpdates];
-    [self.tableView reloadRowsAtIndexPaths:@[[self loadingCellIndexPath]] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    CGFloat height = CGRectGetHeight(self.view.bounds);
+    CGFloat offset = targetContentOffset->y + height;
+    CGFloat contentHeight = scrollView.contentSize.height;
+    if (contentHeight > height && offset > contentHeight - height && !self.dataCoordinator.isFetching) {
+        NSUInteger items = [self tableView:self.tableView numberOfRowsInSection:HNFeedViewControllerSectionData];
+        NSUInteger page = items / kItemsPerPage + 1;
+        [self fetchWithParams:@{@"p": @(page)} refresh:NO];
+        [self.tableStatus displayTailLoader];
+    }
 }
 
 @end

@@ -50,6 +50,9 @@ static CGFloat const kHNPageHeaderLabelSpacing = 5.0;
 
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
         [self addGestureRecognizer:tap];
+
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPress:)];
+        [self addGestureRecognizer:longPress];
     }
     return self;
 }
@@ -128,6 +131,14 @@ static CGFloat const kHNPageHeaderLabelSpacing = 5.0;
     } else if (CGRectContainsPoint(self.titleLabel.frame, point) &&
                [self.delegate respondsToSelector:@selector(pageHeaderDidTapTitle:)]) {
         [self.delegate pageHeaderDidTapTitle:self];
+    }
+}
+
+- (void)onLongPress:(UILongPressGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateBegan &&
+        [self.delegate respondsToSelector:@selector(pageHeader:didLongPressAtPoint:)]) {
+        CGPoint point = [recognizer locationInView:self];
+        [self.delegate pageHeader:self didLongPressAtPoint:point];
     }
 }
 
