@@ -26,6 +26,7 @@
 #import "HNComment+Links.h"
 #import "HNPage+Links.h"
 #import "UIViewController+HNComment.h"
+#import "UIViewController+UISplitViewController.h"
 
 typedef NS_ENUM(NSUInteger, HNCommentRow) {
     HNCommentRowUser,
@@ -75,6 +76,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     self.title = NSLocalizedString(@"Comments", @"Title for the controller displaying a comments thread");
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
+    [self configureLeftButtonAsDisplay];
+
     CGRect bounds = self.view.bounds;
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.activityIndicator startAnimating];
@@ -109,11 +112,21 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     [self.navigationController setToolbarHidden:YES animated:animated];
 }
 
+// only called on ios >7
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         [self setupHeaderViewWithPage:self.page];
         [self.tableView reloadData];
     } completion:nil];
+}
+
+// only called on ios 7
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [UIView animateWithDuration:duration animations:^{
+        [self.tableView reloadData];
+    } completion:^(BOOL finished) {
+        [self setupHeaderViewWithPage:self.page];
+    }];
 }
 
 
@@ -254,7 +267,9 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
         if ([activityController respondsToSelector:@selector(popoverPresentationController)]) {
             activityController.popoverPresentationController.barButtonItem = self.shareBarButtonItem;
         }
-        [self presentViewController:activityController animated:YES completion:nil];
+
+        UIViewController *presentationController = self.splitViewController ?: self;
+        [presentationController presentViewController:activityController animated:YES completion:nil];
     }
 }
 

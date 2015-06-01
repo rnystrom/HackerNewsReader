@@ -29,6 +29,7 @@
 		2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */; };
 		2965ED021AFD3DD800F6E2DE /* AttributedCommentComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED011AFD3DD800F6E2DE /* AttributedCommentComponents.m */; };
 		2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */; };
+		29720A4A1B1CC36800AF2F00 /* UIViewController+UISplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29720A491B1CC36800AF2F00 /* UIViewController+UISplitViewController.m */; };
 		2972C5401AD32598005A2739 /* HNWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2972C53F1AD32598005A2739 /* HNWebViewController.m */; };
 		297D7BDF1B02BA230021993B /* HNComment+Links.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D7BDE1B02BA230021993B /* HNComment+Links.m */; };
 		2990B2E61AD1FC600053DB80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B2E51AD1FC600053DB80 /* main.m */; };
@@ -86,6 +87,8 @@
 		2965ED011AFD3DD800F6E2DE /* AttributedCommentComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttributedCommentComponents.m; path = Classes/AttributedCommentComponents.m; sourceTree = "<group>"; };
 		2965ED0E1AFD98E300F6E2DE /* NSURL+HackerNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+HackerNews.h"; path = "Classes/NSURL+HackerNews.h"; sourceTree = "<group>"; };
 		2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+HackerNews.m"; path = "Classes/NSURL+HackerNews.m"; sourceTree = "<group>"; };
+		29720A481B1CC36800AF2F00 /* UIViewController+UISplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+UISplitViewController.h"; path = "Classes/UIViewController+UISplitViewController.h"; sourceTree = "<group>"; };
+		29720A491B1CC36800AF2F00 /* UIViewController+UISplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+UISplitViewController.m"; path = "Classes/UIViewController+UISplitViewController.m"; sourceTree = "<group>"; };
 		2972C53E1AD32598005A2739 /* HNWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNWebViewController.h; path = Classes/HNWebViewController.h; sourceTree = "<group>"; };
 		2972C53F1AD32598005A2739 /* HNWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNWebViewController.m; path = Classes/HNWebViewController.m; sourceTree = "<group>"; };
 		297D7BDD1B02BA230021993B /* HNComment+Links.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HNComment+Links.h"; path = "Classes/HNComment+Links.h"; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				2920DDC01AED9C4900E51B23 /* UIToolbar+HackerNews.m */,
 				294CB8FD1B1B917400FAA09F /* UIViewController+HNComment.h */,
 				294CB8FE1B1B917400FAA09F /* UIViewController+HNComment.m */,
+				29720A481B1CC36800AF2F00 /* UIViewController+UISplitViewController.h */,
+				29720A491B1CC36800AF2F00 /* UIViewController+UISplitViewController.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -446,6 +451,7 @@
 				2920DDC21AED9C4900E51B23 /* UIFont+HackerNews.m in Sources */,
 				2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */,
 				294CB9081B1C0D3800FAA09F /* HNSplitViewDelegate.m in Sources */,
+				29720A4A1B1CC36800AF2F00 /* UIViewController+UISplitViewController.m in Sources */,
 				2965ED021AFD3DD800F6E2DE /* AttributedCommentComponents.m in Sources */,
 				2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */,
 				29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */,

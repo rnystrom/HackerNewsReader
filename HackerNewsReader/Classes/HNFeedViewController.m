@@ -22,6 +22,7 @@
 #import "NSURL+HackerNews.h"
 #import "HNTableStatus.h"
 #import "HNNavigationController.h"
+#import "UIViewController+UISplitViewController.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
     HNFeedViewControllerSectionData,
@@ -72,6 +73,8 @@ static NSUInteger const kItemsPerPage = 30;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
+
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -107,6 +110,8 @@ static NSUInteger const kItemsPerPage = 30;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+
+    self.splitViewController.presentsWithGesture = YES;
 
     CGRect bounds = self.view.bounds;
     self.activityIndicator.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds) - self.navigationController.topLayoutGuide.length);
@@ -159,13 +164,13 @@ static NSUInteger const kItemsPerPage = 30;
 }
 
 - (void)onRefresh:(UIRefreshControl *)refreshControl {
+    [self hideActivityIndicator];
     [self fetchWithParams:nil refresh:YES];
 }
 
 - (void)updateFeed:(HNFeed *)feed {
     [self.tableStatus hideTailLoader];
-    [self.activityIndicator stopAnimating];
-    [self.activityIndicator removeFromSuperview];
+    [self hideActivityIndicator];
 
     if (feed.items.count == 0) {
         [self.tableStatus displayEmptyMessage];
@@ -198,6 +203,11 @@ static NSUInteger const kItemsPerPage = 30;
     }
 }
 
+- (void)hideActivityIndicator {
+    [self.activityIndicator stopAnimating];
+    [self.activityIndicator removeFromSuperview];
+}
+
 
 #pragma mark - HNPostCellDelegate
 
@@ -206,8 +216,7 @@ static NSUInteger const kItemsPerPage = 30;
     if (indexPath) {
         HNPost *post = self.feed.items[indexPath.row];
         HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
-        HNNavigationController *navigationController = [[HNNavigationController alloc] initWithRootViewController:commentController];
-        [self.splitViewController showDetailViewController:navigationController sender:self];
+        [self showDetailViewControllerWithFallback:commentController];
     }
 }
 
@@ -271,8 +280,7 @@ static NSUInteger const kItemsPerPage = 30;
         controller = [[HNWebViewController alloc] initWithPost:post];
     }
 
-    HNNavigationController *navigationController = [[HNNavigationController alloc] initWithRootViewController:controller];
-    [self.splitViewController showDetailViewController:navigationController sender:self];
+    [self showDetailViewControllerWithFallback:controller];
 }
 
 

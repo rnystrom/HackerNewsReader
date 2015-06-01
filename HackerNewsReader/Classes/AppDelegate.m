@@ -8,12 +8,10 @@
 
 #import "AppDelegate.h"
 
-#import "HNFeedViewController.h"
-#import "HNNavigationController.h"
 #import "UIToolbar+HackerNews.h"
 #import "UINavigationBar+HackerNews.h"
 
-@interface AppDelegate () <UISplitViewControllerDelegate>
+@interface AppDelegate ()
 
 @end
 

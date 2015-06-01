@@ -44,8 +44,7 @@
         [self.contentView addGestureRecognizer:tap];
 
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] init];
-        longPress.minimumPressDuration = 0.4;
-        [longPress requireGestureRecognizerToFail:tap];
+        longPress.minimumPressDuration = 0.25;
         [longPress addTarget:self action:@selector(onLongPressGesture:)];
         [self.contentView addGestureRecognizer:longPress];
     }

@@ -18,6 +18,7 @@
 #import "UIColor+HackerNews.h"
 #import "UIFont+HackerNews.h"
 #import "TUSafariActivity.h"
+#import "UIViewController+UISplitViewController.h"
 
 #define SUPPORTS_WKWEBVIEW (NSClassFromString(@"WKWebView") != nil)
 
@@ -68,6 +69,8 @@
     [super viewDidLoad];
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+
+    [self configureLeftButtonAsDisplay];
 
     self.view.backgroundColor = [UIColor whiteColor];
 
@@ -156,7 +159,9 @@
         if ([activityController respondsToSelector:@selector(popoverPresentationController)]) {
             activityController.popoverPresentationController.barButtonItem = self.shareBarButtonItem;
         }
-        [self presentViewController:activityController animated:YES completion:nil];
+
+        UIViewController *presentationController = self.splitViewController ?: self;
+        [presentationController presentViewController:activityController animated:YES completion:nil];
     }
 }
 
