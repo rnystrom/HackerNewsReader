@@ -12,19 +12,19 @@
 
 #import <WebKit/WebKit.h>
 
-#import <TUSafariActivity/TUSafariActivity.h>
-
 #import "HNCommentViewController.h"
 #import "UIColor+HackerNews.h"
 #import "UIFont+HackerNews.h"
 #import "TUSafariActivity.h"
 #import "UIViewController+UISplitViewController.h"
+#import "UIViewController+ActivityIndicator.h"
+#import "UIViewController+Sharing.h"
+#import "UINavigationController+HNBarState.h"
 
 #define SUPPORTS_WKWEBVIEW (NSClassFromString(@"WKWebView") != nil)
 
 @interface HNWebViewController () <WKNavigationDelegate, UIWebViewDelegate>
 
-@property (nonatomic, strong) UIActivityIndicatorView *activityView;
 @property (nonatomic, strong) UIView *webView;
 @property (nonatomic, strong, readonly) HNPost *post;
 @property (nonatomic, strong) UIView *statusBarBackgroundView;
@@ -80,12 +80,7 @@
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.webView];
 
-    self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.activityView.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-    self.activityView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-    [self.activityView startAnimating];
-    self.activityView.hidesWhenStopped = YES;
-    [self.view addSubview:self.activityView];
+    [self insertActivityIndicator];
 
     self.statusBarBackgroundView = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
     self.statusBarBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -122,12 +117,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    if ([self.navigationController respondsToSelector:@selector(setHidesBarsOnSwipe:)]) {
-        self.navigationController.hidesBarsOnSwipe = YES;
-    }
-    
-    [self.navigationController setToolbarHidden:NO animated:animated];
+    [self.navigationController setHidesBarsOnSwipe:YES navigationBarHidden:NO toolbarHidden:NO animated:animated];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -152,17 +142,7 @@
     } else {
         url = [[(UIWebView *)self.webView request] URL];
     }
-    NSAssert(url != nil, @"Should always have a URL request");
-    if (url) {
-        TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:@[activity]];
-        if ([activityController respondsToSelector:@selector(popoverPresentationController)]) {
-            activityController.popoverPresentationController.barButtonItem = self.shareBarButtonItem;
-        }
-
-        UIViewController *presentationController = self.splitViewController ?: self;
-        [presentationController presentViewController:activityController animated:YES completion:nil];
-    }
+    [self shareURL:url fromBarItem:self.shareBarButtonItem];
 }
 
 - (void)onComments:(id)sender {
@@ -178,7 +158,6 @@
         [(UIWebView *)self.webView reload];
     }
 
-    [self.activityView startAnimating];
     self.errorLabel.hidden = YES;
 }
 
@@ -199,12 +178,12 @@
 }
 
 - (void)displayErrorLabel {
-    [self.activityView stopAnimating];
+    [self hideActivityIndicator];
     self.errorLabel.hidden = NO;
 }
 
 - (void)webViewFinishedLoading {
-    [self.activityView stopAnimating];
+    [self hideActivityIndicator];
     self.errorLabel.hidden = YES;
 }
 
@@ -240,7 +219,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 
-    [self.activityView stopAnimating];
+    [self hideActivityIndicator];
     self.errorLabel.hidden = YES;
 
     self.backButton.enabled = webView.canGoBack;
@@ -248,8 +227,10 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    NSLog(@"%@",error);
-    [self.activityView stopAnimating];
+#if DEBUG
+    NSLog(@"%@",error.localizedDescription);
+#endif
+    [self hideActivityIndicator];
     self.errorLabel.hidden = NO;
 }
 

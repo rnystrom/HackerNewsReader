@@ -13,8 +13,6 @@
 
 #import <HackerNewsKit/HNPage.h>
 
-#import <TUSafariActivity/TUSafariActivity.h>
-
 #import "AttributedCommentComponents.h"
 #import "HNCommentCell.h"
 #import "HNComment+AttributedStrings.h"
@@ -27,6 +25,9 @@
 #import "HNPage+Links.h"
 #import "UIViewController+HNComment.h"
 #import "UIViewController+UISplitViewController.h"
+#import "UIViewController+ActivityIndicator.h"
+#import "UIViewController+Sharing.h"
+#import "UINavigationController+HNBarState.h"
 
 typedef NS_ENUM(NSUInteger, HNCommentRow) {
     HNCommentRowUser,
@@ -47,7 +48,6 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 @property (nonatomic, strong) HNTextStorage *textStorage;
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, strong) HNPage *page;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) UIBarButtonItem *shareBarButtonItem;
 
 @end
@@ -78,12 +78,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
     [self configureLeftButtonAsDisplay];
 
-    CGRect bounds = self.view.bounds;
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [self.activityIndicator startAnimating];
-    self.activityIndicator.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-    self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
-    [self.view addSubview:self.activityIndicator];
+    [self insertActivityIndicator];
 
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -91,11 +86,12 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
     [self.tableView registerClass:HNCommentCell.class forCellReuseIdentifier:kCommentCellIdentifier];
     [self.tableView registerClass:HNCommentHeaderCell.class forCellReuseIdentifier:kCommentHeaderCellIdentifier];
-    self.tableView.tableFooterView = [[UIView alloc] init];
+    // cells have custom separators
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onShare:)];
     self.navigationItem.rightBarButtonItem = share;
+    // will leave us with just a "<" back arrow and no text
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
     self.shareBarButtonItem = share;
@@ -103,13 +99,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    if ([self.navigationController respondsToSelector:@selector(setHidesBarsOnSwipe:)]) {
-        self.navigationController.hidesBarsOnSwipe = NO;
-    }
-    
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [self.navigationController setToolbarHidden:YES animated:animated];
+    [self.navigationController setHidesBarsOnSwipe:NO navigationBarHidden:NO toolbarHidden:YES animated:animated];
 }
 
 // only called on ios >7
@@ -182,8 +172,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     NSAssert([NSThread isMainThread], @"Delegate callbacks should be on the (registered) main thread");
 
     [self.refreshControl endRefreshing];
-    [self.activityIndicator stopAnimating];
-    [self.activityIndicator removeFromSuperview];
+    [self hideActivityIndicator];
 
     [self setupHeaderViewWithPage:page];
 
@@ -260,17 +249,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 }
 
 - (void)onShare:(id)sender {
-    NSURL *url = [self.page permalink];
-    if (url) {
-        TUSafariActivity *activity = [[TUSafariActivity alloc] init];
-        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:@[activity]];
-        if ([activityController respondsToSelector:@selector(popoverPresentationController)]) {
-            activityController.popoverPresentationController.barButtonItem = self.shareBarButtonItem;
-        }
-
-        UIViewController *presentationController = self.splitViewController ?: self;
-        [presentationController presentViewController:activityController animated:YES completion:nil];
-    }
+    [self shareURL:[self.page permalink] fromBarItem:self.shareBarButtonItem];
 }
 
 
@@ -302,6 +281,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // UITableView internals use a different class that hashes differently from NSIndexPath
     indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
     if ([self.collapsedPaths containsObject:indexPath]) {
         return 0.0;
@@ -390,6 +370,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     NSAssert(![NSThread isMainThread], @"Delegate callbacks should not be on the (registered) main thread");
 
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self hideActivityIndicator];
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
     });

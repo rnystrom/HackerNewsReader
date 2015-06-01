@@ -23,6 +23,8 @@
 #import "HNTableStatus.h"
 #import "HNNavigationController.h"
 #import "UIViewController+UISplitViewController.h"
+#import "UIViewController+ActivityIndicator.h"
+#import "UINavigationController+HNBarState.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
     HNFeedViewControllerSectionData,
@@ -40,32 +42,20 @@ static NSUInteger const kItemsPerPage = 30;
 @property (nonatomic, strong) NSMutableIndexSet *readPostIDs;
 @property (nonatomic, assign) BOOL didRefresh;
 @property (nonatomic, strong) HNTableStatus *tableStatus;
-@property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
 
 @end
 
 @implementation HNFeedViewController
 
-- (void)hn_init {
-    self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
-
-    _readPostIDs = [[NSMutableIndexSet alloc] init];
-
-    HNFeedParser *parser = [[HNFeedParser alloc] init];
-    NSString *cacheName = @"latest.feed";
-    _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue() path:@"news" parser:parser cacheName:cacheName];
-}
-
-- (instancetype)init {
-    if (self = [super init]) {
-        [self hn_init];
-    }
-    return self;
-}
-
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        [self hn_init];
+        self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
+
+        _readPostIDs = [[NSMutableIndexSet alloc] init];
+
+        HNFeedParser *parser = [[HNFeedParser alloc] init];
+        NSString *cacheName = @"latest.feed";
+        _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue() path:@"news" parser:parser cacheName:cacheName];
     }
     return self;
 }
@@ -76,10 +66,6 @@ static NSUInteger const kItemsPerPage = 30;
     self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [self.activityIndicator startAnimating];
-    [self.view addSubview:self.activityIndicator];
 
     [self fetchWithParams:nil refresh:YES];
 
@@ -99,13 +85,7 @@ static NSUInteger const kItemsPerPage = 30;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    if ([self.navigationController respondsToSelector:@selector(setHidesBarsOnSwipe:)]) {
-        self.navigationController.hidesBarsOnSwipe = NO;
-    }
-
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [self.navigationController setToolbarHidden:YES animated:animated];
+    [self.navigationController setHidesBarsOnSwipe:NO navigationBarHidden:NO toolbarHidden:YES animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -113,9 +93,9 @@ static NSUInteger const kItemsPerPage = 30;
 
     self.splitViewController.presentsWithGesture = YES;
 
-    CGRect bounds = self.view.bounds;
-    self.activityIndicator.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds) - self.navigationController.topLayoutGuide.length);
-    self.activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+    if (self.dataCoordinator.isFetching) {
+        [self insertActivityIndicator];
+    }
 }
 
 
@@ -201,11 +181,6 @@ static NSUInteger const kItemsPerPage = 30;
         self.feed = feed;
         [self.tableView reloadData];
     }
-}
-
-- (void)hideActivityIndicator {
-    [self.activityIndicator stopAnimating];
-    [self.activityIndicator removeFromSuperview];
 }
 
 
@@ -310,8 +285,7 @@ static NSUInteger const kItemsPerPage = 30;
     NSLog(@"%@",error.localizedDescription);
 #endif
 
-    [self.activityIndicator stopAnimating];
-    [self.activityIndicator removeFromSuperview];
+    [self hideActivityIndicator];
     [self.tableStatus displayEmptyMessage];
     [self.refreshControl endRefreshing];
 }
