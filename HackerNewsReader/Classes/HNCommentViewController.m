@@ -28,6 +28,7 @@
 #import "UIViewController+ActivityIndicator.h"
 #import "UIViewController+Sharing.h"
 #import "UINavigationController+HNBarState.h"
+#import "HNPostControllerHandling.h"
 
 typedef NS_ENUM(NSUInteger, HNCommentRow) {
     HNCommentRowUser,
@@ -238,13 +239,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 }
 
 - (void)didTapURL:(NSURL *)url {
-    UIViewController *controller;
-    if (!url.host || [[url host] isEqualToString:@"news.ycombinator.com"]) {
-        NSUInteger postID = [[url hn_valueForQueryParameter:@"id"] integerValue];
-        controller = [[HNCommentViewController alloc] initWithPostID:postID];
-    } else {
-        controller = [[HNWebViewController alloc] initWithURL:url];
-    }
+    UIViewController *controller = viewControllerForURL(url);
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -408,7 +403,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 }
 
 - (void)pageHeaderDidTapTitle:(HNPageHeaderView *)pageHeader {
-    if (self.page.post.URL && ![[self.page.post.URL host] isEqualToString:@"news.ycombinator.com"]) {
+    if (![self.page.post.URL isHackerNewsURL]) {
         HNWebViewController *controller = [[HNWebViewController alloc] initWithPost:self.page.post];
         [self.navigationController pushViewController:controller animated:YES];
     }

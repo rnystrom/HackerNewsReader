@@ -12,4 +12,6 @@
 
 - (id)hn_valueForQueryParameter:(NSString *)parameter;
 
+- (BOOL)isHackerNewsURL;
+
 @end

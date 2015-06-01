@@ -25,4 +25,8 @@
     return nil;
 }
 
+- (BOOL)isHackerNewsURL {
+    return !self.host || [[self host] isEqualToString:@"news.ycombinator.com"];
+}
+
 @end

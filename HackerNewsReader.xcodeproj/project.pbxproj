@@ -33,6 +33,7 @@
 		29720A4D1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 29720A4C1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.m */; };
 		29720A501B1CCC5900AF2F00 /* UIViewController+Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 29720A4F1B1CCC5900AF2F00 /* UIViewController+Sharing.m */; };
 		29720A531B1CCF2B00AF2F00 /* UINavigationController+HNBarState.m in Sources */ = {isa = PBXBuildFile; fileRef = 29720A521B1CCF2B00AF2F00 /* UINavigationController+HNBarState.m */; };
+		29720A561B1CD23200AF2F00 /* HNPostControllerHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 29720A551B1CD23200AF2F00 /* HNPostControllerHandling.m */; };
 		2972C5401AD32598005A2739 /* HNWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2972C53F1AD32598005A2739 /* HNWebViewController.m */; };
 		297D7BDF1B02BA230021993B /* HNComment+Links.m in Sources */ = {isa = PBXBuildFile; fileRef = 297D7BDE1B02BA230021993B /* HNComment+Links.m */; };
 		2990B2E61AD1FC600053DB80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B2E51AD1FC600053DB80 /* main.m */; };
@@ -98,6 +99,8 @@
 		29720A4F1B1CCC5900AF2F00 /* UIViewController+Sharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Sharing.m"; path = "Classes/UIViewController+Sharing.m"; sourceTree = "<group>"; };
 		29720A511B1CCF2B00AF2F00 /* UINavigationController+HNBarState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+HNBarState.h"; path = "Classes/UINavigationController+HNBarState.h"; sourceTree = "<group>"; };
 		29720A521B1CCF2B00AF2F00 /* UINavigationController+HNBarState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+HNBarState.m"; path = "Classes/UINavigationController+HNBarState.m"; sourceTree = "<group>"; };
+		29720A541B1CD23200AF2F00 /* HNPostControllerHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPostControllerHandling.h; path = Classes/HNPostControllerHandling.h; sourceTree = "<group>"; };
+		29720A551B1CD23200AF2F00 /* HNPostControllerHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPostControllerHandling.m; path = Classes/HNPostControllerHandling.m; sourceTree = "<group>"; };
 		2972C53E1AD32598005A2739 /* HNWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNWebViewController.h; path = Classes/HNWebViewController.h; sourceTree = "<group>"; };
 		2972C53F1AD32598005A2739 /* HNWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNWebViewController.m; path = Classes/HNWebViewController.m; sourceTree = "<group>"; };
 		297D7BDD1B02BA230021993B /* HNComment+Links.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HNComment+Links.h"; path = "Classes/HNComment+Links.h"; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 		294CB9001B1B92B500FAA09F /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
+				29720A541B1CD23200AF2F00 /* HNPostControllerHandling.h */,
+				29720A551B1CD23200AF2F00 /* HNPostControllerHandling.m */,
 				294CB9011B1B92D400FAA09F /* HNTableStatus.h */,
 				294CB9021B1B92D400FAA09F /* HNTableStatus.m */,
 				294CB9061B1C0D3800FAA09F /* HNSplitViewDelegate.h */,
@@ -474,6 +479,7 @@
 				2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */,
 				29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */,
 				2944A8941AD6EF6500A2A251 /* HNLoadingCell.m in Sources */,
+				29720A561B1CD23200AF2F00 /* HNPostControllerHandling.m in Sources */,
 				2920DDC11AED9C4900E51B23 /* UIColor+HackerNews.m in Sources */,
 				2972C5401AD32598005A2739 /* HNWebViewController.m in Sources */,
 				29D4116A1ADB4D9E00C491DA /* HNComment+AttributedStrings.m in Sources */,

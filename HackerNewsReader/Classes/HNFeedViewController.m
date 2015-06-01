@@ -19,12 +19,12 @@
 #import "HNEmptyTableCell.h"
 #import "HNLoadingCell.h"
 #import "HNCommentViewController.h"
-#import "NSURL+HackerNews.h"
 #import "HNTableStatus.h"
 #import "HNNavigationController.h"
 #import "UIViewController+UISplitViewController.h"
 #import "UIViewController+ActivityIndicator.h"
 #import "UINavigationController+HNBarState.h"
+#import "HNPostControllerHandling.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
     HNFeedViewControllerSectionData,
@@ -144,6 +144,7 @@ static NSUInteger const kItemsPerPage = 30;
 }
 
 - (void)onRefresh:(UIRefreshControl *)refreshControl {
+    [self.tableStatus hideEmptyMessage];
     [self hideActivityIndicator];
     [self fetchWithParams:nil refresh:YES];
 }
@@ -247,14 +248,7 @@ static NSUInteger const kItemsPerPage = 30;
     [self.readPostIDs addIndex:post.pk];
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
-    UIViewController *controller;
-    if (!post.URL.host || [[post.URL host] isEqualToString:@"news.ycombinator.com"]) {
-        NSUInteger postID = [[post.URL hn_valueForQueryParameter:@"id"] integerValue];
-        controller = [[HNCommentViewController alloc] initWithPostID:postID];
-    } else {
-        controller = [[HNWebViewController alloc] initWithPost:post];
-    }
-
+    UIViewController *controller = viewControllerForPost(post);
     [self showDetailViewControllerWithFallback:controller];
 }
 
