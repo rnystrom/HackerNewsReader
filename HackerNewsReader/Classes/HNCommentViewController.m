@@ -47,6 +47,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, strong) HNPage *page;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UIBarButtonItem *shareBarButtonItem;
 
 @end
 
@@ -93,6 +94,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onShare:)];
     self.navigationItem.rightBarButtonItem = share;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+
+    self.shareBarButtonItem = share;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -248,6 +251,9 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     if (url) {
         TUSafariActivity *activity = [[TUSafariActivity alloc] init];
         UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:@[activity]];
+        if ([activityController respondsToSelector:@selector(popoverPresentationController)]) {
+            activityController.popoverPresentationController.barButtonItem = self.shareBarButtonItem;
+        }
         [self presentViewController:activityController animated:YES completion:nil];
     }
 }
@@ -392,7 +398,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 - (void)commentCellDidLongPress:(HNCommentCell *)commentCell {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:commentCell];
     HNComment *comment = self.page.comments[indexPath.section];
-    [self showActionSheetForComment:comment];
+    [self showActionSheetForComment:comment fromView:commentCell];
 }
 
 

@@ -24,7 +24,7 @@
 
 @implementation UIViewController (HNComment)
 
-- (void)showActionSheetForComment:(HNComment *)comment {
+- (void)showActionSheetForComment:(HNComment *)comment fromView:(UIView *)view {
     NSString *title = [NSString stringWithFormat:COMMENT_TITLE_FORMAT, comment.user.username];
 
     if (SUPPORTS_ALERTCONTROLLER) {
@@ -43,6 +43,14 @@
         [alertController addAction:openSafari];
         [alertController addAction:copyLink];
         [alertController addAction:cancel];
+
+        if ([alertController respondsToSelector:@selector(popoverPresentationController)]) {
+            alertController.popoverPresentationController.sourceView = view;
+            CGRect frame = view.bounds;
+            frame.origin.x = frame.origin.x + frame.size.width / 2.0;
+            alertController.popoverPresentationController.sourceRect = frame;
+        }
+
         [self presentViewController:alertController animated:YES completion:nil];
     } else {
         [self setActionSheetComment:comment];

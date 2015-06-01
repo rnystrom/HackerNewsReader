@@ -12,6 +12,6 @@
 
 @interface UIViewController (HNComment) <UIActionSheetDelegate>
 
-- (void)showActionSheetForComment:(HNComment *)comment;
+- (void)showActionSheetForComment:(HNComment *)comment fromView:(UIView *)view;
 
 @end

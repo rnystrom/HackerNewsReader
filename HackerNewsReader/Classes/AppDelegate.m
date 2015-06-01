@@ -13,25 +13,15 @@
 #import "UIToolbar+HackerNews.h"
 #import "UINavigationBar+HackerNews.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UISplitViewControllerDelegate>
 
 @end
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-
-    HNFeedViewController *feedController = [[HNFeedViewController alloc] init];
-    HNNavigationController *navigationController = [[HNNavigationController alloc] initWithRootViewController:feedController];
-    self.window.rootViewController = navigationController;
-
-    [self.window makeKeyAndVisible];
-
     [UINavigationBar enableAppearance];
     [UIToolbar enableAppearance];
-
     return YES;
 }
 

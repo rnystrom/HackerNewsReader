@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3d0-7W-L3u">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="3hJ-Eg-WTX">
+            <objects>
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="8VP-pn-oJQ" customClass="HNFeedViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aC9-ep-4Yx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="SpL-Ea-3cz">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SpL-Ea-3cz" id="hhs-q8-zwQ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8VP-pn-oJQ" id="jz1-kR-toH"/>
+                            <outlet property="delegate" destination="8VP-pn-oJQ" id="VtQ-JO-eaY"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="NaP-JZ-WdD"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CB8-bH-dYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1128" y="54"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AZS-ja-LvS">
+            <objects>
+                <navigationController id="Nwj-Rn-yfM" customClass="HNNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZaL-gd-zCq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8VP-pn-oJQ" kind="relationship" relationship="rootViewController" id="mor-rr-egb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xDA-0o-C2Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="419" y="54"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QeS-SU-cwD">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1FS-Bk-EVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="Ylf-fd-eh9" customClass="HNNavigationController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M0S-4x-zup">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xyR-Qt-puG" kind="relationship" relationship="rootViewController" id="KmC-re-6o1"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="419" y="797"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wyl-u6-5ZN">
+            <objects>
+                <viewController id="xyR-Qt-puG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pGb-RG-p63"/>
+                        <viewControllerLayoutGuide type="bottom" id="7oD-VX-9ig"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6Da-zH-Gb2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="stf-Tl-b7b"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OlI-DM-XUb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1128" y="797"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="ydh-fj-NyG">
+            <objects>
+                <splitViewController id="3d0-7W-L3u" sceneMemberID="viewController">
+                    <connections>
+                        <outlet property="delegate" destination="Mnm-A1-X5d" id="FOk-KX-Zvg"/>
+                        <segue destination="Nwj-Rn-yfM" kind="relationship" relationship="masterViewController" id="kM8-hB-POh"/>
+                        <segue destination="Ylf-fd-eh9" kind="relationship" relationship="detailViewController" id="Jkm-uC-O3l"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7SB-Zu-hZw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Mnm-A1-X5d" customClass="HNSplitViewDelegate"/>
+            </objects>
+            <point key="canvasLocation" x="-401" y="385"/>
+        </scene>
+    </scenes>
+</document>

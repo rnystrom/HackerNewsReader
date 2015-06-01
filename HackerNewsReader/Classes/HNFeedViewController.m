@@ -21,6 +21,7 @@
 #import "HNCommentViewController.h"
 #import "NSURL+HackerNews.h"
 #import "HNTableStatus.h"
+#import "HNNavigationController.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
     HNFeedViewControllerSectionData,
@@ -44,15 +45,26 @@ static NSUInteger const kItemsPerPage = 30;
 
 @implementation HNFeedViewController
 
+- (void)hn_init {
+    self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
+
+    _readPostIDs = [[NSMutableIndexSet alloc] init];
+
+    HNFeedParser *parser = [[HNFeedParser alloc] init];
+    NSString *cacheName = @"latest.feed";
+    _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue() path:@"news" parser:parser cacheName:cacheName];
+}
+
 - (instancetype)init {
     if (self = [super init]) {
-        self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
+        [self hn_init];
+    }
+    return self;
+}
 
-        _readPostIDs = [[NSMutableIndexSet alloc] init];
-
-        HNFeedParser *parser = [[HNFeedParser alloc] init];
-        NSString *cacheName = @"latest.feed";
-        _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue() path:@"news" parser:parser cacheName:cacheName];
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self hn_init];
     }
     return self;
 }
@@ -62,7 +74,6 @@ static NSUInteger const kItemsPerPage = 30;
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    CGRect bounds = self.view.bounds;
     self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.activityIndicator startAnimating];
     [self.view addSubview:self.activityIndicator];
@@ -195,7 +206,8 @@ static NSUInteger const kItemsPerPage = 30;
     if (indexPath) {
         HNPost *post = self.feed.items[indexPath.row];
         HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
-        [self.navigationController pushViewController:commentController animated:YES];
+        HNNavigationController *navigationController = [[HNNavigationController alloc] initWithRootViewController:commentController];
+        [self.splitViewController showDetailViewController:navigationController sender:self];
     }
 }
 
@@ -259,11 +271,8 @@ static NSUInteger const kItemsPerPage = 30;
         controller = [[HNWebViewController alloc] initWithPost:post];
     }
 
-    if (self.navigationController) {
-        [self.navigationController pushViewController:controller animated:YES];
-    } else {
-        [self presentViewController:controller animated:YES completion:nil];
-    }
+    HNNavigationController *navigationController = [[HNNavigationController alloc] initWithRootViewController:controller];
+    [self.splitViewController showDetailViewController:navigationController sender:self];
 }
 
 

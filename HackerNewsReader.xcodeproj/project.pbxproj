@@ -22,6 +22,8 @@
 		2944A8A61AD6FAB400A2A251 /* HNCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944A8A51AD6FAB400A2A251 /* HNCommentViewController.m */; };
 		294CB8FF1B1B917400FAA09F /* UIViewController+HNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 294CB8FE1B1B917400FAA09F /* UIViewController+HNComment.m */; };
 		294CB9031B1B92D400FAA09F /* HNTableStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 294CB9021B1B92D400FAA09F /* HNTableStatus.m */; };
+		294CB9051B1C0CCD00FAA09F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294CB9041B1C0CCD00FAA09F /* Main.storyboard */; };
+		294CB9081B1C0D3800FAA09F /* HNSplitViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 294CB9071B1C0D3800FAA09F /* HNSplitViewDelegate.m */; };
 		295DB7461AF7DA9D004B119F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295DB7451AF7DA9D004B119F /* WebKit.framework */; };
 		296054B91AD4F0370038818A /* HNCommentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 296054B81AD4F0370038818A /* HNCommentButton.m */; };
 		2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */; };
@@ -72,6 +74,9 @@
 		294CB8FE1B1B917400FAA09F /* UIViewController+HNComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+HNComment.m"; path = "Classes/UIViewController+HNComment.m"; sourceTree = "<group>"; };
 		294CB9011B1B92D400FAA09F /* HNTableStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNTableStatus.h; path = Classes/HNTableStatus.h; sourceTree = "<group>"; };
 		294CB9021B1B92D400FAA09F /* HNTableStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNTableStatus.m; path = Classes/HNTableStatus.m; sourceTree = "<group>"; };
+		294CB9041B1C0CCD00FAA09F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		294CB9061B1C0D3800FAA09F /* HNSplitViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNSplitViewDelegate.h; path = Classes/HNSplitViewDelegate.h; sourceTree = "<group>"; };
+		294CB9071B1C0D3800FAA09F /* HNSplitViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNSplitViewDelegate.m; path = Classes/HNSplitViewDelegate.m; sourceTree = "<group>"; };
 		295DB7451AF7DA9D004B119F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		296054B71AD4F0370038818A /* HNCommentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentButton.h; path = Classes/HNCommentButton.h; sourceTree = "<group>"; };
 		296054B81AD4F0370038818A /* HNCommentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentButton.m; path = Classes/HNCommentButton.m; sourceTree = "<group>"; };
@@ -217,6 +222,8 @@
 			children = (
 				294CB9011B1B92D400FAA09F /* HNTableStatus.h */,
 				294CB9021B1B92D400FAA09F /* HNTableStatus.m */,
+				294CB9061B1C0D3800FAA09F /* HNSplitViewDelegate.h */,
+				294CB9071B1C0D3800FAA09F /* HNSplitViewDelegate.m */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -248,6 +255,7 @@
 				2944A89E1AD6F58200A2A251 /* hn-front-page.html */,
 				2990B2F01AD1FC600053DB80 /* Images.xcassets */,
 				2990B2E31AD1FC600053DB80 /* Supporting Files */,
+				294CB9041B1C0CCD00FAA09F /* Main.storyboard */,
 			);
 			name = Resources;
 			path = HackerNewsReader;
@@ -378,6 +386,7 @@
 				2944A89F1AD6F58200A2A251 /* hn-comments.html in Resources */,
 				2990B2F11AD1FC600053DB80 /* Images.xcassets in Resources */,
 				2944A8A01AD6F58200A2A251 /* hn-front-page.html in Resources */,
+				294CB9051B1C0CCD00FAA09F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +445,7 @@
 				2990B3521AD1FE460053DB80 /* AppDelegate.m in Sources */,
 				2920DDC21AED9C4900E51B23 /* UIFont+HackerNews.m in Sources */,
 				2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */,
+				294CB9081B1C0D3800FAA09F /* HNSplitViewDelegate.m in Sources */,
 				2965ED021AFD3DD800F6E2DE /* AttributedCommentComponents.m in Sources */,
 				2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */,
 				29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */,
@@ -541,10 +551,11 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/HackerNewsReader-citxqvsousoeacbtbcujtwgnuobc/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = HackerNewsReader/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/../UninstalledProducts/include";
 			};
 			name = Debug;
@@ -561,10 +572,11 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/HackerNewsReader-citxqvsousoeacbtbcujtwgnuobc/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = HackerNewsReader/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/../UninstalledProducts/include";
 			};
 			name = Release;

@@ -30,6 +30,7 @@
 @property (nonatomic, strong) UIBarButtonItem *backButton;
 @property (nonatomic, strong) UIBarButtonItem *forwardButton;
 @property (nonatomic, strong) UILabel *errorLabel;
+@property (nonatomic, strong) UIBarButtonItem *shareBarButtonItem;
 
 @end
 
@@ -112,6 +113,8 @@
     } else {
         self.toolbarItems = @[self.backButton, flex, self.forwardButton, flex, refresh, flex, share];
     }
+
+    self.shareBarButtonItem = share;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -150,6 +153,9 @@
     if (url) {
         TUSafariActivity *activity = [[TUSafariActivity alloc] init];
         UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[url] applicationActivities:@[activity]];
+        if ([activityController respondsToSelector:@selector(popoverPresentationController)]) {
+            activityController.popoverPresentationController.barButtonItem = self.shareBarButtonItem;
+        }
         [self presentViewController:activityController animated:YES completion:nil];
     }
 }
