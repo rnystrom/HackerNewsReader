@@ -8,6 +8,8 @@
 
 #import "UIViewController+UISplitViewController.h"
 
+#import "HNNavigationController.h"
+
 @implementation UIViewController (hn_UISplitViewController)
 
 - (void)configureLeftButtonAsDisplay {
@@ -18,8 +20,11 @@
 
 - (void)showDetailViewControllerWithFallback:(UIViewController *)controller {
     NSAssert(controller != nil, @"Cannot show detail for a nil controller");
-    if ([self.splitViewController respondsToSelector:@selector(showDetailViewController:sender:)]) {
-        [self.splitViewController showDetailViewController:controller sender:self];
+    if ([self respondsToSelector:@selector(showDetailViewController:sender:)]) {
+        if (!self.splitViewController.isCollapsed) {
+            controller = [[HNNavigationController alloc] initWithRootViewController:controller];
+        }
+        [self showDetailViewController:controller sender:self];
     } else if (self.splitViewController) {
         NSArray *controllers = self.splitViewController.viewControllers;
         UINavigationController *navigation = nil;

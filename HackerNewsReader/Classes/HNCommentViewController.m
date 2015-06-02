@@ -29,6 +29,7 @@
 #import "UIViewController+Sharing.h"
 #import "UINavigationController+HNBarState.h"
 #import "HNPostControllerHandling.h"
+#import "HNSplitViewDelegate.h"
 
 typedef NS_ENUM(NSUInteger, HNCommentRow) {
     HNCommentRowUser,
@@ -55,6 +56,10 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 @implementation HNCommentViewController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)initWithPostID:(NSUInteger)postID {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         _postID = postID;
@@ -67,6 +72,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
         dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:q path:@"item" parser:parser cacheName:cacheName];
         [self fetch];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(splitViewDisplayModeWillChange:) name:kHNSplitViewDelegateWillChangeDisplayMode object:nil];
     }
     return self;
 }
@@ -245,6 +252,14 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 - (void)onShare:(id)sender {
     [self shareURL:[self.page permalink] fromBarItem:self.shareBarButtonItem];
+}
+
+
+#pragma mark - Split View Messages
+
+- (void)splitViewDisplayModeWillChange:(id)sender {
+    [self setupHeaderViewWithPage:self.page];
+    [self.tableView reloadData];
 }
 
 

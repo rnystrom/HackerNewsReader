@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+extern NSString * const kHNSplitViewDelegateWillChangeDisplayMode;
+
 @interface HNSplitViewDelegate : NSObject <UISplitViewControllerDelegate>
 
 @end

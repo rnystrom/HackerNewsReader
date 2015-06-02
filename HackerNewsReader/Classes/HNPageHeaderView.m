@@ -107,7 +107,8 @@ static CGFloat const kHNPageHeaderLabelSpacing = 5.0;
 #pragma mark - Gestures
 
 - (void)onTap:(UITapGestureRecognizer *)recognizer {
-    CGPoint point = [recognizer locationInView:self.textLabel];
+    CGPoint textLabelPoint = [recognizer locationInView:self.textLabel];
+    CGPoint point = [recognizer locationInView:self];
     if (CGRectContainsPoint(self.textLabel.frame, point) &&
         [self.delegate respondsToSelector:@selector(pageHeader:didTapText:characterAtIndex:)]) {
         // http://stackoverflow.com/a/26806991/940936
@@ -124,7 +125,7 @@ static CGFloat const kHNPageHeaderLabelSpacing = 5.0;
 
         [layoutManager addTextContainer:textContainer];
 
-        NSUInteger characterIndex = [layoutManager characterIndexForPoint:point
+        NSUInteger characterIndex = [layoutManager characterIndexForPoint:textLabelPoint
                                                           inTextContainer:textContainer
                                  fractionOfDistanceBetweenInsertionPoints:NULL];
         [self.delegate pageHeader:self didTapText:self.textLabel.attributedText characterAtIndex:characterIndex];
