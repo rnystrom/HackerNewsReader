@@ -107,7 +107,7 @@ static CGFloat const kHNPageHeaderLabelSpacing = 5.0;
 #pragma mark - Gestures
 
 - (void)onTap:(UITapGestureRecognizer *)recognizer {
-    CGPoint point = [recognizer locationInView:self];
+    CGPoint point = [recognizer locationInView:self.textLabel];
     if (CGRectContainsPoint(self.textLabel.frame, point) &&
         [self.delegate respondsToSelector:@selector(pageHeader:didTapText:characterAtIndex:)]) {
         // http://stackoverflow.com/a/26806991/940936

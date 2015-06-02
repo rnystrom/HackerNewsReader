@@ -100,11 +100,12 @@
 
     if ([node.tagName isEqualToString:@"text"]) {
         // at a leaf
-        id typeValue = tagMap[node.parent.tagName];
-        HNCommentType type = typeValue != nil ? [typeValue integerValue] : HNCommentTypeText;
+//        id typeValue = tagMap[node.parent.tagName];
+//        HNCommentType type = typeValue != nil ? [typeValue integerValue] : HNCommentTypeText;
         NSString *text = [node content];
-        HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:text type:type];
-        [bucket addObject:component];
+//        HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:text type:type];
+//        [bucket addObject:component];
+        [bucket addObjectsFromArray:[self componentsFromText:text]];
     } else if ([node.tagName isEqualToString:@"a"]) {
         // special-case links
         HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:node.attributes[@"href"] type:HNCommentTypeLink];
@@ -121,6 +122,45 @@
     NSString *text = [[node content] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:text type:HNCommentRemoved];
     return component;
+}
+
+- (NSArray *)componentsFromText:(NSString *)text {
+    NSMutableArray *components = [[NSMutableArray alloc] init];
+    NSError *error = nil;
+    NSDataDetector *detector = [[NSDataDetector alloc] initWithTypes:NSTextCheckingTypeLink error:&error];
+    __block NSRange previousRange = NSMakeRange(0, 0);
+    [detector enumerateMatchesInString:text options:kNilOptions range:NSMakeRange(0, text.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+        NSInteger previousLength = result.range.location - previousRange.location;
+
+        // add the text in between, if there was any
+        if (previousLength > 0) {
+            NSString *substr = [text substringWithRange:NSMakeRange(previousRange.location, previousLength)];
+            HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:substr type:HNCommentTypeText];
+            [components addObject:component];
+        }
+        previousRange = result.range;
+
+        NSString *substr = [text substringWithRange:result.range];
+        HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:substr type:HNCommentTypeLink];
+        [components addObject:component];
+    }];
+
+#if DEBUG
+    if (error) {
+        NSLog(@"%@",error.localizedDescription);
+    }
+#endif
+
+    // add the tail component if necessary
+    NSInteger addedLength = previousRange.location + previousRange.length;
+    if (addedLength < text.length) {
+        NSRange remainingRange = NSMakeRange(addedLength, text.length - addedLength);
+        NSString *substr = [text substringWithRange:remainingRange];
+        HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:substr type:HNCommentTypeText];
+        [components addObject:component];
+    }
+
+    return components;
 }
 
 @end

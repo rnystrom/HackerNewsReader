@@ -11,12 +11,12 @@
 @implementation UINavigationController (HNBarState)
 
 - (void)setHidesBarsOnSwipe:(BOOL)hidesBarsOnSwipe navigationBarHidden:(BOOL)navigationBarHidden toolbarHidden:(BOOL)toolbarHidden animated:(BOOL)animated {
-    if ([self.navigationController respondsToSelector:@selector(setHidesBarsOnSwipe:)]) {
-        self.navigationController.hidesBarsOnSwipe = hidesBarsOnSwipe;
+    if ([self respondsToSelector:@selector(setHidesBarsOnSwipe:)]) {
+        self.hidesBarsOnSwipe = hidesBarsOnSwipe;
     }
 
-    [self.navigationController setNavigationBarHidden:navigationBarHidden animated:animated];
-    [self.navigationController setToolbarHidden:toolbarHidden animated:animated];
+    [self setNavigationBarHidden:navigationBarHidden animated:animated];
+    [self setToolbarHidden:toolbarHidden animated:animated];
 }
 
 @end
