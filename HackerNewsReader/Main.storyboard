@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="SpL-Ea-3cz">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="SpL-Ea-3cz">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SpL-Ea-3cz" id="hhs-q8-zwQ">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -51,7 +51,6 @@
         <!--Navigation Controller-->
         <scene sceneID="QeS-SU-cwD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1FS-Bk-EVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Ylf-fd-eh9" customClass="HNNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="M0S-4x-zup">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -61,6 +60,7 @@
                         <segue destination="xyR-Qt-puG" kind="relationship" relationship="rootViewController" id="KmC-re-6o1"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1FS-Bk-EVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="419" y="797"/>
         </scene>
