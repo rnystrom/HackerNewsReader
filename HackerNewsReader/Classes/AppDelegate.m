@@ -11,10 +11,6 @@
 #import "UIToolbar+HackerNews.h"
 #import "UINavigationBar+HackerNews.h"
 
-@interface AppDelegate ()
-
-@end
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
