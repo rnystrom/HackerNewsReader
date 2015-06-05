@@ -8,6 +8,8 @@
 
 #import "HNCommentParser.h"
 
+#import <libkern/OSAtomic.h>
+
 #import <HackerNewsKit/HNComment.h>
 
 #import "TFHpple.h"
@@ -40,9 +42,10 @@
 
     NSArray *commentNodes = [parser searchWithXPathQuery:commentQuery];
 
-    NSMutableArray *comments = [[NSMutableArray alloc] init];
+    // use a mutable copy so we have objects to replace
+    NSMutableArray *comments = [commentNodes mutableCopy];
 
-    [commentNodes enumerateObjectsUsingBlock:^(TFHppleElement *commentNode, NSUInteger idx, BOOL *stop) {
+    [commentNodes enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(TFHppleElement *commentNode, NSUInteger idx, BOOL *stop) {
         TFHppleElement *userNode = [[commentNode searchWithXPathQuery:userQuery] firstObject];
         NSString *username = [userNode content];
         HNUser *user = [[HNUser alloc] initWithUsername:username];
@@ -66,9 +69,11 @@
         NSUInteger indent = indentText.integerValue / 40;
 
         HNComment *comment = [[HNComment alloc] initWithUser:user components:components indent:indent pk:pk ageText:ageText];
-        [comments addObject:comment];
+        @synchronized(comments) {
+            comments[idx] = comment;
+        }
     }];
-    
+
     return comments;
 }
 
