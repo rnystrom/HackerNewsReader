@@ -13,6 +13,8 @@
 
 #import <HackerNewsKit/HNPage.h>
 
+#import <MessageUI/MessageUI.h>
+
 #import "AttributedCommentComponents.h"
 #import "HNCommentCell.h"
 #import "HNComment+AttributedStrings.h"
@@ -41,7 +43,7 @@ static NSString * const kCommentCellIdentifier = @"kCommentCellIdentifier";
 static NSString * const kCommentHeaderCellIdentifier = @"kCommentHeaderCellIdentifier";
 static CGFloat const kCommentCellIndentationWidth = 20.0;
 
-@interface HNCommentViewController() <HNDataCoordinatorDelegate, HNCommentCellDelegate, HNPageHeaderViewDelegate, UIActionSheetDelegate>
+@interface HNCommentViewController() <HNDataCoordinatorDelegate, HNCommentCellDelegate, HNPageHeaderViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, assign) NSUInteger postID;
 @property (nonatomic, strong) HNDataCoordinator *dataCoordinator;
@@ -249,8 +251,18 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 }
 
 - (void)didTapURL:(NSURL *)url {
-    UIViewController *controller = viewControllerForURL(url);
-    [self.navigationController pushViewController:controller animated:YES];
+    // email
+    if ([url.absoluteString containsString:@"@"]) {
+        if ([MFMailComposeViewController canSendMail]) {
+            MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
+            controller.mailComposeDelegate = self;
+            [controller setToRecipients:@[url.absoluteString]];
+            [self presentViewController:controller animated:YES completion:NULL];
+        }
+    } else {
+        UIViewController *controller = viewControllerForURL(url);
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (void)onShare:(id)sender {
@@ -425,6 +437,13 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
         HNWebViewController *controller = [[HNWebViewController alloc] initWithPost:self.page.post];
         [self.navigationController pushViewController:controller animated:YES];
     }
+}
+
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end
