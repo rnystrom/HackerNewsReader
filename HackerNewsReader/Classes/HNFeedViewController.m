@@ -25,6 +25,7 @@
 #import "UIViewController+ActivityIndicator.h"
 #import "UINavigationController+HNBarState.h"
 #import "HNPostControllerHandling.h"
+#import "HNReadPostStore.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
     HNFeedViewControllerSectionData,
@@ -39,7 +40,7 @@ static NSUInteger const kItemsPerPage = 30;
 @property (nonatomic, strong) HNDataCoordinator *dataCoordinator;
 @property (nonatomic, copy) HNFeed *feed;
 @property (nonatomic, strong) HNPostCell *prototypeCell;
-@property (nonatomic, strong) NSMutableIndexSet *readPostIDs;
+@property (nonatomic, strong) HNReadPostStore *readPostStore;
 @property (nonatomic, assign) BOOL didRefresh;
 @property (nonatomic, strong) HNTableStatus *tableStatus;
 
@@ -51,11 +52,13 @@ static NSUInteger const kItemsPerPage = 30;
     if (self = [super initWithCoder:aDecoder]) {
         self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
 
-        _readPostIDs = [[NSMutableIndexSet alloc] init];
+        _readPostStore = [[HNReadPostStore alloc] initWithStoreName:@"read_posts.cache"];
 
         HNFeedParser *parser = [[HNFeedParser alloc] init];
         NSString *cacheName = @"latest.feed";
         _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue() path:@"news" parser:parser cacheName:cacheName];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackgroundNotification:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     return self;
 }
@@ -115,7 +118,7 @@ static NSUInteger const kItemsPerPage = 30;
     HNPost *post = self.feed.items[indexPath.row];
     BOOL postIsLink = post.pk == kHNPostPKIsLinkOnly;
     [cell setTitle:post.title];
-    cell.read = [self.readPostIDs containsIndex:post.pk];
+    cell.read = [self.readPostStore hasReadPK:post.pk];
     [cell setCommentCount:post.commentCount];
     [cell setCommentButtonHidden:postIsLink];
     cell.delegate = self;
@@ -245,7 +248,7 @@ static NSUInteger const kItemsPerPage = 30;
 
     HNPost *post = self.feed.items[indexPath.row];
 
-    [self.readPostIDs addIndex:post.pk];
+    [self.readPostStore readPK:post.pk];
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
     UIViewController *controller = viewControllerForPost(post);
@@ -297,6 +300,13 @@ static NSUInteger const kItemsPerPage = 30;
         [self fetchWithParams:@{@"p": @(page)} refresh:NO];
         [self.tableStatus displayTailLoader];
     }
+}
+
+
+#pragma mark - Notifications
+
+- (void)appDidEnterBackgroundNotification:(NSNotification *)notification {
+    [self.readPostStore synchronize];
 }
 
 @end

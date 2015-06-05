@@ -28,11 +28,7 @@
 }
 
 - (id <NSCoding>)fetchFromDisk {
-    NSError *error;
-    NSData *data = [[NSData alloc] initWithContentsOfFile:self.cachePath options:NSDataReadingUncached error:&error];
-    NSAssert(error == nil, @"Error fetching object from disk at path %@: %@",self.cachePath,error);
-    id object = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    return object;
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:self.cachePath];
 }
 
 - (BOOL)archiveToDisk:(id <NSCoding>)object {

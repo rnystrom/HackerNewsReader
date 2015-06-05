@@ -24,6 +24,7 @@
 		2990B3DA1AD2E86F0053DB80 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3D71AD2E86F0053DB80 /* XPathQuery.m */; };
 		2990B3DF1AD2F0880053DB80 /* HNDataCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3DE1AD2F0880053DB80 /* HNDataCoordinator.m */; };
 		2990B3E21AD2F5170053DB80 /* HNDataCoordinator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2990B3DD1AD2F0880053DB80 /* HNDataCoordinator.h */; };
+		299A8D101B226D5A00E23234 /* HNStore.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2990B3C91AD2DE4D0053DB80 /* HNStore.h */; };
 		29B2CA8B1B1EC50100DECAFE /* msdn-ssh.html in Resources */ = {isa = PBXBuildFile; fileRef = 29B2CA8A1B1EC50100DECAFE /* msdn-ssh.html */; };
 		29B2D9451AFC8436005C83BA /* HNPageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B2D9441AFC8436005C83BA /* HNPageParser.m */; };
 		29D4116F1ADB9B5600C491DA /* libHackerNewsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D4116E1ADB9B5600C491DA /* libHackerNewsKit.a */; };
@@ -50,6 +51,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				299A8D101B226D5A00E23234 /* HNStore.h in CopyFiles */,
 				2965ECFC1AFC87B500F6E2DE /* HNPageParser.h in CopyFiles */,
 				29E2CB591AD9AB840010B45D /* HNParseProtocol.h in CopyFiles */,
 				29E2CB571AD9AB7D0010B45D /* HNCommentParser.h in CopyFiles */,
