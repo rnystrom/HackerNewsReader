@@ -32,14 +32,14 @@
     return [self commentsFromParser:parser];
 }
 
-- (NSArray *)commentsFromParser:(TFHpple *)parser {
-    static NSString * const commentQuery = @"//table[@id='hnmain']/tr[3]/td/table[2]/tr";
-    static NSString * const userQuery = @"//span[@class='comhead']/a[1]";
-    static NSString * const textQuery = @"//span[@class='comment']/font";
-    static NSString * const removedQuery = @"//span[@class='comment']";
-    static NSString * const indentQuery = @"//img[@src='s.gif']";
-    static NSString * const permalinkQuery = @"//span[@class='comhead']/a[2]";
+static NSString * const commentQuery = @"//table[@id='hnmain']/tr[3]/td/table[2]/tr";
+static NSString * const userQuery = @"//span[@class='comhead']/a[1]";
+static NSString * const textQuery = @"//span[@class='comment']/font";
+static NSString * const removedQuery = @"//span[@class='comment']";
+static NSString * const indentQuery = @"//img[@src='s.gif']";
+static NSString * const permalinkQuery = @"//span[@class='comhead']/a[2]";
 
+- (NSArray *)commentsFromParser:(TFHpple *)parser {
     NSArray *commentNodes = [parser searchWithXPathQuery:commentQuery];
 
     // use a mutable copy so we have objects to replace
@@ -75,6 +75,94 @@
     }];
 
     return comments;
+}
+
+- (NSArray *)commentsUsingConcurrentEnum:(NSData *)data {
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    NSArray *nodes = [parser searchWithXPathQuery:commentQuery];
+
+    // use a mutable copy so we have objects to replace
+    NSMutableArray *comments = [nodes mutableCopy];
+
+    [nodes enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(TFHppleElement *commentNode, NSUInteger idx, BOOL *stop) {
+        HNComment *comment = [self commentFromNode:commentNode];
+        @synchronized(comments) {
+            comments[idx] = comment;
+        }
+    }];
+
+    return comments;
+}
+
+- (NSArray *)commentsUsingDispatchGroups:(NSData *)data {
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    NSArray *nodes = [parser searchWithXPathQuery:commentQuery];
+
+    NSMutableArray *comments = [nodes mutableCopy];
+    const NSUInteger groupSize = 75;
+
+    NSUInteger iterations = ceil(nodes.count / (double)groupSize);
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_apply(iterations, q, ^(size_t i) {
+        NSUInteger location = i * groupSize;
+        NSUInteger length = MIN(groupSize, nodes.count - location);
+        NSArray *subNodes = [nodes subarrayWithRange:NSMakeRange(location, length)];
+        NSMutableArray *subComments = [[NSMutableArray alloc] init];
+        NSMutableIndexSet *indexes = [[NSMutableIndexSet alloc] init];
+        [subNodes enumerateObjectsUsingBlock:^(TFHppleElement *node, NSUInteger idx, BOOL *stop) {
+            HNComment *comment = [self commentFromNode:node];
+            [subComments addObject:comment];
+            [indexes addIndex:(location + idx)];
+        }];
+        @synchronized(comments) {
+            [comments replaceObjectsAtIndexes:indexes withObjects:subComments];
+        }
+    });
+
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+
+    return comments;
+}
+
+- (NSArray *)commentsUsingFastEnumFromData:(NSData *)data {
+    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+    NSArray *nodes = [parser searchWithXPathQuery:commentQuery];
+
+    NSMutableArray *comments = [[NSMutableArray alloc] init];
+
+    for (TFHppleElement *commentNode in nodes) {
+        [comments addObject:[self commentFromNode:commentNode]];
+    }
+    
+    return comments;
+}
+
+- (HNComment *)commentFromNode:(TFHppleElement *)commentNode {
+    TFHppleElement *userNode = [[commentNode searchWithXPathQuery:userQuery] firstObject];
+    NSString *username = [userNode content];
+    HNUser *user = [[HNUser alloc] initWithUsername:username];
+
+    TFHppleElement *permalinkNode = [[commentNode searchWithXPathQuery:permalinkQuery] firstObject];
+    NSString *ageText = [permalinkNode content];
+    NSString *postID = [[permalinkNode.attributes[@"href"] componentsSeparatedByString:@"item?id="] lastObject];
+    NSUInteger pk = [postID integerValue];
+
+    TFHppleElement *textNode = [[commentNode searchWithXPathQuery:textQuery] firstObject];
+    NSArray *components;
+    if (textNode) {
+        components = [self commentComponentsFromNode:textNode];
+    } else {
+        TFHppleElement *removedNode = [[commentNode searchWithXPathQuery:removedQuery] firstObject];
+        components = @[[self removedComponentFromNode:removedNode]];
+    }
+
+    TFHppleElement *indentNode = [[commentNode searchWithXPathQuery:indentQuery] firstObject];
+    NSString *indentText = indentNode.attributes[@"width"];
+    NSUInteger indent = indentText.integerValue / 40;
+
+    HNComment *comment = [[HNComment alloc] initWithUser:user components:components indent:indent pk:pk ageText:ageText];
+    return comment;
 }
 
 - (NSArray *)commentComponentsFromNode:(TFHppleElement *)node {

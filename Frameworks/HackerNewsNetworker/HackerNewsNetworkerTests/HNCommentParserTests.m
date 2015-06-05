@@ -11,6 +11,14 @@
 #import "HNCommentParser.h"
 #import "TFHpple.h"
 
+@interface HNCommentParser (HNCommentParserTests)
+
+- (NSArray *)commentsUsingConcurrentEnum:(NSData *)data;
+- (NSArray *)commentsUsingDispatchGroups:(NSData *)data;
+- (NSArray *)commentsUsingFastEnumFromData:(NSData *)data;
+
+@end
+
 @interface HNCommentParserTests : XCTestCase
 
 @end
@@ -24,13 +32,37 @@
     XCTAssert(commentCount == 297, @"Comment count was %zi, expected 297", commentCount);
 }
 
-- (void)testCommentParsingPerformance {
+- (void)testCommentParsingFastEnum {
     NSData *data = [self longCommentsData];
+    HNCommentParser *parser = [[HNCommentParser alloc] init];
     [self measureBlock:^{
-        HNCommentParser *parser = [[HNCommentParser alloc] init];
-        [parser parseDataFromResponse:data];
+        [parser commentsUsingFastEnumFromData:data];
     }];
 }
+
+- (void)testCommentParsingConcurrentEnum {
+    NSData *data = [self longCommentsData];
+    HNCommentParser *parser = [[HNCommentParser alloc] init];
+    [self measureBlock:^{
+        [parser commentsUsingConcurrentEnum:data];
+    }];
+}
+
+- (void)testCommentParsingDispatchGroups {
+    NSData *data = [self longCommentsData];
+    HNCommentParser *parser = [[HNCommentParser alloc] init];
+    [self measureBlock:^{
+        [parser commentsUsingDispatchGroups:data];
+    }];
+}
+
+//- (void)testCommentParsingPerformance {
+//    NSData *data = [self longCommentsData];
+//    [self measureBlock:^{
+//        HNCommentParser *parser = [[HNCommentParser alloc] init];
+//        [parser parseDataFromResponse:data];
+//    }];
+//}
 
 
 #pragma mark - Helpers
