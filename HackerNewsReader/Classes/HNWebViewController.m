@@ -99,14 +99,19 @@
 
     self.backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backward"] style:UIBarButtonItemStylePlain target:self action:@selector(onBack:)];
     self.backButton.enabled = NO;
+    self.backButton.accessibilityLabel = NSLocalizedString(@"Go back", @"Title for the web back button");
     self.forwardButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"forward"] style:UIBarButtonItemStylePlain target:self action:@selector(onForward:)];
     self.forwardButton.enabled = NO;
+    self.forwardButton.accessibilityLabel = NSLocalizedString(@"Go forward", @"Title for the web forward button");
     UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(onRefresh:)];
+    refresh.accessibilityLabel = NSLocalizedString(@"Refresh Page", @"Title for the web refresh button");
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onShare:)];
+    share.accessibilityLabel = NSLocalizedString(@"Share Page", @"Title for the web share button");
     UIBarButtonItem *flex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
     if (self.post) {
         UIBarButtonItem *comments = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat"] style:UIBarButtonItemStylePlain target:self action:@selector(onComments:)];
+        comments.accessibilityLabel = NSLocalizedString(@"View comments", @"Title for the comments button");
         self.toolbarItems = @[self.backButton, flex, self.forwardButton, flex, refresh, flex, share, flex, comments];
     } else {
         self.toolbarItems = @[self.backButton, flex, self.forwardButton, flex, refresh, flex, share];
@@ -191,7 +196,7 @@
 #pragma mark - WKNavigationDelegate
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    self.title = webView.title;
+    self.title = webView.title.length ? webView.title : webView.URL.host;
 
     [self webViewFinishedLoading];
 

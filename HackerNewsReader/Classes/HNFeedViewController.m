@@ -114,7 +114,7 @@ static NSUInteger const kItemsPerPage = 30;
 - (void)configureCell:(HNPostCell *)cell forIndexPath:(NSIndexPath *)indexPath {
     HNPost *post = self.feed.items[indexPath.row];
     BOOL postIsLink = post.pk == kHNPostPKIsLinkOnly;
-    cell.titleLabel.text = post.title;
+    [cell setTitle:post.title];
     cell.read = [self.readPostIDs containsIndex:post.pk];
     [cell setCommentCount:post.commentCount];
     [cell setCommentButtonHidden:postIsLink];
@@ -127,7 +127,7 @@ static NSUInteger const kItemsPerPage = 30;
             detailText = [detailText stringByAppendingFormat:@" (%@)",post.URL.host];
         }
     }
-    cell.subtitleLabel.text = detailText;
+    [cell setSubtitle:detailText];
 }
 
 

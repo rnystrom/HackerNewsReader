@@ -18,15 +18,13 @@
 
 @interface HNPostCell : UITableViewCell
 
-@property (nonatomic, strong, readonly) UILabel *titleLabel;
-@property (nonatomic, strong, readonly) UILabel *subtitleLabel;
 @property (nonatomic, strong) id <HNPostCellDelegate> delegate;
 @property (nonatomic, assign, getter=isRead) BOOL read;
 
+- (void)setTitle:(NSString *)title;
+- (void)setSubtitle:(NSString *)subtitle;
 - (void)setCommentCount:(NSUInteger)commentCount;
-
 - (void)setCommentButtonHidden:(BOOL)commentButtonHidden;
-
 - (void)setCommentCountHidden:(BOOL)commentCountHidden;
 
 @end

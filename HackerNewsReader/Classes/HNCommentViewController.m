@@ -98,6 +98,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onShare:)];
+    share.accessibilityLabel = NSLocalizedString(@"Share", @"Title of the share icon in the nav bar of the comment page");
     self.navigationItem.rightBarButtonItem = share;
     // will leave us with just a "<" back arrow and no text
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -135,6 +136,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     CGFloat width = [self indentedWidthForComment:comment];
     NSAttributedString *str = self.attributedCommentStrings[comment];
     cell.commentContentView.layer.contents = [self.textStorage renderedContentForAttributedString:str width:width];
+    cell.accessibilityLabel = str.string;
+    cell.accessibilityHint = NSLocalizedString(@"Select for share options", @"Hint for comment cells");
 
     cell.delegate = self;
     cell.indentationWidth = comment.indent;

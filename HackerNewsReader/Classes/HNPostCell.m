@@ -19,6 +19,9 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
 
 @interface HNPostCell ()
 
+
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *subtitleLabel;
 @property (strong, nonatomic, readwrite) HNCommentButton *commentButton;
 @property (nonatomic, assign) BOOL commentCountHidden;
 
@@ -74,6 +77,29 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
     }
 }
 
+- (void)setTitle:(NSString *)title {
+    self.titleLabel.text = title;
+    [self configureAccessibility];
+}
+
+- (void)setSubtitle:(NSString *)subtitle {
+    self.subtitleLabel.text = subtitle;
+    [self configureAccessibility];
+}
+
+
+#pragma mark - Private API
+
+- (void)configureAccessibility {
+    NSString *title = self.titleLabel.text;
+    NSString *subtitle = self.subtitleLabel.text;
+    if (title.length && subtitle.length) {
+        self.titleLabel.accessibilityLabel = [NSString stringWithFormat:@"%@, %@", title, subtitle];
+    } else {
+        self.titleLabel.accessibilityLabel = title.length ? title : subtitle;
+    }
+}
+
 
 #pragma mark - Layout
 
@@ -123,12 +149,30 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
 
     [self.subtitleLabel sizeToFit];
     self.subtitleLabel.frame = (CGRect) {CGPointMake(kHNPostCellInset.left, subtitleTop), self.subtitleLabel.bounds.size};
+
+    CGRect axFrame, remainderFrame;
+    CGRectDivide(self.accessibilityFrame, &remainderFrame, &axFrame, CGRectGetWidth(self.commentButton.bounds), CGRectMaxXEdge);
+    self.titleLabel.accessibilityFrame = axFrame;
 }
+
+
+#pragma mark - Touches
 
 - (void)didTapCommentButton:(id)sender {
     if ([self.delegate respondsToSelector:@selector(postCellDidTapCommentButton:)]) {
         [self.delegate postCellDidTapCommentButton:self];
     }
+}
+
+
+#pragma mark - Accessibility
+
+- (BOOL)isAccessibilityElement {
+    return NO;
+}
+
+- (NSArray *)accessibilityElements {
+    return @[self.titleLabel, self.commentButton];
 }
 
 @end

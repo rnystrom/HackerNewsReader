@@ -100,4 +100,20 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
     self.commentLabel.textColor = [UIColor subtitleTextColor];
 }
 
+
+#pragma mark - Accessibility
+
+- (BOOL)isAccessibilityElement {
+    return YES;
+}
+
+- (UIAccessibilityTraits)accessibilityTraits {
+    return UIAccessibilityTraitButton;
+}
+
+- (NSString *)accessibilityLabel {
+    NSString *axFormatString = NSLocalizedString(@"%@ comments", @"The number of comments in a post");
+    return [NSString stringWithFormat:axFormatString, self.commentLabel.text];
+}
+
 @end

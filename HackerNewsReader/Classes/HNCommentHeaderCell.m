@@ -48,6 +48,9 @@ static CGFloat const kHNCommentHeaderPadding = 15.0;
     return self;
 }
 
+
+#pragma mark - Layout
+
 - (void)layoutSubviews {
     [super layoutSubviews];
 
@@ -63,11 +66,21 @@ static CGFloat const kHNCommentHeaderPadding = 15.0;
     self.borderLayer.frame = CGRectMake(left, CGRectGetHeight(self.bounds) - separatorHeight, CGRectGetWidth(self.bounds), separatorHeight);
 }
 
+
+#pragma mark - Public API
+
 - (void)setCollapsed:(BOOL)collapsed {
     if (_collapsed != collapsed) {
         _collapsed = collapsed;
         self.collapsedLabel.text = collapsed ? @"+" : @"\u2013";
     }
+}
+
+
+#pragma mark - Accessibility
+
+- (NSString *)accessibilityHint {
+    return NSLocalizedString(@"Select to collapse thread", @"Hint that selecting the cell collapses the comment thread");
 }
 
 @end
