@@ -147,6 +147,7 @@
     } else {
         url = [[(UIWebView *)self.webView request] URL];
     }
+    url = url ?: self.post.URL;
     [self shareURL:url fromBarItem:self.shareBarButtonItem];
 }
 
@@ -222,7 +223,8 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    self.title = title.length ? title : webView.request.URL.host;
 
     [self hideActivityIndicator];
     self.errorLabel.hidden = YES;

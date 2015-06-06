@@ -100,6 +100,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(onShare:)];
+    share.enabled = NO;
     share.accessibilityLabel = NSLocalizedString(@"Share", @"Title of the share icon in the nav bar of the comment page");
     self.navigationItem.rightBarButtonItem = share;
     // will leave us with just a "<" back arrow and no text
@@ -183,6 +184,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 - (void)updatePage:(HNPage *)page {
     NSAssert([NSThread isMainThread], @"Delegate callbacks should be on the (registered) main thread");
+
+    self.shareBarButtonItem.enabled = page != nil;
 
     [self.refreshControl endRefreshing];
     [self hideActivityIndicator];
