@@ -163,7 +163,10 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     cell.titleLabel.text = [NSString stringWithFormat:@"%@ %@", usernameText, ageText];
     cell.indentationWidth = comment.indent;
     cell.indentationLevel = kCommentCellIndentationWidth;
-    cell.collapsed = [self.collapsedPaths containsObject:indexPath];
+
+    // faux header cell is never in collapsedPaths, so check if next path is
+    NSIndexPath *nextPath = [NSIndexPath indexPathForItem:(indexPath.item + 1) inSection:indexPath.section];
+    cell.collapsed = [self.collapsedPaths containsObject:nextPath];
 }
 
 - (void)setupHeaderViewWithPage:(HNPage *)page {

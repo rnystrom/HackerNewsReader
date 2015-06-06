@@ -70,10 +70,8 @@ static CGFloat const kHNCommentHeaderPadding = 15.0;
 #pragma mark - Public API
 
 - (void)setCollapsed:(BOOL)collapsed {
-    if (_collapsed != collapsed) {
-        _collapsed = collapsed;
-        self.collapsedLabel.text = collapsed ? @"+" : @"\u2013";
-    }
+    _collapsed = collapsed;
+    self.collapsedLabel.text = collapsed ? @"+" : @"\u2013";
 }
 
 
