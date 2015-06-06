@@ -116,16 +116,24 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 // only called on ios >7
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    UITableViewCell *topCell = self.tableView.visibleCells.firstObject;
+    NSIndexPath *topIndexPath = [self.tableView indexPathForCell:topCell];
+
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
         [self setupHeaderViewWithPage:self.page];
         [self.tableView reloadData];
+        [self.tableView scrollToRowAtIndexPath:topIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
     } completion:nil];
 }
 
 // only called on ios 7
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    UITableViewCell *topCell = self.tableView.visibleCells.firstObject;
+    NSIndexPath *topIndexPath = [self.tableView indexPathForCell:topCell];
+
     [UIView animateWithDuration:duration animations:^{
         [self.tableView reloadData];
+        [self.tableView scrollToRowAtIndexPath:topIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
     } completion:^(BOOL finished) {
         [self setupHeaderViewWithPage:self.page];
     }];
