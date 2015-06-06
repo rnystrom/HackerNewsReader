@@ -155,6 +155,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     cell.titleLabel.text = [NSString stringWithFormat:@"%@ %@", usernameText, ageText];
     cell.indentationWidth = comment.indent;
     cell.indentationLevel = kCommentCellIndentationWidth;
+    cell.collapsed = [self.collapsedPaths containsObject:indexPath];
 }
 
 - (void)setupHeaderViewWithPage:(HNPage *)page {
