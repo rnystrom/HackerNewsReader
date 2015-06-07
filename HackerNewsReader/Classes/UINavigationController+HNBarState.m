@@ -13,6 +13,7 @@
 - (void)setHidesBarsOnSwipe:(BOOL)hidesBarsOnSwipe navigationBarHidden:(BOOL)navigationBarHidden toolbarHidden:(BOOL)toolbarHidden animated:(BOOL)animated {
     if ([self respondsToSelector:@selector(setHidesBarsOnSwipe:)]) {
         self.hidesBarsOnSwipe = hidesBarsOnSwipe;
+        self.hidesBarsOnTap = hidesBarsOnSwipe;
     }
 
     [self setNavigationBarHidden:navigationBarHidden animated:animated];
