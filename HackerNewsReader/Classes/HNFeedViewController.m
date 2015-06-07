@@ -8,7 +8,6 @@
 
 #import "HNFeedViewController.h"
 
-#import <HackerNewsNetworker/HNDataCoordinator.h>
 #import <HackerNewsNetworker/HNFeedParser.h>
 
 #import <HackerNewsKit/HNFeed.h>
@@ -26,6 +25,8 @@
 #import "UINavigationController+HNBarState.h"
 #import "HNPostControllerHandling.h"
 #import "HNReadPostStore.h"
+#import "HNFeedDataSource.h"
+#import "HNSearchPostsController.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
     HNFeedViewControllerSectionData,
@@ -35,29 +36,27 @@ typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
 static NSString * const kPostCellIdentifier = @"kPostCellIdentifier";
 static NSUInteger const kItemsPerPage = 30;
 
-@interface HNFeedViewController () <HNDataCoordinatorDelegate, HNPostCellDelegate>
+@interface HNFeedViewController () <HNPostCellDelegate, HNSearchPostsControllerDelegate>
 
-@property (nonatomic, strong) HNDataCoordinator *dataCoordinator;
-@property (nonatomic, copy) HNFeed *feed;
 @property (nonatomic, strong) HNPostCell *prototypeCell;
-@property (nonatomic, strong) HNReadPostStore *readPostStore;
 @property (nonatomic, assign) BOOL didRefresh;
 @property (nonatomic, strong) HNTableStatus *tableStatus;
+@property (nonatomic, strong) HNFeedDataSource *feedDataSource;
+@property (nonatomic, copy) HNFeed *feed;
+
+// search
+@property (nonatomic, strong) HNSearchPostsController *searchPostsController;
 
 @end
 
 @implementation HNFeedViewController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        self.title = NSLocalizedString(@"Hacker News", @"The name of the Hacker News website");
-
-        _readPostStore = [[HNReadPostStore alloc] initWithStoreName:@"read_posts.cache"];
-
-        HNFeedParser *parser = [[HNFeedParser alloc] init];
-        NSString *cacheName = @"latest.feed";
-        _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue() path:@"news" parser:parser cacheName:cacheName];
-
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackgroundNotification:) name:UIApplicationDidEnterBackgroundNotification object:nil];
     }
     return self;
@@ -68,11 +67,15 @@ static NSUInteger const kItemsPerPage = 30;
 
     self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
 
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.searchPostsController = [[HNSearchPostsController alloc] init];
+    self.searchPostsController.delegate = self;
+    self.definesPresentationContext = YES;
+    self.tableView.tableHeaderView = [self.searchPostsController searchBar];
 
     [self fetchWithParams:nil refresh:YES];
 
-    [self.tableView registerClass:HNPostCell.class forCellReuseIdentifier:kPostCellIdentifier];
+    self.feedDataSource = [[HNFeedDataSource alloc] initWithTableView:self.tableView readPostStore:self.readPostStore];
+
     self.tableView.tableFooterView = [[UIView alloc] init];
 
     NSString *emptyMessage = NSLocalizedString(@"Failed loading feed", @"Cannot load data for the list");
@@ -102,38 +105,6 @@ static NSUInteger const kItemsPerPage = 30;
 }
 
 
-#pragma mark - Sizing
-
-- (HNPostCell *)prototypeCell {
-    if (!_prototypeCell) {
-        _prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:kPostCellIdentifier];
-    }
-    return _prototypeCell;
-}
-
-
-#pragma mark - Config
-
-- (void)configureCell:(HNPostCell *)cell forIndexPath:(NSIndexPath *)indexPath {
-    HNPost *post = self.feed.items[indexPath.row];
-    BOOL postIsLink = post.pk == kHNPostPKIsLinkOnly;
-    [cell setTitle:post.title];
-    cell.read = [self.readPostStore hasReadPK:post.pk];
-    [cell setCommentCount:post.commentCount];
-    [cell setCommentButtonHidden:postIsLink];
-    cell.delegate = self;
-
-    NSString *detailText = nil;
-    if (!postIsLink) {
-        detailText = [NSString stringWithFormat:NSLocalizedString(@"%zi points", @"Formatted string for the number of points"),post.score];
-        if (post.URL.host.length) {
-            detailText = [detailText stringByAppendingFormat:@" (%@)",post.URL.host];
-        }
-    }
-    [cell setSubtitle:detailText];
-}
-
-
 #pragma mark - Actions
 
 - (void)fetchWithParams:(NSDictionary *)params refresh:(BOOL)refresh {
@@ -142,7 +113,6 @@ static NSUInteger const kItemsPerPage = 30;
     }
 
     self.didRefresh = refresh;
-
     [self.dataCoordinator fetchWithParams:params];
 }
 
@@ -187,15 +157,37 @@ static NSUInteger const kItemsPerPage = 30;
     }
 }
 
+- (void)didSelectPost:(HNPost *)post {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[self.feedDataSource.posts indexOfObject:post] inSection:HNFeedViewControllerSectionData];
+    [self.readPostStore readPK:post.pk];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+    UIViewController *controller = viewControllerForPost(post);
+    [self showDetailViewControllerWithFallback:controller];
+}
+
+- (void)didSelectPostComment:(HNPost *)post {
+    HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
+    [self showDetailViewControllerWithFallback:commentController];
+}
+
+
+#pragma mark - Setters
+
+- (void)setFeed:(HNFeed *)feed {
+    _feed = [feed copy];
+    self.feedDataSource.posts = feed.items;
+    self.searchPostsController.posts = feed.items;
+}
+
 
 #pragma mark - HNPostCellDelegate
 
 - (void)postCellDidTapCommentButton:(HNPostCell *)postCell {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:postCell];
     if (indexPath) {
-        HNPost *post = self.feed.items[indexPath.row];
-        HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
-        [self showDetailViewControllerWithFallback:commentController];
+        HNPost *post = self.feedDataSource.posts[indexPath.row];
+        [self didSelectPostComment:post];
     }
 }
 
@@ -208,7 +200,7 @@ static NSUInteger const kItemsPerPage = 30;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == HNFeedViewControllerSectionData) {
-        return self.feed.items.count;
+        return self.feedDataSource.posts.count;
     } else {
         return [self.tableStatus cellCountForSection:section];
     }
@@ -218,8 +210,8 @@ static NSUInteger const kItemsPerPage = 30;
     NSUInteger section = indexPath.section;
 
     if (section == HNFeedViewControllerSectionData) {
-        id cell = [tableView dequeueReusableCellWithIdentifier:kPostCellIdentifier forIndexPath:indexPath];
-        [self configureCell:cell forIndexPath:indexPath];
+        HNPostCell *cell = [self.feedDataSource cellForPostAtIndexPath:indexPath];
+        cell.delegate = self;
         return cell;
     } else {
         return [self.tableStatus cellForIndexPath:indexPath];
@@ -228,12 +220,10 @@ static NSUInteger const kItemsPerPage = 30;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == HNFeedViewControllerSectionData) {
-        [self configureCell:self.prototypeCell forIndexPath:indexPath];
-        CGSize size = [self.prototypeCell sizeThatFits:CGSizeMake(CGRectGetWidth(self.tableView.bounds), CGFLOAT_MAX)];
-        return size.height;
+        return [self.feedDataSource heightForPostAtIndexPath:indexPath];
+    } else {
+        return 55.0;
     }
-
-    return 55.0;
 }
 
 
@@ -246,13 +236,8 @@ static NSUInteger const kItemsPerPage = 30;
         return;
     }
 
-    HNPost *post = self.feed.items[indexPath.row];
-
-    [self.readPostStore readPK:post.pk];
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-
-    UIViewController *controller = viewControllerForPost(post);
-    [self showDetailViewControllerWithFallback:controller];
+    HNPost *post = self.feedDataSource.posts[indexPath.row];
+    [self didSelectPost:post];
 }
 
 
@@ -261,26 +246,20 @@ static NSUInteger const kItemsPerPage = 30;
 - (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didUpdateObject:(id)object {
     NSAssert([NSThread isMainThread], @"Delegate callbacks should be on the (registered) main thread");
 
-    HNFeed *feed = (HNFeed *)object;
-
     if (self.isViewLoaded) {
         if (self.refreshControl.isRefreshing) {
             [self.refreshControl endRefreshing];
-            [self performSelector:@selector(updateFeed:) withObject:feed afterDelay:0.23];
+            [self performSelector:@selector(updateFeed:) withObject:object afterDelay:0.23];
         } else {
-            [self updateFeed:feed];
+            [self updateFeed:object];
         }
     } else {
-        self.feed = feed;
+        self.feed = object;
     }
 }
 
 - (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didError:(NSError *)error {
     NSAssert([NSThread isMainThread], @"Delegate callbacks should be on the (registered) main thread");
-
-#if DEBUG
-    NSLog(@"%@",error.localizedDescription);
-#endif
 
     [self hideActivityIndicator];
     [self.tableStatus displayEmptyMessage];
@@ -307,6 +286,17 @@ static NSUInteger const kItemsPerPage = 30;
 
 - (void)appDidEnterBackgroundNotification:(NSNotification *)notification {
     [self.readPostStore synchronize];
+}
+
+
+#pragma mark - HNSearchPostsControllerDelegate
+
+- (void)searchPostsController:(HNSearchPostsController *)searchPostsController didSelectPost:(HNPost *)post {
+    [self didSelectPost:post];
+}
+
+- (void)searchPostsController:(HNSearchPostsController *)searchPostsController didSelectPostComment:(HNPost *)post {
+    [self didSelectPostComment:post];
 }
 
 @end

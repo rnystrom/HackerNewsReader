@@ -96,15 +96,12 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
 #pragma mark - Notifications
 
 - (void)onStoreUpdated:(NSNotification *)notification {
-    if (notification.object == self) {
-        return;
+    if (notification.object != self) {
+        id <NSCoding> object = [self.store fetchFromDisk];
+        dispatch_async(self.delegateQueue, ^{
+            [self.delegate dataCoordinator:self didUpdateObject:object];
+        });
     }
-
-    id <NSCoding> object = [self.store fetchFromDisk];
-
-    dispatch_async(self.delegateQueue, ^{
-        [self.delegate dataCoordinator:self didUpdateObject:object];
-    });
 }
 
 @end

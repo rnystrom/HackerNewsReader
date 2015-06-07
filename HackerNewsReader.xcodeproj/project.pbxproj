@@ -43,6 +43,9 @@
 		2990B3E11AD2F4FE0053DB80 /* libHackerNewsNetworker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2990B3E01AD2F4FE0053DB80 /* libHackerNewsNetworker.a */; };
 		2990B3EA1AD2F7550053DB80 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2990B3E91AD2F7550053DB80 /* libxml2.2.dylib */; };
 		299A8D0F1B2266AE00E23234 /* HNReadPostStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A8D0E1B2266AE00E23234 /* HNReadPostStore.m */; };
+		29B393B21B2389C00094C2C6 /* HNTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B11B2389C00094C2C6 /* HNTopViewController.m */; };
+		29B393B61B23C10C0094C2C6 /* HNFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B51B23C10C0094C2C6 /* HNFeedDataSource.m */; };
+		29B393B91B23CA0A0094C2C6 /* HNSearchPostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */; };
 		29D4116A1ADB4D9E00C491DA /* HNComment+AttributedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */; };
 		29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D4116C1ADB601600C491DA /* HNCommentHeaderCell.m */; };
 		29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */; };
@@ -119,6 +122,12 @@
 		2990B3E91AD2F7550053DB80 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		299A8D0D1B2266AE00E23234 /* HNReadPostStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNReadPostStore.h; path = Classes/HNReadPostStore.h; sourceTree = "<group>"; };
 		299A8D0E1B2266AE00E23234 /* HNReadPostStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNReadPostStore.m; path = Classes/HNReadPostStore.m; sourceTree = "<group>"; };
+		29B393B01B2389C00094C2C6 /* HNTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNTopViewController.h; path = Classes/HNTopViewController.h; sourceTree = "<group>"; };
+		29B393B11B2389C00094C2C6 /* HNTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNTopViewController.m; path = Classes/HNTopViewController.m; sourceTree = "<group>"; };
+		29B393B41B23C10C0094C2C6 /* HNFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNFeedDataSource.h; path = Classes/HNFeedDataSource.h; sourceTree = "<group>"; };
+		29B393B51B23C10C0094C2C6 /* HNFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNFeedDataSource.m; path = Classes/HNFeedDataSource.m; sourceTree = "<group>"; };
+		29B393B71B23CA0A0094C2C6 /* HNSearchPostsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNSearchPostsController.h; path = Classes/HNSearchPostsController.h; sourceTree = "<group>"; };
+		29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNSearchPostsController.m; path = Classes/HNSearchPostsController.m; sourceTree = "<group>"; };
 		29D411681ADB4D9E00C491DA /* HNComment+AttributedStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HNComment+AttributedStrings.h"; path = "Classes/HNComment+AttributedStrings.h"; sourceTree = "<group>"; };
 		29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HNComment+AttributedStrings.m"; path = "Classes/HNComment+AttributedStrings.m"; sourceTree = "<group>"; };
 		29D4116B1ADB601600C491DA /* HNCommentHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentHeaderCell.h; path = Classes/HNCommentHeaderCell.h; sourceTree = "<group>"; };
@@ -203,6 +212,7 @@
 		2944A8A11AD6FA2400A2A251 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				29B393B31B238ABB0094C2C6 /* Feed Subclasses */,
 				2944A8A41AD6FAB400A2A251 /* HNCommentViewController.h */,
 				2944A8A51AD6FAB400A2A251 /* HNCommentViewController.m */,
 				2990B33F1AD1FD980053DB80 /* HNFeedViewController.h */,
@@ -211,6 +221,8 @@
 				2920DDB61AED9BFF00E51B23 /* HNNavigationController.m */,
 				2972C53E1AD32598005A2739 /* HNWebViewController.h */,
 				2972C53F1AD32598005A2739 /* HNWebViewController.m */,
+				29B393B71B23CA0A0094C2C6 /* HNSearchPostsController.h */,
+				29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -254,6 +266,8 @@
 				294CB9071B1C0D3800FAA09F /* HNSplitViewDelegate.m */,
 				299A8D0D1B2266AE00E23234 /* HNReadPostStore.h */,
 				299A8D0E1B2266AE00E23234 /* HNReadPostStore.m */,
+				29B393B41B23C10C0094C2C6 /* HNFeedDataSource.h */,
+				29B393B51B23C10C0094C2C6 /* HNFeedDataSource.m */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -325,6 +339,15 @@
 				295DB7451AF7DA9D004B119F /* WebKit.framework */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		29B393B31B238ABB0094C2C6 /* Feed Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				29B393B01B2389C00094C2C6 /* HNTopViewController.h */,
+				29B393B11B2389C00094C2C6 /* HNTopViewController.m */,
+			);
+			name = "Feed Subclasses";
 			sourceTree = "<group>";
 		};
 		F77F247604C87D0F7DE5946A /* Pods */ = {
@@ -466,12 +489,15 @@
 				2944A88E1AD6EE4900A2A251 /* HNEmptyTableCell.m in Sources */,
 				292988C21AD4CE9A00BB386C /* HNPostCell.m in Sources */,
 				2920DDC91AED9FB200E51B23 /* HNTextStorage.m in Sources */,
+				29B393B61B23C10C0094C2C6 /* HNFeedDataSource.m in Sources */,
 				2990B2E61AD1FC600053DB80 /* main.m in Sources */,
+				29B393B91B23CA0A0094C2C6 /* HNSearchPostsController.m in Sources */,
 				299A8D0F1B2266AE00E23234 /* HNReadPostStore.m in Sources */,
 				2920DDCC1AEDA27500E51B23 /* HNTextRenderer.m in Sources */,
 				29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */,
 				2944A8A61AD6FAB400A2A251 /* HNCommentViewController.m in Sources */,
 				294CB9031B1B92D400FAA09F /* HNTableStatus.m in Sources */,
+				29B393B21B2389C00094C2C6 /* HNTopViewController.m in Sources */,
 				296054B91AD4F0370038818A /* HNCommentButton.m in Sources */,
 				297D7BDF1B02BA230021993B /* HNComment+Links.m in Sources */,
 				2920DDB71AED9BFF00E51B23 /* HNNavigationController.m in Sources */,

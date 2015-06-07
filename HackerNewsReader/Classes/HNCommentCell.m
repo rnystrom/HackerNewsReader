@@ -83,9 +83,10 @@
 }
 
 - (void)onLongPressGesture:(UILongPressGestureRecognizer *)recognizer {
+    CGPoint point = [recognizer locationInView:self];
     if (recognizer.state == UIGestureRecognizerStateBegan &&
-        [self.delegate respondsToSelector:@selector(commentCellDidLongPress:)]) {
-        [self.delegate commentCellDidLongPress:self];
+        [self.delegate respondsToSelector:@selector(commentCell:didLongPressAtPoint:)]) {
+        [self.delegate commentCell:self didLongPressAtPoint:point];
     }
 }
 

@@ -8,6 +8,13 @@
 
 @import UIKit;
 
-@interface HNFeedViewController : UITableViewController
+#import <HackerNewsNetworker/HNDataCoordinator.h>
+
+@class HNDataCoordinator, HNReadPostStore;
+
+@interface HNFeedViewController : UITableViewController <HNDataCoordinatorDelegate>
+
+@property (nonatomic, strong, readonly) HNDataCoordinator *dataCoordinator;
+@property (nonatomic, strong, readonly) HNReadPostStore *readPostStore;
 
 @end

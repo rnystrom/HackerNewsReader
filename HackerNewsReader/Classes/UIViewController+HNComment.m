@@ -46,9 +46,7 @@
 
         if ([alertController respondsToSelector:@selector(popoverPresentationController)]) {
             alertController.popoverPresentationController.sourceView = view;
-            CGRect frame = view.bounds;
-            frame.origin.x = frame.origin.x + frame.size.width / 2.0;
-            alertController.popoverPresentationController.sourceRect = frame;
+            alertController.popoverPresentationController.sourceRect = view.bounds;
         }
 
         [self presentViewController:alertController animated:YES completion:nil];

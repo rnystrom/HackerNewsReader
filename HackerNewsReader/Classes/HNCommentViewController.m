@@ -431,7 +431,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     }
 }
 
-- (void)commentCellDidLongPress:(HNCommentCell *)commentCell {
+- (void)commentCell:(HNCommentCell *)commentCell didLongPressAtPoint:(CGPoint)point {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:commentCell];
     HNComment *comment = self.page.comments[indexPath.section];
     [self showActionSheetForComment:comment fromView:commentCell];
