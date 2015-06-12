@@ -61,6 +61,10 @@ static NSUInteger const kItemsPerPage = 30;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.extendedLayoutIncludesOpaqueBars = YES;
+
     self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
 
     self.searchPostsController = [[HNSearchPostsController alloc] initWithContentsController:self readPostStore:self.readPostStore];
