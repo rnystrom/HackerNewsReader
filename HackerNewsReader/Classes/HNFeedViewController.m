@@ -34,15 +34,13 @@ typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
 static NSString * const kPostCellIdentifier = @"kPostCellIdentifier";
 static NSUInteger const kItemsPerPage = 30;
 
-@interface HNFeedViewController () <HNPostCellDelegate, HNSearchPostsControllerDelegate>
+@interface HNFeedViewController () <HNPostCellDelegate>
 
 @property (nonatomic, strong) HNPostCell *prototypeCell;
 @property (nonatomic, assign) BOOL didRefresh;
 @property (nonatomic, strong) HNTableStatus *tableStatus;
 @property (nonatomic, strong) HNFeedDataSource *feedDataSource;
 @property (nonatomic, copy) HNFeed *feed;
-
-// search
 @property (nonatomic, strong) HNSearchPostsController *searchPostsController;
 
 @end
@@ -65,8 +63,7 @@ static NSUInteger const kItemsPerPage = 30;
 
     self.splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
 
-    self.searchPostsController = [[HNSearchPostsController alloc] init];
-    self.searchPostsController.delegate = self;
+    self.searchPostsController = [[HNSearchPostsController alloc] initWithContentsController:self readPostStore:self.readPostStore];
     self.definesPresentationContext = YES;
     self.tableView.tableHeaderView = [self.searchPostsController searchBar];
 
@@ -100,6 +97,10 @@ static NSUInteger const kItemsPerPage = 30;
     if (self.dataCoordinator.isFetching) {
         [self insertActivityIndicator];
     }
+}
+
+- (UISearchDisplayController *)searchDisplayController {
+    return self.searchPostsController;
 }
 
 
@@ -155,20 +156,6 @@ static NSUInteger const kItemsPerPage = 30;
     }
 }
 
-- (void)didSelectPost:(HNPost *)post {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[self.feedDataSource.posts indexOfObject:post] inSection:HNFeedViewControllerSectionData];
-    [self.readPostStore readPK:post.pk];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-
-    UIViewController *controller = viewControllerForPost(post);
-    [self showDetailViewControllerWithFallback:controller];
-}
-
-- (void)didSelectPostComment:(HNPost *)post {
-    HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
-    [self showDetailViewControllerWithFallback:commentController];
-}
-
 
 #pragma mark - Setters
 
@@ -185,7 +172,8 @@ static NSUInteger const kItemsPerPage = 30;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:postCell];
     if (indexPath) {
         HNPost *post = self.feedDataSource.posts[indexPath.row];
-        [self didSelectPostComment:post];
+        HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
+        [self showDetailViewControllerWithFallback:commentController];
     }
 }
 
@@ -235,7 +223,11 @@ static NSUInteger const kItemsPerPage = 30;
     }
 
     HNPost *post = self.feedDataSource.posts[indexPath.row];
-    [self didSelectPost:post];
+    [self.readPostStore readPK:post.pk];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+    UIViewController *controller = viewControllerForPost(post);
+    [self showDetailViewControllerWithFallback:controller];
 }
 
 
@@ -284,17 +276,6 @@ static NSUInteger const kItemsPerPage = 30;
 
 - (void)appDidEnterBackgroundNotification:(NSNotification *)notification {
     [self.readPostStore synchronize];
-}
-
-
-#pragma mark - HNSearchPostsControllerDelegate
-
-- (void)searchPostsController:(HNSearchPostsController *)searchPostsController didSelectPost:(HNPost *)post {
-    [self didSelectPost:post];
-}
-
-- (void)searchPostsController:(HNSearchPostsController *)searchPostsController didSelectPostComment:(HNPost *)post {
-    [self didSelectPostComment:post];
 }
 
 @end

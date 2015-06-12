@@ -8,47 +8,67 @@
 
 #import "HNSearchPostsController.h"
 
+#import <HackerNewsKit/HNPost.h>
+
 #import "HNFeedDataSource.h"
 #import "HNPostCell.h"
+#import "HNReadPostStore.h"
+#import "HNPostControllerHandling.h"
+#import "UIViewController+UISplitViewController.h"
+#import "HNCommentViewController.h"
 
 @interface HNSearchPostsController ()
-<UISearchResultsUpdating, HNPostCellDelegate>
+<UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate, HNPostCellDelegate>
 
 @property (nonatomic, strong) HNFeedDataSource *feedDataSource;
-@property (nonatomic, strong, readonly) UISearchController *searchController;
+@property (nonatomic, strong) HNReadPostStore *readPostStore;
 
 @end
 
 @implementation HNSearchPostsController
 
-- (instancetype)init {
-    if (self = [super init]) {
-        _searchController = [[UISearchController alloc] initWithSearchResultsController:self];
-        _searchController.searchResultsUpdater = self;
-        [_searchController.searchBar sizeToFit];
+- (instancetype)initWithContentsController:(UIViewController *)viewController
+                             readPostStore:(HNReadPostStore *)readPostStore {
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    [searchBar sizeToFit];
+    if (self = [super initWithSearchBar:searchBar contentsController:viewController]) {
+        self.delegate = self;
+        self.searchResultsTableView.delegate = self;
+        self.searchResultsTableView.dataSource = self;
+        _readPostStore = readPostStore;
     }
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.feedDataSource = [[HNFeedDataSource alloc] initWithTableView:self.tableView readPostStore:nil];
+
+#pragma mark - Actions
+
+- (void)didSelectPostAtIndexPath:(NSIndexPath *)indexPath {
+    HNPost *post = self.feedDataSource.posts[indexPath.row];
+    [self.readPostStore readPK:post.pk];
+    [self.searchResultsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+    UIViewController *controller = viewControllerForPost(post);
+    [self.searchContentsController showDetailViewControllerWithFallback:controller];
+}
+
+- (void)didSelectPostCommentAtIndexPath:(NSIndexPath *)indexPath {
+    HNPost *post = self.feedDataSource.posts[indexPath.row];
+    HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
+    [self.searchContentsController showDetailViewControllerWithFallback:commentController];
 }
 
 
-#pragma mark - Public API
+#pragma mark - UISearchDisplayDelegate
 
-- (UISearchBar *)searchBar {
-    return self.searchController.searchBar;
+- (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView {
+    self.feedDataSource = [[HNFeedDataSource alloc] initWithTableView:tableView readPostStore:nil];
 }
 
-
-#pragma mark - UISearchResultsUpdating
-
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", [self searchBar].text.lowercaseString];
     self.feedDataSource.posts = [self.posts filteredArrayUsingPredicate:predicate];
-    [self.tableView reloadData];
+    return YES;
 }
 
 
@@ -73,15 +93,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.delegate searchPostsController:self didSelectPost:self.feedDataSource.posts[indexPath.row]];
+    [self didSelectPostAtIndexPath:indexPath];
 }
 
 
 #pragma mark - HNPostCellDelegate
 
 - (void)postCellDidTapCommentButton:(HNPostCell *)postCell {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:postCell];
-    [self.delegate searchPostsController:self didSelectPostComment:self.feedDataSource.posts[indexPath.row]];
+    NSIndexPath *indexPath = [self.searchResultsTableView indexPathForCell:postCell];
+    [self didSelectPostCommentAtIndexPath:indexPath];
 }
 
 @end

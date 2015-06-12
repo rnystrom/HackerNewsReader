@@ -8,20 +8,13 @@
 
 @import UIKit;
 
-@class HNPost, HNSearchPostsController;
+@class HNPost, HNReadPostStore;
 
-@protocol HNSearchPostsControllerDelegate <NSObject>
+@interface HNSearchPostsController : UISearchDisplayController
 
-- (void)searchPostsController:(HNSearchPostsController *)searchPostsController didSelectPost:(HNPost *)post;
-- (void)searchPostsController:(HNSearchPostsController *)searchPostsController didSelectPostComment:(HNPost *)post;
-
-@end
-
-@interface HNSearchPostsController : UITableViewController
+- (instancetype)initWithContentsController:(UIViewController *)viewController
+                             readPostStore:(HNReadPostStore *)readPostStore NS_DESIGNATED_INITIALIZER;
 
 @property (nonatomic, copy) NSArray *posts;
-@property (nonatomic, weak) id <HNSearchPostsControllerDelegate> delegate;
-
-- (UISearchBar *)searchBar;
 
 @end
