@@ -14,16 +14,9 @@
 
 #import "TFHpple.h"
 
-#define USE_LOCAL_DATA 0
-
 @implementation HNCommentParser
 
 - (id <NSCopying, NSCoding>)parseDataFromResponse:(NSData *)data {
-#if USE_LOCAL_DATA
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"hn-comments" ofType:@"html"];
-    data = [[NSData alloc] initWithContentsOfFile:path];
-#endif
-
     if (!data.length) {
         return nil;
     }

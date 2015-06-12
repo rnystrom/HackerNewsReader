@@ -57,10 +57,12 @@ static CGFloat const kHNCommentHeaderPadding = 15.0;
     CGRect bounds = self.contentView.bounds;
     CGFloat left = self.indentationWidth * self.indentationLevel + kHNCommentHeaderPadding;
     CGRect usernameFrame = CGRectInset(bounds, left, 0.0);
-    self.titleLabel.frame = usernameFrame;
+    self.titleLabel.frame = CGRectIntegral(usernameFrame);
 
     [self.collapsedLabel sizeToFit];
-    self.collapsedLabel.center = CGPointMake(CGRectGetWidth(bounds) - kHNCommentHeaderPadding - CGRectGetWidth(self.collapsedLabel.bounds) / 2, CGRectGetMidY(bounds));
+    CGSize collapsedSize = self.collapsedLabel.bounds.size;
+    CGRect frame = CGRectMake(CGRectGetWidth(bounds) - kHNCommentHeaderPadding - collapsedSize.width, CGRectGetMidY(bounds) - collapsedSize.height / 2, collapsedSize.width, collapsedSize.height);
+    self.collapsedLabel.frame = CGRectIntegral(frame);
 
     CGFloat separatorHeight = 1.0 / [UIScreen mainScreen].scale;
     self.borderLayer.frame = CGRectMake(left, CGRectGetHeight(self.bounds) - separatorHeight, CGRectGetWidth(self.bounds), separatorHeight);

@@ -10,12 +10,16 @@
 
 #import "UIToolbar+HackerNews.h"
 #import "UINavigationBar+HackerNews.h"
+#import "HNUITestURLProtocol.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UINavigationBar enableAppearance];
     [UIToolbar enableAppearance];
+    if ([launchOptions[@"ui_test"] boolValue]) {
+        [NSURLProtocol registerClass:[HNUITestURLProtocol class]];
+    }
     return YES;
 }
 

@@ -8,8 +8,6 @@
 
 #import "HNFeedViewController.h"
 
-#import <HackerNewsNetworker/HNFeedParser.h>
-
 #import <HackerNewsKit/HNFeed.h>
 #import <HackerNewsKit/HNPost.h>
 

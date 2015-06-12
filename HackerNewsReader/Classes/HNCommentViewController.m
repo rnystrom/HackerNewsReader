@@ -337,7 +337,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
             NSAttributedString *str = self.attributedCommentStrings[comment];
             CGFloat width = [self indentedWidthForComment:comment];
             CGFloat height = [self.textStorage heightForAttributedString:str width:width];
-            return height + insets.top + insets.bottom;
+            return ceil(height + insets.top + insets.bottom);
         }
     }
     return 0.0;

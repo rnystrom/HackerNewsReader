@@ -30,6 +30,8 @@
         _commentContentView = [[UIView alloc] init];
         _commentContentView.opaque = YES;
         _commentContentView.backgroundColor = [UIColor whiteColor];
+        _commentContentView.contentMode = UIViewContentModeLeft;
+        _commentContentView.layer.contentsScale = [UIScreen mainScreen].scale;
         [self.contentView addSubview:_commentContentView];
 
         _overlayView = [[UIView alloc] init];
