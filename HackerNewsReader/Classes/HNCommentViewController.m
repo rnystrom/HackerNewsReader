@@ -237,12 +237,17 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     [self.tableView endUpdates];
 
     NSUInteger count = page.comments.count;
-    if (count) {
+    NSString *title;
+    if (count > 1) {
         NSString *commentFormatString = NSLocalizedString(@"%zi Comments", @"The number of comments in the thread");
-        self.title = [NSString stringWithFormat:commentFormatString, count];
+        title = [NSString stringWithFormat:commentFormatString, count];
+    } else if (count == 1) {
+        NSString *commentFormatString = NSLocalizedString(@"%zi Comment", @"The number of comments in the thread when there is just a single comment");
+        title = [NSString stringWithFormat:commentFormatString, count];
     } else {
-        self.title = NSLocalizedString(@"No Comments", @"Title when there are no comments for a page");
+        title = NSLocalizedString(@"No Comments", @"Title when there are no comments for a page");
     }
+    self.title = title;
 }
 
 - (UIEdgeInsets)insetsForComment:(HNComment *)comment {
