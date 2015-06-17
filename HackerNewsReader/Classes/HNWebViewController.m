@@ -20,6 +20,7 @@
 #import "UIViewController+ActivityIndicator.h"
 #import "UIViewController+Sharing.h"
 #import "UINavigationController+HNBarState.h"
+#import "AppDelegate.h"
 
 #define SUPPORTS_WKWEBVIEW (NSClassFromString(@"WKWebView") != nil)
 
@@ -36,6 +37,10 @@
 @end
 
 @implementation HNWebViewController
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (instancetype)initWithPost:(HNPost *)post {
     if (self = [self initWithURL:post.URL]) {
@@ -61,6 +66,8 @@
             _webView = webView;
         }
         self.title = url.absoluteString;
+
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onTappedStatusBar:) name:kHNAppDelegateDidTapStatusBar object:nil];
     }
     return self;
 }
@@ -191,6 +198,10 @@
 - (void)webViewFinishedLoading {
     [self hideActivityIndicator];
     self.errorLabel.hidden = YES;
+}
+
+- (void)onTappedStatusBar:(id)sender {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 

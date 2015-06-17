@@ -12,6 +12,8 @@
 #import "UINavigationBar+HackerNews.h"
 #import "HNUITestURLProtocol.h"
 
+NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar";
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -21,6 +23,18 @@
         [NSURLProtocol registerClass:[HNUITestURLProtocol class]];
     }
     return YES;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+
+    if ([touches count] == 1) {
+        UITouch *touch = [touches anyObject];
+        CGPoint point = [touch locationInView:self.window];
+        if (CGRectContainsPoint([UIApplication sharedApplication].statusBarFrame, point)) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kHNAppDelegateDidTapStatusBar object:self];
+        }
+    }
 }
 
 @end

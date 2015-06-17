@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+extern NSString * const kHNAppDelegateDidTapStatusBar;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
