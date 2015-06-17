@@ -26,7 +26,7 @@
 }
 
 - (BOOL)isHackerNewsURL {
-    return !self.host || [[self host] isEqualToString:@"news.ycombinator.com"];
+    return [self.absoluteString containsString:@"news.ycombinator.com"];
 }
 
 @end
