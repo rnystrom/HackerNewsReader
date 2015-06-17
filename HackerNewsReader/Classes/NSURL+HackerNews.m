@@ -26,7 +26,8 @@
 }
 
 - (BOOL)isHackerNewsURL {
-    return [self.absoluteString containsString:@"news.ycombinator.com"];
+    NSRange range = [self.absoluteString rangeOfString:@"news.ycombinator.com"];
+    return range.length != 0;
 }
 
 @end

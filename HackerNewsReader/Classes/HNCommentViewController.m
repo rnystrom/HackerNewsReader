@@ -272,7 +272,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 - (void)didTapURL:(NSURL *)url {
     // email
-    if ([url.absoluteString containsString:@"@"]) {
+    if ([url.absoluteString rangeOfString:@"@"].length != 0) {
         if ([MFMailComposeViewController canSendMail]) {
             MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
             controller.mailComposeDelegate = self;
