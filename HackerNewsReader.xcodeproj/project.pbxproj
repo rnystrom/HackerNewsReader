@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2900FA1E1B30F0E100690100 /* HackerNewsReader_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2900FA1D1B30F0E100690100 /* HackerNewsReader_Tests.m */; };
 		2900FA241B30F0EC00690100 /* NSURL+HackerNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */; };
 		2900FA261B30F10800690100 /* NSURL+HackerNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2900FA251B30F10800690100 /* NSURL+HackerNewsTests.m */; };
 		2920DDB71AED9BFF00E51B23 /* HNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2920DDB61AED9BFF00E51B23 /* HNNavigationController.m */; };
@@ -79,7 +78,6 @@
 		22280CCFC8CA96D0F29F2112 /* Pods-HackerNewsReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNewsReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNewsReader/Pods-HackerNewsReader.debug.xcconfig"; sourceTree = "<group>"; };
 		2900FA191B30F0E100690100 /* HackerNewsReader Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HackerNewsReader Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2900FA1C1B30F0E100690100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2900FA1D1B30F0E100690100 /* HackerNewsReader_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HackerNewsReader_Tests.m; sourceTree = "<group>"; };
 		2900FA251B30F10800690100 /* NSURL+HackerNewsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+HackerNewsTests.m"; sourceTree = "<group>"; };
 		2920DDB51AED9BFF00E51B23 /* HNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNNavigationController.h; path = Classes/HNNavigationController.h; sourceTree = "<group>"; };
 		2920DDB61AED9BFF00E51B23 /* HNNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNNavigationController.m; path = Classes/HNNavigationController.m; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 		2900FA1A1B30F0E100690100 /* HackerNewsReader Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2900FA1D1B30F0E100690100 /* HackerNewsReader_Tests.m */,
 				2900FA251B30F10800690100 /* NSURL+HackerNewsTests.m */,
 				2900FA1B1B30F0E100690100 /* Supporting Files */,
 			);
@@ -622,7 +619,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2900FA261B30F10800690100 /* NSURL+HackerNewsTests.m in Sources */,
-				2900FA1E1B30F0E100690100 /* HackerNewsReader_Tests.m in Sources */,
 				2900FA241B30F0EC00690100 /* NSURL+HackerNews.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -906,6 +902,7 @@
 				2900FA221B30F0E100690100 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2990B2DB1AD1FC600053DB80 /* Build configuration list for PBXProject "HackerNewsReader" */ = {
 			isa = XCConfigurationList;

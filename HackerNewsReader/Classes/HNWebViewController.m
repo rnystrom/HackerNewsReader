@@ -202,6 +202,7 @@
 
 - (void)onTappedStatusBar:(id)sender {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setToolbarHidden:NO animated:YES];
 }
 
 
