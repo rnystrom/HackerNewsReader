@@ -27,7 +27,11 @@
 
 - (BOOL)isHackerNewsURL {
     NSRange range = [self.absoluteString rangeOfString:@"news.ycombinator.com"];
-    return range.length != 0;
+    if (range.length == 0) {
+        return [self.path isEqualToString:@"item"] && [self hn_valueForQueryParameter:@"id"] != nil;
+    } else {
+        return YES;
+    }
 }
 
 @end

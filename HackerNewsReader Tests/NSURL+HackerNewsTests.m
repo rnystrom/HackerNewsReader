@@ -46,4 +46,9 @@
     XCTAssert(![url isHackerNewsURL], @"URL %@ should not be a valid Hacker News url", url.absoluteString);
 }
 
+- (void)testHackerNewsQueryWithoutBaseURL {
+    NSURL *url = [NSURL URLWithString:@"item?id=9725475"];
+    XCTAssert([url isHackerNewsURL], @"URL %@ should be a valid Hacker News url", url.absoluteString);
+}
+
 @end

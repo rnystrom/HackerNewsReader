@@ -51,7 +51,6 @@
 		29B393B91B23CA0A0094C2C6 /* HNSearchPostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */; };
 		29D4116A1ADB4D9E00C491DA /* HNComment+AttributedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */; };
 		29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D4116C1ADB601600C491DA /* HNCommentHeaderCell.m */; };
-		29D69E881B265CA40043A219 /* Hacker_News_UI_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D69E871B265CA40043A219 /* Hacker_News_UI_Tests.m */; };
 		29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */; };
 		29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */; };
 		8E967D4A5CD69545E8DA045D /* libPods-HackerNewsReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */; };
@@ -59,13 +58,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		2900FA1F1B30F0E100690100 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2990B2D81AD1FC600053DB80 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2990B2DF1AD1FC600053DB80;
-			remoteInfo = HackerNewsReader;
-		};
-		29D69E8A1B265CA40043A219 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2990B2D81AD1FC600053DB80 /* Project object */;
 			proxyType = 1;
@@ -158,7 +150,6 @@
 		29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HNComment+AttributedStrings.m"; path = "Classes/HNComment+AttributedStrings.m"; sourceTree = "<group>"; };
 		29D4116B1ADB601600C491DA /* HNCommentHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentHeaderCell.h; path = Classes/HNCommentHeaderCell.h; sourceTree = "<group>"; };
 		29D4116C1ADB601600C491DA /* HNCommentHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentHeaderCell.m; path = Classes/HNCommentHeaderCell.m; sourceTree = "<group>"; };
-		29D69E851B265CA40043A219 /* Hacker News UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hacker News UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29D69E871B265CA40043A219 /* Hacker_News_UI_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hacker_News_UI_Tests.m; sourceTree = "<group>"; };
 		29D69E891B265CA40043A219 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29E2CB491AD9A1200010B45D /* HNCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentCell.h; path = Classes/HNCommentCell.h; sourceTree = "<group>"; };
@@ -185,13 +176,6 @@
 				2990B3EA1AD2F7550053DB80 /* libxml2.2.dylib in Frameworks */,
 				2990B3E11AD2F4FE0053DB80 /* libHackerNewsNetworker.a in Frameworks */,
 				8E967D4A5CD69545E8DA045D /* libPods-HackerNewsReader.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		29D69E821B265CA40043A219 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +336,6 @@
 			isa = PBXGroup;
 			children = (
 				2990B2E01AD1FC600053DB80 /* HackerNewsReader.app */,
-				29D69E851B265CA40043A219 /* Hacker News UI Tests.xctest */,
 				2900FA191B30F0E100690100 /* HackerNewsReader Tests.xctest */,
 			);
 			name = Products;
@@ -474,24 +457,6 @@
 			productReference = 2990B2E01AD1FC600053DB80 /* HackerNewsReader.app */;
 			productType = "com.apple.product-type.application";
 		};
-		29D69E841B265CA40043A219 /* Hacker News UI Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 29D69E8E1B265CA40043A219 /* Build configuration list for PBXNativeTarget "Hacker News UI Tests" */;
-			buildPhases = (
-				29D69E811B265CA40043A219 /* Sources */,
-				29D69E821B265CA40043A219 /* Frameworks */,
-				29D69E831B265CA40043A219 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				29D69E8B1B265CA40043A219 /* PBXTargetDependency */,
-			);
-			name = "Hacker News UI Tests";
-			productName = "Hacker News UI Tests";
-			productReference = 29D69E851B265CA40043A219 /* Hacker News UI Tests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -507,10 +472,6 @@
 					};
 					2990B2DF1AD1FC600053DB80 = {
 						CreatedOnToolsVersion = 6.2;
-					};
-					29D69E841B265CA40043A219 = {
-						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 2990B2DF1AD1FC600053DB80;
 					};
 				};
 			};
@@ -546,7 +507,6 @@
 			projectRoot = "";
 			targets = (
 				2990B2DF1AD1FC600053DB80 /* HackerNewsReader */,
-				29D69E841B265CA40043A219 /* Hacker News UI Tests */,
 				2900FA181B30F0E100690100 /* HackerNewsReader Tests */,
 			);
 		};
@@ -568,13 +528,6 @@
 				29605B471B28B043002CD770 /* front-page.html in Resources */,
 				294CB9051B1C0CCD00FAA09F /* Main.storyboard in Resources */,
 				29605B461B28B043002CD770 /* comments.html in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		29D69E831B265CA40043A219 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,14 +620,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		29D69E811B265CA40043A219 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				29D69E881B265CA40043A219 /* Hacker_News_UI_Tests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -682,11 +627,6 @@
 			isa = PBXTargetDependency;
 			target = 2990B2DF1AD1FC600053DB80 /* HackerNewsReader */;
 			targetProxy = 2900FA1F1B30F0E100690100 /* PBXContainerItemProxy */;
-		};
-		29D69E8B1B265CA40043A219 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2990B2DF1AD1FC600053DB80 /* HackerNewsReader */;
-			targetProxy = 29D69E8A1B265CA40043A219 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -853,45 +793,6 @@
 			};
 			name = Release;
 		};
-		29D69E8C1B265CA40043A219 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					"IS_UI_TEST_TARGET=1",
-				);
-				INFOPLIST_FILE = "Hacker News UI Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				IS_UI_TEST_TARGET = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.whoisryannystrom.Hacker-News-UI-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = HackerNewsReader;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		29D69E8D1B265CA40043A219 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "IS_UI_TEST_TARGET=1";
-				INFOPLIST_FILE = "Hacker News UI Tests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				IS_UI_TEST_TARGET = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.whoisryannystrom.Hacker-News-UI-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = HackerNewsReader;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -918,15 +819,6 @@
 			buildConfigurations = (
 				2990B3041AD1FC600053DB80 /* Debug */,
 				2990B3051AD1FC600053DB80 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		29D69E8E1B265CA40043A219 /* Build configuration list for PBXNativeTarget "Hacker News UI Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				29D69E8C1B265CA40043A219 /* Debug */,
-				29D69E8D1B265CA40043A219 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
