@@ -27,7 +27,7 @@
 
 static NSString * const commentQuery = @"//table[@id='hnmain']/tr[3]/td/table[2]/tr";
 static NSString * const userQuery = @"//span[@class='comhead']/a[1]";
-static NSString * const textQuery = @"//span[@class='comment']/font";
+static NSString * const textQuery = @"//span[@class='comment']/span";
 static NSString * const removedQuery = @"//span[@class='comment']";
 static NSString * const indentQuery = @"//img[@src='s.gif']";
 static NSString * const permalinkQuery = @"//span[@class='comhead']/a[2]";
@@ -165,17 +165,15 @@ static NSString * const permalinkQuery = @"//span[@class='comhead']/a[2]";
 
     if ([node.tagName isEqualToString:@"text"]) {
         // at a leaf
-//        id typeValue = tagMap[node.parent.tagName];
-//        HNCommentType type = typeValue != nil ? [typeValue integerValue] : HNCommentTypeText;
         NSString *text = [node content];
-//        HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:text type:type];
-//        [bucket addObject:component];
-        [bucket addObjectsFromArray:[self componentsFromText:text]];
+        if ([text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length) {
+            [bucket addObjectsFromArray:[self componentsFromText:text]];
+        }
     } else if ([node.tagName isEqualToString:@"a"]) {
         // special-case links
         HNCommentComponent *component = [[HNCommentComponent alloc] initWithText:node.attributes[@"href"] type:HNCommentTypeLink];
         [bucket addObject:component];
-    } else {
+    } else if (![node.attributes[@"class"] isEqualToString:@"reply"]) {
         // recurse
         for (TFHppleElement *child in node.children) {
             [self recursiveComponentsFromNode:child bucket:bucket];
