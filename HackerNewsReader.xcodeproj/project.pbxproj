@@ -26,8 +26,6 @@
 		294CB9081B1C0D3800FAA09F /* HNSplitViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 294CB9071B1C0D3800FAA09F /* HNSplitViewDelegate.m */; };
 		295DB7461AF7DA9D004B119F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295DB7451AF7DA9D004B119F /* WebKit.framework */; };
 		296054B91AD4F0370038818A /* HNCommentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 296054B81AD4F0370038818A /* HNCommentButton.m */; };
-		29605B461B28B043002CD770 /* comments.html in Resources */ = {isa = PBXBuildFile; fileRef = 29605B441B28B043002CD770 /* comments.html */; };
-		29605B471B28B043002CD770 /* front-page.html in Resources */ = {isa = PBXBuildFile; fileRef = 29605B451B28B043002CD770 /* front-page.html */; };
 		29605B481B28B117002CD770 /* HNUITestURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 29605B421B28AFC3002CD770 /* HNUITestURLProtocol.m */; };
 		2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */; };
 		2965ED021AFD3DD800F6E2DE /* AttributedCommentComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED011AFD3DD800F6E2DE /* AttributedCommentComponents.m */; };
@@ -46,6 +44,7 @@
 		2990B3E11AD2F4FE0053DB80 /* libHackerNewsNetworker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2990B3E01AD2F4FE0053DB80 /* libHackerNewsNetworker.a */; };
 		2990B3EA1AD2F7550053DB80 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2990B3E91AD2F7550053DB80 /* libxml2.2.dylib */; };
 		299A8D0F1B2266AE00E23234 /* HNReadPostStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A8D0E1B2266AE00E23234 /* HNReadPostStore.m */; };
+		29A5583E1B8F6D8A00CCF2A0 /* HNResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5583D1B8F6D8A00CCF2A0 /* HNResources.m */; };
 		29B393B21B2389C00094C2C6 /* HNTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B11B2389C00094C2C6 /* HNTopViewController.m */; };
 		29B393B61B23C10C0094C2C6 /* HNFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B51B23C10C0094C2C6 /* HNFeedDataSource.m */; };
 		29B393B91B23CA0A0094C2C6 /* HNSearchPostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */; };
@@ -105,8 +104,6 @@
 		296054B81AD4F0370038818A /* HNCommentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentButton.m; path = Classes/HNCommentButton.m; sourceTree = "<group>"; };
 		29605B411B28AFC3002CD770 /* HNUITestURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNUITestURLProtocol.h; path = Classes/HNUITestURLProtocol.h; sourceTree = "<group>"; };
 		29605B421B28AFC3002CD770 /* HNUITestURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNUITestURLProtocol.m; path = Classes/HNUITestURLProtocol.m; sourceTree = "<group>"; };
-		29605B441B28B043002CD770 /* comments.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = comments.html; sourceTree = "<group>"; };
-		29605B451B28B043002CD770 /* front-page.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "front-page.html"; sourceTree = "<group>"; };
 		2965ECFD1AFC89EF00F6E2DE /* HNPageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPageHeaderView.h; path = Classes/HNPageHeaderView.h; sourceTree = "<group>"; };
 		2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPageHeaderView.m; path = Classes/HNPageHeaderView.m; sourceTree = "<group>"; };
 		2965ED001AFD3DD800F6E2DE /* AttributedCommentComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttributedCommentComponents.h; path = Classes/AttributedCommentComponents.h; sourceTree = "<group>"; };
@@ -140,6 +137,8 @@
 		2990B3E91AD2F7550053DB80 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		299A8D0D1B2266AE00E23234 /* HNReadPostStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNReadPostStore.h; path = Classes/HNReadPostStore.h; sourceTree = "<group>"; };
 		299A8D0E1B2266AE00E23234 /* HNReadPostStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNReadPostStore.m; path = Classes/HNReadPostStore.m; sourceTree = "<group>"; };
+		29A5583C1B8F6D8A00CCF2A0 /* HNResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNResources.h; sourceTree = "<group>"; };
+		29A5583D1B8F6D8A00CCF2A0 /* HNResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNResources.m; sourceTree = "<group>"; };
 		29B393B01B2389C00094C2C6 /* HNTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNTopViewController.h; path = Classes/HNTopViewController.h; sourceTree = "<group>"; };
 		29B393B11B2389C00094C2C6 /* HNTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNTopViewController.m; path = Classes/HNTopViewController.m; sourceTree = "<group>"; };
 		29B393B41B23C10C0094C2C6 /* HNFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNFeedDataSource.h; path = Classes/HNFeedDataSource.h; sourceTree = "<group>"; };
@@ -344,8 +343,8 @@
 		2990B2E21AD1FC600053DB80 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				29605B441B28B043002CD770 /* comments.html */,
-				29605B451B28B043002CD770 /* front-page.html */,
+				29A5583C1B8F6D8A00CCF2A0 /* HNResources.h */,
+				29A5583D1B8F6D8A00CCF2A0 /* HNResources.m */,
 				2990B2F01AD1FC600053DB80 /* Images.xcassets */,
 				2990B2E31AD1FC600053DB80 /* Supporting Files */,
 				294CB9041B1C0CCD00FAA09F /* Main.storyboard */,
@@ -443,6 +442,7 @@
 			buildConfigurationList = 2990B3031AD1FC600053DB80 /* Build configuration list for PBXNativeTarget "HackerNewsReader" */;
 			buildPhases = (
 				2C35DF90BDE129145E70EB1B /* Check Pods Manifest.lock */,
+				29A5583B1B8F6CB800CCF2A0 /* R.Objc */,
 				2990B2DC1AD1FC600053DB80 /* Sources */,
 				2990B2DD1AD1FC600053DB80 /* Frameworks */,
 				2990B2DE1AD1FC600053DB80 /* Resources */,
@@ -525,15 +525,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				2990B2F11AD1FC600053DB80 /* Images.xcassets in Resources */,
-				29605B471B28B043002CD770 /* front-page.html in Resources */,
 				294CB9051B1C0CCD00FAA09F /* Main.storyboard in Resources */,
-				29605B461B28B043002CD770 /* comments.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		29A5583B1B8F6CB800CCF2A0 /* R.Objc */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = R.Objc;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/robjc --prefix HN";
+		};
 		2C35DF90BDE129145E70EB1B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -583,6 +595,7 @@
 				2990B3411AD1FD980053DB80 /* HNFeedViewController.m in Sources */,
 				29720A501B1CCC5900AF2F00 /* UIViewController+Sharing.m in Sources */,
 				29720A531B1CCF2B00AF2F00 /* UINavigationController+HNBarState.m in Sources */,
+				29A5583E1B8F6D8A00CCF2A0 /* HNResources.m in Sources */,
 				2944A88E1AD6EE4900A2A251 /* HNEmptyTableCell.m in Sources */,
 				29605B481B28B117002CD770 /* HNUITestURLProtocol.m in Sources */,
 				292988C21AD4CE9A00BB386C /* HNPostCell.m in Sources */,
