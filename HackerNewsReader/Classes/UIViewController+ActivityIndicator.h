@@ -6,12 +6,16 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (ActivityIndicator)
 
 - (UIActivityIndicatorView *)hn_activityIndicator;
-- (void)insertActivityIndicator;
-- (void)hideActivityIndicator;
+- (void)hn_insertActivityIndicator;
+- (void)hn_hideActivityIndicator;
 
 @end
+
+NS_ASSUME_NONNULL_END

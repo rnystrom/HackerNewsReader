@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class HNCommentCell;
 
 @protocol HNCommentCellDelegate <NSObject>
@@ -26,3 +28,5 @@
 @property (nonatomic, strong, readonly) UIView *commentContentView;
 
 @end
+
+NS_ASSUME_NONNULL_END

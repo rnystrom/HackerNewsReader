@@ -8,8 +8,12 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UINavigationBar (HackerNews)
 
-+ (void)enableAppearance;
++ (void)hn_enableAppearance;
 
 @end
+
+NS_ASSUME_NONNULL_END

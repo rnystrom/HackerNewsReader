@@ -146,8 +146,6 @@
 		29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HNComment+AttributedStrings.m"; path = "Classes/HNComment+AttributedStrings.m"; sourceTree = "<group>"; };
 		29D4116B1ADB601600C491DA /* HNCommentHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentHeaderCell.h; path = Classes/HNCommentHeaderCell.h; sourceTree = "<group>"; };
 		29D4116C1ADB601600C491DA /* HNCommentHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentHeaderCell.m; path = Classes/HNCommentHeaderCell.m; sourceTree = "<group>"; };
-		29D69E871B265CA40043A219 /* Hacker_News_UI_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hacker_News_UI_Tests.m; sourceTree = "<group>"; };
-		29D69E891B265CA40043A219 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29E2CB491AD9A1200010B45D /* HNCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentCell.h; path = Classes/HNCommentCell.h; sourceTree = "<group>"; };
 		29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentCell.m; path = Classes/HNCommentCell.m; sourceTree = "<group>"; };
 		29EAD15A1B03C96F0076C0C2 /* HNPage+Links.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HNPage+Links.h"; path = "Classes/HNPage+Links.h"; sourceTree = "<group>"; };
@@ -318,7 +316,6 @@
 			isa = PBXGroup;
 			children = (
 				2990B3421AD1FDDE0053DB80 /* Classes */,
-				29D69E861B265CA40043A219 /* Hacker News UI Tests */,
 				2900FA1A1B30F0E100690100 /* HackerNewsReader Tests */,
 				2990B2E11AD1FC600053DB80 /* Products */,
 				2990B2E21AD1FC600053DB80 /* Resources */,
@@ -393,15 +390,6 @@
 			name = "Feed Subclasses";
 			sourceTree = "<group>";
 		};
-		29D69E861B265CA40043A219 /* Hacker News UI Tests */ = {
-			isa = PBXGroup;
-			children = (
-				29D69E871B265CA40043A219 /* Hacker_News_UI_Tests.m */,
-				29D69E891B265CA40043A219 /* Info.plist */,
-			);
-			path = "Hacker News UI Tests";
-			sourceTree = "<group>";
-		};
 		F77F247604C87D0F7DE5946A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,7 +445,7 @@
 		2990B2D81AD1FC600053DB80 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Ryan Nystrom";
 				TargetAttributes = {
 					2900FA181B30F0E100690100 = {
@@ -640,6 +628,7 @@
 				INFOPLIST_FILE = "HackerNewsReader Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.whoisryannystrom.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HackerNewsReader.app/HackerNewsReader";
 			};
@@ -658,6 +647,7 @@
 				INFOPLIST_FILE = "HackerNewsReader Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.whoisryannystrom.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HackerNewsReader.app/HackerNewsReader";
 			};
@@ -683,6 +673,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -758,6 +749,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whoisryannystrom.hackernews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/../UninstalledProducts/include";
@@ -779,6 +771,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whoisryannystrom.hackernews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/../UninstalledProducts/include";

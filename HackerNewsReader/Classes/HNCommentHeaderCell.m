@@ -27,13 +27,13 @@ static CGFloat const kHNCommentHeaderPadding = 15.0;
         self.clipsToBounds = YES;
         
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont subtitleFont];
-        _titleLabel.textColor = [UIColor subtitleTextColor];
+        _titleLabel.font = [UIFont hn_subtitleFont];
+        _titleLabel.textColor = [UIColor hn_subtitleTextColor];
         [self.contentView addSubview:_titleLabel];
 
         _collapsedLabel = [[UILabel alloc] init];
-        _collapsedLabel.textColor = [UIColor subtitleTextColor];
-        _collapsedLabel.font = [UIFont subtitleFont];
+        _collapsedLabel.textColor = [UIColor hn_subtitleTextColor];
+        _collapsedLabel.font = [UIFont hn_subtitleFont];
         _collapsedLabel.text = @"\u2013";
         [self.contentView addSubview:_collapsedLabel];
 
@@ -42,7 +42,7 @@ static CGFloat const kHNCommentHeaderPadding = 15.0;
         [self.layer addSublayer:_borderLayer];
 
         UIView *backgroundView = [[UIView alloc] init];
-        backgroundView.backgroundColor = [UIColor overlayHighlightColor];
+        backgroundView.backgroundColor = [UIColor hn_overlayHighlightColor];
         self.selectedBackgroundView = backgroundView;
     }
     return self;

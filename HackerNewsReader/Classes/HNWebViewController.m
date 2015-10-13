@@ -50,7 +50,7 @@
 }
 
 - (instancetype)initWithURL:(NSURL *)url {
-    if (self = [super initWithCoder:nil]) {
+    if (self = [super initWithNibName:nil bundle:nil]) {
         if (SUPPORTS_WKWEBVIEW) {
             WKWebView *webView = [[WKWebView alloc] init];
             webView.navigationDelegate = self;
@@ -77,7 +77,7 @@
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 
-    [self configureLeftButtonAsDisplay];
+    [self hn_configureLeftButtonAsDisplay];
 
     self.view.backgroundColor = [UIColor whiteColor];
 
@@ -87,7 +87,7 @@
     self.webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.webView];
 
-    [self insertActivityIndicator];
+    [self hn_insertActivityIndicator];
 
     self.statusBarBackgroundView = [[UIView alloc] initWithFrame:[UIApplication sharedApplication].statusBarFrame];
     self.statusBarBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -97,8 +97,8 @@
     self.errorLabel = [[UILabel alloc] init];
     self.errorLabel.hidden = YES;
     self.errorLabel.text = NSLocalizedString(@"Error loading page", @"There was an error loading the page");
-    self.errorLabel.font = [UIFont titleFont];
-    self.errorLabel.textColor = [UIColor subtitleTextColor];
+    self.errorLabel.font = [UIFont hn_titleFont];
+    self.errorLabel.textColor = [UIColor hn_subtitleTextColor];
     [self.errorLabel sizeToFit];
     self.errorLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     self.errorLabel.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));;
@@ -129,7 +129,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setHidesBarsOnSwipe:YES navigationBarHidden:NO toolbarHidden:NO animated:animated];
+    [self.navigationController hn_setHidesBarsOnSwipe:YES navigationBarHidden:NO toolbarHidden:NO animated:animated];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -155,7 +155,7 @@
         url = [[(UIWebView *)self.webView request] URL];
     }
     url = url ?: self.post.URL;
-    [self shareURL:url fromBarItem:self.shareBarButtonItem];
+    [self hn_shareURL:url fromBarItem:self.shareBarButtonItem];
 }
 
 - (void)onComments:(id)sender {
@@ -191,12 +191,12 @@
 }
 
 - (void)displayErrorLabel {
-    [self hideActivityIndicator];
+    [self hn_hideActivityIndicator];
     self.errorLabel.hidden = NO;
 }
 
 - (void)webViewFinishedLoading {
-    [self hideActivityIndicator];
+    [self hn_hideActivityIndicator];
     self.errorLabel.hidden = YES;
 }
 
@@ -238,7 +238,7 @@
     NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.title = title.length ? title : webView.request.URL.host;
 
-    [self hideActivityIndicator];
+    [self hn_hideActivityIndicator];
     self.errorLabel.hidden = YES;
 
     self.backButton.enabled = webView.canGoBack;
@@ -249,7 +249,7 @@
 #if DEBUG
     NSLog(@"%@",error.localizedDescription);
 #endif
-    [self hideActivityIndicator];
+    [self hn_hideActivityIndicator];
     self.errorLabel.hidden = NO;
 }
 

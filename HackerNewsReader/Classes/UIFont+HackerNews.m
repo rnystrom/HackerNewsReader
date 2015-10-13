@@ -10,35 +10,35 @@
 
 @implementation UIFont (HackerNews)
 
-+ (UIFont *)titleFont {
++ (UIFont *)hn_titleFont {
     return [UIFont systemFontOfSize:15.0];
 }
 
-+ (UIFont *)subtitleFont {
++ (UIFont *)hn_subtitleFont {
     return [UIFont systemFontOfSize:12.0];
 }
 
-+ (UIFont *)pageTitleFont {
++ (UIFont *)hn_pageTitleFont {
     return [UIFont boldSystemFontOfSize:17.0];
 }
 
-+ (UIFont *)navigationFont {
++ (UIFont *)hn_navigationFont {
     return [UIFont fontWithName:@"Avenir-Heavy" size:18.0];
 }
 
-+ (UIFont *)commentFont {
++ (UIFont *)hn_commentFont {
     return [UIFont systemFontOfSize:15.0];
 }
 
-+ (UIFont *)commentLinkFont {
++ (UIFont *)hn_commentLinkFont {
     return [UIFont systemFontOfSize:15.0];
 }
 
-+ (UIFont *)commentCodeFont {
++ (UIFont *)hn_commentCodeFont {
     return [UIFont fontWithName:@"Courier" size:15.0];
 }
 
-+ (UIFont *)commentItalicFont {
++ (UIFont *)hn_commentItalicFont {
     return [UIFont italicSystemFontOfSize:15.0];
 }
 

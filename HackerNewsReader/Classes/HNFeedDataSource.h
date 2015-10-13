@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class HNReadPostStore, HNPostCell, HNFeed;
 
 @interface HNFeedDataSource : NSObject
@@ -21,3 +23,5 @@
 - (CGFloat)heightForPostAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
+
+NS_ASSUME_NONNULL_END

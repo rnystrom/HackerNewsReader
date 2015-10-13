@@ -17,8 +17,8 @@ NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [UINavigationBar enableAppearance];
-    [UIToolbar enableAppearance];
+    [UINavigationBar hn_enableAppearance];
+    [UIToolbar hn_enableAppearance];
     if ([launchOptions[@"ui_test"] boolValue]) {
         [NSURLProtocol registerClass:[HNUITestURLProtocol class]];
     }

@@ -28,7 +28,7 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
 
         UIImage *image = [UIImage imageNamed:@"chat"];
         _commentIconView = [[UIImageView alloc] initWithImage:image];
-        _commentIconView.tintColor = [UIColor subtitleTextColor];
+        _commentIconView.tintColor = [UIColor hn_subtitleTextColor];
         _commentIconView.contentMode = UIViewContentModeCenter;
         _commentIconView.userInteractionEnabled = NO;
         [self addSubview:_commentIconView];
@@ -38,7 +38,7 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
         CGFloat commentSpacing = 3.0;
         _commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, CGRectGetMaxY(iconFrame) + commentSpacing, CGRectGetWidth(iconFrame), commentFontHeight)];
         _commentLabel.font = [UIFont systemFontOfSize:commentFontHeight];
-        _commentLabel.textColor = [UIColor subtitleTextColor];
+        _commentLabel.textColor = [UIColor hn_subtitleTextColor];
         _commentLabel.textAlignment = NSTextAlignmentCenter;
         _commentLabel.userInteractionEnabled = NO;
         [self addSubview:_commentLabel];
@@ -78,26 +78,26 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
-    self.commentIconView.tintColor = [UIColor highlightedTintColor];
-    self.commentLabel.textColor = [UIColor highlightedTintColor];
+    self.commentIconView.tintColor = [UIColor hn_highlightedTintColor];
+    self.commentLabel.textColor = [UIColor hn_highlightedTintColor];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
-    self.commentIconView.tintColor = [UIColor subtitleTextColor];
-    self.commentLabel.textColor = [UIColor subtitleTextColor];
+    self.commentIconView.tintColor = [UIColor hn_subtitleTextColor];
+    self.commentLabel.textColor = [UIColor hn_subtitleTextColor];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesCancelled:touches withEvent:event];
-    self.commentIconView.tintColor = [UIColor subtitleTextColor];
-    self.commentLabel.textColor = [UIColor subtitleTextColor];
+    self.commentIconView.tintColor = [UIColor hn_subtitleTextColor];
+    self.commentLabel.textColor = [UIColor hn_subtitleTextColor];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesMoved:touches withEvent:event];
-    self.commentIconView.tintColor = [UIColor subtitleTextColor];
-    self.commentLabel.textColor = [UIColor subtitleTextColor];
+    self.commentIconView.tintColor = [UIColor hn_subtitleTextColor];
+    self.commentLabel.textColor = [UIColor hn_subtitleTextColor];
 }
 
 

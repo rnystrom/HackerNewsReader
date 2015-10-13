@@ -86,9 +86,9 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     self.title = NSLocalizedString(@"Comments", @"Title for the controller displaying a comments thread");
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    [self configureLeftButtonAsDisplay];
+    [self hn_configureLeftButtonAsDisplay];
 
-    [self insertActivityIndicator];
+    [self hn_insertActivityIndicator];
 
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -111,7 +111,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setHidesBarsOnSwipe:NO navigationBarHidden:NO toolbarHidden:YES animated:animated];
+    [self.navigationController hn_setHidesBarsOnSwipe:NO navigationBarHidden:NO toolbarHidden:YES animated:animated];
 }
 
 // only called on ios >7
@@ -200,7 +200,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     self.shareBarButtonItem.enabled = page != nil;
 
     [self.refreshControl endRefreshing];
-    [self hideActivityIndicator];
+    [self hn_hideActivityIndicator];
 
     [self setupHeaderViewWithPage:page];
 
@@ -286,7 +286,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
 }
 
 - (void)onShare:(id)sender {
-    [self shareURL:[self.page permalink] fromBarItem:self.shareBarButtonItem];
+    [self hn_shareURL:[self.page permalink] fromBarItem:self.shareBarButtonItem];
 }
 
 
@@ -415,7 +415,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     NSAssert(![NSThread isMainThread], @"Delegate callbacks should not be on the (registered) main thread");
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self hideActivityIndicator];
+        [self hn_hideActivityIndicator];
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
     });

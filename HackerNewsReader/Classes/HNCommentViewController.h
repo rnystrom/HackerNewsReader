@@ -10,8 +10,12 @@
 
 @class HNPost;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNCommentViewController : UITableViewController
 
 - (instancetype)initWithPostID:(NSUInteger)postID;
 
 @end
+
+NS_ASSUME_NONNULL_END

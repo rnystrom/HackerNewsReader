@@ -12,13 +12,13 @@
 
 @implementation UIViewController (hn_UISplitViewController)
 
-- (void)configureLeftButtonAsDisplay {
+- (void)hn_configureLeftButtonAsDisplay {
     if (self.navigationController.viewControllers.firstObject == self) {
         self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     }
 }
 
-- (void)showDetailViewControllerWithFallback:(UIViewController *)controller {
+- (void)hn_showDetailViewControllerWithFallback:(UIViewController *)controller {
     NSAssert(controller != nil, @"Cannot show detail for a nil controller");
     if ([self respondsToSelector:@selector(showDetailViewController:sender:)]) {
         if (!self.splitViewController.isCollapsed) {

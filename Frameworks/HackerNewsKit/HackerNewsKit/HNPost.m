@@ -96,15 +96,13 @@ NSUInteger const kHNPostPKIsLinkOnly = 0;
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    HNPost *copy = [[HNPost allocWithZone:zone] init];
-    copy->_title = [self.title copyWithZone:zone];
-    copy->_URL = [self.URL copyWithZone:zone];
-    copy->_score = self.score;
-    copy->_commentCount = self.commentCount;
-    copy->_pk = self.pk;
-    copy->_rank = self.rank;
-    copy->_ageText = [self.ageText copyWithZone:zone];
-    return copy;
+    return [[HNPost allocWithZone:zone] initWithTitle:self.title
+                                              ageText:self.ageText
+                                                  url:self.URL
+                                                score:self.score
+                                         commentCount:self.commentCount
+                                                   pk:self.pk
+                                                 rank:self.rank];
 }
 
 @end

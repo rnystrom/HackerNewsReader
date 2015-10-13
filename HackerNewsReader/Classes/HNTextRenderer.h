@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNTextRenderer : NSObject
 
 @property (nonatomic, strong, readonly) NSAttributedString *attributedString;
@@ -21,4 +23,8 @@
 
 - (void)invalidate;
 
+- (id)init NS_UNAVAILABLE;
+
 @end
+
+NS_ASSUME_NONNULL_END

@@ -39,9 +39,7 @@ static NSString * const kHNUserUsername = @"kHNUserUsername";
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    HNUser *copy = [[HNUser allocWithZone:zone] init];
-    copy->_username = [self.username copyWithZone:zone];
-    return copy;
+    return [[HNUser allocWithZone:zone] initWithUsername:self.username];
 }
 
 

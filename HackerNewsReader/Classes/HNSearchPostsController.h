@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class HNPost, HNReadPostStore;
 
 @interface HNSearchPostsController : UISearchDisplayController
@@ -18,3 +20,5 @@
 @property (nonatomic, copy) NSArray *posts;
 
 @end
+
+NS_ASSUME_NONNULL_END

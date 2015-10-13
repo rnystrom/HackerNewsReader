@@ -36,14 +36,14 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
 
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.numberOfLines = 0;
-        _titleLabel.font = [UIFont titleFont];
-        _titleLabel.textColor = [UIColor titleTextColor];
+        _titleLabel.font = [UIFont hn_titleFont];
+        _titleLabel.textColor = [UIColor hn_titleTextColor];
         _titleLabel.backgroundColor = self.contentView.backgroundColor;
         [self.contentView addSubview:_titleLabel];
 
         _subtitleLabel = [[UILabel alloc] init];
-        _subtitleLabel.font = [UIFont subtitleFont];
-        _subtitleLabel.textColor = [UIColor subtitleTextColor];
+        _subtitleLabel.font = [UIFont hn_subtitleFont];
+        _subtitleLabel.textColor = [UIColor hn_subtitleTextColor];
         _subtitleLabel.backgroundColor = self.contentView.backgroundColor;
         [self.contentView addSubview:_subtitleLabel];
 
@@ -63,7 +63,7 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
 
 - (void)setRead:(BOOL)read {
     _read = read;
-    _titleLabel.textColor = read ? [UIColor subtitleTextColor] : [UIColor titleTextColor];
+    _titleLabel.textColor = read ? [UIColor hn_subtitleTextColor] : [UIColor hn_titleTextColor];
 }
 
 - (void)setCommentButtonHidden:(BOOL)commentButtonHidden {

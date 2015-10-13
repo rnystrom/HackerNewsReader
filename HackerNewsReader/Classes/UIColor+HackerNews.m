@@ -16,31 +16,31 @@ alpha:1.0]
 
 @implementation UIColor (HackerNews)
 
-+ (UIColor *)brandColor {
++ (UIColor *)hn_brandColor {
     return [UIColor colorWithRed:1.0 green:0.4 blue:0.0 alpha:1.0];
 }
 
-+ (UIColor *)navigationTextColor {
++ (UIColor *)hn_navigationTextColor {
     return [UIColor whiteColor];
 }
 
-+ (UIColor *)navigationTintColor {
++ (UIColor *)hn_navigationTintColor {
     return [UIColor whiteColor];
 }
 
-+ (UIColor *)subtitleTextColor {
++ (UIColor *)hn_subtitleTextColor {
     return [UIColor colorWithRed:189 / 255.0 green:190 / 255.0 blue:194 / 255.0 alpha:1.0];
 }
 
-+ (UIColor *)titleTextColor {
++ (UIColor *)hn_titleTextColor {
     return HEX_COLOR(0x333333);
 }
 
-+ (UIColor *)highlightedTintColor {
++ (UIColor *)hn_highlightedTintColor {
     return [UIColor colorWithWhite:0.375 alpha:1.0];
 }
 
-+ (UIColor *)overlayHighlightColor {
++ (UIColor *)hn_overlayHighlightColor {
     return [UIColor colorWithWhite:0.0 alpha:0.1];
 }
 

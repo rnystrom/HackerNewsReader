@@ -17,4 +17,6 @@
 - (instancetype)feedByMergingFeed:(HNFeed *)feed;
 - (instancetype)feedByAppendingItems:(NSArray *)items;
 
+- (id)init NS_UNAVAILABLE;
+
 @end

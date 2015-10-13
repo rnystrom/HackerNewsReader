@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class HNComment;
 
 @interface UIViewController (HNComment) <UIActionSheetDelegate>
@@ -15,3 +17,5 @@
 - (void)showActionSheetForComment:(HNComment *)comment fromView:(UIView *)view;
 
 @end
+
+NS_ASSUME_NONNULL_END

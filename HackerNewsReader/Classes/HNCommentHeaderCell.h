@@ -8,9 +8,13 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNCommentHeaderCell : UITableViewCell
 
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
 @property (nonatomic, assign, getter=isCollapsed) BOOL collapsed;
 
 @end
+
+NS_ASSUME_NONNULL_END

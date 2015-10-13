@@ -90,7 +90,7 @@ static NSUInteger const kItemsPerPage = 30;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setHidesBarsOnSwipe:NO navigationBarHidden:NO toolbarHidden:YES animated:animated];
+    [self.navigationController hn_setHidesBarsOnSwipe:NO navigationBarHidden:NO toolbarHidden:YES animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -99,7 +99,7 @@ static NSUInteger const kItemsPerPage = 30;
     self.splitViewController.presentsWithGesture = YES;
 
     if (self.dataCoordinator.isFetching) {
-        [self insertActivityIndicator];
+        [self hn_insertActivityIndicator];
     }
 }
 
@@ -121,13 +121,13 @@ static NSUInteger const kItemsPerPage = 30;
 
 - (void)onRefresh:(UIRefreshControl *)refreshControl {
     [self.tableStatus hideEmptyMessage];
-    [self hideActivityIndicator];
+    [self hn_hideActivityIndicator];
     [self fetchWithParams:nil refresh:YES];
 }
 
 - (void)updateFeed:(HNFeed *)feed {
     [self.tableStatus hideTailLoader];
-    [self hideActivityIndicator];
+    [self hn_hideActivityIndicator];
 
     if (feed.items.count == 0) {
         [self.tableStatus displayEmptyMessage];
@@ -177,7 +177,7 @@ static NSUInteger const kItemsPerPage = 30;
     if (indexPath) {
         HNPost *post = self.feedDataSource.posts[indexPath.row];
         HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
-        [self showDetailViewControllerWithFallback:commentController];
+        [self hn_showDetailViewControllerWithFallback:commentController];
     }
 }
 
@@ -231,7 +231,7 @@ static NSUInteger const kItemsPerPage = 30;
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
     UIViewController *controller = viewControllerForPost(post);
-    [self showDetailViewControllerWithFallback:controller];
+    [self hn_showDetailViewControllerWithFallback:controller];
 }
 
 
@@ -255,7 +255,7 @@ static NSUInteger const kItemsPerPage = 30;
 - (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didError:(NSError *)error {
     NSAssert([NSThread isMainThread], @"Delegate callbacks should be on the (registered) main thread");
 
-    [self hideActivityIndicator];
+    [self hn_hideActivityIndicator];
     [self.tableStatus displayEmptyMessage];
     [self.refreshControl endRefreshing];
 }

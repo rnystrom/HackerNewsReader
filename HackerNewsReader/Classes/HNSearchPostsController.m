@@ -49,13 +49,13 @@
     [self.searchResultsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 
     UIViewController *controller = viewControllerForPost(post);
-    [self.searchContentsController showDetailViewControllerWithFallback:controller];
+    [self.searchContentsController hn_showDetailViewControllerWithFallback:controller];
 }
 
 - (void)didSelectPostCommentAtIndexPath:(NSIndexPath *)indexPath {
     HNPost *post = self.feedDataSource.posts[indexPath.row];
     HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
-    [self.searchContentsController showDetailViewControllerWithFallback:commentController];
+    [self.searchContentsController hn_showDetailViewControllerWithFallback:commentController];
 }
 
 

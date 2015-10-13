@@ -60,13 +60,11 @@ static NSString * const kHNCommentAgeText = @"kHNCommentAgeText";
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    HNComment *copy = [[HNComment allocWithZone:zone] init];
-    copy->_user = [self.user copyWithZone:zone];
-    copy->_components = [[NSArray alloc] initWithArray:self.components copyItems:YES];
-    copy->_indent = self.indent;
-    copy->_pk = self.pk;
-    copy->_ageText = [self.ageText copyWithZone:zone];
-    return copy;
+    return [[HNComment allocWithZone:zone] initWithUser:self.user
+                                             components:self.components 
+                                                 indent:self.indent
+                                                     pk:self.pk
+                                                ageText:self.ageText];
 }
 
 

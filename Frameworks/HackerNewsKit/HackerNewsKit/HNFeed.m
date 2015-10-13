@@ -61,10 +61,7 @@ static NSString * const kHNFeedCreatedDate = @"kHNFeedCreatedDate";
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    HNFeed *copy = [[HNFeed allocWithZone:zone] init];
-    copy->_items = [[NSArray allocWithZone:zone] initWithArray:self.items copyItems:YES];
-    copy->_createdDate = [self.createdDate copyWithZone:zone];
-    return copy;
+    return [[HNFeed allocWithZone:zone] initWithItems:self.items createdDate:self.createdDate];
 }
 
 

@@ -22,7 +22,7 @@
     return activityIndicator;
 }
 
-- (void)insertActivityIndicator {
+- (void)hn_insertActivityIndicator {
     CGRect bounds = self.view.bounds;
     UIActivityIndicatorView *activityIndicator = self.hn_activityIndicator;
     activityIndicator.center = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds) - self.navigationController.topLayoutGuide.length);
@@ -31,7 +31,7 @@
     [self.view addSubview:activityIndicator];
 }
 
-- (void)hideActivityIndicator {
+- (void)hn_hideActivityIndicator {
     UIActivityIndicatorView *activityIndicator = self.hn_activityIndicator;
     [activityIndicator stopAnimating];
     [activityIndicator removeFromSuperview];

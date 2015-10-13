@@ -47,10 +47,7 @@ static NSString * const kHNCommentComponentType = @"kHNCommentComponentType";
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    HNCommentComponent *copy = [[HNCommentComponent allocWithZone:zone] init];
-    copy->_text = [self.text copy];
-    copy->_type = self.type;
-    return copy;
+    return [[HNCommentComponent allocWithZone:zone] initWithText:self.text type:self.type];
 }
 
 

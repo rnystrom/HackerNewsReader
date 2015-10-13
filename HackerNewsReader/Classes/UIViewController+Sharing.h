@@ -6,10 +6,14 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (Sharing)
 
-- (void)shareURL:(NSURL *)url fromBarItem:(UIBarButtonItem *)item;
+- (void)hn_shareURL:(NSURL *)url fromBarItem:(UIBarButtonItem *)item;
 
 @end
+
+NS_ASSUME_NONNULL_END

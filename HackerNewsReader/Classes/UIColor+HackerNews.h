@@ -8,14 +8,18 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIColor (HackerNews)
 
-+ (UIColor *)brandColor;
-+ (UIColor *)navigationTextColor;
-+ (UIColor *)navigationTintColor;
-+ (UIColor *)subtitleTextColor;
-+ (UIColor *)titleTextColor;
-+ (UIColor *)highlightedTintColor;
-+ (UIColor *)overlayHighlightColor;
++ (UIColor *)hn_brandColor;
++ (UIColor *)hn_navigationTextColor;
++ (UIColor *)hn_navigationTintColor;
++ (UIColor *)hn_subtitleTextColor;
++ (UIColor *)hn_titleTextColor;
++ (UIColor *)hn_highlightedTintColor;
++ (UIColor *)hn_overlayHighlightColor;
 
 @end
+
+NS_ASSUME_NONNULL_END

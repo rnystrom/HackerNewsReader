@@ -8,8 +8,12 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNCommentButton : UIControl
 
 @property (strong, nonatomic, readonly) UILabel *commentLabel;
 
 @end
+
+NS_ASSUME_NONNULL_END

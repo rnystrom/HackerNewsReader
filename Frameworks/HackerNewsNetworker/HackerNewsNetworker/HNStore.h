@@ -18,4 +18,6 @@
 
 - (BOOL)archiveToDisk:(id <NSCoding>)object;
 
+- (id)init NS_UNAVAILABLE;
+
 @end

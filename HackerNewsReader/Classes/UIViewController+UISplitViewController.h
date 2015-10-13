@@ -6,12 +6,16 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (hn_UISplitViewController)
 
-- (void)configureLeftButtonAsDisplay;
+- (void)hn_configureLeftButtonAsDisplay;
 
-- (void)showDetailViewControllerWithFallback:(UIViewController *)controller;
+- (void)hn_showDetailViewControllerWithFallback:(UIViewController *)controller;
 
 @end
+
+NS_ASSUME_NONNULL_END

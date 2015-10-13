@@ -13,9 +13,9 @@
 
 @implementation UIToolbar (HackerNews)
 
-+ (void)enableAppearance {
++ (void)hn_enableAppearance {
     id appearance = [self appearanceWhenContainedIn:HNNavigationController.class, nil];
-    [appearance setTintColor:[UIColor brandColor]];
+    [appearance setTintColor:[UIColor hn_brandColor]];
 }
 
 @end

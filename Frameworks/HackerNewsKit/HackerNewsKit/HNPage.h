@@ -20,4 +20,6 @@
 
 - (instancetype)initWithPost:(HNPost *)post comments:(NSArray *)comments textComponents:(NSArray *)textComponents NS_DESIGNATED_INITIALIZER;
 
+- (id)init NS_UNAVAILABLE;
+
 @end

@@ -6,10 +6,17 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface UINavigationController (HNBarState)
 
-- (void)setHidesBarsOnSwipe:(BOOL)hidesBarsOnSwipe navigationBarHidden:(BOOL)navigationBarHidden toolbarHidden:(BOOL)toolbarHidden animated:(BOOL)animated;
+- (void)hn_setHidesBarsOnSwipe:(BOOL)hidesBarsOnSwipe
+           navigationBarHidden:(BOOL)navigationBarHidden 
+                 toolbarHidden:(BOOL)toolbarHidden
+                      animated:(BOOL)animated;
 
 @end
+
+NS_ASSUME_NONNULL_END

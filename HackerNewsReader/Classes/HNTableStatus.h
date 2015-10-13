@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNTableStatus : NSObject
 
 - (instancetype)initWithTableView:(UITableView *)tableView emptyMessage:(NSString *)emptyMessage;
@@ -29,3 +31,5 @@
 - (BOOL)indexPathIsStatus:(NSIndexPath *)indexPath;
 
 @end
+
+NS_ASSUME_NONNULL_END

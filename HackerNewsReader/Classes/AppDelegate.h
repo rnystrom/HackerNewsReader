@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern NSString * const kHNAppDelegateDidTapStatusBar;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -16,3 +18,4 @@ extern NSString * const kHNAppDelegateDidTapStatusBar;
 
 @end
 
+NS_ASSUME_NONNULL_END

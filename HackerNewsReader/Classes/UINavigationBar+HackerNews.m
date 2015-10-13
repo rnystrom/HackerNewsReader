@@ -14,14 +14,14 @@
 
 @implementation UINavigationBar (HackerNews)
 
-+ (void)enableAppearance {
++ (void)hn_enableAppearance {
     id appearance = [self appearanceWhenContainedIn:HNNavigationController.class, nil];
     [appearance setTitleTextAttributes:@{
-                                         NSForegroundColorAttributeName: [UIColor navigationTextColor],
-                                         NSFontAttributeName: [UIFont navigationFont]
+                                         NSForegroundColorAttributeName: [UIColor hn_navigationTextColor],
+                                         NSFontAttributeName: [UIFont hn_navigationFont]
                                          }];
-    [appearance setTintColor:[UIColor navigationTintColor]];
-    [appearance setBarTintColor:[UIColor brandColor]];
+    [appearance setTintColor:[UIColor hn_navigationTintColor]];
+    [appearance setBarTintColor:[UIColor hn_brandColor]];
 }
 
 @end

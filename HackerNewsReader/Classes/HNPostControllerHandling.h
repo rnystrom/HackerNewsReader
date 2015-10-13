@@ -8,8 +8,12 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class HNPost;
 
 extern UIViewController *viewControllerForPost(HNPost *post);
 
 extern UIViewController *viewControllerForURL(NSURL *url);
+
+NS_ASSUME_NONNULL_END

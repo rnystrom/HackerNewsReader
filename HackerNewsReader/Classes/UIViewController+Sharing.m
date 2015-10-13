@@ -12,7 +12,7 @@
 
 @implementation UIViewController (Sharing)
 
-- (void)shareURL:(NSURL *)url fromBarItem:(UIBarButtonItem *)item {
+- (void)hn_shareURL:(NSURL *)url fromBarItem:(UIBarButtonItem *)item {
     NSAssert(url != nil, @"Cannot share a nil URL");
     if (url) {
         TUSafariActivity *activity = [[TUSafariActivity alloc] init];

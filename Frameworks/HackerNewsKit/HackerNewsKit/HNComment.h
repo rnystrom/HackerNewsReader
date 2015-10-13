@@ -25,4 +25,6 @@
                           pk:(NSUInteger)pk 
                      ageText:(NSString *)ageText NS_DESIGNATED_INITIALIZER;
 
+- (id)init NS_UNAVAILABLE;
+
 @end

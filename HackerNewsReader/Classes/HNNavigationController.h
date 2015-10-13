@@ -8,6 +8,10 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNNavigationController : UINavigationController
 
 @end
+
+NS_ASSUME_NONNULL_END

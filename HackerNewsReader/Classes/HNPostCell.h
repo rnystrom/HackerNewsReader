@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class HNPostCell;
 
 @protocol HNPostCellDelegate <NSObject>
@@ -28,3 +30,5 @@
 - (void)setCommentCountHidden:(BOOL)commentCountHidden;
 
 @end
+
+NS_ASSUME_NONNULL_END

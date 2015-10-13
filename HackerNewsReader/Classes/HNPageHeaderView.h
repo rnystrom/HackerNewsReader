@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class HNPageHeaderView;
 
 @protocol HNPageHeaderViewDelegate <NSObject>
@@ -28,3 +30,5 @@
 - (void)setTextAttributedString:(NSAttributedString *)textAttributedString;
 
 @end
+
+NS_ASSUME_NONNULL_END

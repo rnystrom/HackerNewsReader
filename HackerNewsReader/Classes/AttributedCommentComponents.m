@@ -25,34 +25,34 @@ NSAttributedString *attributedStringFromComponents(NSArray *components) {
             case HNCommentNewline:
             case HNCommentTypeCode:
                 attributes = @{
-                               NSFontAttributeName: [UIFont commentCodeFont],
-                               NSForegroundColorAttributeName: [UIColor titleTextColor]
+                               NSFontAttributeName: [UIFont hn_commentCodeFont],
+                               NSForegroundColorAttributeName: [UIColor hn_titleTextColor]
                                };
                 break;
             case HNCommentTypeItalic:
                 attributes = @{
-                               NSFontAttributeName: [UIFont commentItalicFont],
-                               NSForegroundColorAttributeName: [UIColor titleTextColor]
+                               NSFontAttributeName: [UIFont hn_commentItalicFont],
+                               NSForegroundColorAttributeName: [UIColor hn_titleTextColor]
                                };
                 break;
             case HNCommentTypeLink:
                 attributes = @{
-                               NSFontAttributeName: [UIFont commentLinkFont],
+                               NSFontAttributeName: [UIFont hn_commentLinkFont],
                                NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
-                               NSForegroundColorAttributeName: [UIColor titleTextColor],
+                               NSForegroundColorAttributeName: [UIColor hn_titleTextColor],
                                HNCommentLinkAttributeName: component.text ?: @""
                                };
                 break;
             case HNCommentTypeText:
                 attributes = @{
-                               NSFontAttributeName: [UIFont commentFont],
-                               NSForegroundColorAttributeName: [UIColor titleTextColor]
+                               NSFontAttributeName: [UIFont hn_commentFont],
+                               NSForegroundColorAttributeName: [UIColor hn_titleTextColor]
                                };
                 break;
             case HNCommentRemoved:
                 attributes = @{
-                               NSFontAttributeName: [UIFont commentFont],
-                               NSForegroundColorAttributeName: [UIColor subtitleTextColor]
+                               NSFontAttributeName: [UIFont hn_commentFont],
+                               NSForegroundColorAttributeName: [UIColor hn_subtitleTextColor]
                                };
                 break;
         }

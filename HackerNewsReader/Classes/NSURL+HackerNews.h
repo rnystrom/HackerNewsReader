@@ -8,6 +8,8 @@
 
 @import Foundation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSURL (HackerNews)
 
 - (id)hn_valueForQueryParameter:(NSString *)parameter;
@@ -15,3 +17,5 @@
 - (BOOL)isHackerNewsURL;
 
 @end
+
+NS_ASSUME_NONNULL_END

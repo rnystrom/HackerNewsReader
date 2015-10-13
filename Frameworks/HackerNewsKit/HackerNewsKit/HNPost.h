@@ -28,4 +28,6 @@ extern NSUInteger const kHNPostPKIsLinkOnly;
                            pk:(NSUInteger)pk
                          rank:(NSUInteger)rank NS_DESIGNATED_INITIALIZER;
 
+- (id)init NS_UNAVAILABLE;
+
 @end

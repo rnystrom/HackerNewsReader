@@ -26,4 +26,6 @@ typedef NS_ENUM(NSUInteger, HNCommentType) {
 
 + (instancetype)newlineComponent;
 
+- (id)init NS_UNAVAILABLE;
+
 @end

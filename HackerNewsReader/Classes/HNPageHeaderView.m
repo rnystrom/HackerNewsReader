@@ -30,20 +30,20 @@ static CGFloat const kHNPageHeaderLabelSpacing = 5.0;
         
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.numberOfLines = 0;
-        _titleLabel.font = [UIFont pageTitleFont];
-        _titleLabel.textColor = [UIColor titleTextColor];
+        _titleLabel.font = [UIFont hn_pageTitleFont];
+        _titleLabel.textColor = [UIColor hn_titleTextColor];
         _titleLabel.backgroundColor = self.backgroundColor;
         [self addSubview:_titleLabel];
 
         _subtitleLabel = [[UILabel alloc] init];
-        _subtitleLabel.font = [UIFont subtitleFont];
-        _subtitleLabel.textColor = [UIColor subtitleTextColor];
+        _subtitleLabel.font = [UIFont hn_subtitleFont];
+        _subtitleLabel.textColor = [UIColor hn_subtitleTextColor];
         _subtitleLabel.backgroundColor = self.backgroundColor;
         [self addSubview:_subtitleLabel];
 
         _textLabel = [[UILabel alloc] init];
-        _textLabel.font = [UIFont titleFont];
-        _textLabel.textColor = [UIColor titleTextColor];
+        _textLabel.font = [UIFont hn_titleFont];
+        _textLabel.textColor = [UIColor hn_titleTextColor];
         _textLabel.numberOfLines = 0;
         _textLabel.backgroundColor = self.backgroundColor;
         [self addSubview:_textLabel];

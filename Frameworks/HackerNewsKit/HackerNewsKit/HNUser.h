@@ -14,4 +14,6 @@
 
 - (instancetype)initWithUsername:(NSString *)username NS_DESIGNATED_INITIALIZER;
 
+- (id)init NS_UNAVAILABLE;
+
 @end

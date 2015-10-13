@@ -35,7 +35,7 @@
         [self.contentView addSubview:_commentContentView];
 
         _overlayView = [[UIView alloc] init];
-        _overlayView.backgroundColor = [UIColor overlayHighlightColor];
+        _overlayView.backgroundColor = [UIColor hn_overlayHighlightColor];
         _overlayView.hidden = YES;
         [self.contentView addSubview:_overlayView];
 

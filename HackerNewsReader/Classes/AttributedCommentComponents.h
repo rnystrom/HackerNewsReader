@@ -8,6 +8,10 @@
 
 @import Foundation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern NSString * const HNCommentLinkAttributeName;
 
 extern NSAttributedString *attributedStringFromComponents(NSArray *components);
+
+NS_ASSUME_NONNULL_END

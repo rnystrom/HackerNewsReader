@@ -47,11 +47,7 @@ static NSString * const kHNPageTextComponents = @"kHNPageTextComponents";
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    HNPage *copy = [[HNPage allocWithZone:zone] init];
-    copy->_post = [self.post copyWithZone:zone];
-    copy->_comments = [self.comments copyWithZone:zone];
-    copy->_textComponents = [self.textComponents copyWithZone:zone];
-    return copy;
+    return [[HNPage allocWithZone:zone] initWithPost:self.post comments:self.comments textComponents:self.textComponents];
 }
 
 
