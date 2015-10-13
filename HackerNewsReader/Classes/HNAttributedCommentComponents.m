@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import "AttributedCommentComponents.h"
+#import "HNAttributedCommentComponents.h"
 
 #import <HackerNewsKit/HNCommentComponent.h>
 
@@ -15,7 +15,7 @@
 
 NSString * const HNCommentLinkAttributeName = @"HNCommentLinkAttributeName";
 
-NSAttributedString *attributedStringFromComponents(NSArray *components) {
+NSAttributedString *HNAttributedStringFromComponents(NSArray *components) {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
 
     for (HNCommentComponent *component in components) {

@@ -15,7 +15,7 @@
 
 #import <MessageUI/MessageUI.h>
 
-#import "AttributedCommentComponents.h"
+#import "HNAttributedCommentComponents.h"
 #import "HNCommentCell.h"
 #import "HNComment+AttributedStrings.h"
 #import "HNCommentHeaderCell.h"
@@ -179,7 +179,7 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     HNPageHeaderView *headerView = [[HNPageHeaderView alloc] init];
     headerView.delegate = self;
     [headerView setTitleText:page.post.title];
-    [headerView setTextAttributedString:attributedStringFromComponents(page.textComponents)];
+    [headerView setTextAttributedString:HNAttributedStringFromComponents(page.textComponents)];
 
     NSString *detailText = [NSString stringWithFormat:NSLocalizedString(@"%zi points", @"Formatted string for the number of points"),page.post.score];
     if (page.post.URL.host.length) {

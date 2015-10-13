@@ -10,7 +10,7 @@
 
 #import <HackerNewsKit/HNComment.h>
 
-#import "AttributedCommentComponents.h"
+#import "HNAttributedCommentComponents.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

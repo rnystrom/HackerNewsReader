@@ -8,10 +8,18 @@
 
 #import "HNComment+AttributedStrings.h"
 
+#import <objc/runtime.h>
+
 @implementation HNComment (AttributedStrings)
 
 - (NSAttributedString *)attributedString {
-    return attributedStringFromComponents(self.components);
+    static void *kHNCommentAttributedString = &kHNCommentAttributedString;
+    NSAttributedString *attributedString = objc_getAssociatedObject(self, kHNCommentAttributedString);
+    if (!attributedString) {
+        attributedString = HNAttributedStringFromComponents(self.components);
+        objc_setAssociatedObject(self, kHNCommentAttributedString, attributedString, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return attributedString;
 }
 
 @end

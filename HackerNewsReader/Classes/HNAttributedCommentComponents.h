@@ -12,6 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern NSString * const HNCommentLinkAttributeName;
 
-extern NSAttributedString *attributedStringFromComponents(NSArray *components);
+extern NSAttributedString *HNAttributedStringFromComponents(NSArray *components);
 
 NS_ASSUME_NONNULL_END
