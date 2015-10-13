@@ -44,7 +44,6 @@
 		2990B3E11AD2F4FE0053DB80 /* libHackerNewsNetworker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2990B3E01AD2F4FE0053DB80 /* libHackerNewsNetworker.a */; };
 		2990B3EA1AD2F7550053DB80 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2990B3E91AD2F7550053DB80 /* libxml2.2.dylib */; };
 		299A8D0F1B2266AE00E23234 /* HNReadPostStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 299A8D0E1B2266AE00E23234 /* HNReadPostStore.m */; };
-		29A5583E1B8F6D8A00CCF2A0 /* HNResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A5583D1B8F6D8A00CCF2A0 /* HNResources.m */; };
 		29B393B21B2389C00094C2C6 /* HNTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B11B2389C00094C2C6 /* HNTopViewController.m */; };
 		29B393B61B23C10C0094C2C6 /* HNFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B51B23C10C0094C2C6 /* HNFeedDataSource.m */; };
 		29B393B91B23CA0A0094C2C6 /* HNSearchPostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */; };
@@ -137,8 +136,6 @@
 		2990B3E91AD2F7550053DB80 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		299A8D0D1B2266AE00E23234 /* HNReadPostStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNReadPostStore.h; path = Classes/HNReadPostStore.h; sourceTree = "<group>"; };
 		299A8D0E1B2266AE00E23234 /* HNReadPostStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNReadPostStore.m; path = Classes/HNReadPostStore.m; sourceTree = "<group>"; };
-		29A5583C1B8F6D8A00CCF2A0 /* HNResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNResources.h; sourceTree = "<group>"; };
-		29A5583D1B8F6D8A00CCF2A0 /* HNResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNResources.m; sourceTree = "<group>"; };
 		29B393B01B2389C00094C2C6 /* HNTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNTopViewController.h; path = Classes/HNTopViewController.h; sourceTree = "<group>"; };
 		29B393B11B2389C00094C2C6 /* HNTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNTopViewController.m; path = Classes/HNTopViewController.m; sourceTree = "<group>"; };
 		29B393B41B23C10C0094C2C6 /* HNFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNFeedDataSource.h; path = Classes/HNFeedDataSource.h; sourceTree = "<group>"; };
@@ -343,8 +340,6 @@
 		2990B2E21AD1FC600053DB80 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				29A5583C1B8F6D8A00CCF2A0 /* HNResources.h */,
-				29A5583D1B8F6D8A00CCF2A0 /* HNResources.m */,
 				2990B2F01AD1FC600053DB80 /* Images.xcassets */,
 				2990B2E31AD1FC600053DB80 /* Supporting Files */,
 				294CB9041B1C0CCD00FAA09F /* Main.storyboard */,
@@ -442,7 +437,6 @@
 			buildConfigurationList = 2990B3031AD1FC600053DB80 /* Build configuration list for PBXNativeTarget "HackerNewsReader" */;
 			buildPhases = (
 				2C35DF90BDE129145E70EB1B /* Check Pods Manifest.lock */,
-				29A5583B1B8F6CB800CCF2A0 /* R.Objc */,
 				2990B2DC1AD1FC600053DB80 /* Sources */,
 				2990B2DD1AD1FC600053DB80 /* Frameworks */,
 				2990B2DE1AD1FC600053DB80 /* Resources */,
@@ -532,20 +526,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		29A5583B1B8F6CB800CCF2A0 /* R.Objc */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = R.Objc;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/robjc --prefix HN";
-		};
 		2C35DF90BDE129145E70EB1B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -595,7 +575,6 @@
 				2990B3411AD1FD980053DB80 /* HNFeedViewController.m in Sources */,
 				29720A501B1CCC5900AF2F00 /* UIViewController+Sharing.m in Sources */,
 				29720A531B1CCF2B00AF2F00 /* UINavigationController+HNBarState.m in Sources */,
-				29A5583E1B8F6D8A00CCF2A0 /* HNResources.m in Sources */,
 				2944A88E1AD6EE4900A2A251 /* HNEmptyTableCell.m in Sources */,
 				29605B481B28B117002CD770 /* HNUITestURLProtocol.m in Sources */,
 				292988C21AD4CE9A00BB386C /* HNPostCell.m in Sources */,
