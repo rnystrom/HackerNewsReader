@@ -25,6 +25,7 @@
 #import "HNReadPostStore.h"
 #import "HNFeedDataSource.h"
 #import "HNSearchPostsController.h"
+#import "HNLoginViewController.h"
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
     HNFeedViewControllerSectionData,
@@ -84,8 +85,16 @@ static NSUInteger const kItemsPerPage = 30;
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
+    
+    UIBarButtonItem *testBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Login" style:UIBarButtonItemStylePlain target:self action:@selector(testBarButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = testBarButtonItem;
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+}
+
+- (void)testBarButtonPressed:(UIBarButtonItem *)sender {
+    HNLoginViewController *loginController = [[HNLoginViewController alloc] init];
+    [self hn_showDetailViewControllerWithFallback:loginController];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

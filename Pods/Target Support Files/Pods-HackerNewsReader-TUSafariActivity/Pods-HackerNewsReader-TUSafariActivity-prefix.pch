@@ -1,5 +1,0 @@
-#ifdef __OBJC__
-@import UIKit;
-#endif
-
-#import "Pods-HackerNewsReader-environment.h"
