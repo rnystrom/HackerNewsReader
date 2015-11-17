@@ -8,6 +8,8 @@
 
 #import "HNLoginViewController.h"
 
+#import <HackerNewsNetworker/HNLogin.h>
+
 @interface HNLoginViewController () <UIScrollViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -25,6 +27,7 @@
     // See http://stackoverflow.com/a/18785646/758990
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,6 +43,11 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 
+}
+
+- (IBAction)loginPressed:(UIButton *)sender {
+    HNLogin *login = [[HNLogin alloc] init];
+    [login loginUser:self.usernameField.text withPassword:self.passwordField.text completion:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
