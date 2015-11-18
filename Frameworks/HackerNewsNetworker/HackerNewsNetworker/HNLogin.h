@@ -11,7 +11,7 @@
 @interface HNLogin : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate>
 
 + (BOOL)isLoggedIn;
-- (BOOL)loginUser:(NSString *)username
+- (void)loginUser:(NSString *)username
      withPassword:(NSString *)password
        completion:(void (^)(NSString*, NSError*))completion;
 + (BOOL)logoutCurrentUser;

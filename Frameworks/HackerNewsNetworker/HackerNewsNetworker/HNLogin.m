@@ -7,6 +7,7 @@
 //
 
 #import "HNLogin.h"
+#import "HNService.h"
 
 @implementation HNLogin
 
@@ -32,30 +33,20 @@
     return [self.class getUserLogin] != nil;
 }
 
-- (BOOL)loginUser:(NSString *)username
+- (void)loginUser:(NSString *)username
      withPassword:(NSString *)password
        completion:(void (^)(NSString *, NSError *))completion {
     if ([self.class isLoggedIn]) {
         [self.class logoutCurrentUser];
     }
     
-    NSString *urlString = @"https://news.ycombinator.com/login";
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    request.HTTPMethod = @"POST";
-    
-    NSDictionary *parameters = @{@"acct": username, @"pw": password};
-    NSMutableString *components = [@"" mutableCopy];
-    [parameters enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-        [components appendFormat:@"%@=%@&",key,obj];
-    }];
-    request.HTTPBody = [components dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-    
     NSURLSession *urlSession = [NSURLSession
                                 sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                 delegate:self
                                 delegateQueue:[NSOperationQueue mainQueue]];
+    HNService *service = [[HNService alloc] initWithSession:urlSession path:@"login"];
     
+    NSDictionary *parameters = @{@"acct": username, @"pw": password};
     id completionHandler = ^(NSData *data, NSURLResponse *response, NSError *error) {
         if (response && [response isKindOfClass:[NSHTTPURLResponse class]]) {
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
@@ -66,13 +57,7 @@
             }
         }
     };
-    
-    NSURLSessionDataTask *task = [urlSession dataTaskWithRequest:request
-                                               completionHandler:completionHandler];
-    
-    [task resume];
-    
-    return NO;
+    [service performRequest:@"POST" withParameters:parameters completion:completionHandler];
 }
 
 + (BOOL)logoutCurrentUser {

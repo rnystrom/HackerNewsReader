@@ -42,7 +42,16 @@
 
 - (void)fetchParameters:(NSDictionary *)parameters completion:(void (^)(id, NSError*))completion {
     NSAssert(completion != nil, @"Why are you executing a network request without doing anything with the data?");
+    
+    [self performRequest:@"GET" withParameters:parameters completion:^(NSData *data, NSURLResponse *response, NSError *error) {
+        completion(data, error);
+    }];
+}
 
+- (void)performRequest:(NSString *)method
+        withParameters:(NSDictionary *)parameters
+            completion:(void (^)(NSData*, NSURLResponse*, NSError*))completion {
+    
     NSURLComponents *components = [[NSURLComponents alloc] initWithString:@"https://news.ycombinator.com"];
     
     if (self.path) {
@@ -52,34 +61,45 @@
         }
         [components setPath:path];
     }
-
+    
     NSMutableString *componentsString = [@"" mutableCopy];
     [parameters enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-        [componentsString appendFormat:@"%@=%@",key,obj];
+        [componentsString appendFormat:@"%@=%@&",key,obj];
     }];
     
+    NSString *httpBody = nil;
     if ([componentsString length] > 0) {
-        [components setQuery:componentsString];
+        if ([method isEqualToString:@"GET"]) {
+            [components setQuery:componentsString];
+        } else {
+            httpBody = componentsString;
+        }
     }
-
+    
     NSURL *url = components.URL;
-
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    request.HTTPMethod = method;
+    if (httpBody) {
+        request.HTTPBody = [httpBody dataUsingEncoding:NSUTF8StringEncoding
+                                  allowLossyConversion:NO];
+    }
+    
     NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 #ifdef DEBUG
         if (error) {
             NSLog(@"%@",error);
         }
 #endif
-
+        
         self.tasksInFlight--;
-
-        completion(data, error);
+        
+        completion(data, response, error);
     }];
-
+    
     // must call before -resume to avoid races
     self.tasksInFlight++;
-
+    
     [task resume];
 }
 
