@@ -43,18 +43,26 @@
 - (void)fetchParameters:(NSDictionary *)parameters completion:(void (^)(id, NSError*))completion {
     NSAssert(completion != nil, @"Why are you executing a network request without doing anything with the data?");
 
-    NSString *urlString = @"https://news.ycombinator.com";
+    NSURLComponents *components = [[NSURLComponents alloc] initWithString:@"https://news.ycombinator.com"];
+    
     if (self.path) {
-        urlString = [urlString stringByAppendingPathComponent:self.path];
+        NSString *path = self.path;
+        if ([path characterAtIndex:0] != '/') {
+            path = [@"/" stringByAppendingString:path];
+        }
+        [components setPath:path];
     }
 
-    NSMutableString *components = [@"?" mutableCopy];
+    NSMutableString *componentsString = [@"" mutableCopy];
     [parameters enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
-        [components appendFormat:@"%@=%@",key,obj];
+        [componentsString appendFormat:@"%@=%@",key,obj];
     }];
+    
+    if ([componentsString length] > 0) {
+        [components setQuery:componentsString];
+    }
 
-    urlString = [urlString stringByAppendingString:components];
-    NSURL *url = [NSURL URLWithString:urlString];
+    NSURL *url = components.URL;
 
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
