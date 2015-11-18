@@ -10,8 +10,26 @@
 
 @implementation HNLogin
 
++ (NSHTTPCookie *)getUserLogin {
+    NSURL *url = [NSURL URLWithString:@"https://news.ycombinator.com"];
+    NSArray *cookiesArray = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+    NSHTTPCookie *userCookie = nil;
+    for (NSHTTPCookie *cookie in cookiesArray) {
+        if ([cookie.name isEqual: @"user"]) {
+            userCookie = cookie;
+            break;
+        }
+    }
+    return userCookie;
+}
+
++ (NSString *)currentUserLogin {
+    NSHTTPCookie *userCookie = [self.class getUserLogin];
+    return [userCookie name];
+}
+
 + (BOOL)isLoggedIn {
-    return NO;
+    return [self.class getUserLogin] != nil;
 }
 
 - (BOOL)loginUser:(NSString *)username
@@ -22,7 +40,8 @@
     }
     
     NSString *urlString = @"https://news.ycombinator.com/login";
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     request.HTTPMethod = @"POST";
     
     NSDictionary *parameters = @{@"acct": username, @"pw": password};
@@ -33,7 +52,7 @@
     request.HTTPBody = [components dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     
     NSURLSession *urlSession = [NSURLSession
-                                sessionWithConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]
+                                sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                 delegate:self
                                 delegateQueue:[NSOperationQueue mainQueue]];
     
@@ -56,20 +75,22 @@
     return NO;
 }
 
-- (void)URLSession:(NSURLSession *)session
-              task:(NSURLSessionTask *)task
-willPerformHTTPRedirection:(NSHTTPURLResponse *)response
-        newRequest:(NSURLRequest *)request
- completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler {
-    completionHandler(nil);
-}
-
 + (BOOL)logoutCurrentUser {
     BOOL result = NO;
     if ([self.class isLoggedIn]) {
         
     }
     return result;
+}
+
+#pragma mark - NSURLSessionTask delegate
+
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)task
+willPerformHTTPRedirection:(NSHTTPURLResponse *)response
+        newRequest:(NSURLRequest *)request
+ completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler {
+    completionHandler(nil);
 }
 
 @end

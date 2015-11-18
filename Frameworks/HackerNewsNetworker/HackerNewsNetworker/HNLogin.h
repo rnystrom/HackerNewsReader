@@ -15,5 +15,6 @@
      withPassword:(NSString *)password
        completion:(void (^)(NSString*, NSError*))completion;
 + (BOOL)logoutCurrentUser;
++ (NSString *)currentUserLogin;
 
 @end
