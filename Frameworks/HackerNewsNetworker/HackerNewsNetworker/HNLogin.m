@@ -37,7 +37,7 @@
      withPassword:(NSString *)password
        completion:(void (^)(NSString *, NSError *))completion {
     if ([self.class isLoggedIn]) {
-        [self.class logoutCurrentUser];
+        [self logoutCurrentUser:nil];
     }
     
     NSURLSession *urlSession = [NSURLSession
@@ -60,10 +60,16 @@
     [service performRequest:@"POST" withParameters:parameters completion:completionHandler];
 }
 
-+ (BOOL)logoutCurrentUser {
+- (BOOL)logoutCurrentUser:(void (^)(NSError*))completion {
     BOOL result = NO;
     if ([self.class isLoggedIn]) {
+        HNService *service = [[HNService alloc] initWithSession:nil path:@"logout"];
         
+        [service fetchParameters:nil completion:^(id data, NSError *error) {
+            if (completion) {
+                completion(error);
+            }
+        }];
     }
     return result;
 }
