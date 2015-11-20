@@ -9,6 +9,7 @@
 #import "HNLoginViewController.h"
 
 #import <HackerNewsNetworker/HNLogin.h>
+#import "UIViewController+HNOverlay.h"
 
 @interface HNLoginViewController () <UIScrollViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -47,7 +48,19 @@
 
 - (IBAction)loginPressed:(UIButton *)sender {
     HNLogin *login = [[HNLogin alloc] init];
-    [login loginUser:self.usernameField.text withPassword:self.passwordField.text completion:nil];
+//    [HNOverlay showBlockingWaitOverlay];
+    [self showWaitOverlay];
+    [login loginUser:self.usernameField.text
+        withPassword:self.passwordField.text
+          completion:^(NSString *username, NSError *error){
+              dispatch_async(dispatch_get_main_queue(), ^{
+//                  [HNOverlay removeAllBlockingOverlays];
+                  [self removeAllOverlays];
+                  if (username) {
+                      // TODO Rewind the segue
+                  }
+              });
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

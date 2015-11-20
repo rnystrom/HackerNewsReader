@@ -57,6 +57,7 @@
 		F634B5CB1BEB59670098BC59 /* rounded_table_cell_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5C91BEB59670098BC59 /* rounded_table_cell_bottom@2x.png */; };
 		F634B5CD1BEB5D020098BC59 /* hn-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5CC1BEB5D020098BC59 /* hn-logo@2x.png */; };
 		F65177B41BE758FC00034537 /* HNLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F65177B21BE758FC00034537 /* HNLoginViewController.m */; };
+		F6F0CA831BFEF4A800A587FE /* UIViewController+HNOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0CA821BFEF4A800A587FE /* UIViewController+HNOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,8 @@
 		F634B5CC1BEB5D020098BC59 /* hn-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hn-logo@2x.png"; sourceTree = "<group>"; };
 		F65177B11BE758FC00034537 /* HNLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNLoginViewController.h; path = Classes/HNLoginViewController.h; sourceTree = "<group>"; };
 		F65177B21BE758FC00034537 /* HNLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNLoginViewController.m; path = Classes/HNLoginViewController.m; sourceTree = "<group>"; };
+		F6F0CA811BFEF4A700A587FE /* UIViewController+HNOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+HNOverlay.h"; path = "Classes/UIViewController+HNOverlay.h"; sourceTree = "<group>"; };
+		F6F0CA821BFEF4A800A587FE /* UIViewController+HNOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+HNOverlay.m"; path = "Classes/UIViewController+HNOverlay.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +242,8 @@
 				29720A491B1CC36800AF2F00 /* UIViewController+UISplitViewController.m */,
 				29720A4B1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.h */,
 				29720A4C1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.m */,
+				F6F0CA811BFEF4A700A587FE /* UIViewController+HNOverlay.h */,
+				F6F0CA821BFEF4A800A587FE /* UIViewController+HNOverlay.m */,
 				29720A4E1B1CCC5900AF2F00 /* UIViewController+Sharing.h */,
 				29720A4F1B1CCC5900AF2F00 /* UIViewController+Sharing.m */,
 				29720A511B1CCF2B00AF2F00 /* UINavigationController+HNBarState.h */,
@@ -642,6 +647,7 @@
 				29D4116A1ADB4D9E00C491DA /* HNComment+AttributedStrings.m in Sources */,
 				2920DDC31AED9C4900E51B23 /* UINavigationBar+HackerNews.m in Sources */,
 				2920DDC41AED9C4900E51B23 /* UIToolbar+HackerNews.m in Sources */,
+				F6F0CA831BFEF4A800A587FE /* UIViewController+HNOverlay.m in Sources */,
 				294CB8FF1B1B917400FAA09F /* UIViewController+HNComment.m in Sources */,
 				29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */,
 			);

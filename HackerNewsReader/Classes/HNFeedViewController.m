@@ -99,13 +99,13 @@ static NSUInteger const kItemsPerPage = 30;
 
 - (void)updateLoginButton {
     self.navigationItem.rightBarButtonItem = [HNLogin isLoggedIn] ? self.logoutBarButtonItem : self.loginBarButtonItem;
-
 }
 
 - (void)logoutBarButtonPressed:(UIBarButtonItem *)sender {
     HNLogin *login = [[HNLogin alloc] init];
     BOOL logoutScheduled = [login logoutCurrentUser:^(NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            self.navigationItem.rightBarButtonItem.enabled = YES;
             [self updateLoginButton];
         });
     }];
