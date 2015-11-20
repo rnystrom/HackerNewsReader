@@ -54,7 +54,7 @@
                                                                       forURL:response.URL];
             NSString *userName = nil;
             for (NSHTTPCookie *cookie in cookies) {
-                NSLog(@"Cookie[\"%@\"] = \"%@\";", cookie.name, cookie.value);
+//                NSLog(@"Cookie[\"%@\"] = \"%@\";", cookie.name, cookie.value);
                 if ([cookie.name isEqualToString:@"user"]) {
                     userName = [[cookie.value componentsSeparatedByString:@"#"] objectAtIndex:0];
                 }

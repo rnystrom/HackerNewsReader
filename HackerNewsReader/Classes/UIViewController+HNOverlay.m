@@ -14,8 +14,17 @@
     return [HNOverlay showCenteredWaitOverlay:self.view];
 }
 
+- (UIView *)showBlockingWaitOverlay {
+    return [HNOverlay showBlockingWaitOverlayForView:self.view];
+}
+
 - (UIView *)showWaitOverlayWithText:(NSString *)text {
     return [HNOverlay showCenteredWaitOverlay:self.view
+                                     withText:text];
+}
+
+- (UIView *)showBlockingWaitOverlayWithText:(NSString *)text {
+    return [HNOverlay showBlockingWaitOverlayForView:self.view
                                      withText:text];
 }
 
@@ -45,8 +54,23 @@
     return blocker;
 }
 
++ (UIView *)showBlockingWaitOverlayForView:(UIView *)blockedView {
+    UIView *blocker = [self addViewBlocker:blockedView];
+    [self showCenteredWaitOverlay:blocker];
+    
+    return blocker;
+}
+
 + (UIView *)showBlockingWaitOverlayWithText:(NSString *)text {
     UIView *blocker = [self addMainWindowBlocker];
+    [self showCenteredWaitOverlay:blocker withText:text];
+    
+    return blocker;
+}
+
++ (UIView *)showBlockingWaitOverlayForView:(UIView *)blockedView
+                                  withText:(NSString *)text {
+    UIView *blocker = [self addViewBlocker:blockedView];
     [self showCenteredWaitOverlay:blocker withText:text];
     
     return blocker;
@@ -208,18 +232,14 @@
     [view.superview addConstraints:@[constraintH, constraintV, constraintWidth, constraintHeight]];
 }
 
-
-+ (UIView *)addMainWindowBlocker {
-    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
-    NSAssert(window, @"Unable to get shared application delegate's window.");
-    
-    UIView *blocker = [[UIView alloc] initWithFrame:window.bounds];
++ (UIView *)addViewBlocker:(UIView *)blockedWindow {
+    UIView *blocker = [[UIView alloc] initWithFrame:blockedWindow.bounds];
     blocker.backgroundColor = [self backgroundColor];
     blocker.tag = CONTAINER_VIEW_TAG;
     
     blocker.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [window addSubview:blocker];
+    [blockedWindow addSubview:blocker];
     
     NSDictionary *viewDictionary = @{@"blocker": blocker};
     
@@ -227,9 +247,16 @@
     
     NSArray *constraintsH = [NSLayoutConstraint constraintsWithVisualFormat:@"|-0-[blocker]-0-|" options:NSLayoutFormatAlignAllLeft metrics:nil views:viewDictionary];
     
-    [window addConstraints:[constraintsV arrayByAddingObjectsFromArray:constraintsH]];
+    [blockedWindow addConstraints:[constraintsV arrayByAddingObjectsFromArray:constraintsH]];
     
     return blocker;
+}
+
++ (UIView *)addMainWindowBlocker {
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    NSAssert(window, @"Unable to get shared application delegate's window.");
+    
+    return [self addViewBlocker:window];
 }
 
 @end

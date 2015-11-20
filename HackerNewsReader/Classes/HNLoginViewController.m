@@ -48,13 +48,11 @@
 
 - (IBAction)loginPressed:(UIButton *)sender {
     HNLogin *login = [[HNLogin alloc] init];
-//    [HNOverlay showBlockingWaitOverlay];
-    [self showWaitOverlay];
+    [self showBlockingWaitOverlay];
     [login loginUser:self.usernameField.text
         withPassword:self.passwordField.text
           completion:^(NSString *username, NSError *error){
               dispatch_async(dispatch_get_main_queue(), ^{
-//                  [HNOverlay removeAllBlockingOverlays];
                   [self removeAllOverlays];
                   if (username) {
                       // TODO Rewind the segue

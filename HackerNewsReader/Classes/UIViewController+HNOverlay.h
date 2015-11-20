@@ -21,6 +21,15 @@
 - (UIView *)showWaitOverlay;
 
 /**
+ Shows blocking wait overlay with activity indicator, centered in the view controller's main view
+ 
+ Do not use this method for **UITableViewController** or **UICollectionViewController**
+ 
+ - returns: Created overlay
+ */
+- (UIView *)showBlockingWaitOverlay;
+
+/**
  Shows wait overlay with activity indicator *and text*, centered in the view controller's main view
  
  Do not use this method for **UITableViewController** or **UICollectionViewController**
@@ -30,6 +39,17 @@
  - returns: Created overlay
  */
 - (UIView *)showWaitOverlayWithText:(NSString *)text;
+
+/**
+ Shows blocking wait overlay with activity indicator *and text*, centered in the view controller's main view
+ 
+ Do not use this method for **UITableViewController** or **UICollectionViewController**
+ 
+ - parameter text: Text to be shown on overlay
+ 
+ - returns: Created overlay
+ */
+- (UIView *)showBlockingWaitOverlayWithText:(NSString *)text;
 
 /**
  Removes all overlays from view controller's main view
@@ -59,6 +79,15 @@
 + (UIView *)showBlockingWaitOverlay;
 
 /**
+ Shows *blocking* wait overlay with activity indicator, centered in the passed view
+ 
+ - parameter blockedView: View to be blocked
+ 
+ - returns: Created overlay
+ */
++ (UIView *)showBlockingWaitOverlayForView:(UIView *)blockedView;
+
+/**
  Shows wait overlay with activity indicator *and text*, centered in the app's main window
  
  - parameter text: Text to be shown on overlay
@@ -68,7 +97,18 @@
 + (UIView *)showBlockingWaitOverlayWithText:(NSString *)text;
 
 /**
- Removes all *blocking* overlays from application's main window
+ Shows wait overlay with activity indicator *and text*, centered in the passed view
+ 
+ - parameter text: Text to be shown on overlay
+ - parameter blockedView: View to be blocked
+ 
+ - returns: Created overlay
+ */
++ (UIView *)showBlockingWaitOverlayForView:(UIView *)blockedView
+                                  withText:(NSString *)text;
+
+/**
+ Removes all *blocking* overlays from application's *main window*
  */
 + (void)removeAllBlockingOverlays;
 
