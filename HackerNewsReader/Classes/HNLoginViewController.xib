@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HNLoginViewController">
             <connections>
+                <outlet property="errorMessageLabel" destination="gcC-ba-Hed" id="Tdj-mE-Ced"/>
                 <outlet property="passwordField" destination="q5s-hy-269" id="8Sc-hG-6j4"/>
                 <outlet property="scrollView" destination="6xD-zJ-9Vg" id="29z-DP-pX4"/>
                 <outlet property="usernameField" destination="7jr-wa-f8I" id="dk4-Yt-sBW"/>
@@ -63,7 +64,7 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hn-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lgg-rb-va9">
-                            <rect key="frame" x="100" y="38" width="400" height="140"/>
+                            <rect key="frame" x="0.0" y="38" width="600" height="140"/>
                             <animations/>
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q5s-hy-269">
@@ -77,14 +78,26 @@
                                 <outlet property="delegate" destination="-1" id="5f6-eA-idk"/>
                             </connections>
                         </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gcC-ba-Hed">
+                            <rect key="frame" x="20" y="324" width="560" height="18"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
+                                <rect key="frame" x="20" y="364" width="760" height="21"/>
+                            </variation>
+                        </label>
                     </subviews>
                     <animations/>
                     <constraints>
                         <constraint firstItem="ZbH-H4-CII" firstAttribute="top" secondItem="nPf-v4-pHB" secondAttribute="bottom" constant="62" id="0VJ-7L-fJa"/>
                         <constraint firstItem="Lgg-rb-va9" firstAttribute="top" secondItem="6xD-zJ-9Vg" secondAttribute="top" constant="38" id="2Kd-aw-CQC"/>
                         <constraint firstItem="q5s-hy-269" firstAttribute="top" secondItem="nPf-v4-pHB" secondAttribute="bottom" constant="-36" id="6Eo-kE-kNd"/>
+                        <constraint firstItem="gcC-ba-Hed" firstAttribute="centerX" secondItem="nPf-v4-pHB" secondAttribute="centerX" id="6tO-iU-Ogw"/>
                         <constraint firstItem="7jr-wa-f8I" firstAttribute="leading" secondItem="Gqy-AC-h97" secondAttribute="trailing" constant="-265" id="ChT-zR-jZD"/>
                         <constraint firstAttribute="bottom" secondItem="7jr-wa-f8I" secondAttribute="bottom" constant="333" id="Dkm-Ln-zGE"/>
+                        <constraint firstAttribute="trailing" secondItem="gcC-ba-Hed" secondAttribute="trailing" constant="20" symbolic="YES" id="Fie-jD-xd0"/>
                         <constraint firstItem="7jr-wa-f8I" firstAttribute="trailing" secondItem="q5s-hy-269" secondAttribute="trailing" id="GBN-ml-Stp"/>
                         <constraint firstAttribute="trailing" secondItem="Lgg-rb-va9" secondAttribute="trailing" id="GbJ-Ka-nCO"/>
                         <constraint firstItem="7jr-wa-f8I" firstAttribute="centerX" secondItem="Gqy-AC-h97" secondAttribute="centerX" id="H5v-to-w5x"/>
@@ -103,8 +116,10 @@
                         <constraint firstItem="Gqy-AC-h97" firstAttribute="top" secondItem="Lgg-rb-va9" secondAttribute="top" id="ge1-Xd-1gg"/>
                         <constraint firstItem="q5s-hy-269" firstAttribute="centerX" secondItem="nPf-v4-pHB" secondAttribute="centerX" id="jQS-IG-zWC"/>
                         <constraint firstItem="nPf-v4-pHB" firstAttribute="top" secondItem="7jr-wa-f8I" secondAttribute="bottom" constant="5" id="orD-s6-bLS"/>
+                        <constraint firstItem="gcC-ba-Hed" firstAttribute="leading" secondItem="6xD-zJ-9Vg" secondAttribute="leading" constant="20" symbolic="YES" id="sIv-VP-AtH"/>
                         <constraint firstItem="7jr-wa-f8I" firstAttribute="top" secondItem="Gqy-AC-h97" secondAttribute="bottom" constant="-38" id="sdN-8f-vus"/>
                         <constraint firstItem="7jr-wa-f8I" firstAttribute="centerX" secondItem="ZbH-H4-CII" secondAttribute="centerX" id="v7g-xp-3AB"/>
+                        <constraint firstItem="gcC-ba-Hed" firstAttribute="top" secondItem="nPf-v4-pHB" secondAttribute="bottom" constant="8" id="yLa-uG-tev"/>
                         <constraint firstAttribute="bottom" secondItem="ZbH-H4-CII" secondAttribute="bottom" id="zWP-O9-6Rr"/>
                     </constraints>
                     <variation key="default">
@@ -117,6 +132,11 @@
                             <exclude reference="Lvb-Wn-Jof"/>
                             <exclude reference="v7g-xp-3AB"/>
                             <exclude reference="orD-s6-bLS"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="constraints">
+                            <exclude reference="6tO-iU-Ogw"/>
                         </mask>
                     </variation>
                     <connections>

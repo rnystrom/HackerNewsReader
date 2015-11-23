@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *errorMessageLabel;
 
 @property (weak, nonatomic) UIView *focusedView;
 @property (nonatomic) NSInteger viewMovedUpBy;
@@ -28,6 +29,7 @@
     // See http://stackoverflow.com/a/18785646/758990
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.errorMessageLabel.hidden = YES;
     
 }
 
@@ -47,6 +49,7 @@
 }
 
 - (IBAction)loginPressed:(UIButton *)sender {
+    self.errorMessageLabel.hidden = YES;
     HNLogin *login = [[HNLogin alloc] init];
     [self showBlockingWaitOverlay];
     [login loginUser:self.usernameField.text
@@ -59,7 +62,8 @@
                           [self.loginDelegate loginSucceeded:username];
                       }
                   } else {
-                      // TODO Show error message
+                      self.errorMessageLabel.text = NSLocalizedString(@"Unable to login. Check username and password and try again.", @"Unable to login message");
+                      self.errorMessageLabel.hidden = NO;
                   }
               });
     }];
