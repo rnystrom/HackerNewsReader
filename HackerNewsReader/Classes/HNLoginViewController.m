@@ -55,7 +55,11 @@
               dispatch_async(dispatch_get_main_queue(), ^{
                   [self removeAllOverlays];
                   if (username) {
-                      // TODO Rewind the segue
+                      if (self.loginDelegate && [self.loginDelegate respondsToSelector:@selector(loginSucceeded:)]) {
+                          [self.loginDelegate loginSucceeded:username];
+                      }
+                  } else {
+                      // TODO Show error message
                   }
               });
     }];

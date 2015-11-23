@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HNLoginDelegate <NSObject>
+
+- (void)loginSucceeded:(NSString *)username;
+
+@end
+
 @interface HNLoginViewController : UIViewController
+
+@property (nonatomic, strong) id <HNLoginDelegate> loginDelegate;
 
 @end

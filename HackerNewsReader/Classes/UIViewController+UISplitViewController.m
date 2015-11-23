@@ -46,4 +46,41 @@
     }
 }
 
+- (void)hn_dismissDetailViewControllerWithFallback:(UIViewController *)controller {
+    NSAssert(controller != nil, @"Cannot dismiss a nil controller");
+    BOOL dismissed = NO;
+    if (self.splitViewController) {
+        NSArray *controllers = self.splitViewController.viewControllers;
+        UINavigationController *navigation = nil;
+        if (controllers.count > 1) {
+            navigation = [controllers objectAtIndex:1];
+        }
+        
+        if (navigation != nil && [navigation isKindOfClass:[UINavigationController class]]) {
+            if ([navigation.viewControllers lastObject] == controller) {
+                NSMutableArray *detailControllers = [navigation.viewControllers mutableCopy];
+                [detailControllers removeObject:controller];
+                if (detailControllers.count == 0) {
+                    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                    UIViewController *emptyVC = [sb instantiateViewControllerWithIdentifier:@"Detail"];
+                    if (emptyVC) {
+                        [detailControllers addObject:emptyVC];
+                    }
+                }
+                navigation.viewControllers = detailControllers;
+                
+                if (!navigation || !controllers.firstObject) {
+                    return;
+                }
+                
+                self.splitViewController.viewControllers = @[controllers.firstObject, navigation];
+                dismissed = YES;
+            }
+        }
+    }
+    if (!dismissed) {
+        [controller.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
+
 @end

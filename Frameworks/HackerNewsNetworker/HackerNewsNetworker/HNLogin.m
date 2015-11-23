@@ -56,7 +56,7 @@
             for (NSHTTPCookie *cookie in cookies) {
 //                NSLog(@"Cookie[\"%@\"] = \"%@\";", cookie.name, cookie.value);
                 if ([cookie.name isEqualToString:@"user"]) {
-                    userName = [[cookie.value componentsSeparatedByString:@"#"] objectAtIndex:0];
+                    userName = [[cookie.value componentsSeparatedByString:@"&"] objectAtIndex:0];
                 }
             }
             
@@ -78,6 +78,8 @@
                 completion(error);
             }
         }];
+        
+        result = YES;
     }
     return result;
 }

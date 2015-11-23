@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
 static NSString * const kPostCellIdentifier = @"kPostCellIdentifier";
 static NSUInteger const kItemsPerPage = 30;
 
-@interface HNFeedViewController () <HNPostCellDelegate>
+@interface HNFeedViewController () <HNPostCellDelegate, HNLoginDelegate>
 
 @property (nonatomic, strong) HNPostCell *prototypeCell;
 @property (nonatomic, assign) BOOL didRefresh;
@@ -47,6 +47,7 @@ static NSUInteger const kItemsPerPage = 30;
 
 @property (nonatomic, strong) UIBarButtonItem *loginBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *logoutBarButtonItem;
+@property (nonatomic, strong) HNLoginViewController *loginViewController;
 
 @end
 
@@ -111,12 +112,23 @@ static NSUInteger const kItemsPerPage = 30;
     }];
     if (logoutScheduled) {
         self.navigationItem.rightBarButtonItem.enabled = NO;
+    } else {
+        [self updateLoginButton];
     }
 }
 
 - (void)loginBarButtonPressed:(UIBarButtonItem *)sender {
-    HNLoginViewController *loginController = [[HNLoginViewController alloc] init];
-    [self hn_showDetailViewControllerWithFallback:loginController];
+    self.loginViewController = [[HNLoginViewController alloc] init];
+    self.loginViewController.loginDelegate = self;
+    [self hn_showDetailViewControllerWithFallback:self.loginViewController];
+}
+
+- (void)loginSucceeded:(NSString *)username {
+    if (self.loginViewController) {
+        [self hn_dismissDetailViewControllerWithFallback:self.loginViewController];
+        self.loginViewController = nil;
+    }
+    [self updateLoginButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
