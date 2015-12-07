@@ -15,8 +15,8 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
 
 @interface HNCommentButton ()
 
-@property (strong, nonatomic, readwrite) UILabel *commentLabel;
-@property (strong, nonatomic, readwrite) UIImageView *commentIconView;
+@property (strong, nonatomic, readonly) UILabel *commentLabel;
+@property (strong, nonatomic, readonly) UIImageView *commentIconView;
 
 @end
 
@@ -44,6 +44,19 @@ static CGFloat const kHNCommentButtonSpacing = 3.0;
         [self addSubview:_commentLabel];
     }
     return self;
+}
+
+
+#pragma mark - Public API
+
+- (void)setCommentText:(NSString *)commentText {
+    self.commentLabel.text = commentText;
+    [self setNeedsLayout];
+}
+
+- (void)setCommentHidden:(BOOL)commentHidden {
+    self.commentLabel.hidden = commentHidden;
+    [self setNeedsLayout];
 }
 
 

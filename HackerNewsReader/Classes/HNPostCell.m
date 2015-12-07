@@ -58,7 +58,7 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
 #pragma mark - Public API
 
 - (void)setCommentCount:(NSUInteger)commentCount {
-    self.commentButton.commentLabel.text = [NSString stringWithFormat:@"%zi",commentCount];
+    [self.commentButton setCommentText:[NSString stringWithFormat:@"%zi",commentCount]];
 }
 
 - (void)setRead:(BOOL)read {
@@ -72,8 +72,7 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
 
 - (void)setCommentCountHidden:(BOOL)commentCountHidden {
     if (_commentCountHidden != commentCountHidden) {
-        self.commentButton.commentLabel.hidden = commentCountHidden;
-        [self.commentButton setNeedsLayout];
+        [self.commentButton setCommentHidden:commentCountHidden];
     }
 }
 
@@ -148,7 +147,7 @@ static CGFloat const kHNCommentButtonWidth = 44.0;
     CGFloat subtitleTop = CGRectGetMaxY(self.titleLabel.frame) + kHNPostCellLabelSpacing;
 
     [self.subtitleLabel sizeToFit];
-    self.subtitleLabel.frame = (CGRect) {CGPointMake(kHNPostCellInset.left, subtitleTop), self.subtitleLabel.bounds.size};
+    self.subtitleLabel.frame = (CGRect){CGPointMake(kHNPostCellInset.left, subtitleTop), self.subtitleLabel.bounds.size};
 
     CGRect axFrame, remainderFrame;
     CGRectDivide(self.accessibilityFrame, &remainderFrame, &axFrame, CGRectGetWidth(self.commentButton.bounds), CGRectMaxXEdge);

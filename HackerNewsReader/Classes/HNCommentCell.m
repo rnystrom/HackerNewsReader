@@ -15,7 +15,8 @@
 
 @interface HNCommentCell ()
 
-@property (nonatomic, strong) UIView *overlayView;
+@property (nonatomic, strong, readonly) UIView *commentContentView;
+@property (nonatomic, strong, readonly) UIView *overlayView;
 
 @end
 
@@ -32,6 +33,7 @@
         _commentContentView.backgroundColor = [UIColor whiteColor];
         _commentContentView.contentMode = UIViewContentModeLeft;
         _commentContentView.layer.contentsScale = [UIScreen mainScreen].scale;
+        _commentContentView.layer.contentsGravity = kCAGravityTopLeft;
         [self.contentView addSubview:_commentContentView];
 
         _overlayView = [[UIView alloc] init];
@@ -54,24 +56,33 @@
 }
 
 
-#pragma mark - Layout
+#pragma mark - Public API
 
 + (UIEdgeInsets)contentInsetsForIndentationLevel:(NSUInteger)indentationLevel indentationWidth:(CGFloat)indentationWidth {
     return UIEdgeInsetsMake(8.0, 15.0 + indentationLevel * indentationWidth, 8.0, 15.0);
 }
 
-- (UIEdgeInsets)contentInsets {
-    return [self.class contentInsetsForIndentationLevel:self.indentationLevel indentationWidth:self.indentationWidth];
+- (void)setCommentBitmap:(id)commentBitmap {
+    self.commentContentView.layer.contents = commentBitmap;
 }
+
+- (void)setCommentContentSize:(CGSize)commentContentSize
+             indentationLevel:(NSUInteger)indentationLevel
+             indentationWidth:(CGFloat)indentationWidth {
+    UIEdgeInsets insets = [self.class contentInsetsForIndentationLevel:indentationLevel indentationWidth:indentationWidth];
+    CGPoint inset = CGPointMake(floorf(insets.left), floorf(insets.top));
+    commentContentSize.width = ceilf(commentContentSize.width);
+    commentContentSize.height = ceilf(commentContentSize.height);
+    self.commentContentView.frame = (CGRect){inset, commentContentSize};
+    [self setNeedsLayout];
+}
+
+
+#pragma mark - Layout
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-
-    CGRect bounds = self.contentView.bounds;
-    self.overlayView.frame = bounds;
-
-    CGRect frame = UIEdgeInsetsInsetRect(bounds, self.contentInsets);
-    self.commentContentView.frame = frame;
+    self.overlayView.frame = self.contentView.bounds;
 }
 
 

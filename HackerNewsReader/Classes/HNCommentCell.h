@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol HNCommentCellDelegate <NSObject>
 
-@optional
 - (void)commentCell:(HNCommentCell *)commentCell didTapCommentAtPoint:(CGPoint)point;
 - (void)commentCell:(HNCommentCell *)commentCell didLongPressAtPoint:(CGPoint)point;
 
@@ -25,7 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIEdgeInsets)contentInsetsForIndentationLevel:(NSUInteger)indentationLevel indentationWidth:(CGFloat)indentationWidth;
 
 @property (nonatomic, weak) id <HNCommentCellDelegate> delegate;
-@property (nonatomic, strong, readonly) UIView *commentContentView;
+
+- (void)setCommentBitmap:(id)commentBitmap;
+
+- (void)setCommentContentSize:(CGSize)commentContentSize
+             indentationLevel:(NSUInteger)indentationLevel
+             indentationWidth:(CGFloat)indentationWidth;
 
 @end
 

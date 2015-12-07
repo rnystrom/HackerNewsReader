@@ -146,13 +146,17 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
     HNComment *comment = self.page.comments[indexPath.section];
     CGFloat width = [self indentedWidthForComment:comment];
     NSAttributedString *str = self.attributedCommentStrings[comment];
-    cell.commentContentView.layer.contents = [self.textStorage renderedContentForAttributedString:str width:width];
     cell.accessibilityLabel = str.string;
     cell.accessibilityHint = NSLocalizedString(@"Select for share options", @"Hint for comment cells");
 
+    id contents = [self.textStorage renderedContentForAttributedString:str width:width];
+    CGFloat height = [self.textStorage heightForAttributedString:str width:width];
+    [cell setCommentBitmap:contents];
+    [cell setCommentContentSize:CGSizeMake(width, height)
+               indentationLevel:comment.indent
+               indentationWidth:kCommentCellIndentationWidth];
+
     cell.delegate = self;
-    cell.indentationWidth = comment.indent;
-    cell.indentationLevel = kCommentCellIndentationWidth;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
