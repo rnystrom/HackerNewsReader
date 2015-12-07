@@ -176,6 +176,10 @@ static NSUInteger const kItemsPerPage = 30;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:postCell];
     if (indexPath) {
         HNPost *post = self.feedDataSource.posts[indexPath.row];
+        
+        [self.readPostStore readPK:post.pk];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
         HNCommentViewController *commentController = [[HNCommentViewController alloc] initWithPostID:post.pk];
         [self hn_showDetailViewControllerWithFallback:commentController];
     }
