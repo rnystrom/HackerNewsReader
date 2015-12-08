@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)hn_showDetailViewControllerWithFallback:(UIViewController *)controller;
 
+- (void)hn_dismissDetailViewControllerWithFallback:(UIViewController *)controller;
+
 @end
 
 NS_ASSUME_NONNULL_END

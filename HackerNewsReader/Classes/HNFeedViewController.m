@@ -25,6 +25,8 @@
 #import "HNReadPostStore.h"
 #import "HNFeedDataSource.h"
 #import "HNSearchPostsController.h"
+#import "HNLoginViewController.h"
+#import <HackerNewsNetworker/HNLogin.h>
 
 typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
     HNFeedViewControllerSectionData,
@@ -34,7 +36,7 @@ typedef NS_ENUM(NSUInteger, HNFeedViewControllerSection) {
 static NSString * const kPostCellIdentifier = @"kPostCellIdentifier";
 static NSUInteger const kItemsPerPage = 30;
 
-@interface HNFeedViewController () <HNPostCellDelegate>
+@interface HNFeedViewController () <HNPostCellDelegate, HNLoginDelegate>
 
 @property (nonatomic, strong) HNPostCell *prototypeCell;
 @property (nonatomic, assign) BOOL didRefresh;
@@ -42,6 +44,10 @@ static NSUInteger const kItemsPerPage = 30;
 @property (nonatomic, strong) HNFeedDataSource *feedDataSource;
 @property (nonatomic, copy) HNFeed *feed;
 @property (nonatomic, strong) HNSearchPostsController *searchPostsController;
+
+@property (nonatomic, strong) UIBarButtonItem *loginBarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *logoutBarButtonItem;
+@property (nonatomic, strong) HNLoginViewController *loginViewController;
 
 @end
 
@@ -84,13 +90,51 @@ static NSUInteger const kItemsPerPage = 30;
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     [refresh addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
+    
+    self.loginBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Login", @"Login bar button title") style:UIBarButtonItemStylePlain target:self action:@selector(loginBarButtonPressed:)];
+    self.logoutBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Logout", @"Logout bar button title") style:UIBarButtonItemStylePlain target:self action:@selector(logoutBarButtonPressed:)];
+    [self updateLoginButton];
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+}
+
+- (void)updateLoginButton {
+    self.navigationItem.rightBarButtonItem = [HNLogin isLoggedIn] ? self.logoutBarButtonItem : self.loginBarButtonItem;
+}
+
+- (void)logoutBarButtonPressed:(UIBarButtonItem *)sender {
+    HNLogin *login = [[HNLogin alloc] init];
+    BOOL logoutScheduled = [login logoutCurrentUser:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.navigationItem.rightBarButtonItem.enabled = YES;
+            [self updateLoginButton];
+        });
+    }];
+    if (logoutScheduled) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    } else {
+        [self updateLoginButton];
+    }
+}
+
+- (void)loginBarButtonPressed:(UIBarButtonItem *)sender {
+    self.loginViewController = [[HNLoginViewController alloc] init];
+    self.loginViewController.loginDelegate = self;
+    [self hn_showDetailViewControllerWithFallback:self.loginViewController];
+}
+
+- (void)loginSucceeded:(NSString *)username {
+    if (self.loginViewController) {
+        [self hn_dismissDetailViewControllerWithFallback:self.loginViewController];
+        self.loginViewController = nil;
+    }
+    [self updateLoginButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController hn_setHidesBarsOnSwipe:NO navigationBarHidden:NO toolbarHidden:YES animated:animated];
+    [self updateLoginButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

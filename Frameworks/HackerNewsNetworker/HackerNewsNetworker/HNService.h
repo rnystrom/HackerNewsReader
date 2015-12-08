@@ -14,6 +14,10 @@
 
 - (void)fetchParameters:(NSDictionary *)parameters completion:(void (^)(id, NSError*))completion;
 
+- (void)performRequest:(NSString *)method
+        withParameters:(NSDictionary *)parameters
+            completion:(void (^)(NSData*, NSURLResponse*, NSError*))completion;
+
 - (BOOL)isFetching;
 
 @end

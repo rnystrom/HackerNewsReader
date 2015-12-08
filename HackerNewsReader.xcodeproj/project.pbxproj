@@ -52,6 +52,12 @@
 		29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */; };
 		29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */; };
 		8E967D4A5CD69545E8DA045D /* libPods-HackerNewsReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */; };
+		F634B5C61BEB4BA50098BC59 /* HNLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F634B5C51BEB4BA50098BC59 /* HNLoginViewController.xib */; };
+		F634B5CA1BEB59670098BC59 /* rounded_table_cell_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5C81BEB59670098BC59 /* rounded_table_cell_top@2x.png */; };
+		F634B5CB1BEB59670098BC59 /* rounded_table_cell_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5C91BEB59670098BC59 /* rounded_table_cell_bottom@2x.png */; };
+		F634B5CD1BEB5D020098BC59 /* hn-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5CC1BEB5D020098BC59 /* hn-logo@2x.png */; };
+		F65177B41BE758FC00034537 /* HNLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F65177B21BE758FC00034537 /* HNLoginViewController.m */; };
+		F6F0CA831BFEF4A800A587FE /* UIViewController+HNOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0CA821BFEF4A800A587FE /* UIViewController+HNOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +158,14 @@
 		29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HNPage+Links.m"; path = "Classes/HNPage+Links.m"; sourceTree = "<group>"; };
 		61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackerNewsReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33833EE244671276B6A5F3F /* Pods-HackerNewsReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNewsReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNewsReader/Pods-HackerNewsReader.release.xcconfig"; sourceTree = "<group>"; };
+		F634B5C51BEB4BA50098BC59 /* HNLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HNLoginViewController.xib; path = Classes/HNLoginViewController.xib; sourceTree = "<group>"; };
+		F634B5C81BEB59670098BC59 /* rounded_table_cell_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rounded_table_cell_top@2x.png"; sourceTree = "<group>"; };
+		F634B5C91BEB59670098BC59 /* rounded_table_cell_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rounded_table_cell_bottom@2x.png"; sourceTree = "<group>"; };
+		F634B5CC1BEB5D020098BC59 /* hn-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hn-logo@2x.png"; sourceTree = "<group>"; };
+		F65177B11BE758FC00034537 /* HNLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNLoginViewController.h; path = Classes/HNLoginViewController.h; sourceTree = "<group>"; };
+		F65177B21BE758FC00034537 /* HNLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNLoginViewController.m; path = Classes/HNLoginViewController.m; sourceTree = "<group>"; };
+		F6F0CA811BFEF4A700A587FE /* UIViewController+HNOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+HNOverlay.h"; path = "Classes/UIViewController+HNOverlay.h"; sourceTree = "<group>"; };
+		F6F0CA821BFEF4A800A587FE /* UIViewController+HNOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+HNOverlay.m"; path = "Classes/UIViewController+HNOverlay.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +242,8 @@
 				29720A491B1CC36800AF2F00 /* UIViewController+UISplitViewController.m */,
 				29720A4B1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.h */,
 				29720A4C1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.m */,
+				F6F0CA811BFEF4A700A587FE /* UIViewController+HNOverlay.h */,
+				F6F0CA821BFEF4A800A587FE /* UIViewController+HNOverlay.m */,
 				29720A4E1B1CCC5900AF2F00 /* UIViewController+Sharing.h */,
 				29720A4F1B1CCC5900AF2F00 /* UIViewController+Sharing.m */,
 				29720A511B1CCF2B00AF2F00 /* UINavigationController+HNBarState.h */,
@@ -259,6 +275,9 @@
 				2920DDB61AED9BFF00E51B23 /* HNNavigationController.m */,
 				2972C53E1AD32598005A2739 /* HNWebViewController.h */,
 				2972C53F1AD32598005A2739 /* HNWebViewController.m */,
+				F65177B11BE758FC00034537 /* HNLoginViewController.h */,
+				F65177B21BE758FC00034537 /* HNLoginViewController.m */,
+				F634B5C51BEB4BA50098BC59 /* HNLoginViewController.xib */,
 				29B393B71B23CA0A0094C2C6 /* HNSearchPostsController.h */,
 				29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */,
 			);
@@ -348,6 +367,7 @@
 		2990B2E31AD1FC600053DB80 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F634B5C71BEB595D0098BC59 /* Images */,
 				2990B2E41AD1FC600053DB80 /* Info.plist */,
 				2990B2E51AD1FC600053DB80 /* main.m */,
 			);
@@ -390,6 +410,16 @@
 			name = "Feed Subclasses";
 			sourceTree = "<group>";
 		};
+		F634B5C71BEB595D0098BC59 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F634B5CC1BEB5D020098BC59 /* hn-logo@2x.png */,
+				F634B5C81BEB59670098BC59 /* rounded_table_cell_top@2x.png */,
+				F634B5C91BEB59670098BC59 /* rounded_table_cell_bottom@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		F77F247604C87D0F7DE5946A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +459,7 @@
 				2990B2DD1AD1FC600053DB80 /* Frameworks */,
 				2990B2DE1AD1FC600053DB80 /* Resources */,
 				3D78F6D5BB9B146864F2C0F7 /* Copy Pods Resources */,
+				391B4729E31DCB489FF23616 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -508,6 +539,10 @@
 			files = (
 				2990B2F11AD1FC600053DB80 /* Images.xcassets in Resources */,
 				294CB9051B1C0CCD00FAA09F /* Main.storyboard in Resources */,
+				F634B5C61BEB4BA50098BC59 /* HNLoginViewController.xib in Resources */,
+				F634B5CD1BEB5D020098BC59 /* hn-logo@2x.png in Resources */,
+				F634B5CB1BEB59670098BC59 /* rounded_table_cell_bottom@2x.png in Resources */,
+				F634B5CA1BEB59670098BC59 /* rounded_table_cell_top@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +562,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		391B4729E31DCB489FF23616 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HackerNewsReader/Pods-HackerNewsReader-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3D78F6D5BB9B146864F2C0F7 /* Copy Pods Resources */ = {
@@ -588,6 +638,7 @@
 				29720A4D1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.m in Sources */,
 				2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */,
 				29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */,
+				F65177B41BE758FC00034537 /* HNLoginViewController.m in Sources */,
 				2944A8941AD6EF6500A2A251 /* HNLoadingCell.m in Sources */,
 				29720A561B1CD23200AF2F00 /* HNPostControllerHandling.m in Sources */,
 				2920DDC11AED9C4900E51B23 /* UIColor+HackerNews.m in Sources */,
@@ -595,6 +646,7 @@
 				29D4116A1ADB4D9E00C491DA /* HNComment+AttributedStrings.m in Sources */,
 				2920DDC31AED9C4900E51B23 /* UINavigationBar+HackerNews.m in Sources */,
 				2920DDC41AED9C4900E51B23 /* UIToolbar+HackerNews.m in Sources */,
+				F6F0CA831BFEF4A800A587FE /* UIViewController+HNOverlay.m in Sources */,
 				294CB8FF1B1B917400FAA09F /* UIViewController+HNComment.m in Sources */,
 				29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */,
 			);

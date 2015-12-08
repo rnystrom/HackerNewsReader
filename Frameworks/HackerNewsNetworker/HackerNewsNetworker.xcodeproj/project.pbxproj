@@ -32,6 +32,8 @@
 		29E2CB571AD9AB7D0010B45D /* HNCommentParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29E2CB541AD9AA550010B45D /* HNCommentParser.h */; };
 		29E2CB581AD9AB7D0010B45D /* HNFeedParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2990B3C31AD20BF80053DB80 /* HNFeedParser.h */; };
 		29E2CB591AD9AB840010B45D /* HNParseProtocol.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29E2CB531AD9A9D80010B45D /* HNParseProtocol.h */; };
+		F67DF0631BFDBEC700C5DCBD /* HNLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = F67DF0621BFDBEC700C5DCBD /* HNLogin.m */; };
+		F67DF0641BFDBEE900C5DCBD /* HNLogin.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = F67DF0611BFDBEC700C5DCBD /* HNLogin.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				F67DF0641BFDBEE900C5DCBD /* HNLogin.h in CopyFiles */,
 				299A8D101B226D5A00E23234 /* HNStore.h in CopyFiles */,
 				2965ECFC1AFC87B500F6E2DE /* HNPageParser.h in CopyFiles */,
 				29E2CB591AD9AB840010B45D /* HNParseProtocol.h in CopyFiles */,
@@ -92,6 +95,8 @@
 		29E2CB531AD9A9D80010B45D /* HNParseProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNParseProtocol.h; sourceTree = "<group>"; };
 		29E2CB541AD9AA550010B45D /* HNCommentParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentParser.h; sourceTree = "<group>"; };
 		29E2CB551AD9AA550010B45D /* HNCommentParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentParser.m; sourceTree = "<group>"; };
+		F67DF0611BFDBEC700C5DCBD /* HNLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNLogin.h; sourceTree = "<group>"; };
+		F67DF0621BFDBEC700C5DCBD /* HNLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNLogin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +156,8 @@
 				2990B3C11AD20BEE0053DB80 /* HNService.m */,
 				2990B3C91AD2DE4D0053DB80 /* HNStore.h */,
 				2990B3CA1AD2DE4D0053DB80 /* HNStore.m */,
+				F67DF0611BFDBEC700C5DCBD /* HNLogin.h */,
+				F67DF0621BFDBEC700C5DCBD /* HNLogin.m */,
 			);
 			path = HackerNewsNetworker;
 			sourceTree = "<group>";
@@ -285,6 +292,7 @@
 				2990B3DF1AD2F0880053DB80 /* HNDataCoordinator.m in Sources */,
 				2990B3DA1AD2E86F0053DB80 /* XPathQuery.m in Sources */,
 				29B2D9451AFC8436005C83BA /* HNPageParser.m in Sources */,
+				F67DF0631BFDBEC700C5DCBD /* HNLogin.m in Sources */,
 				2990B3D91AD2E86F0053DB80 /* TFHppleElement.m in Sources */,
 				29E2CB561AD9AA550010B45D /* HNCommentParser.m in Sources */,
 			);
