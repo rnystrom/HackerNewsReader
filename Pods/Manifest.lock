@@ -1,10 +1,13 @@
 PODS:
+  - Appirater (2.0.5)
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
+  - Appirater
   - TUSafariActivity (~> 1.0)
 
 SPEC CHECKSUMS:
+  Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
 COCOAPODS: 0.39.0

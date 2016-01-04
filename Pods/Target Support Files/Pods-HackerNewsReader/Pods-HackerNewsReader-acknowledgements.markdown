@@ -1,6 +1,10 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## Appirater
+
+Copyright 2015. Arash Payan. This library is distributed under the terms of the MIT/X11.
+
 ## TUSafariActivity
 
 Copyright (c) 2012 ThinkUltimate (http://thinkultimate.com).

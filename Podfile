@@ -3,5 +3,6 @@
 
 target 'HackerNewsReader' do
 pod 'TUSafariActivity', '~> 1.0'
+pod "Appirater"
 end
 

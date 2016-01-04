@@ -10,6 +10,8 @@
 
 #import <HackerNewsNetworker/HNQueries.h>
 
+#import <Appirater/Appirater.h>
+
 #import "UIToolbar+HackerNews.h"
 #import "UINavigationBar+HackerNews.h"
 #import "HNUITestURLProtocol.h"
@@ -18,7 +20,19 @@ NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar
 
 @implementation AppDelegate
 
+- (void)setupAppirater {
+    [Appirater setAppId:@"1000995253"];
+    [Appirater setDaysUntilPrompt:7];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:NO];
+    [Appirater appLaunched:YES];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [self setupAppirater];
+
     [HNQueries loadRemoteQueries];
 
     [UINavigationBar hn_enableAppearance];
