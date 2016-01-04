@@ -795,7 +795,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoisryannystrom.hackernews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/../UninstalledProducts/include";
+				USER_HEADER_SEARCH_PATHS = "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include";
 			};
 			name = Debug;
 		};
@@ -812,7 +812,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoisryannystrom.hackernews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/../UninstalledProducts/include";
+				USER_HEADER_SEARCH_PATHS = "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include";
 			};
 			name = Release;
 		};
