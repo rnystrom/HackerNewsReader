@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-HackerNewsReader-TUSafariActivity.xcscheme</key>
+		<key>Pods-HackerNewsReader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-HackerNewsReader.xcscheme</key>
+		<key>TUSafariActivity-TUSafariActivity.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>588763A9DE138CD6AA44083D</key>
+		<key>387FCB82F1464A98C9B50B9F3211780B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>949E2EC2D835767ECF571FAC</key>
+		<key>59375D432BC39642E964E16CBE22FAFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C8F6A08C2E91007B07F95E7E</key>
+		<key>65605596239011E077110D3223560D40</key>
 		<dict>
 			<key>primary</key>
 			<true/>

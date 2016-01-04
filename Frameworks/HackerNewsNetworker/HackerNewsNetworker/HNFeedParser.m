@@ -53,7 +53,7 @@
 
 - (HNPost *)postFromTitleNode:(TFHppleElement *)titleNode detailNode:(TFHppleElement *)detailNode rank:(NSUInteger)rank {
     static NSString * const scoreQuery = @"//span[@class='score']";
-    static NSString * const commentsLinkQuery = @"//a[3]";
+    static NSString * const commentsLinkQuery = @"//a[2]";
 
     NSString *title = titleNode.content;
     NSString *link = titleNode.attributes[@"href"];
