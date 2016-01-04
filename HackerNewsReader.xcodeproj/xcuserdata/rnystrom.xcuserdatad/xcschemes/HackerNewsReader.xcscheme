@@ -50,20 +50,6 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "29D69E841B265CA40043A219"
-               BuildableName = "Hacker News UI Tests.xctest"
-               BlueprintName = "Hacker News UI Tests"
-               ReferencedContainer = "container:HackerNewsReader.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
@@ -85,16 +71,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "29D69E841B265CA40043A219"
-               BuildableName = "Hacker News UI Tests.xctest"
-               BlueprintName = "Hacker News UI Tests"
-               ReferencedContainer = "container:HackerNewsReader.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
