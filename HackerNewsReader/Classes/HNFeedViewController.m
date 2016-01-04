@@ -98,9 +98,7 @@ static NSUInteger const kItemsPerPage = 30;
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
-- (void)updateLoginButton {
-    self.navigationItem.rightBarButtonItem = [HNLogin isLoggedIn] ? self.logoutBarButtonItem : self.loginBarButtonItem;
-}
+- (void)updateLoginButton {}
 
 - (void)logoutBarButtonPressed:(UIBarButtonItem *)sender {
     HNLogin *login = [[HNLogin alloc] init];
