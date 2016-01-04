@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="HmT-oD-h7Q">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="jbW-9N-HpD">
+            <objects>
+                <navigationController id="HmT-oD-h7Q" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="huh-E4-r93">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uzA-2v-lLa" kind="relationship" relationship="rootViewController" id="x21-Ov-QrO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZY-12-BLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="437" y="39"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hda-bE-ka3">
+            <objects>
+                <viewController id="uzA-2v-lLa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ka5-yS-m4N"/>
+                        <viewControllerLayoutGuide type="bottom" id="w46-ot-Lri"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8ZV-h2-Gg3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="JWI-wT-lpW">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JWI-wT-lpW" firstAttribute="leading" secondItem="8ZV-h2-Gg3" secondAttribute="leading" id="un9-vq-jAl"/>
+                            <constraint firstAttribute="trailing" secondItem="JWI-wT-lpW" secondAttribute="trailing" id="wI9-Zl-P7p"/>
+                            <constraint firstItem="JWI-wT-lpW" firstAttribute="top" secondItem="Ka5-yS-m4N" secondAttribute="bottom" id="xte-a4-VSX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Ss-4F-YUe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S4M-0d-442" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1075" y="39"/>
+        </scene>
+    </scenes>
+</document>
