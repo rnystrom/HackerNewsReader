@@ -10,6 +10,13 @@
 
 #import "HNCommentParser.h"
 #import "TFHpple.h"
+#import "HNQueries.h"
+
+@interface HNQueries (HackerNewsNetworkerTests)
+
++ (HNQueries *)localQueries;
+
+@end
 
 @interface HNCommentParserTests : XCTestCase
 
@@ -18,17 +25,19 @@
 @implementation HNCommentParserTests
 
 - (void)testCommentParsingCount {
+    HNQueries *queries = [HNQueries localQueries];
     NSData *data = [self longCommentsData];
-    id comments = [[[HNCommentParser alloc] init] parseDataFromResponse:data];
+    id comments = [[[HNCommentParser alloc] init] parseDataFromResponse:data queries:queries];
     NSUInteger commentCount = [comments count];
     XCTAssert(commentCount == 297, @"Comment count was %zi, expected 297", commentCount);
 }
 
 - (void)testCommentParsingPerformance {
+    HNQueries *queries = [HNQueries localQueries];
     NSData *data = [self longCommentsData];
     HNCommentParser *parser = [[HNCommentParser alloc] init];
     [self measureBlock:^{
-        [parser parseDataFromResponse:data];
+        [parser parseDataFromResponse:data queries:queries];
     }];
 }
 

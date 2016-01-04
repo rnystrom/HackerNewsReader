@@ -14,7 +14,8 @@
 
 @interface HNCommentParser : NSObject <HNParseProtocol>
 
-- (NSArray *)commentsFromParser:(TFHpple *)parser;
+- (NSArray *)commentsFromParser:(TFHpple *)parser queries:(HNQueries *)queries;
+
 - (NSArray *)commentComponentsFromNode:(TFHppleElement *)node;
 
 @end

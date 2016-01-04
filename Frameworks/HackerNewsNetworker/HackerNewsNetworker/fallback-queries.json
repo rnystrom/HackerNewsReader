@@ -1,0 +1,19 @@
+{
+  "feed": {
+    "titles": "//table[@id='hnmain']/tr[3]/td/table//td[@class='title'][not(@align)]/a",
+    "details": "//table[@id='hnmain']/tr[3]/td/table//td[@class='subtext']",
+    "score": "//span[@class='score']",
+    "comment_node": "//a[2]"
+  },
+  "comments": {
+    "comments": "//table[@id='hnmain']/tr[3]/td/table[2]/tr",
+    "user": "//span[@class='comhead']/a[1]",
+    "text": "//span[@class='comment']/span",
+    "removed": "//span[@class='comment']",
+    "indent": "//img[@src='s.gif']",
+    "permalink": "//span[@class='comhead']/a[2]"
+  },
+  "page": {
+    "text": "//table[@id='hnmain']/tr[3]/td/table[1]/tr[4]/td[2]"
+  }
+}

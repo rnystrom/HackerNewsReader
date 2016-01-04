@@ -80,7 +80,8 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
                     [self.delegate dataCoordinator:self didError:error];
                 });
             } else if (data) {
-                id object = [self.parser parseDataFromResponse:data];
+                HNQueries *queries = [HNQueries sharedQueries];
+                id object = [self.parser parseDataFromResponse:data queries:queries];
                 if (object && [self.store archiveToDisk:object]) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:self];
                     dispatch_async(self.delegateQueue, ^{

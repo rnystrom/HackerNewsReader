@@ -14,8 +14,9 @@
 
 @interface HNFeedParser : NSObject <HNParseProtocol>
 
-- (NSArray *)titlesFromParser:(TFHpple *)parser;
-- (NSArray *)detailsFromParser:(TFHpple *)parser;
-- (HNPost *)postFromTitleNode:(TFHppleElement *)titleNode detailNode:(TFHppleElement *)detailNode rank:(NSUInteger)rank;
+- (HNPost *)postFromTitleNode:(TFHppleElement *)titleNode
+                   detailNode:(TFHppleElement *)detailNode
+                         rank:(NSUInteger)rank
+                      queries:(HNQueries *)queries;
 
 @end

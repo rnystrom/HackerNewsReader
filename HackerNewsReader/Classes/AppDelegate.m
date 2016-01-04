@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import <HackerNewsNetworker/HNQueries.h>
+
 #import "UIToolbar+HackerNews.h"
 #import "UINavigationBar+HackerNews.h"
 #import "HNUITestURLProtocol.h"
@@ -17,6 +19,8 @@ NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [HNQueries loadRemoteQueries];
+
     [UINavigationBar hn_enableAppearance];
     [UIToolbar hn_enableAppearance];
     if ([launchOptions[@"ui_test"] boolValue]) {

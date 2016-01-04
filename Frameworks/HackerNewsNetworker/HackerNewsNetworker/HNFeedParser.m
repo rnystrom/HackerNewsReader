@@ -15,15 +15,15 @@
 
 @implementation HNFeedParser
 
-- (id <NSCopying, NSCoding>)parseDataFromResponse:(NSData *)data {
+- (id <NSCopying, NSCoding>)parseDataFromResponse:(NSData *)data queries:(HNQueries *)queries {
     if (!data.length) {
         return nil;
     }
 
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
-    NSArray *titleNodes = [self titlesFromParser:parser];
-    NSArray *detailNodes = [self detailsFromParser:parser];
+    NSArray *titleNodes = [parser searchWithXPathQuery:queries.feedTitles];
+    NSArray *detailNodes = [parser searchWithXPathQuery:queries.feedDetails];
 
     NSMutableArray *items = [[NSMutableArray alloc] init];
 
@@ -31,7 +31,7 @@
         if (idx < detailNodes.count) {
             TFHppleElement *detailNode = detailNodes[idx];
 
-            HNPost *post = [self postFromTitleNode:titleNode detailNode:detailNode rank:idx + 1];
+            HNPost *post = [self postFromTitleNode:titleNode detailNode:detailNode rank:idx + 1 queries:queries];
             [items addObject:post];
         }
     }];
@@ -41,25 +41,12 @@
     return feed;
 }
 
-- (NSArray *)titlesFromParser:(TFHpple *)parser {
-    static NSString * const titlesQuery = @"//table[@id='hnmain']/tr[3]/td/table//td[@class='title'][not(@align)]/a";
-    return [parser searchWithXPathQuery:titlesQuery];
-}
-
-- (NSArray *)detailsFromParser:(TFHpple *)parser {
-    static NSString * const detailsQuery = @"//table[@id='hnmain']/tr[3]/td/table//td[@class='subtext']";
-    return [parser searchWithXPathQuery:detailsQuery];
-}
-
-- (HNPost *)postFromTitleNode:(TFHppleElement *)titleNode detailNode:(TFHppleElement *)detailNode rank:(NSUInteger)rank {
-    static NSString * const scoreQuery = @"//span[@class='score']";
-    static NSString * const commentsLinkQuery = @"//a[2]";
-
+- (HNPost *)postFromTitleNode:(TFHppleElement *)titleNode detailNode:(TFHppleElement *)detailNode rank:(NSUInteger)rank queries:(HNQueries *)queries {
     NSString *title = titleNode.content;
     NSString *link = titleNode.attributes[@"href"];
 
-    NSString *scoreString = [[[detailNode searchWithXPathQuery:scoreQuery] valueForKeyPath:@"content"] firstObject];
-    TFHppleElement *commentNode = [[detailNode searchWithXPathQuery:commentsLinkQuery] firstObject];
+    NSString *scoreString = [[[detailNode searchWithXPathQuery:queries.feedScore] valueForKeyPath:@"content"] firstObject];
+    TFHppleElement *commentNode = [[detailNode searchWithXPathQuery:queries.feedCommentNode] firstObject];
     NSString *commentString = [commentNode content];
     NSString *commentLink = commentNode.attributes[@"href"];
     NSString *ageText = [commentNode content];

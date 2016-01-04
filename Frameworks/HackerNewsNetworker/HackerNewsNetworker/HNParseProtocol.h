@@ -8,8 +8,10 @@
 
 @import Foundation;
 
+#import "HNQueries.h"
+
 @protocol HNParseProtocol <NSObject>
 
-- (id <NSCopying, NSCoding>)parseDataFromResponse:(NSData *)data;
+- (id <NSCopying, NSCoding>)parseDataFromResponse:(NSData *)data queries:(HNQueries *)queries;
 
 @end

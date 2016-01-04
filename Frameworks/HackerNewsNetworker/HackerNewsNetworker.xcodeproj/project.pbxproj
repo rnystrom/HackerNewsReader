@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292E0CE71C39F99D00072C57 /* HNQueries.m in Sources */ = {isa = PBXBuildFile; fileRef = 292E0CE61C39F99D00072C57 /* HNQueries.m */; };
+		292E0CE81C3A008200072C57 /* HNQueries.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 292E0CE51C39F99D00072C57 /* HNQueries.h */; };
+		292E0CE91C3A069F00072C57 /* HNQueries.m in Sources */ = {isa = PBXBuildFile; fileRef = 292E0CE61C39F99D00072C57 /* HNQueries.m */; };
+		292E0CEA1C3A075500072C57 /* fallback-queries.json in Resources */ = {isa = PBXBuildFile; fileRef = 292E0CE41C39F97F00072C57 /* fallback-queries.json */; };
 		2942D14A1B1E8E2400912D01 /* HNCommentParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2942D1491B1E8E2400912D01 /* HNCommentParserTests.m */; };
 		2942D14B1B1E8E3400912D01 /* HNCommentParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB551AD9AA550010B45D /* HNCommentParser.m */; };
 		2942D14C1B1E8E6A00912D01 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3D31AD2E86F0053DB80 /* TFHpple.m */; };
@@ -53,6 +57,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				292E0CE81C3A008200072C57 /* HNQueries.h in CopyFiles */,
 				F67DF0641BFDBEE900C5DCBD /* HNLogin.h in CopyFiles */,
 				299A8D101B226D5A00E23234 /* HNStore.h in CopyFiles */,
 				2965ECFC1AFC87B500F6E2DE /* HNPageParser.h in CopyFiles */,
@@ -67,6 +72,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		292E0CE41C39F97F00072C57 /* fallback-queries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "fallback-queries.json"; sourceTree = "<group>"; };
+		292E0CE51C39F99D00072C57 /* HNQueries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNQueries.h; sourceTree = "<group>"; };
+		292E0CE61C39F99D00072C57 /* HNQueries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNQueries.m; sourceTree = "<group>"; };
 		2942D1491B1E8E2400912D01 /* HNCommentParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentParserTests.m; sourceTree = "<group>"; };
 		2942D1521B1E8EC000912D01 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		2990B39A1AD20B910053DB80 /* libHackerNewsNetworker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHackerNewsNetworker.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +150,7 @@
 		2990B39C1AD20B910053DB80 /* HackerNewsNetworker */ = {
 			isa = PBXGroup;
 			children = (
+				292E0CE41C39F97F00072C57 /* fallback-queries.json */,
 				2990B39D1AD20B910053DB80 /* HackerNewsNetworker.h */,
 				29E2CB541AD9AA550010B45D /* HNCommentParser.h */,
 				29E2CB551AD9AA550010B45D /* HNCommentParser.m */,
@@ -158,6 +167,8 @@
 				2990B3CA1AD2DE4D0053DB80 /* HNStore.m */,
 				F67DF0611BFDBEC700C5DCBD /* HNLogin.h */,
 				F67DF0621BFDBEC700C5DCBD /* HNLogin.m */,
+				292E0CE51C39F99D00072C57 /* HNQueries.h */,
+				292E0CE61C39F99D00072C57 /* HNQueries.m */,
 			);
 			path = HackerNewsNetworker;
 			sourceTree = "<group>";
@@ -274,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				292E0CEA1C3A075500072C57 /* fallback-queries.json in Resources */,
 				29B2CA8B1B1EC50100DECAFE /* msdn-ssh.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +301,7 @@
 				2990B3C51AD20BF80053DB80 /* HNFeedParser.m in Sources */,
 				2990B3C21AD20BEE0053DB80 /* HNService.m in Sources */,
 				2990B3D81AD2E86F0053DB80 /* TFHpple.m in Sources */,
+				292E0CE71C39F99D00072C57 /* HNQueries.m in Sources */,
 				2990B3DF1AD2F0880053DB80 /* HNDataCoordinator.m in Sources */,
 				2990B3DA1AD2E86F0053DB80 /* XPathQuery.m in Sources */,
 				29B2D9451AFC8436005C83BA /* HNPageParser.m in Sources */,
@@ -304,6 +317,7 @@
 			files = (
 				2942D14D1B1E8E6A00912D01 /* TFHppleElement.m in Sources */,
 				2942D14B1B1E8E3400912D01 /* HNCommentParser.m in Sources */,
+				292E0CE91C3A069F00072C57 /* HNQueries.m in Sources */,
 				2942D14E1B1E8E6A00912D01 /* XPathQuery.m in Sources */,
 				2942D14C1B1E8E6A00912D01 /* TFHpple.m in Sources */,
 				2942D14A1B1E8E2400912D01 /* HNCommentParserTests.m in Sources */,

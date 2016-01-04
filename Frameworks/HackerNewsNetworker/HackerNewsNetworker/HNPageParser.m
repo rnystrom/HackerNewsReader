@@ -31,14 +31,14 @@
     return self;
 }
 
-- (id <NSCopying, NSCoding>)parseDataFromResponse:(NSData *)data {
+- (id <NSCopying, NSCoding>)parseDataFromResponse:(NSData *)data queries:(HNQueries *)queries {
     if (!data.length) {
         return nil;
     }
 
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
 
-    NSArray *comments = (NSArray *)[self.commentParser commentsFromParser:parser];
+    NSArray *comments = (NSArray *)[self.commentParser commentsFromParser:parser queries:queries];
 
     static NSString * const textQuery = @"//table[@id='hnmain']/tr[3]/td/table[1]/tr[4]/td[2]";
     TFHppleElement *textNode = [[parser searchWithXPathQuery:textQuery] firstObject];
@@ -47,9 +47,9 @@
         textComponets = [self.commentParser commentComponentsFromNode:textNode];
     }
 
-    TFHppleElement *titleNode = [[self.feedParser titlesFromParser:parser] firstObject];
-    TFHppleElement *detailNode = [[self.feedParser detailsFromParser:parser] firstObject];
-    HNPost *post = [self.feedParser postFromTitleNode:titleNode detailNode:detailNode rank:0];
+    TFHppleElement *titleNode = [[parser searchWithXPathQuery:queries.feedTitles] firstObject];
+    TFHppleElement *detailNode = [[parser searchWithXPathQuery:queries.feedDetails] firstObject];
+    HNPost *post = [self.feedParser postFromTitleNode:titleNode detailNode:detailNode rank:0 queries:queries];
 
     return [[HNPage alloc] initWithPost:post comments:comments textComponents:textComponets];
 }
