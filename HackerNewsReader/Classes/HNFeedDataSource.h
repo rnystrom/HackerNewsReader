@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HNFeedDataSource : NSObject
 
-- (instancetype)initWithTableView:(UITableView *)tableView readPostStore:(HNReadPostStore *)readPostStore;
+- (instancetype)initWithTableView:(UITableView *)tableView readPostStore:(nullable HNReadPostStore *)readPostStore;
 
 @property (nonatomic, copy) NSArray *posts;
 
