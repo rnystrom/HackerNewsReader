@@ -8,6 +8,7 @@ DS_Store
 *.mode2v3
 
 *.xcodeproj/xcuserdata/*.xcuserdatad
+*/xcuserdata/*
 
 *.xccheckout
 *.xcuserdatad
