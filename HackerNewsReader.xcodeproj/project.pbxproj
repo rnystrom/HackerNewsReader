@@ -50,6 +50,8 @@
 		29B393B91B23CA0A0094C2C6 /* HNSearchPostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */; };
 		29D4116A1ADB4D9E00C491DA /* HNComment+AttributedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */; };
 		29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D4116C1ADB601600C491DA /* HNCommentHeaderCell.m */; };
+		29DE15EE1C3E2D000082B1DB /* HNTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DE15ED1C3E2D000082B1DB /* HNTabBarController.m */; };
+		29DE15F11C3E2DCE0082B1DB /* UITabBar+HackerNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DE15F01C3E2DCE0082B1DB /* UITabBar+HackerNews.m */; };
 		29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */; };
 		29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */; };
 		8E967D4A5CD69545E8DA045D /* libPods-HackerNewsReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */; };
@@ -154,6 +156,10 @@
 		29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HNComment+AttributedStrings.m"; path = "Classes/HNComment+AttributedStrings.m"; sourceTree = "<group>"; };
 		29D4116B1ADB601600C491DA /* HNCommentHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentHeaderCell.h; path = Classes/HNCommentHeaderCell.h; sourceTree = "<group>"; };
 		29D4116C1ADB601600C491DA /* HNCommentHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentHeaderCell.m; path = Classes/HNCommentHeaderCell.m; sourceTree = "<group>"; };
+		29DE15EC1C3E2D000082B1DB /* HNTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNTabBarController.h; path = Classes/HNTabBarController.h; sourceTree = "<group>"; };
+		29DE15ED1C3E2D000082B1DB /* HNTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNTabBarController.m; path = Classes/HNTabBarController.m; sourceTree = "<group>"; };
+		29DE15EF1C3E2DCE0082B1DB /* UITabBar+HackerNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITabBar+HackerNews.h"; path = "Classes/UITabBar+HackerNews.h"; sourceTree = "<group>"; };
+		29DE15F01C3E2DCE0082B1DB /* UITabBar+HackerNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITabBar+HackerNews.m"; path = "Classes/UITabBar+HackerNews.m"; sourceTree = "<group>"; };
 		29E2CB491AD9A1200010B45D /* HNCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentCell.h; path = Classes/HNCommentCell.h; sourceTree = "<group>"; };
 		29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentCell.m; path = Classes/HNCommentCell.m; sourceTree = "<group>"; };
 		29EAD15A1B03C96F0076C0C2 /* HNPage+Links.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HNPage+Links.h"; path = "Classes/HNPage+Links.h"; sourceTree = "<group>"; };
@@ -250,6 +256,8 @@
 				29720A4F1B1CCC5900AF2F00 /* UIViewController+Sharing.m */,
 				29720A511B1CCF2B00AF2F00 /* UINavigationController+HNBarState.h */,
 				29720A521B1CCF2B00AF2F00 /* UINavigationController+HNBarState.m */,
+				29DE15EF1C3E2DCE0082B1DB /* UITabBar+HackerNews.h */,
+				29DE15F01C3E2DCE0082B1DB /* UITabBar+HackerNews.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -270,6 +278,8 @@
 			children = (
 				29B393B31B238ABB0094C2C6 /* Feed Subclasses */,
 				2944A8A41AD6FAB400A2A251 /* HNCommentViewController.h */,
+				29DE15EC1C3E2D000082B1DB /* HNTabBarController.h */,
+				29DE15ED1C3E2D000082B1DB /* HNTabBarController.m */,
 				2944A8A51AD6FAB400A2A251 /* HNCommentViewController.m */,
 				2990B33F1AD1FD980053DB80 /* HNFeedViewController.h */,
 				2990B3401AD1FD980053DB80 /* HNFeedViewController.m */,
@@ -619,6 +629,8 @@
 				29720A531B1CCF2B00AF2F00 /* UINavigationController+HNBarState.m in Sources */,
 				2944A88E1AD6EE4900A2A251 /* HNEmptyTableCell.m in Sources */,
 				29605B481B28B117002CD770 /* HNUITestURLProtocol.m in Sources */,
+				29DE15EE1C3E2D000082B1DB /* HNTabBarController.m in Sources */,
+				29DE15F11C3E2DCE0082B1DB /* UITabBar+HackerNews.m in Sources */,
 				292988C21AD4CE9A00BB386C /* HNPostCell.m in Sources */,
 				2920DDC91AED9FB200E51B23 /* HNTextStorage.m in Sources */,
 				29B393B61B23C10C0094C2C6 /* HNFeedDataSource.m in Sources */,
