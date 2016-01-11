@@ -31,6 +31,7 @@
 		2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */; };
 		2965ED021AFD3DD800F6E2DE /* HNAttributedCommentComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED011AFD3DD800F6E2DE /* HNAttributedCommentComponents.m */; };
 		2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */; };
+		296FDE6C1C437B1400784A2E /* HNProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE6B1C437B1400784A2E /* HNProfileViewController.m */; };
 		29720A4A1B1CC36800AF2F00 /* UIViewController+UISplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29720A491B1CC36800AF2F00 /* UIViewController+UISplitViewController.m */; };
 		29720A4D1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 29720A4C1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.m */; };
 		29720A501B1CCC5900AF2F00 /* UIViewController+Sharing.m in Sources */ = {isa = PBXBuildFile; fileRef = 29720A4F1B1CCC5900AF2F00 /* UIViewController+Sharing.m */; };
@@ -118,6 +119,8 @@
 		2965ED011AFD3DD800F6E2DE /* HNAttributedCommentComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNAttributedCommentComponents.m; path = Classes/HNAttributedCommentComponents.m; sourceTree = "<group>"; };
 		2965ED0E1AFD98E300F6E2DE /* NSURL+HackerNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+HackerNews.h"; path = "Classes/NSURL+HackerNews.h"; sourceTree = "<group>"; };
 		2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+HackerNews.m"; path = "Classes/NSURL+HackerNews.m"; sourceTree = "<group>"; };
+		296FDE6A1C437B1400784A2E /* HNProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNProfileViewController.h; path = Classes/HNProfileViewController.h; sourceTree = "<group>"; };
+		296FDE6B1C437B1400784A2E /* HNProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNProfileViewController.m; path = Classes/HNProfileViewController.m; sourceTree = "<group>"; };
 		29720A481B1CC36800AF2F00 /* UIViewController+UISplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+UISplitViewController.h"; path = "Classes/UIViewController+UISplitViewController.h"; sourceTree = "<group>"; };
 		29720A491B1CC36800AF2F00 /* UIViewController+UISplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+UISplitViewController.m"; path = "Classes/UIViewController+UISplitViewController.m"; sourceTree = "<group>"; };
 		29720A4B1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+ActivityIndicator.h"; path = "Classes/UIViewController+ActivityIndicator.h"; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 				F65177B21BE758FC00034537 /* HNLoginViewController.m */,
 				29B393B71B23CA0A0094C2C6 /* HNSearchPostsController.h */,
 				29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */,
+				296FDE6A1C437B1400784A2E /* HNProfileViewController.h */,
+				296FDE6B1C437B1400784A2E /* HNProfileViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -634,6 +639,7 @@
 				29B393B91B23CA0A0094C2C6 /* HNSearchPostsController.m in Sources */,
 				299A8D0F1B2266AE00E23234 /* HNReadPostStore.m in Sources */,
 				2920DDCC1AEDA27500E51B23 /* HNTextRenderer.m in Sources */,
+				296FDE6C1C437B1400784A2E /* HNProfileViewController.m in Sources */,
 				29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */,
 				2944A8A61AD6FAB400A2A251 /* HNCommentViewController.m in Sources */,
 				294CB9031B1B92D400FAA09F /* HNTableStatus.m in Sources */,
