@@ -8,14 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol HNLoginDelegate <NSObject>
+NS_ASSUME_NONNULL_BEGIN
 
-- (void)loginSucceeded:(NSString *)username;
-
-@end
-
-@interface HNLoginViewController : UIViewController
-
-@property (nonatomic, strong) id <HNLoginDelegate> loginDelegate;
+@interface HNLoginViewController : UITableViewController
 
 @end
+
+NS_ASSUME_NONNULL_END

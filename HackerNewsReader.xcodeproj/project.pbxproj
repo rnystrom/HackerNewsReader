@@ -55,7 +55,6 @@
 		29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */; };
 		29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */; };
 		8E967D4A5CD69545E8DA045D /* libPods-HackerNewsReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */; };
-		F634B5C61BEB4BA50098BC59 /* HNLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F634B5C51BEB4BA50098BC59 /* HNLoginViewController.xib */; };
 		F634B5CA1BEB59670098BC59 /* rounded_table_cell_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5C81BEB59670098BC59 /* rounded_table_cell_top@2x.png */; };
 		F634B5CB1BEB59670098BC59 /* rounded_table_cell_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5C91BEB59670098BC59 /* rounded_table_cell_bottom@2x.png */; };
 		F634B5CD1BEB5D020098BC59 /* hn-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5CC1BEB5D020098BC59 /* hn-logo@2x.png */; };
@@ -166,7 +165,6 @@
 		29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HNPage+Links.m"; path = "Classes/HNPage+Links.m"; sourceTree = "<group>"; };
 		61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackerNewsReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33833EE244671276B6A5F3F /* Pods-HackerNewsReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNewsReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNewsReader/Pods-HackerNewsReader.release.xcconfig"; sourceTree = "<group>"; };
-		F634B5C51BEB4BA50098BC59 /* HNLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HNLoginViewController.xib; path = Classes/HNLoginViewController.xib; sourceTree = "<group>"; };
 		F634B5C81BEB59670098BC59 /* rounded_table_cell_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rounded_table_cell_top@2x.png"; sourceTree = "<group>"; };
 		F634B5C91BEB59670098BC59 /* rounded_table_cell_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rounded_table_cell_bottom@2x.png"; sourceTree = "<group>"; };
 		F634B5CC1BEB5D020098BC59 /* hn-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hn-logo@2x.png"; sourceTree = "<group>"; };
@@ -289,7 +287,6 @@
 				2972C53F1AD32598005A2739 /* HNWebViewController.m */,
 				F65177B11BE758FC00034537 /* HNLoginViewController.h */,
 				F65177B21BE758FC00034537 /* HNLoginViewController.m */,
-				F634B5C51BEB4BA50098BC59 /* HNLoginViewController.xib */,
 				29B393B71B23CA0A0094C2C6 /* HNSearchPostsController.h */,
 				29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */,
 			);
@@ -552,7 +549,6 @@
 			files = (
 				2990B2F11AD1FC600053DB80 /* Images.xcassets in Resources */,
 				294CB9051B1C0CCD00FAA09F /* Main.storyboard in Resources */,
-				F634B5C61BEB4BA50098BC59 /* HNLoginViewController.xib in Resources */,
 				F634B5CD1BEB5D020098BC59 /* hn-logo@2x.png in Resources */,
 				292E0CEC1C3A10DD00072C57 /* Launch.storyboard in Resources */,
 				F634B5CB1BEB59670098BC59 /* rounded_table_cell_bottom@2x.png in Resources */,
