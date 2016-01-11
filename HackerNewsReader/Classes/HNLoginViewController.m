@@ -29,51 +29,42 @@
     self.textFields = @[self.usernameTextField, self.passwordTextField];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
 
+#pragma mark - Private API
+
+- (void)clearResponders {
+    [self.textFields makeObjectsPerformSelector:@selector(resignFirstResponder)];
+}
+
+- (void)showLoadingSpinner:(BOOL)doShowSpinner {
+    UIBarButtonItem *item = nil;
+    if (doShowSpinner) {
+        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [activityIndicator startAnimating];
+        item = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    }
+    self.navigationItem.rightBarButtonItem = item;
 }
 
 - (void)login {
-//    self.errorMessageLabel.hidden = YES;
-//    HNLogin *login = [[HNLogin alloc] init];
-//    [self showBlockingWaitOverlay];
-//    [login loginUser:self.usernameField.text
-//        withPassword:self.passwordField.text
-//          completion:^(NSString *username, NSError *error){
-//              dispatch_async(dispatch_get_main_queue(), ^{
-//                  [self removeAllOverlays];
-//                  if (username) {
-//                      if (self.loginDelegate && [self.loginDelegate respondsToSelector:@selector(loginSucceeded:)]) {
-//                          [self.loginDelegate loginSucceeded:username];
-//                      }
-//                  } else {
-//                      self.errorMessageLabel.text = NSLocalizedString(@"Unable to login. Check username and password and try again.", @"Unable to login message");
-//                      self.errorMessageLabel.hidden = NO;
-//                  }
-//              });
-//    }];
+    [self clearResponders];
+    [self showLoadingSpinner:YES];
+
+    HNLogin *login = [[HNLogin alloc] init];
+    [login loginUser:self.usernameTextField.text
+        withPassword:self.passwordTextField.text
+          completion:^(NSString *username, NSError *error) {
+              dispatch_async(dispatch_get_main_queue(), ^{
+                  [self showLoadingSpinner:NO];
+                  if (username) {
+                      NSLog(@"username");
+                  } else {
+                      NSLog(@"%@",error.localizedDescription);
+                  }
+              });
+          }];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillShowNotification
-                                                  object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:UIKeyboardWillHideNotification
-                                                  object:nil];
-}
 
 #pragma mark - UITableViewDelegate
 
@@ -84,17 +75,11 @@
     }
 }
 
-#pragma mark - Keyboard interaction
-
-- (void)keyboardWillShow:(NSNotification *)aNotification {}
-
-- (void)keyboardWillHide:(NSNotification *)aNotification {}
-
 
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.textFields makeObjectsPerformSelector:@selector(resignFirstResponder)];
+    [self clearResponders];
 }
 
 
