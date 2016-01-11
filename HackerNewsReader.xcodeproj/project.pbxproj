@@ -27,7 +27,6 @@
 		294CB9081B1C0D3800FAA09F /* HNSplitViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 294CB9071B1C0D3800FAA09F /* HNSplitViewDelegate.m */; };
 		295DB7461AF7DA9D004B119F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 295DB7451AF7DA9D004B119F /* WebKit.framework */; };
 		296054B91AD4F0370038818A /* HNCommentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 296054B81AD4F0370038818A /* HNCommentButton.m */; };
-		29605B481B28B117002CD770 /* HNUITestURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 29605B421B28AFC3002CD770 /* HNUITestURLProtocol.m */; };
 		2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */; };
 		2965ED021AFD3DD800F6E2DE /* HNAttributedCommentComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED011AFD3DD800F6E2DE /* HNAttributedCommentComponents.m */; };
 		2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 2965ED0F1AFD98E300F6E2DE /* NSURL+HackerNews.m */; };
@@ -111,8 +110,6 @@
 		295DB7451AF7DA9D004B119F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		296054B71AD4F0370038818A /* HNCommentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentButton.h; path = Classes/HNCommentButton.h; sourceTree = "<group>"; };
 		296054B81AD4F0370038818A /* HNCommentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentButton.m; path = Classes/HNCommentButton.m; sourceTree = "<group>"; };
-		29605B411B28AFC3002CD770 /* HNUITestURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNUITestURLProtocol.h; path = Classes/HNUITestURLProtocol.h; sourceTree = "<group>"; };
-		29605B421B28AFC3002CD770 /* HNUITestURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNUITestURLProtocol.m; path = Classes/HNUITestURLProtocol.m; sourceTree = "<group>"; };
 		2965ECFD1AFC89EF00F6E2DE /* HNPageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPageHeaderView.h; path = Classes/HNPageHeaderView.h; sourceTree = "<group>"; };
 		2965ECFE1AFC89EF00F6E2DE /* HNPageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPageHeaderView.m; path = Classes/HNPageHeaderView.m; sourceTree = "<group>"; };
 		2965ED001AFD3DD800F6E2DE /* HNAttributedCommentComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNAttributedCommentComponents.h; path = Classes/HNAttributedCommentComponents.h; sourceTree = "<group>"; };
@@ -339,8 +336,6 @@
 				299A8D0E1B2266AE00E23234 /* HNReadPostStore.m */,
 				29B393B41B23C10C0094C2C6 /* HNFeedDataSource.h */,
 				29B393B51B23C10C0094C2C6 /* HNFeedDataSource.m */,
-				29605B411B28AFC3002CD770 /* HNUITestURLProtocol.h */,
-				29605B421B28AFC3002CD770 /* HNUITestURLProtocol.m */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -629,7 +624,6 @@
 				29720A501B1CCC5900AF2F00 /* UIViewController+Sharing.m in Sources */,
 				29720A531B1CCF2B00AF2F00 /* UINavigationController+HNBarState.m in Sources */,
 				2944A88E1AD6EE4900A2A251 /* HNEmptyTableCell.m in Sources */,
-				29605B481B28B117002CD770 /* HNUITestURLProtocol.m in Sources */,
 				29DE15EE1C3E2D000082B1DB /* HNTabBarController.m in Sources */,
 				29DE15F11C3E2DCE0082B1DB /* UITabBar+HackerNews.m in Sources */,
 				292988C21AD4CE9A00BB386C /* HNPostCell.m in Sources */,

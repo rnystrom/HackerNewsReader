@@ -151,6 +151,7 @@
                         <outlet property="loginCell" destination="x9m-eK-UC5" id="Nm4-V7-mhX"/>
                         <outlet property="passwordTextField" destination="FNm-SA-dr8" id="ybv-QB-ioR"/>
                         <outlet property="usernameTextField" destination="a4e-u4-oFu" id="gq5-fr-j0v"/>
+                        <segue destination="iG3-Cg-c0F" kind="show" id="J1n-uL-dun"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4XY-GF-tka" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -231,7 +232,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeF-QH-blU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1275" y="143"/>
+            <point key="canvasLocation" x="1322" y="143"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RGc-lp-WdJ">

@@ -15,7 +15,6 @@
 #import "UIToolbar+HackerNews.h"
 #import "UITabBar+HackerNews.h"
 #import "UINavigationBar+HackerNews.h"
-#import "HNUITestURLProtocol.h"
 
 NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar";
 
@@ -40,9 +39,6 @@ NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar
     [UIToolbar hn_enableAppearance];
     [UITabBar hn_enableAppearance];
 
-    if ([launchOptions[@"ui_test"] boolValue]) {
-        [NSURLProtocol registerClass:[HNUITestURLProtocol class]];
-    }
     return YES;
 }
 
