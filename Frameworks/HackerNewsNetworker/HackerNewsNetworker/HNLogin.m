@@ -8,6 +8,9 @@
 
 #import "HNLogin.h"
 #import "HNService.h"
+#import "HNSession.h"
+#import "NSHTTPCookie+HackerNews.h"
+#import "NSHTTPCookieStorage+HackerNews.h"
 
 @implementation HNLogin
 
@@ -33,16 +36,14 @@
     return [self.class getUserLogin] != nil;
 }
 
-- (void)loginUser:(NSString *)username
++ (void)loginUser:(NSString *)username
      withPassword:(NSString *)password
-       completion:(void (^)(NSString *, NSError *))completion {
-    if ([self.class isLoggedIn]) {
-        [self logoutCurrentUser:nil];
-    }
-    
+       completion:(void (^)(HNSession *, NSError *))completion {
+    NSParameterAssert(completion != nil);
+
     NSURLSession *urlSession = [NSURLSession
                                 sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                delegate:self
+                                delegate:nil
                                 delegateQueue:[NSOperationQueue mainQueue]];
     HNService *service = [[HNService alloc] initWithSession:urlSession path:@"login"];
     
@@ -52,17 +53,17 @@
             NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
             NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:httpResponse.allHeaderFields
                                                                       forURL:response.URL];
-            NSString *userName = nil;
+            HNSession *session = nil;
             for (NSHTTPCookie *cookie in cookies) {
-//                NSLog(@"Cookie[\"%@\"] = \"%@\";", cookie.name, cookie.value);
-                if ([cookie.name isEqualToString:@"user"]) {
-                    userName = [[cookie.value componentsSeparatedByString:@"&"] objectAtIndex:0];
+                NSString *username = [cookie hackerNewsUsername];
+                NSString *sessionKey = [cookie hackerNewsSession];
+                if (username.length && sessionKey.length) {
+                    session = [[HNSession alloc] initWithUsername:username session:sessionKey];
+                    break;
                 }
             }
-            
-            if (completion) {
-                completion(userName, error);
-            }
+
+            completion(session, error);
         }
     };
     [service performRequest:@"POST" withParameters:parameters completion:completionHandler];

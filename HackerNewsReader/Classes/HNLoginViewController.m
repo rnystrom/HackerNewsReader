@@ -9,6 +9,7 @@
 #import "HNLoginViewController.h"
 
 #import <HackerNewsNetworker/HNLogin.h>
+#import <HackerNewsNetworker/HNSession.h>
 
 #import "UIViewController+HNOverlay.h"
 
@@ -36,33 +37,69 @@
     [self.textFields makeObjectsPerformSelector:@selector(resignFirstResponder)];
 }
 
-- (void)showLoadingSpinner:(BOOL)doShowSpinner {
+- (void)showLoading:(BOOL)showLoading {
     UIBarButtonItem *item = nil;
-    if (doShowSpinner) {
+    if (showLoading) {
         UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         [activityIndicator startAnimating];
         item = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
     }
     self.navigationItem.rightBarButtonItem = item;
+
+    for (UITextField *textField in self.textFields) {
+        textField.enabled = !showLoading;
+    }
+
+    UITableViewCell *loginCell = self.loginCell;
+    loginCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    loginCell.userInteractionEnabled = !showLoading;
+    loginCell.alpha = showLoading ? 0.5 : 1;
+}
+
+- (BOOL)formIsValid {
+    for (UITextField *textField in self.textFields) {
+        if (textField.text.length == 0) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 - (void)login {
     [self clearResponders];
-    [self showLoadingSpinner:YES];
 
-    HNLogin *login = [[HNLogin alloc] init];
-    [login loginUser:self.usernameTextField.text
+    if (![self formIsValid]) {
+        return;
+    }
+
+    [self showLoading:YES];
+
+    [HNLogin loginUser:self.usernameTextField.text
         withPassword:self.passwordTextField.text
-          completion:^(NSString *username, NSError *error) {
-              dispatch_async(dispatch_get_main_queue(), ^{
-                  [self showLoadingSpinner:NO];
-                  if (username) {
-                      NSLog(@"username");
-                  } else {
-                      NSLog(@"%@",error.localizedDescription);
-                  }
-              });
+          completion:^(HNSession *session, NSError *error) {
+              [self showLoading:NO];
+
+              if (session) {
+                  [self loginSucceededWithSession:session];
+              } else {
+                  [self showErrorMessage];
+              }
           }];
+}
+
+- (void)loginSucceededWithSession:(HNSession *)session {
+    NSLog(@"%@",session.username);
+}
+
+- (void)showErrorMessage {
+    NSString *title = NSLocalizedString(@"Error", nil);
+    NSString *message = NSLocalizedString(@"Cannot sign in at this time with credentials provided.", nil);
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+
+    NSString *okTitle = NSLocalizedString(@"Ok", nil);
+    [controller addAction:[UIAlertAction actionWithTitle:okTitle style:UIAlertActionStyleDefault handler:nil]];
+
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 

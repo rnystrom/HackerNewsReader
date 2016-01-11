@@ -19,6 +19,10 @@
 		2942D1541B1E8EDE00912D01 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2990B3DB1AD2E8800053DB80 /* libxml2.2.dylib */; };
 		295DB7851AF82B8D004B119F /* libHackerNewsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D4116E1ADB9B5600C491DA /* libHackerNewsKit.a */; };
 		2965ECFC1AFC87B500F6E2DE /* HNPageParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29B2D9431AFC8436005C83BA /* HNPageParser.h */; };
+		296FDE6F1C4380A100784A2E /* HNSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE6E1C4380A100784A2E /* HNSession.m */; };
+		296FDE721C4380C200784A2E /* NSHTTPCookie+HackerNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE711C4380C200784A2E /* NSHTTPCookie+HackerNews.m */; };
+		296FDE751C4380EE00784A2E /* NSHTTPCookieStorage+HackerNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE741C4380EE00784A2E /* NSHTTPCookieStorage+HackerNews.m */; };
+		296FDE761C43854B00784A2E /* HNSession.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 296FDE6D1C4380A100784A2E /* HNSession.h */; };
 		2990B39E1AD20B910053DB80 /* HackerNewsNetworker.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2990B39D1AD20B910053DB80 /* HackerNewsNetworker.h */; };
 		2990B3C21AD20BEE0053DB80 /* HNService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3C11AD20BEE0053DB80 /* HNService.m */; };
 		2990B3C51AD20BF80053DB80 /* HNFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2990B3C41AD20BF80053DB80 /* HNFeedParser.m */; };
@@ -57,6 +61,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				296FDE761C43854B00784A2E /* HNSession.h in CopyFiles */,
 				292E0CE81C3A008200072C57 /* HNQueries.h in CopyFiles */,
 				F67DF0641BFDBEE900C5DCBD /* HNLogin.h in CopyFiles */,
 				299A8D101B226D5A00E23234 /* HNStore.h in CopyFiles */,
@@ -77,6 +82,12 @@
 		292E0CE61C39F99D00072C57 /* HNQueries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNQueries.m; sourceTree = "<group>"; };
 		2942D1491B1E8E2400912D01 /* HNCommentParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentParserTests.m; sourceTree = "<group>"; };
 		2942D1521B1E8EC000912D01 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		296FDE6D1C4380A100784A2E /* HNSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNSession.h; sourceTree = "<group>"; };
+		296FDE6E1C4380A100784A2E /* HNSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNSession.m; sourceTree = "<group>"; };
+		296FDE701C4380C200784A2E /* NSHTTPCookie+HackerNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPCookie+HackerNews.h"; sourceTree = "<group>"; };
+		296FDE711C4380C200784A2E /* NSHTTPCookie+HackerNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPCookie+HackerNews.m"; sourceTree = "<group>"; };
+		296FDE731C4380EE00784A2E /* NSHTTPCookieStorage+HackerNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPCookieStorage+HackerNews.h"; sourceTree = "<group>"; };
+		296FDE741C4380EE00784A2E /* NSHTTPCookieStorage+HackerNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPCookieStorage+HackerNews.m"; sourceTree = "<group>"; };
 		2990B39A1AD20B910053DB80 /* libHackerNewsNetworker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHackerNewsNetworker.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2990B39D1AD20B910053DB80 /* HackerNewsNetworker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HackerNewsNetworker.h; sourceTree = "<group>"; };
 		2990B3A51AD20B910053DB80 /* HackerNewsNetworkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HackerNewsNetworkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,8 +178,14 @@
 				2990B3CA1AD2DE4D0053DB80 /* HNStore.m */,
 				F67DF0611BFDBEC700C5DCBD /* HNLogin.h */,
 				F67DF0621BFDBEC700C5DCBD /* HNLogin.m */,
+				296FDE731C4380EE00784A2E /* NSHTTPCookieStorage+HackerNews.h */,
+				296FDE741C4380EE00784A2E /* NSHTTPCookieStorage+HackerNews.m */,
+				296FDE701C4380C200784A2E /* NSHTTPCookie+HackerNews.h */,
+				296FDE711C4380C200784A2E /* NSHTTPCookie+HackerNews.m */,
 				292E0CE51C39F99D00072C57 /* HNQueries.h */,
 				292E0CE61C39F99D00072C57 /* HNQueries.m */,
+				296FDE6D1C4380A100784A2E /* HNSession.h */,
+				296FDE6E1C4380A100784A2E /* HNSession.m */,
 			);
 			path = HackerNewsNetworker;
 			sourceTree = "<group>";
@@ -297,10 +314,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296FDE751C4380EE00784A2E /* NSHTTPCookieStorage+HackerNews.m in Sources */,
 				2990B3CB1AD2DE4D0053DB80 /* HNStore.m in Sources */,
 				2990B3C51AD20BF80053DB80 /* HNFeedParser.m in Sources */,
 				2990B3C21AD20BEE0053DB80 /* HNService.m in Sources */,
 				2990B3D81AD2E86F0053DB80 /* TFHpple.m in Sources */,
+				296FDE721C4380C200784A2E /* NSHTTPCookie+HackerNews.m in Sources */,
+				296FDE6F1C4380A100784A2E /* HNSession.m in Sources */,
 				292E0CE71C39F99D00072C57 /* HNQueries.m in Sources */,
 				2990B3DF1AD2F0880053DB80 /* HNDataCoordinator.m in Sources */,
 				2990B3DA1AD2E86F0053DB80 /* XPathQuery.m in Sources */,

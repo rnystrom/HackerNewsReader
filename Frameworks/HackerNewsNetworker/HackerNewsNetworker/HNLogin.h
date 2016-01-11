@@ -8,13 +8,18 @@
 
 @import Foundation;
 
+@class HNSession;
+
 @interface HNLogin : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate>
 
 + (BOOL)isLoggedIn;
-- (void)loginUser:(NSString *)username
+
++ (void)loginUser:(NSString *)username
      withPassword:(NSString *)password
-       completion:(void (^)(NSString*, NSError*))completion;
+       completion:(void (^)(HNSession*, NSError*))completion;
+
 - (BOOL)logoutCurrentUser:(void (^)(NSError*))completion;
+
 + (NSString *)currentUserLogin;
 
 @end
