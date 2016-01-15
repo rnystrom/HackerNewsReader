@@ -67,6 +67,8 @@
         }
         self.title = url.absoluteString;
 
+        self.hidesBottomBarWhenPushed = YES;
+
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onTappedStatusBar:) name:kHNAppDelegateDidTapStatusBar object:nil];
     }
     return self;

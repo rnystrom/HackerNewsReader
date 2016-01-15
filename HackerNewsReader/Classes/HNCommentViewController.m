@@ -75,6 +75,8 @@ static CGFloat const kCommentCellIndentationWidth = 20.0;
         _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:q path:@"item" parser:parser cacheName:cacheName];
         [self fetch];
 
+        self.hidesBottomBarWhenPushed = YES;
+
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(splitViewDisplayModeWillChange:) name:kHNSplitViewDelegateWillChangeDisplayMode object:nil];
     }
     return self;

@@ -21,4 +21,27 @@ NSString * const kHNSplitViewDelegateWillChangeDisplayMode = @"kHNSplitViewDeleg
     return UISplitViewControllerDisplayModeAutomatic;
 }
 
+// http://stackoverflow.com/a/27965772
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)detailViewController sender:(id)sender {
+    UITabBarController *masterViewController = splitViewController.viewControllers.firstObject;
+
+    if (splitViewController.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+        [masterViewController.selectedViewController showViewController:detailViewController sender:sender];
+    } else {
+        [splitViewController setViewControllers:@[masterViewController, detailViewController]];
+    }
+
+    return YES;
+}
+
+- (UIViewController*)splitViewController:(UISplitViewController *)splitViewController separateSecondaryViewControllerFromPrimaryViewController:(UIViewController *)primaryViewController {
+    UITabBarController *masterVC = splitViewController.viewControllers.firstObject;
+
+    if ([(UINavigationController*)masterVC.selectedViewController viewControllers].count > 1) {
+        return [(UINavigationController*)masterVC.selectedViewController popViewControllerAnimated:NO];
+    } else {
+        return nil;
+    }
+}
+
 @end
