@@ -88,7 +88,7 @@
 }
 
 - (void)loginSucceededWithSession:(HNSession *)session {
-    NSLog(@"%@",session.username);
+    [self performSegueWithIdentifier:@"LoginSuccess" sender:self];
 }
 
 - (void)showErrorMessage {

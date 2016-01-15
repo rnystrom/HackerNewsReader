@@ -36,40 +36,48 @@
     return [self.class getUserLogin] != nil;
 }
 
++ (NSArray *)clearAllCookies {
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray *cookies = [storage cookies];
+    for (NSHTTPCookie *cookie in cookies) {
+        [storage deleteCookie:cookie];
+    }
+    return cookies;
+}
+
 + (void)loginUser:(NSString *)username
      withPassword:(NSString *)password
        completion:(void (^)(HNSession *, NSError *))completion {
     NSParameterAssert(completion != nil);
+
+    [self clearAllCookies];
 
     NSURLSession *urlSession = [NSURLSession
                                 sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                 delegate:nil
                                 delegateQueue:[NSOperationQueue mainQueue]];
     HNService *service = [[HNService alloc] initWithSession:urlSession path:@"login"];
-    
-    NSDictionary *parameters = @{@"acct": username, @"pw": password};
+
     id completionHandler = ^(NSData *data, NSURLResponse *response, NSError *error) {
         if (response && [response isKindOfClass:[NSHTTPURLResponse class]]) {
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-            NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:httpResponse.allHeaderFields
-                                                                      forURL:response.URL];
+            NSHTTPCookie *cookie = [[NSHTTPCookieStorage sharedHTTPCookieStorage] hackerNewsSessionCookie];
             HNSession *session = nil;
-            for (NSHTTPCookie *cookie in cookies) {
-                NSString *username = [cookie hackerNewsUsername];
-                NSString *sessionKey = [cookie hackerNewsSession];
-                if (username.length && sessionKey.length) {
-                    session = [[HNSession alloc] initWithUsername:username session:sessionKey];
-                    break;
-                }
+            NSString *username = [cookie hackerNewsUsername];
+            NSString *sessionKey = [cookie hackerNewsSession];
+            if (username.length && sessionKey.length) {
+                session = [[HNSession alloc] initWithUsername:username session:sessionKey];
             }
-
             completion(session, error);
         }
     };
+
+    NSDictionary *parameters = @{@"acct": username, @"pw": password};
     [service performRequest:@"POST" withParameters:parameters completion:completionHandler];
 }
 
-- (BOOL)logoutCurrentUser:(void (^)(NSError*))completion {
++ (BOOL)logoutCurrentUser:(void (^)(NSError*))completion {
+    [self clearAllCookies];
+
     BOOL result = NO;
     if ([self.class isLoggedIn]) {
         HNService *service = [[HNService alloc] initWithSession:nil path:@"logout"];

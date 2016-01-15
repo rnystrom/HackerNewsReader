@@ -340,6 +340,13 @@
 			name = Abstract;
 			sourceTree = "<group>";
 		};
+		296FDE7A1C438EC300784A2E /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Segues;
+			sourceTree = "<group>";
+		};
 		2990B2D71AD1FC600053DB80 = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +402,7 @@
 				2944A8A11AD6FA2400A2A251 /* Controllers */,
 				2920DDC61AED9ED600E51B23 /* Text */,
 				2944A8A31AD6FA3500A2A251 /* Views */,
+				296FDE7A1C438EC300784A2E /* Segues */,
 			);
 			name = Classes;
 			path = HackerNewsReader;

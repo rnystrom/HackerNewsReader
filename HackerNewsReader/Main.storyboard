@@ -73,7 +73,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="a4e-u4-oFu">
-                                                    <rect key="frame" x="8" y="0.0" width="304" height="43.5"/>
+                                                    <rect key="frame" x="15" y="8" width="290" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                                     <connections>
@@ -82,10 +82,10 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="a4e-u4-oFu" firstAttribute="leading" secondItem="9Zx-4m-Qdx" secondAttribute="leading" constant="8" id="DJz-d7-SYi"/>
-                                                <constraint firstItem="a4e-u4-oFu" firstAttribute="top" secondItem="9Zx-4m-Qdx" secondAttribute="top" id="dQs-qh-hZk"/>
-                                                <constraint firstAttribute="bottom" secondItem="a4e-u4-oFu" secondAttribute="bottom" id="heU-Om-HW1"/>
-                                                <constraint firstAttribute="trailing" secondItem="a4e-u4-oFu" secondAttribute="trailing" constant="8" id="le8-3y-H3I"/>
+                                                <constraint firstItem="a4e-u4-oFu" firstAttribute="leading" secondItem="9Zx-4m-Qdx" secondAttribute="leading" constant="15" id="DJz-d7-SYi"/>
+                                                <constraint firstItem="a4e-u4-oFu" firstAttribute="top" secondItem="9Zx-4m-Qdx" secondAttribute="top" constant="8" id="dQs-qh-hZk"/>
+                                                <constraint firstAttribute="bottom" secondItem="a4e-u4-oFu" secondAttribute="bottom" constant="8" id="heU-Om-HW1"/>
+                                                <constraint firstAttribute="trailing" secondItem="a4e-u4-oFu" secondAttribute="trailing" constant="15" id="le8-3y-H3I"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -97,7 +97,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FNm-SA-dr8">
-                                                    <rect key="frame" x="8" y="0.0" width="304" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     <connections>
@@ -107,8 +107,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="FNm-SA-dr8" secondAttribute="bottom" id="5hA-Nr-nFi"/>
-                                                <constraint firstAttribute="trailing" secondItem="FNm-SA-dr8" secondAttribute="trailing" constant="8" id="JPM-EM-iov"/>
-                                                <constraint firstItem="FNm-SA-dr8" firstAttribute="leading" secondItem="vzz-bs-sLa" secondAttribute="leading" constant="8" id="Pd1-ba-p5i"/>
+                                                <constraint firstAttribute="trailing" secondItem="FNm-SA-dr8" secondAttribute="trailing" constant="15" id="JPM-EM-iov"/>
+                                                <constraint firstItem="FNm-SA-dr8" firstAttribute="leading" secondItem="vzz-bs-sLa" secondAttribute="leading" constant="15" id="Pd1-ba-p5i"/>
                                                 <constraint firstItem="FNm-SA-dr8" firstAttribute="top" secondItem="vzz-bs-sLa" secondAttribute="top" id="xG0-kU-tj9"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -151,7 +151,7 @@
                         <outlet property="loginCell" destination="x9m-eK-UC5" id="Nm4-V7-mhX"/>
                         <outlet property="passwordTextField" destination="FNm-SA-dr8" id="ybv-QB-ioR"/>
                         <outlet property="usernameTextField" destination="a4e-u4-oFu" id="gq5-fr-j0v"/>
-                        <segue destination="iG3-Cg-c0F" kind="show" id="J1n-uL-dun"/>
+                        <segue destination="iG3-Cg-c0F" kind="show" identifier="LoginSuccess" id="J1n-uL-dun"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4XY-GF-tka" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -232,7 +232,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeF-QH-blU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1322" y="143"/>
+            <point key="canvasLocation" x="1327" y="143"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RGc-lp-WdJ">
