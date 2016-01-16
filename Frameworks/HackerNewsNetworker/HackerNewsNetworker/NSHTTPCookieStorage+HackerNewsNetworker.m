@@ -1,14 +1,14 @@
 //
-//  NSHTTPCookieStorage+HackerNews.m
+//  NSHTTPCookieStorage+HackerNewsNetworker.m
 //  HackerNewsNetworker
 //
 //  Created by Ryan Nystrom on 1/10/16.
 //  Copyright © 2016 Ryan Nystrom. All rights reserved.
 //
 
-#import "NSHTTPCookieStorage+HackerNews.h"
+#import "NSHTTPCookieStorage+HackerNewsNetworker.h"
 
-@implementation NSHTTPCookieStorage (HackerNews)
+@implementation NSHTTPCookieStorage (HackerNewsNetworker)
 
 - (NSHTTPCookie *)hackerNewsSessionCookie {
     static NSString *const kHackerNewsDomain = @"news.ycombinator.com";

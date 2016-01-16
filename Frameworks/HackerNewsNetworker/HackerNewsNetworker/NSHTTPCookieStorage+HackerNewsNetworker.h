@@ -1,5 +1,5 @@
 //
-//  NSHTTPCookie+HackerNews.h
+//  NSHTTPCookieStorage+HackerNewsNetworker.h
 //  HackerNewsNetworker
 //
 //  Created by Ryan Nystrom on 1/10/16.
@@ -8,12 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSHTTPCookie (HackerNews)
+@interface NSHTTPCookieStorage (HackerNewsNetworker)
 
-- (NSArray *)hackerNewsComponents;
-
-- (NSString *)hackerNewsUsername;
-
-- (NSString *)hackerNewsSession;
+- (NSHTTPCookie *)hackerNewsSessionCookie;
 
 @end

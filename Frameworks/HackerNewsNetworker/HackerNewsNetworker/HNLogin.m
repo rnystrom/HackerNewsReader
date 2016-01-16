@@ -9,8 +9,8 @@
 #import "HNLogin.h"
 #import "HNService.h"
 #import "HNSession.h"
-#import "NSHTTPCookie+HackerNews.h"
-#import "NSHTTPCookieStorage+HackerNews.h"
+#import "NSHTTPCookie+HackerNewsNetworker.h"
+#import "NSHTTPCookieStorage+HackerNewsNetworker.h"
 
 @implementation HNLogin
 

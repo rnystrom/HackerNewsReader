@@ -3,7 +3,7 @@
     "titles": "//table[@id='hnmain']/tr[3]/td/table//td[@class='title'][not(@align)]/a",
     "details": "//table[@id='hnmain']/tr[3]/td/table//td[@class='subtext']",
     "score": "//span[@class='score']",
-    "comment_node": "//a[2]"
+    "comment_node": "(//a)[last()]"
   },
   "comments": {
     "comments": "//table[@id='hnmain']/tr[3]/td/table[2]/tr",
