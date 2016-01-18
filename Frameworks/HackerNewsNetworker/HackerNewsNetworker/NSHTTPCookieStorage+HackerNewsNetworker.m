@@ -8,6 +8,8 @@
 
 #import "NSHTTPCookieStorage+HackerNewsNetworker.h"
 
+#import <HackerNewsKit/HNUser.h>
+
 #import "HNSession.h"
 #import "NSHTTPCookie+HackerNewsNetworker.h"
 
@@ -30,7 +32,8 @@
     NSString *username = [cookie hackerNewsUsername];
     NSString *sessionKey = [cookie hackerNewsSession];
     if (username.length && sessionKey.length) {
-        session = [[HNSession alloc] initWithUsername:username session:sessionKey];
+        HNUser *user = [[HNUser alloc] initWithUsername:username];
+        session = [[HNSession alloc] initWithUser:user session:sessionKey];
     }
     return session;
 }

@@ -8,27 +8,29 @@
 
 #import "HNSession.h"
 
-static NSString *const kHNSessionUsernameKey = @"kHNSessionUsernameKey";
+static NSString *const kHNSessionUserKey = @"kHNSessionUserKey";
 static NSString *const kHNSessionSessionKey = @"kHNSessionSessionKey";
 
 @implementation HNSession
 
-- (instancetype)initWithUsername:(NSString *)username session:(NSString *)session {
+- (instancetype)initWithUser:(HNUser *)user session:(NSString *)session {
+    NSParameterAssert(user != nil);
+    NSParameterAssert(session != nil);
     if (self = [super init]) {
-        _username = [username copy];
+        _user = user;
         _session = [session copy];
     }
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    NSString *username = [aDecoder decodeObjectForKey:kHNSessionSessionKey];
-    NSString *session = [aDecoder decodeObjectForKey:kHNSessionUsernameKey];
-    return [self initWithUsername:username session:session];
+    HNUser *user = [aDecoder decodeObjectForKey:kHNSessionUserKey];
+    NSString *session = [aDecoder decodeObjectForKey:kHNSessionSessionKey];
+    return [self initWithUser:user session:session];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_username forKey:kHNSessionUsernameKey];
+    [aCoder encodeObject:_user forKey:kHNSessionUserKey];
     [aCoder encodeObject:_session forKey:kHNSessionSessionKey];
 }
 

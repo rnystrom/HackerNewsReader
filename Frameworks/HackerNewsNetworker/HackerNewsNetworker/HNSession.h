@@ -8,13 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+@class HNUser;
+
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNSession : NSObject <NSCoding>
 
-@property (nonatomic, strong, readonly) NSString *username;
+@property (nonatomic, strong, readonly) HNUser *user;
 @property (nonatomic, strong, readonly) NSString *session;
 
-- (instancetype)initWithUsername:(NSString *)username session:(NSString *)session NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithUser:(HNUser *)user session:(NSString *)session NS_DESIGNATED_INITIALIZER;
 
 - (id)init NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END
