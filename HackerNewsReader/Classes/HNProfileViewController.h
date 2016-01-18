@@ -8,6 +8,12 @@
 
 @import UIKit;
 
+@class HNUser;
+@class HNSession;
+
 @interface HNProfileViewController : UITableViewController
+
+@property (nonatomic, strong) HNUser *user;
+@property (nonatomic, assign) BOOL displayAsSessionUser;
 
 @end

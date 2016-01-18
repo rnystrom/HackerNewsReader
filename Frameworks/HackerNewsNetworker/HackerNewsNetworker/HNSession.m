@@ -8,10 +8,16 @@
 
 #import "HNSession.h"
 
+#import "NSHTTPCookieStorage+HackerNewsNetworker.h"
+
 static NSString *const kHNSessionUserKey = @"kHNSessionUserKey";
 static NSString *const kHNSessionSessionKey = @"kHNSessionSessionKey";
 
 @implementation HNSession
+
++ (HNSession *)activeSession {
+    return [[NSHTTPCookieStorage sharedHTTPCookieStorage] hn_activeSession];
+}
 
 - (instancetype)initWithUser:(HNUser *)user session:(NSString *)session {
     NSParameterAssert(user != nil);

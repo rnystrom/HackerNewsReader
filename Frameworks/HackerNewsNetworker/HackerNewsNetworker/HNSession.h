@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HNSession : NSObject <NSCoding>
 
++ (HNSession *)activeSession;
+
 @property (nonatomic, strong, readonly) HNUser *user;
 @property (nonatomic, strong, readonly) NSString *session;
 

@@ -8,11 +8,15 @@
 
 #import "HNProfileViewController.h"
 
+#import <HackerNewsKit/HNUser.h>
+
+#import <HackerNewsNetworker/HNSession.h>
+
 @implementation HNProfileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setHidesBackButton:YES];
+    self.title = self.user.username;
 }
 
 @end

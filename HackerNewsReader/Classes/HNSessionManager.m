@@ -30,6 +30,8 @@
 
 - (void)transitionToLoggedInWithSession:(HNSession *)session animated:(BOOL)animated {
     HNProfileViewController *controller = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"HNProfileViewController"];
+    controller.displayAsSessionUser = YES;
+    controller.user = session.user;
     [self.navigationController setViewControllers:@[ controller ] animated:animated];
 }
 

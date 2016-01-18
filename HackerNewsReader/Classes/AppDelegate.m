@@ -12,6 +12,8 @@
 
 #import <Appirater/Appirater.h>
 
+#import <HackerNewsNetworker/HNSession.h>
+
 #import "UIToolbar+HackerNews.h"
 #import "UITabBar+HackerNews.h"
 #import "UINavigationBar+HackerNews.h"
@@ -44,7 +46,14 @@ NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar
     UITabBarController *tabBarController = rootViewController.viewControllers.firstObject;
     UINavigationController *profileNavigationController = tabBarController.viewControllers.lastObject;
     HNSessionManager *sessionManager = [[HNSessionManager alloc] initWithNavigationController:profileNavigationController];
-    [sessionManager transitionToLoggedOutAnimated:NO];
+
+    HNSession *session = [HNSession activeSession];
+    const BOOL animated = NO;
+    if (session != nil) {
+        [sessionManager transitionToLoggedInWithSession:session animated:animated];
+    } else {
+        [sessionManager transitionToLoggedOutAnimated:animated];
+    }
 
     return YES;
 }
