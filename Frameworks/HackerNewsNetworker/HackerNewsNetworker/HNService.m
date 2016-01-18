@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong, readonly) NSURLSession *session;
 @property (nonatomic, strong, readonly) NSString *path;
+
 @property (atomic, assign) NSUInteger tasksInFlight;
 
 @end
@@ -22,15 +23,12 @@
 @implementation HNService
 
 - (instancetype)initWithSession:(NSURLSession *)session path:(NSString *)path {
+    NSParameterAssert(path != nil);
     if (self = [super init]) {
         _session = session ?: [NSURLSession sharedSession];
         _path = [path copy];
     }
     return self;
-}
-
-- (instancetype)init {
-    return [self initWithSession:nil path:nil];
 }
 
 
@@ -41,8 +39,6 @@
 }
 
 - (void)fetchParameters:(NSDictionary *)parameters completion:(void (^)(id, NSError*))completion {
-    NSAssert(completion != nil, @"Why are you executing a network request without doing anything with the data?");
-    
     [self performRequest:@"GET" withParameters:parameters completion:^(NSData *data, NSURLResponse *response, NSError *error) {
         completion(data, error);
     }];
@@ -51,16 +47,15 @@
 - (void)performRequest:(NSString *)method
         withParameters:(NSDictionary *)parameters
             completion:(void (^)(NSData*, NSURLResponse*, NSError*))completion {
+    NSParameterAssert(method != nil);
     
     NSURLComponents *components = [[NSURLComponents alloc] initWithString:@"https://news.ycombinator.com"];
-    
-    if (self.path) {
-        NSString *path = self.path;
-        if ([path characterAtIndex:0] != '/') {
-            path = [@"/" stringByAppendingString:path];
-        }
-        [components setPath:path];
+
+    NSString *path = self.path;
+    if ([path characterAtIndex:0] != '/') {
+        path = [@"/" stringByAppendingString:path];
     }
+    [components setPath:path];
     
     NSMutableString *componentsString = [@"" mutableCopy];
     [parameters enumerateKeysAndObjectsUsingBlock:^(NSString *key, id obj, BOOL *stop) {
@@ -86,11 +81,9 @@
     }
     
     NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-#ifdef DEBUG
         if (error) {
             NSLog(@"%@",error);
         }
-#endif
         
         self.tasksInFlight--;
         
@@ -101,10 +94,6 @@
     self.tasksInFlight++;
     
     [task resume];
-}
-
-- (void)fetchKey:(NSUInteger)key completion:(void (^)(id <NSCoding>, NSError*))completion {
-    // subclass override
 }
 
 @end

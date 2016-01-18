@@ -8,16 +8,22 @@
 
 @import Foundation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNService : NSObject
 
-- (instancetype)initWithSession:(NSURLSession *)session path:(NSString *)path NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithSession:(nullable NSURLSession *)session path:(NSString *)path NS_DESIGNATED_INITIALIZER;
 
-- (void)fetchParameters:(NSDictionary *)parameters completion:(void (^)(id, NSError*))completion;
+- (void)fetchParameters:(nullable NSDictionary *)parameters completion:(nullable void (^)(id, NSError*))completion;
 
 - (void)performRequest:(NSString *)method
         withParameters:(NSDictionary *)parameters
-            completion:(void (^)(NSData*, NSURLResponse*, NSError*))completion;
+            completion:(nullable void (^)(NSData*, NSURLResponse*, NSError*))completion;
 
 - (BOOL)isFetching;
 
+- (id)init NS_UNAVAILABLE;
+
 @end
+
+NS_ASSUME_NONNULL_END
