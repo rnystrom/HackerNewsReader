@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithUsername:(NSString *)username NS_DESIGNATED_INITIALIZER;
 
+- (NSComparisonResult)compare:(HNUser *)object;
+
 - (id)init NS_UNAVAILABLE;
 
 @end

@@ -55,6 +55,9 @@ static NSString * const kHNPageTextComponents = @"kHNPageTextComponents";
 #pragma mark - Comparison
 
 - (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
     if ([object isKindOfClass:HNPage.class]) {
         HNPage *page = object;
         return [page.post isEqual:self.post] && [page.comments isEqualToArray:self.comments] && [page.textComponents isEqualToArray:self.textComponents];
@@ -64,6 +67,10 @@ static NSString * const kHNPageTextComponents = @"kHNPageTextComponents";
 
 - (NSUInteger)hash {
     return [self.post hash] ^ [self.comments hash];
+}
+
+- (NSComparisonResult)compare:(HNPage *)object {
+    return [self.post compare:object];
 }
 
 @end

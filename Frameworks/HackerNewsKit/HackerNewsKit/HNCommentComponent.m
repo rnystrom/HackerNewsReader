@@ -54,6 +54,9 @@ static NSString * const kHNCommentComponentType = @"kHNCommentComponentType";
 #pragma mark - Comparison
 
 - (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
     if ([object isKindOfClass:HNCommentComponent.class]) {
         HNCommentComponent *comp = (HNCommentComponent *)object;
         return comp.type == self.type && [comp.text isEqualToString:self.text];

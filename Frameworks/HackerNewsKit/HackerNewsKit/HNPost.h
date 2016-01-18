@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
                            pk:(NSUInteger)pk
                          rank:(NSUInteger)rank NS_DESIGNATED_INITIALIZER;
 
+- (NSComparisonResult)compare:(HNPost *)object;
+
 - (id)init NS_UNAVAILABLE;
 
 @end

@@ -68,6 +68,9 @@ static NSString * const kHNFeedCreatedDate = @"kHNFeedCreatedDate";
 #pragma mark - Comparison
 
 - (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
     if ([object isKindOfClass:HNFeed.class]) {
         HNFeed *comp = (HNFeed *)object;
         return [comp.items isEqual:self.items] && [comp.createdDate isEqualToDate:self.createdDate];
@@ -77,6 +80,10 @@ static NSString * const kHNFeedCreatedDate = @"kHNFeedCreatedDate";
 
 - (NSUInteger)hash {
     return [self.items hash] ^ [self.createdDate hash];
+}
+
+- (NSComparisonResult)compare:(HNFeed *)object {
+    return [self.createdDate compare:object.createdDate];
 }
 
 @end

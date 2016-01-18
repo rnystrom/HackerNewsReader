@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithItems:(nullable NSArray *)items
                   createdDate:(nullable NSDate *)createdDate NS_DESIGNATED_INITIALIZER;
 
+- (NSComparisonResult)compare:(HNFeed *)object;
+
 - (instancetype)feedByMergingFeed:(HNFeed *)feed;
 - (instancetype)feedByAppendingItems:(NSArray *)items;
 

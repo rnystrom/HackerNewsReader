@@ -46,6 +46,9 @@ static NSString * const kHNUserUsername = @"kHNUserUsername";
 #pragma mark - Comparison
 
 - (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
     if ([object isKindOfClass:HNUser.class]) {
         return [[((HNUser *)object) username] isEqualToString:self.username];
     }

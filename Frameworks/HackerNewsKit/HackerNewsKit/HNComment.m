@@ -72,6 +72,9 @@ static NSString * const kHNCommentAgeText = @"kHNCommentAgeText";
 #pragma mark - Comparison
 
 - (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
     if ([object isKindOfClass:HNComment.class]) {
         HNComment *comp = (HNComment *)object;
         return comp.pk == self.pk;
@@ -81,6 +84,18 @@ static NSString * const kHNCommentAgeText = @"kHNCommentAgeText";
 
 - (NSUInteger)hash {
     return self.pk;
+}
+
+- (NSComparisonResult)compare:(HNComment *)object {
+    const NSUInteger pk = self.pk;
+    const NSUInteger objPk = object.pk;
+    if (pk > objPk) {
+        return NSOrderedDescending;
+    } else if (pk < objPk) {
+        return NSOrderedAscending;
+    } else {
+        return NSOrderedSame;
+    }
 }
 
 @end

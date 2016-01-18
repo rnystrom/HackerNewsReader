@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
                     comments:(nullable NSArray *)comments
               textComponents:(nullable NSArray *)textComponents NS_DESIGNATED_INITIALIZER;
 
+- (NSComparisonResult)compare:(HNPage *)object;
+
 - (id)init NS_UNAVAILABLE;
 
 @end

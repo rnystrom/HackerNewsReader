@@ -71,6 +71,9 @@ NSUInteger const kHNPostPKIsLinkOnly = 0;
 #pragma mark - Comparison
 
 - (BOOL)isEqual:(id)object {
+    if (self == object) {
+        return YES;
+    }
     if ([object isKindOfClass:HNPost.class]) {
         HNPost *comp = (HNPost *)object;
         return comp.pk == self.pk;
@@ -79,9 +82,11 @@ NSUInteger const kHNPostPKIsLinkOnly = 0;
 }
 
 - (NSComparisonResult)compare:(HNPost *)object {
-    if (self.rank > object.rank) {
+    const NSUInteger rank = self.rank;
+    const NSUInteger objRank = object.rank;
+    if (rank > objRank) {
         return NSOrderedDescending;
-    } else if (self.rank < object.rank) {
+    } else if (rank < objRank) {
         return NSOrderedAscending;
     } else {
         return NSOrderedSame;
