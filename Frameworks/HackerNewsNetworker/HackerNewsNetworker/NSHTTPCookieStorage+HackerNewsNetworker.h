@@ -12,6 +12,8 @@
 
 @interface NSHTTPCookieStorage (HackerNewsNetworker)
 
-- (HNSession *)activeSession;
+- (HNSession *)hn_activeSession;
+
+- (NSArray *)hn_clearAllCookies;
 
 @end

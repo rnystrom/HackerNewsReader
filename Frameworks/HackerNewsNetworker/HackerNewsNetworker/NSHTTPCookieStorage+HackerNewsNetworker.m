@@ -15,7 +15,7 @@
 
 @implementation NSHTTPCookieStorage (HackerNewsNetworker)
 
-- (NSHTTPCookie *)hackerNewsSessionCookie {
+- (NSHTTPCookie *)hn_sessionCookie {
     static NSString *const kHackerNewsDomain = @"news.ycombinator.com";
     static NSString *const kHackerNewsUserName = @"user";
     for (NSHTTPCookie *cookie in self.cookies) {
@@ -26,8 +26,8 @@
     return nil;
 }
 
-- (HNSession *)activeSession {
-    NSHTTPCookie *cookie = [self hackerNewsSessionCookie];
+- (HNSession *)hn_activeSession {
+    NSHTTPCookie *cookie = [self hn_sessionCookie];
     HNSession *session = nil;
     NSString *username = [cookie hackerNewsUsername];
     NSString *sessionKey = [cookie hackerNewsSession];
@@ -36,6 +36,14 @@
         session = [[HNSession alloc] initWithUser:user session:sessionKey];
     }
     return session;
+}
+
+- (NSArray *)hn_clearAllCookies {
+    NSArray *cookies = self.cookies;
+    for (NSHTTPCookie *cookie in cookies) {
+        [self deleteCookie:cookie];
+    }
+    return cookies;
 }
 
 @end

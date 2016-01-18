@@ -14,43 +14,15 @@
 
 @implementation HNLogin
 
-+ (NSHTTPCookie *)getUserLogin {
-    NSURL *url = [NSURL URLWithString:@"https://news.ycombinator.com"];
-    NSArray *cookiesArray = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
-    NSHTTPCookie *userCookie = nil;
-    for (NSHTTPCookie *cookie in cookiesArray) {
-        if ([cookie.name isEqual: @"user"]) {
-            userCookie = cookie;
-            break;
-        }
-    }
-    return userCookie;
-}
-
-+ (NSString *)currentUserLogin {
-    NSHTTPCookie *userCookie = [self.class getUserLogin];
-    return [userCookie name];
-}
-
-+ (BOOL)isLoggedIn {
-    return [self.class getUserLogin] != nil;
-}
-
-+ (NSArray *)clearAllCookies {
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSArray *cookies = [storage cookies];
-    for (NSHTTPCookie *cookie in cookies) {
-        [storage deleteCookie:cookie];
-    }
-    return cookies;
-}
-
 + (void)loginUser:(NSString *)username
      withPassword:(NSString *)password
        completion:(void (^)(HNSession *, NSError *))completion {
     NSParameterAssert(completion != nil);
+    NSParameterAssert(username.length > 0);
+    NSParameterAssert(password.length > 0);
 
-    [self clearAllCookies];
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    [cookieStorage hn_clearAllCookies];
 
     NSURLSession *urlSession = [NSURLSession
                                 sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
@@ -59,7 +31,7 @@
     HNService *service = [[HNService alloc] initWithSession:urlSession path:@"login"];
 
     id completionHandler = ^(NSData *data, NSURLResponse *response, NSError *error) {
-        HNSession *session = [[NSHTTPCookieStorage sharedHTTPCookieStorage] activeSession];
+        HNSession *session = [cookieStorage hn_activeSession];
         completion(session, error);
     };
 
@@ -68,12 +40,14 @@
 }
 
 + (BOOL)logoutCurrentUser:(void (^)(NSError*))completion {
-    [self clearAllCookies];
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    HNSession *session = [cookieStorage hn_activeSession];
 
     BOOL result = NO;
-    if ([self.class isLoggedIn]) {
+    if (session != nil) {
+        [cookieStorage hn_clearAllCookies];
+
         HNService *service = [[HNService alloc] initWithSession:nil path:@"logout"];
-        
         [service fetchParameters:nil completion:^(id data, NSError *error) {
             if (completion) {
                 completion(error);

@@ -10,9 +10,9 @@
 
 @class HNSession;
 
-@interface HNLogin : NSObject
+NS_ASSUME_NONNULL_BEGIN
 
-+ (BOOL)isLoggedIn;
+@interface HNLogin : NSObject
 
 + (void)loginUser:(NSString *)username
      withPassword:(NSString *)password
@@ -20,6 +20,6 @@
 
 + (BOOL)logoutCurrentUser:(void (^)(NSError*))completion;
 
-+ (NSString *)currentUserLogin;
-
 @end
+
+NS_ASSUME_NONNULL_END
