@@ -12,6 +12,17 @@
 
 static HNQueries *_sharedQueries = nil;
 
++ (NSURLSession *)queryURLSession {
+    static dispatch_once_t onceToken;
+    static NSURLSession *session = nil;
+    dispatch_once(&onceToken, ^{
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+        session = [NSURLSession sessionWithConfiguration:configuration];
+    });
+    return session;
+}
+
 + (NSString *)cachePath {
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     return [docPath stringByAppendingPathComponent:@"cached-queries.json"];
@@ -46,7 +57,7 @@ static HNQueries *_sharedQueries = nil;
 
 + (void)loadRemoteQueries {
     NSURL *URL = [NSURL URLWithString:@"http://whoisryannystrom.com/hackernews.json"];
-    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSession *session = [self queryURLSession];
     NSURLSessionDataTask *task = [session dataTaskWithURL:URL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             NSLog(@"%@",error.localizedDescription);
