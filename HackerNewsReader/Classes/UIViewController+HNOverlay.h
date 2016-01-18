@@ -7,7 +7,7 @@
 //  Copyright © 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface UIViewController (HNOverlay)
 

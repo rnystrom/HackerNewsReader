@@ -6,7 +6,7 @@
 //  Copyright © 2016 Ryan Nystrom. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface HNTabBarController : UITabBarController
 
