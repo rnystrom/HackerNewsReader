@@ -10,7 +10,11 @@
 
 #import "HNParseProtocol.h"
 
-@class TFHpple, TFHppleElement, HNPost;
+@class TFHpple;
+@class TFHppleElement;
+@class HNPost;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface HNFeedParser : NSObject <HNParseProtocol>
 
@@ -20,3 +24,5 @@
                       queries:(HNQueries *)queries;
 
 @end
+
+NS_ASSUME_NONNULL_END

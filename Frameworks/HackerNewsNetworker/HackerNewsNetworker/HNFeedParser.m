@@ -43,6 +43,10 @@
 }
 
 - (HNPost *)postFromTitleNode:(TFHppleElement *)titleNode detailNode:(TFHppleElement *)detailNode rank:(NSUInteger)rank queries:(HNQueries *)queries {
+    NSParameterAssert(titleNode != nil);
+    NSParameterAssert(detailNode != nil);
+    NSParameterAssert(queries != nil);
+
     NSString *title = titleNode.content;
     NSString *link = titleNode.attributes[@"href"];
 
