@@ -17,15 +17,19 @@ typedef NS_ENUM(NSUInteger, HNCommentType) {
     HNCommentNewline
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNCommentComponent : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, strong, readonly) NSString *text;
 @property (nonatomic, assign, readonly) HNCommentType type;
 
-- (instancetype)initWithText:(NSString *)text type:(HNCommentType)type NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithText:(nullable NSString *)text type:(HNCommentType)type NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)newlineComponent;
 
 - (id)init NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END

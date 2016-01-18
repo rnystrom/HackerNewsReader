@@ -6,7 +6,7 @@
 //  Copyright © 2016 Ryan Nystrom. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface HNQueries : NSObject
 

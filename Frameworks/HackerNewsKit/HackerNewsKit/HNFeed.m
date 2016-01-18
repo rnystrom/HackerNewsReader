@@ -17,7 +17,7 @@ static NSString * const kHNFeedCreatedDate = @"kHNFeedCreatedDate";
 
 - (instancetype)initWithItems:(NSArray *)items createdDate:(NSDate *)createdDate {
     if (self = [super init]) {
-        _items = [[NSArray alloc] initWithArray:items copyItems:YES] ?: @[];
+        _items = [items copy] ?: @[];
         _createdDate = createdDate ?: [NSDate date];
     }
     return self;

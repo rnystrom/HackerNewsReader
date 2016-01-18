@@ -8,12 +8,16 @@
 
 @import Foundation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNUser : NSObject <NSCoding, NSCopying>
 
-@property (nonatomic, copy, readonly) NSString *username;
+@property (nonatomic, strong, readonly) NSString *username;
 
 - (instancetype)initWithUsername:(NSString *)username NS_DESIGNATED_INITIALIZER;
 
 - (id)init NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END

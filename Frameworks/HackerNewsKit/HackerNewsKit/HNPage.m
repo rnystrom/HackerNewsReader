@@ -15,10 +15,11 @@ static NSString * const kHNPageTextComponents = @"kHNPageTextComponents";
 @implementation HNPage
 
 - (instancetype)initWithPost:(HNPost *)post comments:(NSArray *)comments textComponents:(NSArray *)textComponents {
+    NSParameterAssert(post != nil);
     if (self = [super init]) {
         _post = [post copy];
-        _comments = [comments copy];
-        _textComponents = [textComponents copy];
+        _comments = [comments copy] ?: @[];
+        _textComponents = [textComponents copy] ?: @[];
     }
     return self;
 }

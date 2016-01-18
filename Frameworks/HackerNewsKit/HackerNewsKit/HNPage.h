@@ -12,14 +12,20 @@
 #import "HNCommentComponent.h"
 #import "HNPost.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNPage : NSObject <NSCoding, NSCopying>
 
-@property (nonatomic, copy, readonly) HNPost *post;
-@property (nonatomic, copy, readonly) NSArray *comments;
-@property (nonatomic, copy, readonly) NSArray *textComponents;
+@property (nonatomic, strong, readonly) HNPost *post;
+@property (nonatomic, strong, readonly) NSArray *comments;
+@property (nonatomic, strong, readonly) NSArray *textComponents;
 
-- (instancetype)initWithPost:(HNPost *)post comments:(NSArray *)comments textComponents:(NSArray *)textComponents NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPost:(HNPost *)post
+                    comments:(nullable NSArray *)comments
+              textComponents:(nullable NSArray *)textComponents NS_DESIGNATED_INITIALIZER;
 
 - (id)init NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END

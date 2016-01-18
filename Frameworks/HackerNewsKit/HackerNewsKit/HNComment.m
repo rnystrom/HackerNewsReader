@@ -21,10 +21,10 @@ static NSString * const kHNCommentAgeText = @"kHNCommentAgeText";
                       indent:(NSUInteger)indent
                           pk:(NSUInteger)pk
                      ageText:(NSString *)ageText {
+    NSParameterAssert(user != nil);
     if (self = [super init]) {
-        NSAssert(user != nil, @"Cannot initialize a comment without a user");
         _user = [user copy];
-        _components = [components copy];
+        _components = [components copy] ?: @[];
         _indent = indent;
         _pk = pk;
         _ageText = [ageText copy];
@@ -33,7 +33,8 @@ static NSString * const kHNCommentAgeText = @"kHNCommentAgeText";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p %@: %@ - %@, indent: %zi, age: %@, pk: %zi>", self, NSStringFromClass(self.class), self.user, self.components, self.indent, self.ageText, self.pk];
+    return [NSString stringWithFormat:@"<%p %@: %@ - %@, indent: %zi, age: %@, pk: %zi>",
+            self, NSStringFromClass(self.class), self.user, self.components, self.indent, self.ageText, self.pk];
 }
 
 

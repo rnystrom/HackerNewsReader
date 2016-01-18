@@ -10,19 +10,21 @@
 
 extern NSUInteger const kHNPostPKIsLinkOnly;
 
-@interface HNPost : NSObject <NSCoding, NSCopying>
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, copy, readonly) NSString *title;
-@property (nonatomic, copy, readonly) NSString *ageText;
+@interface HNPost : NSObject <NSCopying, NSCoding>
+
+@property (nonatomic, strong, readonly) NSString *title;
+@property (nonatomic, strong, readonly) NSString *ageText;
 @property (nonatomic, strong, readonly) NSURL *URL;
 @property (nonatomic, assign, readonly) NSUInteger score;
 @property (nonatomic, assign, readonly) NSUInteger commentCount;
 @property (nonatomic, assign, readonly) NSUInteger pk;
 @property (nonatomic, assign, readonly) NSUInteger rank;
 
-- (instancetype)initWithTitle:(NSString *)title
-                      ageText:(NSString *)ageText
-                          url:(NSURL *)url
+- (instancetype)initWithTitle:(nullable NSString *)title
+                      ageText:(nullable NSString *)ageText
+                          url:(nullable NSURL *)url
                         score:(NSUInteger)score
                  commentCount:(NSUInteger)commentCount
                            pk:(NSUInteger)pk
@@ -31,3 +33,5 @@ extern NSUInteger const kHNPostPKIsLinkOnly;
 - (id)init NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END

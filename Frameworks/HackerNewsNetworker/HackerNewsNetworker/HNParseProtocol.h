@@ -12,6 +12,6 @@
 
 @protocol HNParseProtocol <NSObject>
 
-- (id <NSCopying, NSCoding>)parseDataFromResponse:(NSData *)data queries:(HNQueries *)queries;
+- (id <NSCoding>)parseDataFromResponse:(NSData *)data queries:(HNQueries *)queries;
 
 @end

@@ -16,7 +16,7 @@
 
 @implementation HNFeedParser
 
-- (id <NSCopying, NSCoding>)parseDataFromResponse:(NSData *)data queries:(HNQueries *)queries {
+- (id <NSCoding>)parseDataFromResponse:(NSData *)data queries:(HNQueries *)queries {
     if (!data.length) {
         return nil;
     }

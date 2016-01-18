@@ -29,7 +29,7 @@ NSUInteger const kHNPostPKIsLinkOnly = 0;
                          rank:(NSUInteger)rank {
     if (self = [super init]) {
         _title = [title copy] ?: @"";
-        _URL = url ?: [[NSURL alloc] init];
+        _URL = url ?: [NSURL new];
         _score = score;
         _commentCount = commentCount;
         _pk = pk;
