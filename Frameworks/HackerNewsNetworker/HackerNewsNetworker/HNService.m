@@ -9,7 +9,7 @@
 #import "HNService.h"
 
 #import "HNFeedParser.h"
-#import "HNStore.h"
+#import "HNDiskStore.h"
 
 @interface HNService ()
 

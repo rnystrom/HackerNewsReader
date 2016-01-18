@@ -9,14 +9,14 @@
 #import "HNDataCoordinator.h"
 
 #import "HNFeedParser.h"
-#import "HNStore.h"
+#import "HNDiskStore.h"
 #import "HNService.h"
 
 static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordinatorDidSaveNotification";
 
 @interface HNDataCoordinator ()
 
-@property (nonatomic, strong, readonly) HNStore *store;
+@property (nonatomic, strong, readonly) HNDiskStore *store;
 @property (atomic, assign, getter=hasLoadedOnce) BOOL loadedOnce;
 
 @end
@@ -33,7 +33,7 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
                           parser:(id <HNParseProtocol>)parser
                        cacheName:(NSString *)cacheName {
     if (self = [super init]) {
-        _store = [[HNStore alloc] initWithCacheName:cacheName];
+        _store = [[HNDiskStore alloc] initWithCacheName:cacheName];
         _service = [[HNService alloc] initWithSession:[NSURLSession sharedSession] path:path];
         _parser = parser;
         _delegate = delegate;

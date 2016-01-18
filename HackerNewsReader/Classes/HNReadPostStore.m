@@ -8,11 +8,11 @@
 
 #import "HNReadPostStore.h"
 
-#import <HackerNewsNetworker/HNStore.h>
+#import <HackerNewsNetworker/HNDiskStore.h>
 
 @interface HNReadPostStore ()
 
-@property (nonatomic, strong) HNStore *store;
+@property (nonatomic, strong) HNDiskStore *store;
 @property (nonatomic, strong, readonly) NSString *storePath;
 @property (nonatomic, strong) NSMutableIndexSet *indexSet;
 
@@ -22,7 +22,7 @@
 
 - (instancetype)initWithStoreName:(NSString *)storeName {
     if (self = [super init]) {
-        _store = [[HNStore alloc] initWithCacheName:storeName];
+        _store = [[HNDiskStore alloc] initWithCacheName:storeName];
         _indexSet = [(NSIndexSet *)[_store fetchFromDisk] mutableCopy] ?: [[NSMutableIndexSet alloc] init];
     }
     return self;

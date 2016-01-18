@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Ryan Nystrom. All rights reserved.
 //
 
-#import "HNStore.h"
+#import "HNDiskStore.h"
 
-@implementation HNStore
+@implementation HNDiskStore
 
 + (NSString *)archivePath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

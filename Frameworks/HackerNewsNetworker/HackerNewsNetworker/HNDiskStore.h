@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HNStore : NSObject
+@interface HNDiskStore : NSObject
 
 @property (nonatomic, strong, readonly) NSString *cachePath;
 
