@@ -18,13 +18,14 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
 
 @property (nonatomic, strong, readonly) HNDiskStore *store;
 @property (atomic, assign, getter=hasLoadedOnce) BOOL loadedOnce;
+@property (nonatomic, strong, readonly) NSNotificationCenter *notificationCenter;
 
 @end
 
 @implementation HNDataCoordinator
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_notificationCenter removeObserver:self];
 }
 
 - (instancetype)initWithDelegate:(id <HNDataCoordinatorDelegate>)delegate
@@ -32,6 +33,11 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
                             path:(NSString *)path
                           parser:(id <HNParseProtocol>)parser
                        cacheName:(NSString *)cacheName {
+    NSParameterAssert(delegate != nil);
+    NSParameterAssert(delegateQueue != nil);
+    NSParameterAssert(path != nil);
+    NSParameterAssert(parser != nil);
+    NSParameterAssert(cacheName != nil);
     if (self = [super init]) {
         _store = [[HNDiskStore alloc] initWithCacheName:cacheName];
         _service = [[HNService alloc] initWithSession:[NSURLSession sharedSession] path:path];
@@ -39,14 +45,10 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
         _delegate = delegate;
         _delegateQueue = delegateQueue ?: dispatch_get_main_queue();
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onStoreUpdated:) name:[self notificationName] object:nil];
+        _notificationCenter = [NSNotificationCenter defaultCenter];
+        [_notificationCenter addObserver:self selector:@selector(onStoreUpdated:) name:[self notificationName] object:nil];
     }
     return self;
-}
-
-- (instancetype)init {
-    NSAssert(NO, @"Cannot initialize a data coordinator without a cache");
-    return [self initWithDelegate:nil delegateQueue:nil path:nil parser:nil cacheName:nil];
 }
 
 - (NSString *)notificationName {
@@ -83,7 +85,7 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
                 HNQueries *queries = [HNQueries sharedQueries];
                 id object = [self.parser parseDataFromResponse:data queries:queries];
                 if (object && [self.store archiveToDisk:object]) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:[self notificationName] object:self];
+                    [_notificationCenter postNotificationName:[self notificationName] object:self];
                     dispatch_async(self.delegateQueue, ^{
                         [self.delegate dataCoordinator:self didUpdateObject:object];
                     });

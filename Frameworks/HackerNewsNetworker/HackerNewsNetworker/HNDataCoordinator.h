@@ -13,6 +13,8 @@
 @class HNDataCoordinator;
 @class HNService;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol HNDataCoordinatorDelegate <NSObject>
 
 - (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didUpdateObject:(id)object;
@@ -31,12 +33,16 @@
                    delegateQueue:(dispatch_queue_t)delegateQueue
                             path:(NSString *)path
                           parser:(id <HNParseProtocol>)parser
-                     cacheName:(NSString *)cacheName NS_DESIGNATED_INITIALIZER;
+                       cacheName:(NSString *)cacheName NS_DESIGNATED_INITIALIZER;
 
 - (void)fetch;
-- (void)fetchWithParams:(NSDictionary *)params;
+- (void)fetchWithParams:(nullable NSDictionary *)params;
 - (BOOL)isFetching;
 - (BOOL)hasLoadedOnce;
 - (NSString *)cacheName;
 
+- (id)init NS_UNAVAILABLE;
+
 @end
+
+NS_ASSUME_NONNULL_END
