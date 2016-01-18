@@ -10,8 +10,12 @@
 
 #import "HNQueries.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol HNParseProtocol <NSObject>
 
 - (id <NSCoding>)parseDataFromResponse:(NSData *)data queries:(HNQueries *)queries;
 
 @end
+
+NS_ASSUME_NONNULL_END

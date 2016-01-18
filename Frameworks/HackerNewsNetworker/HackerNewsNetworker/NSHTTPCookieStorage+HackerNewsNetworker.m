@@ -29,8 +29,8 @@
 - (HNSession *)hn_activeSession {
     NSHTTPCookie *cookie = [self hn_sessionCookie];
     HNSession *session = nil;
-    NSString *username = [cookie hackerNewsUsername];
-    NSString *sessionKey = [cookie hackerNewsSession];
+    NSString *username = [cookie hn_username];
+    NSString *sessionKey = [cookie hn_session];
     if (username.length && sessionKey.length) {
         HNUser *user = [[HNUser alloc] initWithUsername:username];
         session = [[HNSession alloc] initWithUser:user session:sessionKey];

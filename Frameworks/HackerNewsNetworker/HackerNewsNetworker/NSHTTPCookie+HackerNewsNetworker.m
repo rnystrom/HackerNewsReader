@@ -10,16 +10,16 @@
 
 @implementation NSHTTPCookie (HackerNewsNetworker)
 
-- (NSArray *)hackerNewsComponents {
+- (NSArray *)hn_components {
     return [self.value componentsSeparatedByString:@"&"];
 }
 
-- (NSString *)hackerNewsUsername {
-    return [[self hackerNewsComponents] firstObject];
+- (NSString *)hn_username {
+    return [[self hn_components] firstObject];
 }
 
-- (NSString *)hackerNewsSession {
-    return [[self hackerNewsComponents] lastObject];
+- (NSString *)hn_session {
+    return [[self hn_components] lastObject];
 }
 
 @end

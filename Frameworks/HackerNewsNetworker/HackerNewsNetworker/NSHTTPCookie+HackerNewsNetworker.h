@@ -8,12 +8,16 @@
 
 @import Foundation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSHTTPCookie (HackerNewsNetworker)
 
-- (NSArray *)hackerNewsComponents;
+- (nullable NSArray *)hn_components;
 
-- (NSString *)hackerNewsUsername;
+- (nullable NSString *)hn_username;
 
-- (NSString *)hackerNewsSession;
+- (nullable NSString *)hn_session;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -10,10 +10,14 @@
 
 @class HNSession;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSHTTPCookieStorage (HackerNewsNetworker)
 
-- (HNSession *)hn_activeSession;
+- (nullable HNSession *)hn_activeSession;
 
-- (NSArray *)hn_clearAllCookies;
+- (nullable NSArray *)hn_clearAllCookies;
 
 @end
+
+NS_ASSUME_NONNULL_END
