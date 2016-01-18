@@ -70,7 +70,7 @@ static NSString * const kHNPageTextComponents = @"kHNPageTextComponents";
 }
 
 - (NSComparisonResult)compare:(HNPage *)object {
-    return [self.post compare:object];
+    return [self.post compare:object.post];
 }
 
 @end
