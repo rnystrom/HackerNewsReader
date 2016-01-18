@@ -10,6 +10,10 @@
 
 #import "HNParseProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HNPageParser : NSObject <HNParseProtocol>
 
 @end
+
+NS_ASSUME_NONNULL_END
