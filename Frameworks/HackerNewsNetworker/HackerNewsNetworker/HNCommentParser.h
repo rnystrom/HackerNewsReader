@@ -10,7 +10,10 @@
 
 #import "HNParseProtocol.h"
 
-@class TFHpple, TFHppleElement;
+@class TFHpple;
+@class TFHppleElement;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface HNCommentParser : NSObject <HNParseProtocol>
 
@@ -19,3 +22,5 @@
 - (NSArray *)commentComponentsFromNode:(TFHppleElement *)node;
 
 @end
+
+NS_ASSUME_NONNULL_END

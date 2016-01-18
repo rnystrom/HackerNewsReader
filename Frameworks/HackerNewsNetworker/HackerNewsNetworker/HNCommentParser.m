@@ -26,6 +26,8 @@
 }
 
 - (NSArray *)commentsFromParser:(TFHpple *)parser queries:(HNQueries *)queries {
+    NSParameterAssert(parser != nil);
+    NSParameterAssert(queries != nil);
     return [self commentsUsingConcurrentEnum:parser queries:queries];
 }
 
@@ -131,6 +133,7 @@
 }
 
 - (NSArray *)commentComponentsFromNode:(TFHppleElement *)node {
+    NSParameterAssert(node != nil);
     NSMutableArray *components = [[NSMutableArray alloc] init];
     for (TFHppleElement *child in node.children) {
         [self recursiveComponentsFromNode:child bucket:components];
