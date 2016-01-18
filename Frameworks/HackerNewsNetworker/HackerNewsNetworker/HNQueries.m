@@ -105,6 +105,7 @@ static HNQueries *_sharedQueries = nil;
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    NSParameterAssert(dictionary != nil);
     if (self = [super init]) {
         NSDictionary *feed = dictionary[@"feed"];
         _feedTitles = feed[@"titles"];
@@ -122,6 +123,18 @@ static HNQueries *_sharedQueries = nil;
 
         NSDictionary *page = dictionary[@"page"];
         _pageText = page[@"text"];
+
+        NSCAssert(_feedTitles != nil, nil);
+        NSCAssert(_feedDetails != nil, nil);
+        NSCAssert(_feedScore != nil, nil);
+        NSCAssert(_feedCommentNode != nil, nil);
+        NSCAssert(_commentComments != nil, nil);
+        NSCAssert(_commentUser != nil, nil);
+        NSCAssert(_commentText != nil, nil);
+        NSCAssert(_commentRemoved != nil, nil);
+        NSCAssert(_commentIndent != nil, nil);
+        NSCAssert(_commentPermalink != nil, nil);
+        NSCAssert(_pageText != nil, nil);
     }
     return self;
 }
