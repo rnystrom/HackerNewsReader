@@ -17,6 +17,7 @@
 }
 
 - (instancetype)initWithCacheName:(NSString *)cacheName {
+    NSParameterAssert(cacheName != nil);
     if (self = [super init]) {
         _cachePath = [[self.class archivePath] stringByAppendingPathComponent:cacheName];
     }
@@ -32,6 +33,7 @@
 }
 
 - (BOOL)archiveToDisk:(id <NSCoding>)object {
+    NSParameterAssert(object != nil);
     return [NSKeyedArchiver archiveRootObject:object toFile:self.cachePath];
 }
 
