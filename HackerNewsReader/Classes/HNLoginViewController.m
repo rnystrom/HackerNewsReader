@@ -11,7 +11,9 @@
 #import <HackerNewsNetworker/HNLogin.h>
 #import <HackerNewsNetworker/HNSession.h>
 
+#import "HNProfileViewController.h"
 #import "UIViewController+HNOverlay.h"
+#import "HNSessionManager.h"
 
 @interface HNLoginViewController () <UITextFieldDelegate>
 
@@ -88,7 +90,8 @@
 }
 
 - (void)loginSucceededWithSession:(HNSession *)session {
-    [self performSegueWithIdentifier:@"LoginSuccess" sender:self];
+    NSCAssert(self.sessionManager != nil, @"No session manager");
+    [self.sessionManager transitionToLoggedInWithSession:session animated:YES];
 }
 
 - (void)showErrorMessage {

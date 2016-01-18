@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SpL-Ea-3cz" id="hhs-q8-zwQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -58,7 +58,7 @@
         <!--Profile-->
         <scene sceneID="NC4-1U-6Pe">
             <objects>
-                <tableViewController id="vIk-IL-Xmx" customClass="HNLoginViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HNLoginViewController" id="vIk-IL-Xmx" customClass="HNLoginViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="xq5-an-oVJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,7 +70,7 @@
                                         <rect key="frame" x="0.0" y="113.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S6E-hK-vTw" id="9Zx-4m-Qdx">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="a4e-u4-oFu">
@@ -94,7 +94,7 @@
                                         <rect key="frame" x="0.0" y="157.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GIX-5j-dHl" id="vzz-bs-sLa">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FNm-SA-dr8">
@@ -122,7 +122,7 @@
                                         <rect key="frame" x="0.0" y="237.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x9m-eK-UC5" id="GQX-NU-xvt">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kAv-On-mvc">
@@ -147,12 +147,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Profile" id="SNe-vA-Vhk"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="loginCell" destination="x9m-eK-UC5" id="Nm4-V7-mhX"/>
                         <outlet property="passwordTextField" destination="FNm-SA-dr8" id="ybv-QB-ioR"/>
                         <outlet property="usernameTextField" destination="a4e-u4-oFu" id="gq5-fr-j0v"/>
-                        <segue destination="iG3-Cg-c0F" kind="show" identifier="LoginSuccess" id="J1n-uL-dun"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4XY-GF-tka" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -238,7 +238,6 @@
         <!--Navigation Controller-->
         <scene sceneID="RGc-lp-WdJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YwB-nT-Bxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="NZe-6z-rHo" customClass="HNNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="profile-empty" selectedImage="profile" id="E26-i5-lyl"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -250,10 +249,8 @@
                         <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
-                    <connections>
-                        <segue destination="vIk-IL-Xmx" kind="relationship" relationship="rootViewController" id="z9N-nV-eV0"/>
-                    </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YwB-nT-Bxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="483" y="143"/>
         </scene>

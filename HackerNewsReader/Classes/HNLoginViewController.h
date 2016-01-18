@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class HNSessionManager;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HNLoginViewController : UITableViewController
+
+@property (nonatomic, strong) HNSessionManager *sessionManager;
 
 @end
 

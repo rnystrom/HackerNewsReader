@@ -15,6 +15,7 @@
 #import "UIToolbar+HackerNews.h"
 #import "UITabBar+HackerNews.h"
 #import "UINavigationBar+HackerNews.h"
+#import "HNSessionManager.h"
 
 NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar";
 
@@ -38,6 +39,12 @@ NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar
     [UINavigationBar hn_enableAppearance];
     [UIToolbar hn_enableAppearance];
     [UITabBar hn_enableAppearance];
+
+    UISplitViewController *rootViewController = (UISplitViewController *)self.window.rootViewController;
+    UITabBarController *tabBarController = rootViewController.viewControllers.firstObject;
+    UINavigationController *profileNavigationController = tabBarController.viewControllers.lastObject;
+    HNSessionManager *sessionManager = [[HNSessionManager alloc] initWithNavigationController:profileNavigationController];
+    [sessionManager transitionToLoggedOutAnimated:NO];
 
     return YES;
 }

@@ -10,7 +10,7 @@
 
 @class HNSession;
 
-@interface HNLogin : NSObject <NSURLSessionDelegate, NSURLSessionTaskDelegate>
+@interface HNLogin : NSObject
 
 + (BOOL)isLoggedIn;
 

@@ -59,16 +59,8 @@
     HNService *service = [[HNService alloc] initWithSession:urlSession path:@"login"];
 
     id completionHandler = ^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (response && [response isKindOfClass:[NSHTTPURLResponse class]]) {
-            NSHTTPCookie *cookie = [[NSHTTPCookieStorage sharedHTTPCookieStorage] hackerNewsSessionCookie];
-            HNSession *session = nil;
-            NSString *username = [cookie hackerNewsUsername];
-            NSString *sessionKey = [cookie hackerNewsSession];
-            if (username.length && sessionKey.length) {
-                session = [[HNSession alloc] initWithUsername:username session:sessionKey];
-            }
-            completion(session, error);
-        }
+        HNSession *session = [[NSHTTPCookieStorage sharedHTTPCookieStorage] activeSession];
+        completion(session, error);
     };
 
     NSDictionary *parameters = @{@"acct": username, @"pw": password};
@@ -91,16 +83,6 @@
         result = YES;
     }
     return result;
-}
-
-#pragma mark - NSURLSessionTask delegate
-
-- (void)URLSession:(NSURLSession *)session
-              task:(NSURLSessionTask *)task
-willPerformHTTPRedirection:(NSHTTPURLResponse *)response
-        newRequest:(NSURLRequest *)request
- completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler {
-    completionHandler(nil);
 }
 
 @end

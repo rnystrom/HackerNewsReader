@@ -18,6 +18,7 @@
 		2920DDCC1AEDA27500E51B23 /* HNTextRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2920DDCB1AEDA27500E51B23 /* HNTextRenderer.m */; };
 		292988C21AD4CE9A00BB386C /* HNPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 292988C11AD4CE9A00BB386C /* HNPostCell.m */; };
 		292E0CEC1C3A10DD00072C57 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 292E0CEB1C3A10DD00072C57 /* Launch.storyboard */; };
+		294372781C4B087200E5B2F4 /* HNSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 294372771C4B087200E5B2F4 /* HNSessionManager.m */; };
 		2944A88E1AD6EE4900A2A251 /* HNEmptyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944A88D1AD6EE4900A2A251 /* HNEmptyTableCell.m */; };
 		2944A8941AD6EF6500A2A251 /* HNLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944A8931AD6EF6500A2A251 /* HNLoadingCell.m */; };
 		2944A8A61AD6FAB400A2A251 /* HNCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944A8A51AD6FAB400A2A251 /* HNCommentViewController.m */; };
@@ -94,6 +95,8 @@
 		292988C01AD4CE9A00BB386C /* HNPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPostCell.h; path = Classes/HNPostCell.h; sourceTree = "<group>"; };
 		292988C11AD4CE9A00BB386C /* HNPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPostCell.m; path = Classes/HNPostCell.m; sourceTree = "<group>"; };
 		292E0CEB1C3A10DD00072C57 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		294372761C4B087200E5B2F4 /* HNSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNSessionManager.h; path = Classes/HNSessionManager.h; sourceTree = "<group>"; };
+		294372771C4B087200E5B2F4 /* HNSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNSessionManager.m; path = Classes/HNSessionManager.m; sourceTree = "<group>"; };
 		2944A88C1AD6EE4900A2A251 /* HNEmptyTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNEmptyTableCell.h; path = Classes/HNEmptyTableCell.h; sourceTree = "<group>"; };
 		2944A88D1AD6EE4900A2A251 /* HNEmptyTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNEmptyTableCell.m; path = Classes/HNEmptyTableCell.m; sourceTree = "<group>"; };
 		2944A8921AD6EF6500A2A251 /* HNLoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNLoadingCell.h; path = Classes/HNLoadingCell.h; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 				299A8D0E1B2266AE00E23234 /* HNReadPostStore.m */,
 				29B393B41B23C10C0094C2C6 /* HNFeedDataSource.h */,
 				29B393B51B23C10C0094C2C6 /* HNFeedDataSource.m */,
+				294372761C4B087200E5B2F4 /* HNSessionManager.h */,
+				294372771C4B087200E5B2F4 /* HNSessionManager.m */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -644,6 +649,7 @@
 				296FDE6C1C437B1400784A2E /* HNProfileViewController.m in Sources */,
 				29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */,
 				2944A8A61AD6FAB400A2A251 /* HNCommentViewController.m in Sources */,
+				294372781C4B087200E5B2F4 /* HNSessionManager.m in Sources */,
 				294CB9031B1B92D400FAA09F /* HNTableStatus.m in Sources */,
 				29B393B21B2389C00094C2C6 /* HNTopViewController.m in Sources */,
 				296054B91AD4F0370038818A /* HNCommentButton.m in Sources */,

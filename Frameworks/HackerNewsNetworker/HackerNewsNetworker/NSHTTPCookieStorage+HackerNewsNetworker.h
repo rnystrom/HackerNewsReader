@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class HNSession;
+
 @interface NSHTTPCookieStorage (HackerNewsNetworker)
 
-- (NSHTTPCookie *)hackerNewsSessionCookie;
+- (HNSession *)activeSession;
 
 @end
