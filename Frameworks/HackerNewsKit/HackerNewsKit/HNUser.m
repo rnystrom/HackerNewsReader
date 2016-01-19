@@ -9,12 +9,22 @@
 #import "HNUser.h"
 
 static NSString * const kHNUserUsername = @"kHNUserUsername";
+static NSString * const kHNUserAboutText = @"kHNUserAboutText";
+static NSString * const kHNUserCreatedText = @"kHNUserCreatedText";
+static NSString * const kHNUserKarma = @"kHNUserKarma";
 
 @implementation HNUser
 
-- (instancetype)initWithUsername:(NSString *)username {
+- (instancetype)initWithUsername:(NSString *)username
+                       aboutText:(nullable NSString *)aboutText
+                     createdText:(nullable NSString *)createdText
+                           karma:(nullable NSNumber *)karma {
+    NSParameterAssert(username != nil);
     if (self = [super init]) {
-        _username = [username copy] ?: @"";
+        _username = [username copy];
+        _aboutText = [aboutText copy];
+        _createdText = [createdText copy];
+        _karma = [karma copy];
     }
     return self;
 }
@@ -28,18 +38,27 @@ static NSString * const kHNUserUsername = @"kHNUserUsername";
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     NSString *username = [aDecoder decodeObjectForKey:kHNUserUsername];
-    return [self initWithUsername:username];
+    NSString *aboutText = [aDecoder decodeObjectForKey:kHNUserAboutText];
+    NSString *createdText = [aDecoder decodeObjectForKey:kHNUserCreatedText];
+    NSNumber *karma = [aDecoder decodeObjectForKey:kHNUserKarma];
+    return [self initWithUsername:username aboutText:aboutText createdText:createdText karma:karma];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:_username forKey:kHNUserUsername];
+    [aCoder encodeObject:_aboutText forKey:kHNUserAboutText];
+    [aCoder encodeObject:_createdText forKey:kHNUserCreatedText];
+    [aCoder encodeObject:_karma forKey:kHNUserKarma];
 }
 
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[HNUser allocWithZone:zone] initWithUsername:self.username];
+    return [[HNUser allocWithZone:zone] initWithUsername:self.username
+                                               aboutText:self.aboutText
+                                             createdText:self.createdText
+                                                   karma:self.karma];
 }
 
 

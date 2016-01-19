@@ -108,7 +108,7 @@
 - (HNComment *)commentFromNode:(TFHppleElement *)commentNode queries:(HNQueries *)queries {
     TFHppleElement *userNode = [[commentNode searchWithXPathQuery:queries.commentUser] firstObject];
     NSString *username = [userNode content];
-    HNUser *user = [[HNUser alloc] initWithUsername:username];
+    HNUser *user = [[HNUser alloc] initWithUsername:username aboutText:nil createdText:nil karma:nil];
 
     TFHppleElement *permalinkNode = [[commentNode searchWithXPathQuery:queries.commentPermalink] firstObject];
     NSString *ageText = [permalinkNode content];

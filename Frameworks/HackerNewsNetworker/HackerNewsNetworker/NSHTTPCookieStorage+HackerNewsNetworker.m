@@ -32,7 +32,7 @@
     NSString *username = [cookie hn_username];
     NSString *sessionKey = [cookie hn_session];
     if (username.length && sessionKey.length) {
-        HNUser *user = [[HNUser alloc] initWithUsername:username];
+        HNUser *user = [[HNUser alloc] initWithUsername:username aboutText:nil createdText:nil karma:nil];
         session = [[HNSession alloc] initWithUser:user session:sessionKey];
     }
     return session;
