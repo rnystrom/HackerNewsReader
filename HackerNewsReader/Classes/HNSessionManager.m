@@ -32,6 +32,7 @@
     HNProfileViewController *controller = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"HNProfileViewController"];
     controller.displayAsSessionUser = YES;
     controller.user = session.user;
+    controller.sessionManager = self;
     [self.navigationController setViewControllers:@[ controller ] animated:animated];
 }
 

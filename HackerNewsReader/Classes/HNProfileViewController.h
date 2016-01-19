@@ -10,10 +10,12 @@
 
 @class HNUser;
 @class HNSession;
+@class HNSessionManager;
 
 @interface HNProfileViewController : UITableViewController
 
 @property (nonatomic, strong) HNUser *user;
 @property (nonatomic, assign) BOOL displayAsSessionUser;
+@property (nonatomic, strong) HNSessionManager *sessionManager;
 
 @end

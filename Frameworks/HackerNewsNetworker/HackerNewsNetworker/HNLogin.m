@@ -43,8 +43,8 @@
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     HNSession *session = [cookieStorage hn_activeSession];
 
-    BOOL result = NO;
-    if (session != nil) {
+    const BOOL canLogout = session != nil;
+    if (canLogout) {
         [cookieStorage hn_clearAllCookies];
 
         HNService *service = [[HNService alloc] initWithSession:nil path:@"logout"];
@@ -53,10 +53,8 @@
                 completion(error);
             }
         }];
-        
-        result = YES;
     }
-    return result;
+    return canLogout;
 }
 
 @end
