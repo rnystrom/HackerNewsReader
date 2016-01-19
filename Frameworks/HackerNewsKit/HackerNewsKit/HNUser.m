@@ -8,6 +8,8 @@
 
 #import "HNUser.h"
 
+#import "HNMacros.h"
+
 static NSString * const kHNUserUsername = @"kHNUserUsername";
 static NSString * const kHNUserAboutText = @"kHNUserAboutText";
 static NSString * const kHNUserCreatedText = @"kHNUserCreatedText";
@@ -30,7 +32,8 @@ static NSString * const kHNUserKarma = @"kHNUserKarma";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p %@ - %@>", self, NSStringFromClass(self.class), self.username];
+    return [NSString stringWithFormat:@"<%p %@; username: %@; created: %@; karma: %@;>",
+            self, NSStringFromClass(self.class), self.username, self.createdText, self.karma];
 }
 
 
@@ -69,7 +72,10 @@ static NSString * const kHNUserKarma = @"kHNUserKarma";
         return YES;
     }
     if ([object isKindOfClass:HNUser.class]) {
-        return [[((HNUser *)object) username] isEqualToString:self.username];
+        return EQUAL_STRING_HELPER(object, username)
+        && EQUAL_STRING_HELPER(object, aboutText)
+        && EQUAL_STRING_HELPER(object, createdText)
+        && EQUAL_STRING_HELPER(object, karma);
     }
     return NO;
 }

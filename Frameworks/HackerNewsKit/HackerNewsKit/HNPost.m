@@ -8,6 +8,8 @@
 
 #import "HNPost.h"
 
+#import "HNMacros.h"
+
 static NSString * const kHNPostTitle = @"kHNPostTitle";
 static NSString * const kHNPostURL = @"kHNPostURL";
 static NSString * const kHNPostScore = @"kHNPostScore";
@@ -40,7 +42,8 @@ NSUInteger const kHNPostPKIsLinkOnly = 0;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p %@; title: %@, pk: %zi, score: %zi, %zi comments>",self, NSStringFromClass(self.class), self.title, self.pk, self.score, self.commentCount];
+    return [NSString stringWithFormat:@"<%p %@; title: %@; pk: %zi; score: %zi; comments: %zi;>",
+            self, NSStringFromClass(self.class), self.title, self.pk, self.score, self.commentCount];
 }
 
 
@@ -76,7 +79,13 @@ NSUInteger const kHNPostPKIsLinkOnly = 0;
     }
     if ([object isKindOfClass:HNPost.class]) {
         HNPost *comp = (HNPost *)object;
-        return comp.pk == self.pk;
+        return comp.pk == self.pk
+        && comp.score == self.score
+        && comp.rank == self.rank
+        && comp.commentCount == self.commentCount
+        && EQUAL_STRING_HELPER(comp, title)
+        && EQUAL_STRING_HELPER(comp, ageText)
+        && EQUAL_HELPER(comp, URL);
     }
     return NO;
 }
@@ -94,7 +103,7 @@ NSUInteger const kHNPostPKIsLinkOnly = 0;
 }
 
 - (NSUInteger)hash {
-    return self.pk ^ self.score ^ self.commentCount ^ [self.URL hash] ^ [self.ageText hash];
+    return self.pk;
 }
 
 

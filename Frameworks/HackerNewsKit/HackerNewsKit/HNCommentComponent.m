@@ -8,6 +8,8 @@
 
 #import "HNCommentComponent.h"
 
+#import "HNMacros.h"
+
 static NSString * const kHNCommentComponentText = @"kHNCommentComponentText";
 static NSString * const kHNCommentComponentType = @"kHNCommentComponentType";
 
@@ -26,7 +28,7 @@ static NSString * const kHNCommentComponentType = @"kHNCommentComponentType";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p %@, text: %@>",self,NSStringFromClass(self.class),self.text];
+    return [NSString stringWithFormat:@"<%p %@; text: %@;>",self,NSStringFromClass(self.class),self.text];
 }
 
 
@@ -59,7 +61,7 @@ static NSString * const kHNCommentComponentType = @"kHNCommentComponentType";
     }
     if ([object isKindOfClass:HNCommentComponent.class]) {
         HNCommentComponent *comp = (HNCommentComponent *)object;
-        return comp.type == self.type && [comp.text isEqualToString:self.text];
+        return comp.type == self.type && EQUAL_STRING_HELPER(comp, text);
     }
     return NO;
 }

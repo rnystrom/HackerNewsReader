@@ -8,6 +8,8 @@
 
 #import "HNComment.h"
 
+#import "HNMacros.h"
+
 static NSString * const kHNCommentUser = @"kHNCommentUser";
 static NSString * const kHNCommentCompents = @"kHNCommentCompents";
 static NSString * const kHNCommentIndent = @"kHNCommentIndent";
@@ -27,13 +29,13 @@ static NSString * const kHNCommentAgeText = @"kHNCommentAgeText";
         _components = [components copy] ?: @[];
         _indent = indent;
         _pk = pk;
-        _ageText = [ageText copy];
+        _ageText = [ageText copy] ?: @[];
     }
     return self;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p %@: %@ - %@, indent: %zi, age: %@, pk: %zi>",
+    return [NSString stringWithFormat:@"<%p %@: user: %@; components: %@; indent: %zi; age: %@; pk: %zi;>",
             self, NSStringFromClass(self.class), self.user, self.components, self.indent, self.ageText, self.pk];
 }
 
@@ -77,7 +79,11 @@ static NSString * const kHNCommentAgeText = @"kHNCommentAgeText";
     }
     if ([object isKindOfClass:HNComment.class]) {
         HNComment *comp = (HNComment *)object;
-        return comp.pk == self.pk;
+        return comp.pk == self.pk
+        && comp.indent == self.indent
+        && EQUAL_STRING_HELPER(comp, ageText)
+        && EQUAL_HELPER(comp, user)
+        && EQUAL_ARRAY_HELPER(comp, components);
     }
     return NO;
 }

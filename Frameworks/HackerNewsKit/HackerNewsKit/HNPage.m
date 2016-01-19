@@ -8,6 +8,8 @@
 
 #import "HNPage.h"
 
+#import "HNMacros.h"
+
 static NSString * const kHNPagePost = @"kHNPagePost";
 static NSString * const kHNPageComments = @"kHNPageComments";
 static NSString * const kHNPageTextComponents = @"kHNPageTextComponents";
@@ -59,14 +61,15 @@ static NSString * const kHNPageTextComponents = @"kHNPageTextComponents";
         return YES;
     }
     if ([object isKindOfClass:HNPage.class]) {
-        HNPage *page = object;
-        return [page.post isEqual:self.post] && [page.comments isEqualToArray:self.comments] && [page.textComponents isEqualToArray:self.textComponents];
+        return EQUAL_HELPER(object, post)
+        && EQUAL_ARRAY_HELPER(object, comments)
+        && EQUAL_ARRAY_HELPER(object, textComponents);
     }
     return NO;
 }
 
 - (NSUInteger)hash {
-    return [self.post hash] ^ [self.comments hash];
+    return [self.post hash];
 }
 
 - (NSComparisonResult)compare:(HNPage *)object {

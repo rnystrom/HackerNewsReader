@@ -8,6 +8,8 @@
 
 #import "HNFeed.h"
 
+#import "HNMacros.h"
+
 static NSString * const kHNFeedItems = @"kHNFeedItems";
 static NSString * const kHNFeedCreatedDate = @"kHNFeedCreatedDate";
 
@@ -72,8 +74,8 @@ static NSString * const kHNFeedCreatedDate = @"kHNFeedCreatedDate";
         return YES;
     }
     if ([object isKindOfClass:HNFeed.class]) {
-        HNFeed *comp = (HNFeed *)object;
-        return [comp.items isEqual:self.items] && [comp.createdDate isEqualToDate:self.createdDate];
+        return EQUAL_ARRAY_HELPER(object, items)
+        && EQUAL_HELPER(object, createdDate);
     }
     return NO;
 }

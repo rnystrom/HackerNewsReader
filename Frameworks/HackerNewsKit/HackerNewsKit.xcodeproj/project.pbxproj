@@ -49,6 +49,7 @@
 		29B2D9401AFC810C005C83BA /* HNPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNPage.m; sourceTree = "<group>"; };
 		29D411641ADB1AC400C491DA /* HNCommentComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNCommentComponent.h; sourceTree = "<group>"; };
 		29D411651ADB1AC400C491DA /* HNCommentComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNCommentComponent.m; sourceTree = "<group>"; };
+		29DF6A0D1C4E22F400DBB395 /* HNMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HNMacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +89,7 @@
 				29D411651ADB1AC400C491DA /* HNCommentComponent.m */,
 				2990B38E1AD204850053DB80 /* HNFeed.h */,
 				2990B38F1AD204850053DB80 /* HNFeed.m */,
+				29DF6A0D1C4E22F400DBB395 /* HNMacros.h */,
 				29B2D93F1AFC810C005C83BA /* HNPage.h */,
 				29B2D9401AFC810C005C83BA /* HNPage.m */,
 				2990B3771AD1FFA50053DB80 /* HNPost.h */,

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
                   components:(nullable NSArray *)components
                       indent:(NSUInteger)indent
                           pk:(NSUInteger)pk 
-                     ageText:(NSString *)ageText NS_DESIGNATED_INITIALIZER;
+                     ageText:(nullable NSString *)ageText NS_DESIGNATED_INITIALIZER;
 
 - (id)init NS_UNAVAILABLE;
 
