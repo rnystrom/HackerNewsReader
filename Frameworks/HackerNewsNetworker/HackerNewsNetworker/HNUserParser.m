@@ -15,8 +15,9 @@
 @implementation HNUserParser
 
 static NSString *HNUserValue(TFHpple *parser, NSString *query) {
-    NSString *value = [parser searchWithXPathQuery:query].firstObject;
-    return [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    TFHppleElement *node = [parser searchWithXPathQuery:query].firstObject;
+    NSString *content = [node content];
+    return [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 - (id <NSCoding>)parseDataFromResponse:(NSData *)data queries:(HNQueries *)queries {

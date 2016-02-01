@@ -17,9 +17,9 @@
     "text": "//table[@id='hnmain']/tr[3]/td/table[1]/tr[4]/td[2]"
   },
   "user": {
-    "username": "//table[@id='hnmain']/tr[3]/td/table//tr[1]/td[2]/a",
-    "created": "//table[@id='hnmain']/tr[3]/td/table//tr[2]/td[2]",
-    "karma": "//table[@id='hnmain']/tr[3]/td/table//tr[3]/td[2]",
-    "about": "//table[@id='hnmain']/tr[3]/td/table//tr[4]/td[2]",
+    "username": "//table[@id='hnmain']/tr[3]/td//table//tr[1]/td[2]/a",
+    "created": "//table[@id='hnmain']/tr[3]/td//table//tr[2]/td[2]",
+    "karma": "//table[@id='hnmain']/tr[3]/td//table//tr[3]/td[2]",
+    "about": "//table[@id='hnmain']/tr[3]/td//table//tr[4]/td[2]",
   }
 }

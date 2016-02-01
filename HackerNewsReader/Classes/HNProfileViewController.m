@@ -8,6 +8,9 @@
 
 #import "HNProfileViewController.h"
 
+#import <HackerNewsNetworker/HNDataCoordinator.h>
+#import <HackerNewsNetworker/HNUserParser.h>
+
 #import <HackerNewsKit/HNUser.h>
 
 #import <HackerNewsNetworker/HNSession.h>
@@ -17,9 +20,11 @@
 
 static NSInteger kHNSignoutCellSection = 2;
 
-@interface HNProfileViewController()
+@interface HNProfileViewController() <HNDataCoordinatorDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableViewCell *signoutCell;
+
+@property (nonatomic, strong, readonly) HNDataCoordinator *dataCoordinator;
 
 @end
 
@@ -27,7 +32,15 @@ static NSInteger kHNSignoutCellSection = 2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = self.user.username;
+
+    NSString *username = self.user.username;
+    self.navigationItem.title = username;
+
+    HNUserParser *parser = [[HNUserParser alloc] init];
+    NSString *cacheName = [NSString stringWithFormat:@"%@.page",username];
+    dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:q path:@"user" parser:parser cacheName:cacheName];
+    [_dataCoordinator fetchWithParams:@{ @"id": username }];
 }
 
 
@@ -60,6 +73,15 @@ static NSInteger kHNSignoutCellSection = 2;
     loginCell.userInteractionEnabled = !showLoading;
     loginCell.alpha = showLoading ? 0.5 : 1;
 }
+
+
+#pragma mark - HNDataCoordinatorDelegate
+
+- (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didUpdateObject:(id)object {
+    NSLog(@"%@",object);
+}
+
+- (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didError:(NSError *)error {}
 
 
 #pragma mark - UITableViewDelegate
