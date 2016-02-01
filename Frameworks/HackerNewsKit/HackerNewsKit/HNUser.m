@@ -18,15 +18,14 @@ static NSString * const kHNUserKarma = @"kHNUserKarma";
 @implementation HNUser
 
 - (instancetype)initWithUsername:(NSString *)username
-                       aboutText:(nullable NSString *)aboutText
-                     createdText:(nullable NSString *)createdText
-                           karma:(nullable NSNumber *)karma {
-    NSParameterAssert(username != nil);
+                       aboutText:(NSString *)aboutText
+                     createdText:(NSString *)createdText
+                           karma:(NSNumber *)karma {
     if (self = [super init]) {
-        _username = [username copy];
-        _aboutText = [aboutText copy];
-        _createdText = [createdText copy];
-        _karma = [karma copy];
+        _username = [username copy] ?: @"";
+        _aboutText = [aboutText copy] ?: @"";
+        _createdText = [createdText copy] ?: @"";
+        _karma = [karma copy] ?: @"";
     }
     return self;
 }

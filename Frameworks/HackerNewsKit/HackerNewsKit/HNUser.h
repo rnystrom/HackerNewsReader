@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSString *createdText;
 @property (nonatomic, strong, readonly) NSNumber *karma;
 
-- (instancetype)initWithUsername:(NSString *)username
+- (instancetype)initWithUsername:(nullable NSString *)username
                        aboutText:(nullable NSString *)aboutText
                      createdText:(nullable NSString *)createdText
                            karma:(nullable NSNumber *)karma NS_DESIGNATED_INITIALIZER;
