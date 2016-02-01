@@ -20,6 +20,8 @@
 		294372721C4AD9B100E5B2F4 /* NSString+HackerNewsNetworker.m in Sources */ = {isa = PBXBuildFile; fileRef = 294372711C4AD9B100E5B2F4 /* NSString+HackerNewsNetworker.m */; };
 		295DB7851AF82B8D004B119F /* libHackerNewsKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D4116E1ADB9B5600C491DA /* libHackerNewsKit.a */; };
 		2965ECFC1AFC87B500F6E2DE /* HNPageParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29B2D9431AFC8436005C83BA /* HNPageParser.h */; };
+		296757A31C5EF5E6006B85DF /* HNUserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 296757A21C5EF5E6006B85DF /* HNUserParser.m */; };
+		296757A41C5EF837006B85DF /* HNUserParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 296757A11C5EF5E6006B85DF /* HNUserParser.h */; };
 		296FDE6F1C4380A100784A2E /* HNSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE6E1C4380A100784A2E /* HNSession.m */; };
 		296FDE721C4380C200784A2E /* NSHTTPCookie+HackerNewsNetworker.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE711C4380C200784A2E /* NSHTTPCookie+HackerNewsNetworker.m */; };
 		296FDE751C4380EE00784A2E /* NSHTTPCookieStorage+HackerNewsNetworker.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE741C4380EE00784A2E /* NSHTTPCookieStorage+HackerNewsNetworker.m */; };
@@ -62,6 +64,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				296757A41C5EF837006B85DF /* HNUserParser.h in CopyFiles */,
 				296FDE761C43854B00784A2E /* HNSession.h in CopyFiles */,
 				292E0CE81C3A008200072C57 /* HNQueries.h in CopyFiles */,
 				F67DF0641BFDBEE900C5DCBD /* HNLogin.h in CopyFiles */,
@@ -85,6 +88,8 @@
 		2942D1521B1E8EC000912D01 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		294372701C4AD9B100E5B2F4 /* NSString+HackerNewsNetworker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HackerNewsNetworker.h"; sourceTree = "<group>"; };
 		294372711C4AD9B100E5B2F4 /* NSString+HackerNewsNetworker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HackerNewsNetworker.m"; sourceTree = "<group>"; };
+		296757A11C5EF5E6006B85DF /* HNUserParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNUserParser.h; sourceTree = "<group>"; };
+		296757A21C5EF5E6006B85DF /* HNUserParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNUserParser.m; sourceTree = "<group>"; };
 		296FDE6D1C4380A100784A2E /* HNSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNSession.h; sourceTree = "<group>"; };
 		296FDE6E1C4380A100784A2E /* HNSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNSession.m; sourceTree = "<group>"; };
 		296FDE701C4380C200784A2E /* NSHTTPCookie+HackerNewsNetworker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSHTTPCookie+HackerNewsNetworker.h"; sourceTree = "<group>"; };
@@ -174,6 +179,8 @@
 				2990B3CA1AD2DE4D0053DB80 /* HNDiskStore.m */,
 				2990B3C31AD20BF80053DB80 /* HNFeedParser.h */,
 				2990B3C41AD20BF80053DB80 /* HNFeedParser.m */,
+				296757A11C5EF5E6006B85DF /* HNUserParser.h */,
+				296757A21C5EF5E6006B85DF /* HNUserParser.m */,
 				F67DF0611BFDBEC700C5DCBD /* HNLogin.h */,
 				F67DF0621BFDBEC700C5DCBD /* HNLogin.m */,
 				29B2D9431AFC8436005C83BA /* HNPageParser.h */,
@@ -330,6 +337,7 @@
 				292E0CE71C39F99D00072C57 /* HNQueries.m in Sources */,
 				2990B3DF1AD2F0880053DB80 /* HNDataCoordinator.m in Sources */,
 				2990B3DA1AD2E86F0053DB80 /* XPathQuery.m in Sources */,
+				296757A31C5EF5E6006B85DF /* HNUserParser.m in Sources */,
 				29B2D9451AFC8436005C83BA /* HNPageParser.m in Sources */,
 				F67DF0631BFDBEC700C5DCBD /* HNLogin.m in Sources */,
 				2990B3D91AD2E86F0053DB80 /* TFHppleElement.m in Sources */,
