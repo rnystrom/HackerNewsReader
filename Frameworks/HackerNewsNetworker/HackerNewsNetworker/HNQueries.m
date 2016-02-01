@@ -132,6 +132,12 @@ static HNQueries *_sharedQueries = nil;
         _commentIndent = comment[@"indent"];
         _commentPermalink = comment[@"permalink"];
 
+        NSDictionary *user = dictionary[@"user"];
+        _userName = user[@"username"];
+        _userCreated = user[@"created"];
+        _userKarma = user[@"karma"];
+        _userAbout = user[@"about"];
+
         NSDictionary *page = dictionary[@"page"];
         _pageText = page[@"text"];
 
@@ -145,6 +151,10 @@ static HNQueries *_sharedQueries = nil;
         NSCAssert(_commentRemoved != nil, nil);
         NSCAssert(_commentIndent != nil, nil);
         NSCAssert(_commentPermalink != nil, nil);
+        NSCAssert(_userName != nil, nil);
+        NSCAssert(_userCreated != nil, nil);
+        NSCAssert(_userKarma != nil, nil);
+        NSCAssert(_userAbout != nil, nil);
         NSCAssert(_pageText != nil, nil);
     }
     return self;

@@ -28,6 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) NSString *commentIndent;
 @property (nonatomic, strong, readonly) NSString *commentPermalink;
 
+@property (nonatomic, strong, readonly) NSString *userName;
+@property (nonatomic, strong, readonly) NSString *userCreated;
+@property (nonatomic, strong, readonly) NSString *userKarma;
+@property (nonatomic, strong, readonly) NSString *userAbout;
+
 @property (nonatomic, strong, readonly) NSString *pageText;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary NS_DESIGNATED_INITIALIZER;
