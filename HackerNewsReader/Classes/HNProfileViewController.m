@@ -23,6 +23,8 @@ static NSInteger kHNSignoutCellSection = 2;
 @interface HNProfileViewController() <HNDataCoordinatorDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableViewCell *signoutCell;
+@property (nonatomic, weak) IBOutlet UILabel *createdLabel;
+@property (nonatomic, weak) IBOutlet UILabel *karmaLabel;
 
 @property (nonatomic, strong, readonly) HNDataCoordinator *dataCoordinator;
 
@@ -33,9 +35,9 @@ static NSInteger kHNSignoutCellSection = 2;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSString *username = self.user.username;
-    self.navigationItem.title = username;
+    [self configureForUser:self.user];
 
+    NSString *username = self.user.username;
     HNUserParser *parser = [[HNUserParser alloc] init];
     NSString *cacheName = [NSString stringWithFormat:@"%@.page",username];
     dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -45,6 +47,23 @@ static NSInteger kHNSignoutCellSection = 2;
 
 
 #pragma mark - Private API
+
+- (NSString *)labelStringFromString:(NSString *)string {
+    if (string.length == 0) {
+        return @"--";
+    }
+    return string;
+}
+
+- (void)configureForUser:(HNUser *)user {
+    if (!self.isViewLoaded) {
+        return;
+    }
+    self.user = user;
+    self.navigationItem.title = [self labelStringFromString:user.username];
+    self.createdLabel.text = [self labelStringFromString:user.createdText];
+    self.karmaLabel.text = user.karma.stringValue;
+}
 
 - (void)logout {
     NSCAssert(self.displayAsSessionUser, @"Should not be logging out from other users");
@@ -78,7 +97,9 @@ static NSInteger kHNSignoutCellSection = 2;
 #pragma mark - HNDataCoordinatorDelegate
 
 - (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didUpdateObject:(id)object {
-    NSLog(@"%@",object);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self configureForUser:object];
+    });
 }
 
 - (void)dataCoordinator:(HNDataCoordinator *)dataCoordinator didError:(NSError *)error {}

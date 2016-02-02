@@ -22,6 +22,7 @@
 		2965ECFC1AFC87B500F6E2DE /* HNPageParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29B2D9431AFC8436005C83BA /* HNPageParser.h */; };
 		296757A31C5EF5E6006B85DF /* HNUserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 296757A21C5EF5E6006B85DF /* HNUserParser.m */; };
 		296757A41C5EF837006B85DF /* HNUserParser.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 296757A11C5EF5E6006B85DF /* HNUserParser.h */; };
+		296757A51C5FDB7E006B85DF /* fallback-queries.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 292E0CE41C39F97F00072C57 /* fallback-queries.json */; };
 		296FDE6F1C4380A100784A2E /* HNSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE6E1C4380A100784A2E /* HNSession.m */; };
 		296FDE721C4380C200784A2E /* NSHTTPCookie+HackerNewsNetworker.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE711C4380C200784A2E /* NSHTTPCookie+HackerNewsNetworker.m */; };
 		296FDE751C4380EE00784A2E /* NSHTTPCookieStorage+HackerNewsNetworker.m in Sources */ = {isa = PBXBuildFile; fileRef = 296FDE741C4380EE00784A2E /* NSHTTPCookieStorage+HackerNewsNetworker.m */; };
@@ -64,6 +65,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				296757A51C5FDB7E006B85DF /* fallback-queries.json in CopyFiles */,
 				296757A41C5EF837006B85DF /* HNUserParser.h in CopyFiles */,
 				296FDE761C43854B00784A2E /* HNSession.h in CopyFiles */,
 				292E0CE81C3A008200072C57 /* HNQueries.h in CopyFiles */,
