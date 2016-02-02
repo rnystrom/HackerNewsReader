@@ -59,10 +59,12 @@ install_resource()
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${BUILT_PRODUCTS_DIR}/Appirater.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/HackerNewsNetworker.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/TUSafariActivity.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${BUILT_PRODUCTS_DIR}/Appirater.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/HackerNewsNetworker.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/TUSafariActivity.bundle"
 fi
 

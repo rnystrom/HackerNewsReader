@@ -14,6 +14,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HackerNewsKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>HackerNewsNetworker-HackerNewsNetworker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>HackerNewsNetworker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HackerNewsReader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,17 +47,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>599F62943512B1FD12B9AD4483B7F3BC</key>
+		<key>5E0776F59703380FFEA4B349EDB261A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>922202CD64E2C8B82C4CC0274F84717D</key>
+		<key>7D7DC2057E533349EB86F77DBAFC4CEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D87A04FB455CFD0DB2EE9B447CD5AE1</key>
+		<key>9189F3BE461DEB0A4DFA204B5B799849</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>92F99D282FD9D8324426C5909DE15648</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +72,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>A971FB3AD1FCF7E8F4E13D2BD8E95415</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CBA9C9F6A582DF509DC7D779E374E359</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F01670121A81DE2BC5E6945FE204E97A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

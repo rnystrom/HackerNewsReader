@@ -1,13 +1,26 @@
 PODS:
   - Appirater (2.0.5)
+  - HackerNewsKit (0.1.0)
+  - HackerNewsNetworker (0.1.0):
+    - HackerNewsKit
   - TUSafariActivity (1.0.4)
 
 DEPENDENCIES:
   - Appirater
+  - HackerNewsKit (from `Frameworks/HackerNewsKit`)
+  - HackerNewsNetworker (from `Frameworks/HackerNewsNetworker`)
   - TUSafariActivity (~> 1.0)
+
+EXTERNAL SOURCES:
+  HackerNewsKit:
+    :path: Frameworks/HackerNewsKit
+  HackerNewsNetworker:
+    :path: Frameworks/HackerNewsNetworker
 
 SPEC CHECKSUMS:
   Appirater: e7c0a47fb67ee5041ce8479e6ba960927fb40264
+  HackerNewsKit: fef8cd3671760475b36db74acb3ec9a0bda09186
+  HackerNewsNetworker: 3d780a204762c648cf230d25590f44bbf1803b08
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
 
 COCOAPODS: 0.39.0

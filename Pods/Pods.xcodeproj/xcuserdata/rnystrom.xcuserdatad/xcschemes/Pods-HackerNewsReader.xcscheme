@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '9A233526743E587FE525983D'
+               BlueprintIdentifier = '49B5FB5D5F60A5C189B00B6F'
                BlueprintName = 'Pods-HackerNewsReader'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-HackerNewsReader.a'>

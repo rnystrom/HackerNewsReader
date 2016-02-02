@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Frameworks/HackerNewsKit/HackerNewsKit.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Frameworks/HackerNewsNetworker/HackerNewsNetworker.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:HackerNewsReader.xcodeproj">
    </FileRef>
    <FileRef
