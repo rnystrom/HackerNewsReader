@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-#import <HackerNewsKit/HackerNewsKit.h>
+#import <HackerNewsKit/HNPage.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
