@@ -25,7 +25,7 @@ static NSString * const kHNUserKarma = @"kHNUserKarma";
         _username = [username copy] ?: @"";
         _aboutText = [aboutText copy] ?: @"";
         _createdText = [createdText copy] ?: @"";
-        _karma = [karma copy] ?: @"";
+        _karma = karma ?: @0;
     }
     return self;
 }
