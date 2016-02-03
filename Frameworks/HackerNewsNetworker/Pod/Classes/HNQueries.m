@@ -29,7 +29,9 @@ static HNQueries *_sharedQueries = nil;
 }
 
 + (NSString *)fallbackPath {
-    return [[NSBundle bundleForClass:self] pathForResource:@"fallback-queries" ofType:@"json"];
+    static NSString *bundleName = @"HackerNewsNetworker";
+    NSString *bundlePath = [[NSBundle bundleForClass:self] pathForResource:bundleName ofType:@"bundle"];
+    return [[NSBundle bundleWithPath:bundlePath] pathForResource:@"fallback-queries" ofType:@"json"];
 }
 
 + (HNQueries *)localQueries {

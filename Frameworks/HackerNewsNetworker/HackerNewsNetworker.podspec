@@ -19,9 +19,7 @@ Pod::Spec.new do |s|
   s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'HackerNewsNetworker' => ['Pod/Assets/*.json']
-  }
+  s.ios.resource_bundle = { 'HackerNewsNetworker' => 'Pod/Assets/*.json' }
 
   s.public_header_files = 'Pod/Classes/**/*.h'
 
