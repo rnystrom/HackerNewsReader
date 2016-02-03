@@ -18,6 +18,7 @@
 		2920DDCC1AEDA27500E51B23 /* HNTextRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2920DDCB1AEDA27500E51B23 /* HNTextRenderer.m */; };
 		292988C21AD4CE9A00BB386C /* HNPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 292988C11AD4CE9A00BB386C /* HNPostCell.m */; };
 		292E0CEC1C3A10DD00072C57 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 292E0CEB1C3A10DD00072C57 /* Launch.storyboard */; };
+		292EB2581C61E906009C7AFD /* HNAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 292EB2571C61E906009C7AFD /* HNAboutViewController.m */; };
 		294372781C4B087200E5B2F4 /* HNSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 294372771C4B087200E5B2F4 /* HNSessionManager.m */; };
 		2944A88E1AD6EE4900A2A251 /* HNEmptyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944A88D1AD6EE4900A2A251 /* HNEmptyTableCell.m */; };
 		2944A8941AD6EF6500A2A251 /* HNLoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2944A8931AD6EF6500A2A251 /* HNLoadingCell.m */; };
@@ -95,6 +96,8 @@
 		292988C01AD4CE9A00BB386C /* HNPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNPostCell.h; path = Classes/HNPostCell.h; sourceTree = "<group>"; };
 		292988C11AD4CE9A00BB386C /* HNPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNPostCell.m; path = Classes/HNPostCell.m; sourceTree = "<group>"; };
 		292E0CEB1C3A10DD00072C57 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
+		292EB2561C61E906009C7AFD /* HNAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNAboutViewController.h; path = Classes/HNAboutViewController.h; sourceTree = "<group>"; };
+		292EB2571C61E906009C7AFD /* HNAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNAboutViewController.m; path = Classes/HNAboutViewController.m; sourceTree = "<group>"; };
 		294372761C4B087200E5B2F4 /* HNSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNSessionManager.h; path = Classes/HNSessionManager.h; sourceTree = "<group>"; };
 		294372771C4B087200E5B2F4 /* HNSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNSessionManager.m; path = Classes/HNSessionManager.m; sourceTree = "<group>"; };
 		2944A88C1AD6EE4900A2A251 /* HNEmptyTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNEmptyTableCell.h; path = Classes/HNEmptyTableCell.h; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
 				29DE15ED1C3E2D000082B1DB /* HNTabBarController.m */,
 				2972C53E1AD32598005A2739 /* HNWebViewController.h */,
 				2972C53F1AD32598005A2739 /* HNWebViewController.m */,
+				292EB2561C61E906009C7AFD /* HNAboutViewController.h */,
+				292EB2571C61E906009C7AFD /* HNAboutViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -343,13 +348,6 @@
 				294372771C4B087200E5B2F4 /* HNSessionManager.m */,
 			);
 			name = Abstract;
-			sourceTree = "<group>";
-		};
-		296FDE7A1C438EC300784A2E /* Segues */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Segues;
 			sourceTree = "<group>";
 		};
 		2990B2D71AD1FC600053DB80 = {
@@ -407,7 +405,6 @@
 				2944A8A11AD6FA2400A2A251 /* Controllers */,
 				2920DDC61AED9ED600E51B23 /* Text */,
 				2944A8A31AD6FA3500A2A251 /* Views */,
-				296FDE7A1C438EC300784A2E /* Segues */,
 			);
 			name = Classes;
 			path = HackerNewsReader;
@@ -659,6 +656,7 @@
 				2920DDC21AED9C4900E51B23 /* UIFont+HackerNews.m in Sources */,
 				2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */,
 				294CB9081B1C0D3800FAA09F /* HNSplitViewDelegate.m in Sources */,
+				292EB2581C61E906009C7AFD /* HNAboutViewController.m in Sources */,
 				29720A4A1B1CC36800AF2F00 /* UIViewController+UISplitViewController.m in Sources */,
 				2965ED021AFD3DD800F6E2DE /* HNAttributedCommentComponents.m in Sources */,
 				29720A4D1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.m in Sources */,

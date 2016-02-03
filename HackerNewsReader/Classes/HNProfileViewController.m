@@ -17,6 +17,7 @@
 #import <HackerNewsNetworker/HNLogin.h>
 
 #import "HNSessionManager.h"
+#import "HNAboutViewController.h"
 
 static NSInteger kHNSignoutCellSection = 2;
 
@@ -43,6 +44,13 @@ static NSInteger kHNSignoutCellSection = 2;
     dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     _dataCoordinator = [[HNDataCoordinator alloc] initWithDelegate:self delegateQueue:q path:@"user" parser:parser cacheName:cacheName];
     [_dataCoordinator fetchWithParams:@{ @"id": username }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PushAbout"]) {
+        HNAboutViewController *aboutController = segue.destinationViewController;
+        aboutController.aboutText = self.user.aboutText;
+    }
 }
 
 
