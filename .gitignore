@@ -16,6 +16,7 @@ DS_Store
 *.xcuserdatad
 
 Pods
+Podfile.lock
 
 DerivedData
 build
