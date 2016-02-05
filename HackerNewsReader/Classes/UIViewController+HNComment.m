@@ -14,59 +14,63 @@
 
 #import "HNComment+Links.h"
 #import "HNComment+AttributedStrings.h"
+#import "HNProfileViewController.h"
+#import "UIViewController+Storyboards.h"
 
-#define SUPPORTS_ALERTCONTROLLER (NSClassFromString(@"UIAlertController") != nil)
 #define COPY_TEXT_ACTION NSLocalizedString(@"Copy Text", @"Copy the text of the comment")
 #define OPEN_SAFARI_ACTION NSLocalizedString(@"Open in Safari", @"Open the comment in Safari")
 #define COPY_LINK_ACTION NSLocalizedString(@"Copy Permalink", @"Copy a link to the comment")
+#define COMMENT_TITLE NSLocalizedString(@"Comment", @"String for for the title of someone's comment")
 #define COMMENT_TITLE_FORMAT NSLocalizedString(@"%@'s comment", @"Formatted string for for the title of someone's comment")
 #define CANCEL_ACTION NSLocalizedString(@"Cancel", @"Cancel")
+#define VIEW_PROFILE_ACTION NSLocalizedString(@"View Profile", @"View the profile of the comment author")
 
 @implementation UIViewController (HNComment)
 
 - (void)showActionSheetForComment:(HNComment *)comment fromView:(UIView *)view {
-    NSString *title = [NSString stringWithFormat:COMMENT_TITLE_FORMAT, comment.user.username];
-
-    if (SUPPORTS_ALERTCONTROLLER) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *openSafari = [UIAlertAction actionWithTitle:OPEN_SAFARI_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self openCommentPermalink:comment];
-        }];
-        UIAlertAction *copyText = [UIAlertAction actionWithTitle:COPY_TEXT_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self copyCommentText:comment];
-        }];
-        UIAlertAction *copyLink = [UIAlertAction actionWithTitle:COPY_LINK_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [self copyCommentLink:comment];
-        }];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:CANCEL_ACTION style:UIAlertActionStyleCancel handler:nil];
-        [alertController addAction:copyText];
-        [alertController addAction:openSafari];
-        [alertController addAction:copyLink];
-        [alertController addAction:cancel];
-
-        if ([alertController respondsToSelector:@selector(popoverPresentationController)]) {
-            alertController.popoverPresentationController.sourceView = view;
-            alertController.popoverPresentationController.sourceRect = view.bounds;
-        }
-
-        [self presentViewController:alertController animated:YES completion:nil];
+    const BOOL hasUsername = comment.user.username.length > 0;
+    NSString *title;
+    if (hasUsername) {
+        title = [NSString stringWithFormat:COMMENT_TITLE_FORMAT, comment.user.username];
     } else {
-        [self setActionSheetComment:comment];
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:CANCEL_ACTION destructiveButtonTitle:nil otherButtonTitles:COPY_TEXT_ACTION, OPEN_SAFARI_ACTION, COPY_LINK_ACTION, nil];
-        [actionSheet showInView:self.view];
+        title = COMMENT_TITLE;
     }
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *openSafari = [UIAlertAction actionWithTitle:OPEN_SAFARI_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self openCommentPermalink:comment];
+    }];
+    UIAlertAction *copyText = [UIAlertAction actionWithTitle:COPY_TEXT_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self copyCommentText:comment];
+    }];
+    UIAlertAction *copyLink = [UIAlertAction actionWithTitle:COPY_LINK_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self copyCommentLink:comment];
+    }];
+
+    if (hasUsername) {
+        UIAlertAction *viewProfile = [UIAlertAction actionWithTitle:VIEW_PROFILE_ACTION style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self viewProfile:comment];
+        }];
+        [alertController addAction:viewProfile];
+    }
+
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:CANCEL_ACTION style:UIAlertActionStyleCancel handler:nil];
+
+    [alertController addAction:copyText];
+    [alertController addAction:openSafari];
+    [alertController addAction:copyLink];
+    [alertController addAction:cancel];
+
+    if ([alertController respondsToSelector:@selector(popoverPresentationController)]) {
+        alertController.popoverPresentationController.sourceView = view;
+        alertController.popoverPresentationController.sourceRect = view.bounds;
+    }
+
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 
 #pragma mark - Private API
-
-- (void)setActionSheetComment:(HNComment *)actionSheetComment {
-    objc_setAssociatedObject(self, @selector(actionSheetComment), actionSheetComment, OBJC_ASSOCIATION_RETAIN);
-}
-
-- (HNComment *)actionSheetComment {
-    return objc_getAssociatedObject(self, @selector(actionSheetComment));
-}
 
 - (void)openCommentPermalink:(HNComment *)comment {
     NSURL *url = [comment permalink];
@@ -85,19 +89,11 @@
     [[UIPasteboard generalPasteboard] setString:[[comment permalink] absoluteString]];
 }
 
-
-#pragma mark - UIActionSheetDelegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if ([title isEqualToString:OPEN_SAFARI_ACTION]) {
-        [self openCommentPermalink:[self actionSheetComment]];
-    } else if ([title isEqualToString:COPY_TEXT_ACTION]) {
-        [self copyCommentText:[self actionSheetComment]];
-    } else if ([title isEqualToString:COPY_LINK_ACTION]) {
-        [self copyCommentLink:[self actionSheetComment]];
-    }
-    [self setActionSheetComment:nil];
+- (void)viewProfile:(HNComment *)comment {
+    NSString *identifier = [HNProfileViewController hn_storyboardIdentifier];
+    HNProfileViewController *controller = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:identifier];
+    controller.user = comment.user;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

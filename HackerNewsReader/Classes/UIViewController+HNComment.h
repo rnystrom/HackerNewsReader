@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class HNComment;
 
-@interface UIViewController (HNComment) <UIActionSheetDelegate>
+@interface UIViewController (HNComment)
 
 - (void)showActionSheetForComment:(HNComment *)comment fromView:(UIView *)view;
 

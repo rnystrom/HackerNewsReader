@@ -12,6 +12,7 @@
 
 #import "HNProfileViewController.h"
 #import "HNLoginViewController.h"
+#import "UIViewController+Storyboards.h"
 
 @interface HNSessionManager()
 
@@ -29,7 +30,8 @@
 }
 
 - (void)transitionToLoggedInWithSession:(HNSession *)session animated:(BOOL)animated {
-    HNProfileViewController *controller = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"HNProfileViewController"];
+    NSString *identifier = [HNProfileViewController hn_storyboardIdentifier];
+    HNProfileViewController *controller = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:identifier];
     controller.displayAsSessionUser = YES;
     controller.user = session.user;
     controller.sessionManager = self;
@@ -37,7 +39,8 @@
 }
 
 - (void)transitionToLoggedOutAnimated:(BOOL)animated {
-    HNLoginViewController *controller = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"HNLoginViewController"];
+    NSString *identifier = [HNLoginViewController hn_storyboardIdentifier];
+    HNLoginViewController *controller = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:identifier];
     controller.sessionManager = self;
     [self.navigationController setViewControllers:@[ controller ] animated:animated];
 }

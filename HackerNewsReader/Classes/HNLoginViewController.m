@@ -11,7 +11,6 @@
 #import <HackerNewsNetworker/HNLogin.h>
 #import <HackerNewsNetworker/HNSession.h>
 
-#import "HNProfileViewController.h"
 #import "UIViewController+HNOverlay.h"
 #import "HNSessionManager.h"
 

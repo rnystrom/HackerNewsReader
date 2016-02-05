@@ -43,7 +43,14 @@ static NSString * const kCommentCellIdentifier = @"kCommentCellIdentifier";
 static NSString * const kCommentHeaderCellIdentifier = @"kCommentHeaderCellIdentifier";
 static CGFloat const kCommentCellIndentationWidth = 20.0;
 
-@interface HNCommentViewController() <HNDataCoordinatorDelegate, HNCommentCellDelegate, HNPageHeaderViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate>
+@interface HNCommentViewController()
+<
+HNDataCoordinatorDelegate,
+HNCommentCellDelegate,
+HNPageHeaderViewDelegate,
+UIActionSheetDelegate,
+MFMailComposeViewControllerDelegate
+>
 
 @property (nonatomic, assign) NSUInteger postID;
 @property (nonatomic, strong) HNDataCoordinator *dataCoordinator;

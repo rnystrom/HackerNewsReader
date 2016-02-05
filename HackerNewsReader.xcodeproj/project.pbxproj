@@ -50,6 +50,7 @@
 		29B393B21B2389C00094C2C6 /* HNTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B11B2389C00094C2C6 /* HNTopViewController.m */; };
 		29B393B61B23C10C0094C2C6 /* HNFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B51B23C10C0094C2C6 /* HNFeedDataSource.m */; };
 		29B393B91B23CA0A0094C2C6 /* HNSearchPostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */; };
+		29B9ECF21C64680F00D3CB21 /* UIViewController+Storyboards.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B9ECF11C64680F00D3CB21 /* UIViewController+Storyboards.m */; };
 		29D4116A1ADB4D9E00C491DA /* HNComment+AttributedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */; };
 		29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D4116C1ADB601600C491DA /* HNCommentHeaderCell.m */; };
 		29DE15EE1C3E2D000082B1DB /* HNTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DE15ED1C3E2D000082B1DB /* HNTabBarController.m */; };
@@ -157,6 +158,8 @@
 		29B393B51B23C10C0094C2C6 /* HNFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNFeedDataSource.m; path = Classes/HNFeedDataSource.m; sourceTree = "<group>"; };
 		29B393B71B23CA0A0094C2C6 /* HNSearchPostsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNSearchPostsController.h; path = Classes/HNSearchPostsController.h; sourceTree = "<group>"; };
 		29B393B81B23CA0A0094C2C6 /* HNSearchPostsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNSearchPostsController.m; path = Classes/HNSearchPostsController.m; sourceTree = "<group>"; };
+		29B9ECF01C64680F00D3CB21 /* UIViewController+Storyboards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Storyboards.h"; path = "Classes/UIViewController+Storyboards.h"; sourceTree = "<group>"; };
+		29B9ECF11C64680F00D3CB21 /* UIViewController+Storyboards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Storyboards.m"; path = "Classes/UIViewController+Storyboards.m"; sourceTree = "<group>"; };
 		29D411681ADB4D9E00C491DA /* HNComment+AttributedStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HNComment+AttributedStrings.h"; path = "Classes/HNComment+AttributedStrings.h"; sourceTree = "<group>"; };
 		29D411691ADB4D9E00C491DA /* HNComment+AttributedStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HNComment+AttributedStrings.m"; path = "Classes/HNComment+AttributedStrings.m"; sourceTree = "<group>"; };
 		29D4116B1ADB601600C491DA /* HNCommentHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HNCommentHeaderCell.h; path = Classes/HNCommentHeaderCell.h; sourceTree = "<group>"; };
@@ -262,6 +265,8 @@
 				29720A521B1CCF2B00AF2F00 /* UINavigationController+HNBarState.m */,
 				29DE15EF1C3E2DCE0082B1DB /* UITabBar+HackerNews.h */,
 				29DE15F01C3E2DCE0082B1DB /* UITabBar+HackerNews.m */,
+				29B9ECF01C64680F00D3CB21 /* UIViewController+Storyboards.h */,
+				29B9ECF11C64680F00D3CB21 /* UIViewController+Storyboards.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -655,6 +660,7 @@
 				2990B3521AD1FE460053DB80 /* AppDelegate.m in Sources */,
 				2920DDC21AED9C4900E51B23 /* UIFont+HackerNews.m in Sources */,
 				2965ECFF1AFC89EF00F6E2DE /* HNPageHeaderView.m in Sources */,
+				29B9ECF21C64680F00D3CB21 /* UIViewController+Storyboards.m in Sources */,
 				294CB9081B1C0D3800FAA09F /* HNSplitViewDelegate.m in Sources */,
 				292EB2581C61E906009C7AFD /* HNAboutViewController.m in Sources */,
 				29720A4A1B1CC36800AF2F00 /* UIViewController+UISplitViewController.m in Sources */,
