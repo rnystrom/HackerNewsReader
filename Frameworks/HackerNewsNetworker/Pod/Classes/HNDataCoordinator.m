@@ -77,11 +77,11 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.service fetchParameters:params completion:^(id data, NSError *error) {
             self.loadedOnce = YES;
-            if (error && [self.delegate respondsToSelector:@selector(dataCoordinator:didError:)]) {
+            if (error != nil) {
                 dispatch_async(self.delegateQueue, ^{
                     [self.delegate dataCoordinator:self didError:error];
                 });
-            } else if (data) {
+            } else if (data != nil) {
                 HNQueries *queries = [HNQueries sharedQueries];
                 id object = [self.parser parseDataFromResponse:data queries:queries];
                 if (object && [self.store archiveToDisk:object]) {
