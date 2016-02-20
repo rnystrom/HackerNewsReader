@@ -29,10 +29,19 @@ static NSString *HNUserValue(TFHpple *parser, NSString *query) {
 
     NSString *username = HNUserValue(parser, queries.userName);
     NSString *created = HNUserValue(parser, queries.userCreated);
-    NSString *about = HNUserValue(parser, queries.userAbout);
 
     NSString *karmaString = HNUserValue(parser, queries.userKarma);
     NSNumber *karma = @(karmaString.integerValue);
+
+    NSString *about;
+    TFHppleElement *aboutNode = [[parser searchWithXPathQuery:queries.userAbout] firstObject];
+    TFHppleElement *form = [[aboutNode searchWithXPathQuery:@"//textarea[@name='about']"] firstObject];
+    if (form != nil) {
+        about = [form content];
+    } else {
+        about = [aboutNode content];
+    }
+    about = [about stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
     return [[HNUser alloc] initWithUsername:username aboutText:about createdText:created karma:karma];
 }
