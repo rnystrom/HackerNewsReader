@@ -12,10 +12,6 @@
 
 #import "HNReadPostStore.h"
 
-@interface HNTopViewController ()
-
-@end
-
 @implementation HNTopViewController
 
 @synthesize readPostStore = _readPostStore, dataCoordinator = _dataCoordinator;

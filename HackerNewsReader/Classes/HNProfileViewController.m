@@ -18,6 +18,7 @@
 
 #import "HNSessionManager.h"
 #import "HNAboutViewController.h"
+#import "HNSubmissionsViewController.h"
 
 static NSInteger kHNSignoutCellSection = 2;
 
@@ -47,9 +48,13 @@ static NSInteger kHNSignoutCellSection = 2;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"PushAbout"]) {
+    NSString *identifier = segue.identifier;
+    if ([identifier isEqualToString:@"PushAbout"]) {
         HNAboutViewController *aboutController = segue.destinationViewController;
         aboutController.aboutText = self.user.aboutText;
+    } else if ([identifier isEqualToString:@"ShowSubmissions"]) {
+        HNSubmissionsViewController *submissionsController = segue.destinationViewController;
+        [submissionsController configureWithUser:self.user];
     }
 }
 

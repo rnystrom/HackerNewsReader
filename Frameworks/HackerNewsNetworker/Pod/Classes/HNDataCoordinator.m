@@ -74,8 +74,11 @@ static NSString * const kHNDataCoordinatorDidSaveNotification = @"kHNDataCoordin
 }
 
 - (void)fetchWithParams:(NSDictionary *)params {
+    NSMutableDictionary *allParams = [(self.staticParams ?: @{}) mutableCopy];
+    [allParams addEntriesFromDictionary:(params ?: @{})];
+
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self.service fetchParameters:params completion:^(id data, NSError *error) {
+        [self.service fetchParameters:allParams completion:^(id data, NSError *error) {
             self.loadedOnce = YES;
             if (error != nil) {
                 dispatch_async(self.delegateQueue, ^{

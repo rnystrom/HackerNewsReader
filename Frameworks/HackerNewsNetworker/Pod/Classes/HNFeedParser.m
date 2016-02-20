@@ -58,13 +58,18 @@
     NSString *postID = [commentLink hn_queryParameters][@"id"];
 
     scoreString = [[scoreString componentsSeparatedByString:@" "] firstObject];
-    commentString = [[commentString componentsSeparatedByString:@" "] firstObject];
+
+    NSUInteger commentScore = 0;
+    NSArray *commentComponents = [commentString componentsSeparatedByString:@" "];
+    if ([[[commentComponents lastObject] lowercaseString] hasPrefix:@"comment"]) {
+        commentScore = [[commentComponents firstObject] integerValue];
+    }
 
     HNPost *post = [[HNPost alloc] initWithTitle:title
                                          ageText:ageText
                                              url:[NSURL URLWithString:link]
                                            score:[scoreString integerValue]
-                                    commentCount:[commentString integerValue]
+                                    commentCount:commentScore
                                               pk:[postID integerValue]
                                             rank:rank];
     return post;

@@ -81,7 +81,7 @@ static NSUInteger const kItemsPerPage = 30;
 
     self.tableView.tableFooterView = [[UIView alloc] init];
 
-    NSString *emptyMessage = NSLocalizedString(@"Failed loading feed", @"Cannot load data for the list");
+    NSString *emptyMessage = NSLocalizedString(@"No results found", @"Did not find any results for feed");
     self.tableStatus = [[HNTableStatus alloc] initWithTableView:self.tableView emptyMessage:emptyMessage];
     self.tableStatus.sections = HNFeedViewControllerSectionCount;
 

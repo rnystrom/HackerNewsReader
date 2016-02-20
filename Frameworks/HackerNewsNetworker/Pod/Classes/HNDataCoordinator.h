@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
                           parser:(id <HNParseProtocol>)parser
                        cacheName:(NSString *)cacheName NS_DESIGNATED_INITIALIZER;
 
+@property (nonatomic, strong) NSDictionary *staticParams;
+
 - (void)fetch;
 - (void)fetchWithParams:(nullable NSDictionary *)params;
 - (BOOL)isFetching;

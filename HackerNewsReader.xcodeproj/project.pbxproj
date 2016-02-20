@@ -57,6 +57,7 @@
 		29DE15F11C3E2DCE0082B1DB /* UITabBar+HackerNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DE15F01C3E2DCE0082B1DB /* UITabBar+HackerNews.m */; };
 		29E2CB4B1AD9A1200010B45D /* HNCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */; };
 		29EAD15C1B03C96F0076C0C2 /* HNPage+Links.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */; };
+		29F32CAF1C78B55F00680A3E /* HNSubmissionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29F32CAE1C78B55F00680A3E /* HNSubmissionsViewController.m */; };
 		8E967D4A5CD69545E8DA045D /* libPods-HackerNewsReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */; };
 		F634B5CA1BEB59670098BC59 /* rounded_table_cell_top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5C81BEB59670098BC59 /* rounded_table_cell_top@2x.png */; };
 		F634B5CB1BEB59670098BC59 /* rounded_table_cell_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F634B5C91BEB59670098BC59 /* rounded_table_cell_bottom@2x.png */; };
@@ -172,6 +173,8 @@
 		29E2CB4A1AD9A1200010B45D /* HNCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HNCommentCell.m; path = Classes/HNCommentCell.m; sourceTree = "<group>"; };
 		29EAD15A1B03C96F0076C0C2 /* HNPage+Links.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HNPage+Links.h"; path = "Classes/HNPage+Links.h"; sourceTree = "<group>"; };
 		29EAD15B1B03C96F0076C0C2 /* HNPage+Links.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HNPage+Links.m"; path = "Classes/HNPage+Links.m"; sourceTree = "<group>"; };
+		29F32CAD1C78B55F00680A3E /* HNSubmissionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HNSubmissionsViewController.h; sourceTree = "<group>"; };
+		29F32CAE1C78B55F00680A3E /* HNSubmissionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HNSubmissionsViewController.m; sourceTree = "<group>"; };
 		61F7FD096A2E28829F917465 /* libPods-HackerNewsReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HackerNewsReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F33833EE244671276B6A5F3F /* Pods-HackerNewsReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackerNewsReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackerNewsReader/Pods-HackerNewsReader.release.xcconfig"; sourceTree = "<group>"; };
 		F634B5C81BEB59670098BC59 /* rounded_table_cell_top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rounded_table_cell_top@2x.png"; sourceTree = "<group>"; };
@@ -431,6 +434,8 @@
 			children = (
 				29B393B01B2389C00094C2C6 /* HNTopViewController.h */,
 				29B393B11B2389C00094C2C6 /* HNTopViewController.m */,
+				29F32CAD1C78B55F00680A3E /* HNSubmissionsViewController.h */,
+				29F32CAE1C78B55F00680A3E /* HNSubmissionsViewController.m */,
 			);
 			name = "Feed Subclasses";
 			sourceTree = "<group>";
@@ -666,6 +671,7 @@
 				29720A4A1B1CC36800AF2F00 /* UIViewController+UISplitViewController.m in Sources */,
 				2965ED021AFD3DD800F6E2DE /* HNAttributedCommentComponents.m in Sources */,
 				29720A4D1B1CC9F100AF2F00 /* UIViewController+ActivityIndicator.m in Sources */,
+				29F32CAF1C78B55F00680A3E /* HNSubmissionsViewController.m in Sources */,
 				2965ED101AFD98E300F6E2DE /* NSURL+HackerNews.m in Sources */,
 				29D4116D1ADB601600C491DA /* HNCommentHeaderCell.m in Sources */,
 				F65177B41BE758FC00034537 /* HNLoginViewController.m in Sources */,
