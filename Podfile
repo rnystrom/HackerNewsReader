@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'HackerNewsReader' do
     pod 'TUSafariActivity', '~> 1.0'
-    pod "Appirater"
+    pod 'Appirater'
+    pod 'IGListKit'
 end
 
