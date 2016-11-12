@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HNLoginViewController : UITableViewController
 
-+ (NSString *)storyboardIdentifier;
-
 @property (nonatomic, strong) HNSessionManager *sessionManager;
 
 @end
