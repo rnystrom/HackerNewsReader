@@ -76,7 +76,7 @@
     NSURL *url = [comment permalink];
     UIApplication *app = [UIApplication sharedApplication];
     if ([app canOpenURL:url]) {
-        [app openURL:url];
+        [app openURL:url options:@{} completionHandler:nil];
     }
 }
 
