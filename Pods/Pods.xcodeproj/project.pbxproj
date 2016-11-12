@@ -1,0 +1,1199 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02FABE1669CAAEDA7EF7CAA2831294DE /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = ECF6E4A1E9A65F10948332B1324AB88E /* fi.lproj */; };
+		0613930CE4BE9AFFC32769EC8383D23E /* cs.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 37F43B1CBF49FE5B8F251D24EC36829A /* cs.lproj */; };
+		0703DE46974FA4B656A35BEA14576D65 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A547EE96ABD67FABF6EA9DC4619E9D72 /* SystemConfiguration.framework */; };
+		077CC403DA16EE7CB0D9FFE27AEA9F5A /* zh-Hant.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 94CA29675B7B3693462CED7E535B774C /* zh-Hant.lproj */; };
+		109255F460CF656303F5C867EF3FE415 /* ms.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 769C601AD13602D9A562B1B78DAED922 /* ms.lproj */; };
+		127EF7628310E64A4DE7AD212DA72073 /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3A1EDB6873FB20E7BD621035E1FBDDAB /* zh_CN.lproj */; };
+		18ABEE2B1746B785D72F404827852BDC /* safari-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0E74F001A91B573BBFF568F5A720C8 /* safari-7.png */; };
+		19146BFC583F4C5D850A01E19AE600F3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81047D685486F3216FDB4C51835E4BD2 /* Foundation.framework */; };
+		218F2DE0F0A79FE0950832415D7C209E /* safari~iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 731F7A47A3AFF947E45CEFB6806FE61D /* safari~iPad@2x.png */; };
+		25B481D0CEF9F882498CC8C106751AD3 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E3990DD4652E2EC462EE250C51B859F /* Appirater.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		26972794C2FBE7DD8758175B07C9C01E /* sk.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 8E9C4B97909AB5A77C84B7ABBBE9DFAA /* sk.lproj */; };
+		27439D0E7749F8E8E4D9700B532D2EA7 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = BDEF24AD6D4527BF3AC1E6243776EFAD /* fr.lproj */; };
+		2DADD3C13B9E4DFA26AA7CA0903CD0BA /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DA4218BBE648D6F225CC47C38868AA03 /* fr.lproj */; };
+		31521C761099E32A7733900F96CEA73D /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D2E5E76AC31EDD23391FACDDE58DBDE3 /* sv.lproj */; };
+		31B96BBC0DE134F9516AEF51D58F4852 /* no.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2B6770DC3B8BB07D0F93759460BC9F55 /* no.lproj */; };
+		375E483BD7C0630E14787F377E3C1C3D /* he.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 08E22A2953C8A25A03DD3429FA88F56F /* he.lproj */; };
+		38B99715207D14F4FBCAB2ED994D9502 /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 453D654937C0F7DB7016E9BA97D6E531 /* ja.lproj */; };
+		3D43EDEE7757695EE97683B2E421F888 /* safari.png in Resources */ = {isa = PBXBuildFile; fileRef = 741A38E7F53658D8E830DAEE4DE7F790 /* safari.png */; };
+		3DFE688756C9CE8A94D0CE75F2395288 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81047D685486F3216FDB4C51835E4BD2 /* Foundation.framework */; };
+		4176B27D4601687FB92B76B43C7DDDDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81047D685486F3216FDB4C51835E4BD2 /* Foundation.framework */; };
+		44FBBB6C9C0F9F99219F55C118D58E33 /* vi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1C7C7000108E237357D81FBCB5AC0D0D /* vi.lproj */; };
+		457118B4B6DDF97C5D544AD11D1A35FC /* safari-7~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = E87D9B3981CDADDB31BD1701C94F7EAA /* safari-7~iPad.png */; };
+		4931B820C9FD977F0E19AE7A1B0421F4 /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1E0BAFB104BAEB3E041D5C48C7E1F78A /* es.lproj */; };
+		4A36B04C76839E84E06D471BFB71B81A /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A1176CD2EFDCF03A0C7486A4F204F064 /* de.lproj */; };
+		4B34F266BEFA148145CA513BB65304AB /* safari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9B4145B6898C94492EF96FD0C826E74 /* safari@2x.png */; };
+		4BB81B6379B6B721CE16D8B81DD784EA /* Appirater-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC88E7C6A9C0E7F15B09998E8DF5676 /* Appirater-dummy.m */; };
+		4F560BC32E19861B5F2CB8B2DD6719C0 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E83949475AAC267C21C7805031A0E9BA /* nl.lproj */; };
+		4FE9A30258F3440ED66B2D6113F6E692 /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6C15F8A1FEF729E5F2E9BD94E1A0DE4C /* nl.lproj */; };
+		52B59D976C806CE137CFCCC8883F273E /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 73D0C5F3EB18F9EEA77336FCFF8F1866 /* fi.lproj */; };
+		52C04BC5A16E7D5DA43317B7622E4B5B /* th.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3E6A8F285848F5E28ADB75A98D730BA5 /* th.lproj */; };
+		540CF8A57BF2676C3325F2B3F1531A74 /* Pods-HackerNewsReader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DA863EE365ADE0F599A9E7C936CECFC /* Pods-HackerNewsReader-dummy.m */; };
+		54ABE169A2C6956B3F17802B03D0087B /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D1B17C01874B37CE7EE22BAFA2D5301E /* pl.lproj */; };
+		55554B26283AE1CC67DCD5B01D9F7710 /* pt-BR.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 34EF2E39BA711C772E1B43AAF8ACC9E3 /* pt-BR.lproj */; };
+		581D92C30D24113E05FE0AFE09256611 /* ro.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F25C77A81D6D9EAB69FDE187025D30B0 /* ro.lproj */; };
+		58D5B7A77712F1310E773063FC9F2ACB /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 323F5BBA19674B7BF0476EC1C5AD0E49 /* es.lproj */; };
+		595392D975EE10E374013F4766F37423 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DD05BD9B050645A7C3C52440C92234E8 /* pt.lproj */; };
+		5E2F081EBBAEC5B0661D0609417784EF /* sv.lproj in Resources */ = {isa = PBXBuildFile; fileRef = BA799CB3F215E55DD59491E9D9104C8D /* sv.lproj */; };
+		5E347930A65947CC97DF690BEE0FF2C7 /* ko.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1FE8C21C7C0CA0896E5FF29472775CA8 /* ko.lproj */; };
+		605DFF8AF5F7C0FAF62F33AA09EDA59F /* safari-7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A985AEC86E7D0ADCA4CCB2D381A8D4C /* safari-7@3x.png */; };
+		6249503A9720BE8A5E79C83F0B2E8877 /* sk.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 67B1AA838EFA10B9A09A2E78547849E6 /* sk.lproj */; };
+		6431100D4B838C9791C5EB864612A9C9 /* TUSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B7CBEB8E51E0D9607931171B422C23 /* TUSafariActivity.m */; };
+		69F9B8811DD0A69D1AD805A8F50D9562 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 1921612CBB4DB27AF0DDDD88B337E85F /* de.lproj */; };
+		6A6B7529EDE4921AB24CAFDAF0CF3922 /* Pods-HackerNewsReader-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DC90A1A5DB8A78A899CAD240A9EDAD /* Pods-HackerNewsReader-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B425B7BFF8052308B62ECD473E9BDED /* cs.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 946C04DFA428FD1A891DF1AFE3613A45 /* cs.lproj */; };
+		6DE60F0CD45C414DF47E5CE9CE89A32E /* safari@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC7364BAFD06F54232FE12BFF67D0DD2 /* safari@3x.png */; };
+		6FA780AAB02A551B955D736DCFE3ADC2 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = B8A364DA84B805DA932629F3ECD6893E /* pt.lproj */; };
+		7656C4EC91318AE279D2B92E7A164A61 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 4B323BBCEBF62B3F2D654A3AA0463BEA /* it.lproj */; };
+		76876328878D461763E9DD5D2B28D0B3 /* ca.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 27605C84A221A29333582768942F761A /* ca.lproj */; };
+		804A1840ACD5AFA2962A58B6B7BC0637 /* eu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 0653404E0B70C468FCA4DCAD5BA2EFBE /* eu.lproj */; };
+		8A54F2D2D024DD5EEFF4A502926E141B /* vi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 8C016B7D2B18BB65AE8DC5F8430D3423 /* vi.lproj */; };
+		949FD1B461348882A580094153189823 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0FBBDDF7BEAAE88FBA825B90CA9C055 /* CFNetwork.framework */; };
+		94B05B13B2D86AA74313A632B3C25824 /* safari~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D6E0021B222A99CFF960B246607E001 /* safari~iPad.png */; };
+		98EF54AFF63E0B2AB38143141A14A35B /* hu.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 0681378E854B0CC06F145840114E3DF1 /* hu.lproj */; };
+		A112BD31A75E990E992F96C36D8D4DFC /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 79B63FA8AD99905C9FCE8A6B72DCDF08 /* pl.lproj */; };
+		A431632242AB6413745307CB80B9D283 /* AppiraterDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 509BA8DEA3CDE47A21D203C08BA28F06 /* AppiraterDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A5D1D06615DF780E1AA1302DCC1B980D /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = D07D80CF4AADD48CFB8E17075600A273 /* it.lproj */; };
+		A5E5CD8E7DB6824518308DE2779A229F /* Appirater.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2C1E5F07965B5AE079B81334E051A9C /* Appirater.bundle */; };
+		A75F7A26A9565ED68FC89B565874DB52 /* ko.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 198EF878ED00C2A54012674514580604 /* ko.lproj */; };
+		AA948CDB548D0A490471DCA0C3E9BAD3 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A3440090A722DA5BCB8A001C31B58CC5 /* ru.lproj */; };
+		B1076817CC564FD82F3D4FECB0C9A43A /* TUSafariActivity-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C83C970F9D74DB44BA3D974DC7B4E38 /* TUSafariActivity-dummy.m */; };
+		B2009F70FE55DCE47D621C1C1754ADAC /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 5DB3EF521B8C88FA9BE3012DD8E1C73B /* zh-Hans.lproj */; };
+		B2497B3692F8BD025A8472DB58EC56B4 /* TUSafariActivity.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D5679CA2A192D6ABF40B517B054C0EC0 /* TUSafariActivity.bundle */; };
+		B290A86198C2043DD6F8600CEB89005D /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F4A2112C1833B1783D5D3CB693BDF688 /* en.lproj */; };
+		B8A3C8D14F4B283F501DC8FB3C28715C /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 7B3B5A3A90439E78384BE2A4136B42FF /* ru.lproj */; };
+		BA8FDCCDD75A30332CAFA461DCBB239D /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 63BBDBA2AC2CEBFE76646399282D6D47 /* da.lproj */; };
+		C337ED3227AC2BAE7F8C858FBF75E118 /* TUSafariActivity-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D7509C4B0BBB1AEDCC723ED5A496DA0 /* TUSafariActivity-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C6605A862DC070D4578D72028349D153 /* nb.lproj in Resources */ = {isa = PBXBuildFile; fileRef = BFA7D300D6E0D5D943A2EA32597BBE46 /* nb.lproj */; };
+		C7283E2BF15CD94AB43402F22F019372 /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9EE3B4C099E88E2811C928EA0A7C6A44 /* ar.lproj */; };
+		D4EA8A84E409A03B7C6E7C84F5673F6C /* safari-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FCD9BA06E55037D6535877C8E2BEAF36 /* safari-7@2x.png */; };
+		D85A70A42894F6B9EC438E5A9357A8FA /* id.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6C0AADD7CDB9722A60EA437E09856CE0 /* id.lproj */; };
+		DA0EA60B841C69FC75C503617803CDFB /* el.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 073C25BF919E4AA9E657A11790E3E060 /* el.lproj */; };
+		DCEBE3F854647503DF849E5414D0C958 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = EEC7184BA3855F694903E1465EDE961E /* en.lproj */; };
+		DEC3099C0C9045886B467F863DCAC082 /* uk.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 35CA8F6C59FC7BF1D8B20AA10620D248 /* uk.lproj */; };
+		E61A26673571380E9407C92279996E6E /* TUSafariActivity.h in Headers */ = {isa = PBXBuildFile; fileRef = CC4AAFC33F9AA459C909DDAB88268E15 /* TUSafariActivity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8979B89210E8201F2850FDE0AB1347F /* tr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 47159E5CFB707BC0418B378F44A71884 /* tr.lproj */; };
+		EA095585B1454B85C30F1DD53C152DFF /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E67919B93FAA2D3628D2A7B2BFC57AE9 /* ja.lproj */; };
+		F0548A32E4CD47BED6DB99DF026FC79F /* safari-7~iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D9608B04DDDF3A0A4DC90577328F3EC /* safari-7~iPad@2x.png */; };
+		F699CA58E3DD13833285F2A8FC610AAE /* Appirater-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1351F745AF46414C042DB58869610FA4 /* Appirater-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FDD504C08D0925F7B348E661BED008F7 /* Appirater.h in Headers */ = {isa = PBXBuildFile; fileRef = CD7618CEA7F8ADBA5D3908EED8CD4B43 /* Appirater.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1BD45AFF1770C1B50DC7718A513B0488 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C7E27398B04EB3E1EDDF1AABEAB23112;
+			remoteInfo = Appirater;
+		};
+		1C8FEC82E6192E2EF9DDE1EABE594C19 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8C8D601E92B0B40F48C791C48F237AE;
+			remoteInfo = "Appirater-Appirater";
+		};
+		96717508E0A25B9BA2FC5E3DD7251A61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55D2CDB01F4ABBA4AD47B1EB3A7B58DC;
+			remoteInfo = "TUSafariActivity-TUSafariActivity";
+		};
+		B777ACC41DFB60D623D7D712BD070B3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 473C332A5878173F84D95AB77164CA89;
+			remoteInfo = TUSafariActivity;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05DAF598462D192BEAEA13F3644F4643 /* Pods-HackerNewsReader.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-HackerNewsReader.modulemap"; sourceTree = "<group>"; };
+		0653404E0B70C468FCA4DCAD5BA2EFBE /* eu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = eu.lproj; path = Pod/Assets/eu.lproj; sourceTree = "<group>"; };
+		0681378E854B0CC06F145840114E3DF1 /* hu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = hu.lproj; sourceTree = "<group>"; };
+		073680BCC35AC8BCD983228A4BC4E60C /* Appirater.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Appirater.xcconfig; sourceTree = "<group>"; };
+		073C25BF919E4AA9E657A11790E3E060 /* el.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = el.lproj; sourceTree = "<group>"; };
+		08E22A2953C8A25A03DD3429FA88F56F /* he.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = he.lproj; sourceTree = "<group>"; };
+		0C0E74F001A91B573BBFF568F5A720C8 /* safari-7.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "safari-7.png"; path = "Pod/Assets/safari-7.png"; sourceTree = "<group>"; };
+		1181E4146DAE72AF77995F3A8B87363A /* ResourceBundle-Appirater-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Appirater-Info.plist"; sourceTree = "<group>"; };
+		1191BE182E5E0B9A16581FF97512E73A /* Pods-HackerNewsReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HackerNewsReader.release.xcconfig"; sourceTree = "<group>"; };
+		1351F745AF46414C042DB58869610FA4 /* Appirater-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Appirater-umbrella.h"; sourceTree = "<group>"; };
+		16FBDFFEC7DFB6B6C0F040CADDC491CA /* TUSafariActivity.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TUSafariActivity.modulemap; sourceTree = "<group>"; };
+		1921612CBB4DB27AF0DDDD88B337E85F /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = de.lproj; sourceTree = "<group>"; };
+		198EF878ED00C2A54012674514580604 /* ko.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ko.lproj; path = Pod/Assets/ko.lproj; sourceTree = "<group>"; };
+		1C7C7000108E237357D81FBCB5AC0D0D /* vi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = vi.lproj; sourceTree = "<group>"; };
+		1E0BAFB104BAEB3E041D5C48C7E1F78A /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = es.lproj; sourceTree = "<group>"; };
+		1FE8C21C7C0CA0896E5FF29472775CA8 /* ko.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ko.lproj; sourceTree = "<group>"; };
+		27605C84A221A29333582768942F761A /* ca.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ca.lproj; sourceTree = "<group>"; };
+		28A0C83D8B9D8EAD962F3ED7064EE24F /* TUSafariActivity-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TUSafariActivity-prefix.pch"; sourceTree = "<group>"; };
+		2A6F843F984A7F339B67A1A6F9D4AEBF /* TUSafariActivity.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TUSafariActivity.xcconfig; sourceTree = "<group>"; };
+		2A985AEC86E7D0ADCA4CCB2D381A8D4C /* safari-7@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "safari-7@3x.png"; path = "Pod/Assets/safari-7@3x.png"; sourceTree = "<group>"; };
+		2AD3FC611166142F7A1AA7A9B80E3632 /* ResourceBundle-TUSafariActivity-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-TUSafariActivity-Info.plist"; sourceTree = "<group>"; };
+		2B6770DC3B8BB07D0F93759460BC9F55 /* no.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = no.lproj; path = Pod/Assets/no.lproj; sourceTree = "<group>"; };
+		323F5BBA19674B7BF0476EC1C5AD0E49 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = Pod/Assets/es.lproj; sourceTree = "<group>"; };
+		339469E8C07B5EE4D2EB428BEBFBCA31 /* Appirater.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Appirater.framework; path = Appirater.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34EF2E39BA711C772E1B43AAF8ACC9E3 /* pt-BR.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = "pt-BR.lproj"; sourceTree = "<group>"; };
+		35CA8F6C59FC7BF1D8B20AA10620D248 /* uk.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = uk.lproj; sourceTree = "<group>"; };
+		37C1B9140AB0F89D8D3CCC2C510FFF3D /* Pods_HackerNewsReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_HackerNewsReader.framework; path = "Pods-HackerNewsReader.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37F43B1CBF49FE5B8F251D24EC36829A /* cs.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = cs.lproj; sourceTree = "<group>"; };
+		38AE98BF8243CCF70E88E1D4BBA7BD9E /* TUSafariActivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TUSafariActivity.framework; path = TUSafariActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A1EDB6873FB20E7BD621035E1FBDDAB /* zh_CN.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = zh_CN.lproj; path = Pod/Assets/zh_CN.lproj; sourceTree = "<group>"; };
+		3E6A8F285848F5E28ADB75A98D730BA5 /* th.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = th.lproj; sourceTree = "<group>"; };
+		3E7F6831A8614F65AADBAB4BF03D00AB /* Pods-HackerNewsReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HackerNewsReader.debug.xcconfig"; sourceTree = "<group>"; };
+		453D654937C0F7DB7016E9BA97D6E531 /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ja.lproj; sourceTree = "<group>"; };
+		47159E5CFB707BC0418B378F44A71884 /* tr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = tr.lproj; sourceTree = "<group>"; };
+		4B323BBCEBF62B3F2D654A3AA0463BEA /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = it.lproj; sourceTree = "<group>"; };
+		4E3990DD4652E2EC462EE250C51B859F /* Appirater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
+		509BA8DEA3CDE47A21D203C08BA28F06 /* AppiraterDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
+		56B843589A93865306940EBA9ABD4CE4 /* Pods-HackerNewsReader-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HackerNewsReader-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5DB3EF521B8C88FA9BE3012DD8E1C73B /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = "zh-Hans.lproj"; sourceTree = "<group>"; };
+		63BBDBA2AC2CEBFE76646399282D6D47 /* da.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = da.lproj; sourceTree = "<group>"; };
+		63BDA6FC8089295C2FA02AB3667B6FEB /* Pods-HackerNewsReader-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HackerNewsReader-resources.sh"; sourceTree = "<group>"; };
+		66B7CBEB8E51E0D9607931171B422C23 /* TUSafariActivity.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TUSafariActivity.m; path = Pod/Classes/TUSafariActivity.m; sourceTree = "<group>"; };
+		67B1AA838EFA10B9A09A2E78547849E6 /* sk.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = sk.lproj; path = Pod/Assets/sk.lproj; sourceTree = "<group>"; };
+		6C0AADD7CDB9722A60EA437E09856CE0 /* id.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = id.lproj; sourceTree = "<group>"; };
+		6C15F8A1FEF729E5F2E9BD94E1A0DE4C /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = nl.lproj; sourceTree = "<group>"; };
+		6C83C970F9D74DB44BA3D974DC7B4E38 /* TUSafariActivity-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TUSafariActivity-dummy.m"; sourceTree = "<group>"; };
+		6CC88E7C6A9C0E7F15B09998E8DF5676 /* Appirater-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Appirater-dummy.m"; sourceTree = "<group>"; };
+		6D7509C4B0BBB1AEDCC723ED5A496DA0 /* TUSafariActivity-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TUSafariActivity-umbrella.h"; sourceTree = "<group>"; };
+		6D9608B04DDDF3A0A4DC90577328F3EC /* safari-7~iPad@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "safari-7~iPad@2x.png"; path = "Pod/Assets/safari-7~iPad@2x.png"; sourceTree = "<group>"; };
+		731F7A47A3AFF947E45CEFB6806FE61D /* safari~iPad@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "safari~iPad@2x.png"; path = "Pod/Assets/safari~iPad@2x.png"; sourceTree = "<group>"; };
+		73D0C5F3EB18F9EEA77336FCFF8F1866 /* fi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fi.lproj; path = Pod/Assets/fi.lproj; sourceTree = "<group>"; };
+		741A38E7F53658D8E830DAEE4DE7F790 /* safari.png */ = {isa = PBXFileReference; includeInIndex = 1; name = safari.png; path = Pod/Assets/safari.png; sourceTree = "<group>"; };
+		769C601AD13602D9A562B1B78DAED922 /* ms.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ms.lproj; sourceTree = "<group>"; };
+		7875C91374CBE8589199551E706DCFE7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79B63FA8AD99905C9FCE8A6B72DCDF08 /* pl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = pl.lproj; sourceTree = "<group>"; };
+		79DC90A1A5DB8A78A899CAD240A9EDAD /* Pods-HackerNewsReader-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HackerNewsReader-umbrella.h"; sourceTree = "<group>"; };
+		7B3B5A3A90439E78384BE2A4136B42FF /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.lproj; path = Pod/Assets/ru.lproj; sourceTree = "<group>"; };
+		81047D685486F3216FDB4C51835E4BD2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		8C016B7D2B18BB65AE8DC5F8430D3423 /* vi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = vi.lproj; path = Pod/Assets/vi.lproj; sourceTree = "<group>"; };
+		8D6E0021B222A99CFF960B246607E001 /* safari~iPad.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "safari~iPad.png"; path = "Pod/Assets/safari~iPad.png"; sourceTree = "<group>"; };
+		8DA863EE365ADE0F599A9E7C936CECFC /* Pods-HackerNewsReader-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HackerNewsReader-dummy.m"; sourceTree = "<group>"; };
+		8E9C4B97909AB5A77C84B7ABBBE9DFAA /* sk.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = sk.lproj; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93F1E96955F4074FFA09D22D87D034E7 /* Appirater-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Appirater-prefix.pch"; sourceTree = "<group>"; };
+		946C04DFA428FD1A891DF1AFE3613A45 /* cs.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = cs.lproj; path = Pod/Assets/cs.lproj; sourceTree = "<group>"; };
+		94CA29675B7B3693462CED7E535B774C /* zh-Hant.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = "zh-Hant.lproj"; sourceTree = "<group>"; };
+		9EE3B4C099E88E2811C928EA0A7C6A44 /* ar.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ar.lproj; sourceTree = "<group>"; };
+		A0FBBDDF7BEAAE88FBA825B90CA9C055 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		A1176CD2EFDCF03A0C7486A4F204F064 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = Pod/Assets/de.lproj; sourceTree = "<group>"; };
+		A3440090A722DA5BCB8A001C31B58CC5 /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ru.lproj; sourceTree = "<group>"; };
+		A39ABF19FD42BF6C254301A3D5987435 /* Pods-HackerNewsReader-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-HackerNewsReader-frameworks.sh"; sourceTree = "<group>"; };
+		A547EE96ABD67FABF6EA9DC4619E9D72 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		B706BF5B368D5944C69824E1ACFD4300 /* Appirater.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Appirater.modulemap; sourceTree = "<group>"; };
+		B8A364DA84B805DA932629F3ECD6893E /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = pt.lproj; sourceTree = "<group>"; };
+		BA799CB3F215E55DD59491E9D9104C8D /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = sv.lproj; sourceTree = "<group>"; };
+		BC7364BAFD06F54232FE12BFF67D0DD2 /* safari@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "safari@3x.png"; path = "Pod/Assets/safari@3x.png"; sourceTree = "<group>"; };
+		BDEF24AD6D4527BF3AC1E6243776EFAD /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = fr.lproj; sourceTree = "<group>"; };
+		BFA7D300D6E0D5D943A2EA32597BBE46 /* nb.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = nb.lproj; sourceTree = "<group>"; };
+		C00B5B8C9495B61E61D0A069EB1FB511 /* Pods-HackerNewsReader-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HackerNewsReader-acknowledgements.plist"; sourceTree = "<group>"; };
+		C1B27F2ADBD6617CD575ACE9BE0D974B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9B4145B6898C94492EF96FD0C826E74 /* safari@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "safari@2x.png"; path = "Pod/Assets/safari@2x.png"; sourceTree = "<group>"; };
+		CC4AAFC33F9AA459C909DDAB88268E15 /* TUSafariActivity.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TUSafariActivity.h; path = Pod/Classes/TUSafariActivity.h; sourceTree = "<group>"; };
+		CD7618CEA7F8ADBA5D3908EED8CD4B43 /* Appirater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
+		D07D80CF4AADD48CFB8E17075600A273 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = it.lproj; path = Pod/Assets/it.lproj; sourceTree = "<group>"; };
+		D1B17C01874B37CE7EE22BAFA2D5301E /* pl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pl.lproj; path = Pod/Assets/pl.lproj; sourceTree = "<group>"; };
+		D2C1E5F07965B5AE079B81334E051A9C /* Appirater.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Appirater.bundle; path = Appirater.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2E5E76AC31EDD23391FACDDE58DBDE3 /* sv.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = sv.lproj; path = Pod/Assets/sv.lproj; sourceTree = "<group>"; };
+		D5679CA2A192D6ABF40B517B054C0EC0 /* TUSafariActivity.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = TUSafariActivity.bundle; path = TUSafariActivity.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7EE54D885E2B191DDACA7541B39CC6D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA4218BBE648D6F225CC47C38868AA03 /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = Pod/Assets/fr.lproj; sourceTree = "<group>"; };
+		DD05BD9B050645A7C3C52440C92234E8 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt.lproj; path = Pod/Assets/pt.lproj; sourceTree = "<group>"; };
+		E67919B93FAA2D3628D2A7B2BFC57AE9 /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = Pod/Assets/ja.lproj; sourceTree = "<group>"; };
+		E83949475AAC267C21C7805031A0E9BA /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = Pod/Assets/nl.lproj; sourceTree = "<group>"; };
+		E87D9B3981CDADDB31BD1701C94F7EAA /* safari-7~iPad.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "safari-7~iPad.png"; path = "Pod/Assets/safari-7~iPad.png"; sourceTree = "<group>"; };
+		ECF6E4A1E9A65F10948332B1324AB88E /* fi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = fi.lproj; sourceTree = "<group>"; };
+		EEC7184BA3855F694903E1465EDE961E /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = en.lproj; sourceTree = "<group>"; };
+		F25C77A81D6D9EAB69FDE187025D30B0 /* ro.lproj */ = {isa = PBXFileReference; includeInIndex = 1; path = ro.lproj; sourceTree = "<group>"; };
+		F4A2112C1833B1783D5D3CB693BDF688 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = Pod/Assets/en.lproj; sourceTree = "<group>"; };
+		FCD9BA06E55037D6535877C8E2BEAF36 /* safari-7@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "safari-7@2x.png"; path = "Pod/Assets/safari-7@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		46352CD432AD5BA30F91F50DA77D36DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4176B27D4601687FB92B76B43C7DDDDE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B77999FC7701893DA77998C3C39C84B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				949FD1B461348882A580094153189823 /* CFNetwork.framework in Frameworks */,
+				19146BFC583F4C5D850A01E19AE600F3 /* Foundation.framework in Frameworks */,
+				0703DE46974FA4B656A35BEA14576D65 /* SystemConfiguration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A0449A4AB00AA003ED5173281168174 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F5DFFB7D44C211CAA241900C6DC4683 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DFE688756C9CE8A94D0CE75F2395288 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1CE9F88CD2E65D601E7C2FF3028290F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07CB5E6C053EAE0CF1DA7646119E2634 /* TUSafariActivity */ = {
+			isa = PBXGroup;
+			children = (
+				CC4AAFC33F9AA459C909DDAB88268E15 /* TUSafariActivity.h */,
+				66B7CBEB8E51E0D9607931171B422C23 /* TUSafariActivity.m */,
+				42A7F0C04CA8DFACC3D38CEADA9E1A9D /* Resources */,
+				61DF1A01D9400ABE28568E6E973AF6AB /* Support Files */,
+			);
+			name = TUSafariActivity;
+			path = TUSafariActivity;
+			sourceTree = "<group>";
+		};
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D29A1FE6148A1759E74CB536FF8089C8 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C613C320BC1FE35FDED15DEB883EC51 /* Pods-HackerNewsReader */ = {
+			isa = PBXGroup;
+			children = (
+				7875C91374CBE8589199551E706DCFE7 /* Info.plist */,
+				05DAF598462D192BEAEA13F3644F4643 /* Pods-HackerNewsReader.modulemap */,
+				56B843589A93865306940EBA9ABD4CE4 /* Pods-HackerNewsReader-acknowledgements.markdown */,
+				C00B5B8C9495B61E61D0A069EB1FB511 /* Pods-HackerNewsReader-acknowledgements.plist */,
+				8DA863EE365ADE0F599A9E7C936CECFC /* Pods-HackerNewsReader-dummy.m */,
+				A39ABF19FD42BF6C254301A3D5987435 /* Pods-HackerNewsReader-frameworks.sh */,
+				63BDA6FC8089295C2FA02AB3667B6FEB /* Pods-HackerNewsReader-resources.sh */,
+				79DC90A1A5DB8A78A899CAD240A9EDAD /* Pods-HackerNewsReader-umbrella.h */,
+				3E7F6831A8614F65AADBAB4BF03D00AB /* Pods-HackerNewsReader.debug.xcconfig */,
+				1191BE182E5E0B9A16581FF97512E73A /* Pods-HackerNewsReader.release.xcconfig */,
+			);
+			name = "Pods-HackerNewsReader";
+			path = "Target Support Files/Pods-HackerNewsReader";
+			sourceTree = "<group>";
+		};
+		2EFDC3371422A014A1FB81817BF46116 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2C1E5F07965B5AE079B81334E051A9C /* Appirater.bundle */,
+				339469E8C07B5EE4D2EB428BEBFBCA31 /* Appirater.framework */,
+				37C1B9140AB0F89D8D3CCC2C510FFF3D /* Pods_HackerNewsReader.framework */,
+				D5679CA2A192D6ABF40B517B054C0EC0 /* TUSafariActivity.bundle */,
+				38AE98BF8243CCF70E88E1D4BBA7BD9E /* TUSafariActivity.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		42A7F0C04CA8DFACC3D38CEADA9E1A9D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				946C04DFA428FD1A891DF1AFE3613A45 /* cs.lproj */,
+				A1176CD2EFDCF03A0C7486A4F204F064 /* de.lproj */,
+				F4A2112C1833B1783D5D3CB693BDF688 /* en.lproj */,
+				323F5BBA19674B7BF0476EC1C5AD0E49 /* es.lproj */,
+				0653404E0B70C468FCA4DCAD5BA2EFBE /* eu.lproj */,
+				73D0C5F3EB18F9EEA77336FCFF8F1866 /* fi.lproj */,
+				DA4218BBE648D6F225CC47C38868AA03 /* fr.lproj */,
+				D07D80CF4AADD48CFB8E17075600A273 /* it.lproj */,
+				E67919B93FAA2D3628D2A7B2BFC57AE9 /* ja.lproj */,
+				198EF878ED00C2A54012674514580604 /* ko.lproj */,
+				E83949475AAC267C21C7805031A0E9BA /* nl.lproj */,
+				2B6770DC3B8BB07D0F93759460BC9F55 /* no.lproj */,
+				D1B17C01874B37CE7EE22BAFA2D5301E /* pl.lproj */,
+				DD05BD9B050645A7C3C52440C92234E8 /* pt.lproj */,
+				7B3B5A3A90439E78384BE2A4136B42FF /* ru.lproj */,
+				741A38E7F53658D8E830DAEE4DE7F790 /* safari.png */,
+				0C0E74F001A91B573BBFF568F5A720C8 /* safari-7.png */,
+				FCD9BA06E55037D6535877C8E2BEAF36 /* safari-7@2x.png */,
+				2A985AEC86E7D0ADCA4CCB2D381A8D4C /* safari-7@3x.png */,
+				E87D9B3981CDADDB31BD1701C94F7EAA /* safari-7~iPad.png */,
+				6D9608B04DDDF3A0A4DC90577328F3EC /* safari-7~iPad@2x.png */,
+				C9B4145B6898C94492EF96FD0C826E74 /* safari@2x.png */,
+				BC7364BAFD06F54232FE12BFF67D0DD2 /* safari@3x.png */,
+				8D6E0021B222A99CFF960B246607E001 /* safari~iPad.png */,
+				731F7A47A3AFF947E45CEFB6806FE61D /* safari~iPad@2x.png */,
+				67B1AA838EFA10B9A09A2E78547849E6 /* sk.lproj */,
+				D2E5E76AC31EDD23391FACDDE58DBDE3 /* sv.lproj */,
+				8C016B7D2B18BB65AE8DC5F8430D3423 /* vi.lproj */,
+				3A1EDB6873FB20E7BD621035E1FBDDAB /* zh_CN.lproj */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		61DF1A01D9400ABE28568E6E973AF6AB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C1B27F2ADBD6617CD575ACE9BE0D974B /* Info.plist */,
+				2AD3FC611166142F7A1AA7A9B80E3632 /* ResourceBundle-TUSafariActivity-Info.plist */,
+				16FBDFFEC7DFB6B6C0F040CADDC491CA /* TUSafariActivity.modulemap */,
+				2A6F843F984A7F339B67A1A6F9D4AEBF /* TUSafariActivity.xcconfig */,
+				6C83C970F9D74DB44BA3D974DC7B4E38 /* TUSafariActivity-dummy.m */,
+				28A0C83D8B9D8EAD962F3ED7064EE24F /* TUSafariActivity-prefix.pch */,
+				6D7509C4B0BBB1AEDCC723ED5A496DA0 /* TUSafariActivity-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TUSafariActivity";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				CCFB74D88C6F86F1A6D3DF7658B4C55B /* Pods */,
+				2EFDC3371422A014A1FB81817BF46116 /* Products */,
+				A4B29FAEFC68C440A73269A03C9EF278 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		A4B29FAEFC68C440A73269A03C9EF278 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C613C320BC1FE35FDED15DEB883EC51 /* Pods-HackerNewsReader */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		C252687B7E4FB48EE2E3201031C60097 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B706BF5B368D5944C69824E1ACFD4300 /* Appirater.modulemap */,
+				073680BCC35AC8BCD983228A4BC4E60C /* Appirater.xcconfig */,
+				6CC88E7C6A9C0E7F15B09998E8DF5676 /* Appirater-dummy.m */,
+				93F1E96955F4074FFA09D22D87D034E7 /* Appirater-prefix.pch */,
+				1351F745AF46414C042DB58869610FA4 /* Appirater-umbrella.h */,
+				D7EE54D885E2B191DDACA7541B39CC6D /* Info.plist */,
+				1181E4146DAE72AF77995F3A8B87363A /* ResourceBundle-Appirater-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Appirater";
+			sourceTree = "<group>";
+		};
+		CCFB74D88C6F86F1A6D3DF7658B4C55B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DA173FC92886A0C307AFCDBA4D0FA0EF /* Appirater */,
+				07CB5E6C053EAE0CF1DA7646119E2634 /* TUSafariActivity */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D29A1FE6148A1759E74CB536FF8089C8 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A0FBBDDF7BEAAE88FBA825B90CA9C055 /* CFNetwork.framework */,
+				81047D685486F3216FDB4C51835E4BD2 /* Foundation.framework */,
+				A547EE96ABD67FABF6EA9DC4619E9D72 /* SystemConfiguration.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		DA173FC92886A0C307AFCDBA4D0FA0EF /* Appirater */ = {
+			isa = PBXGroup;
+			children = (
+				CD7618CEA7F8ADBA5D3908EED8CD4B43 /* Appirater.h */,
+				4E3990DD4652E2EC462EE250C51B859F /* Appirater.m */,
+				509BA8DEA3CDE47A21D203C08BA28F06 /* AppiraterDelegate.h */,
+				EE185536DE0744CBBBE2936161AFC1D9 /* Resources */,
+				C252687B7E4FB48EE2E3201031C60097 /* Support Files */,
+			);
+			name = Appirater;
+			path = Appirater;
+			sourceTree = "<group>";
+		};
+		EE185536DE0744CBBBE2936161AFC1D9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9EE3B4C099E88E2811C928EA0A7C6A44 /* ar.lproj */,
+				27605C84A221A29333582768942F761A /* ca.lproj */,
+				37F43B1CBF49FE5B8F251D24EC36829A /* cs.lproj */,
+				63BBDBA2AC2CEBFE76646399282D6D47 /* da.lproj */,
+				1921612CBB4DB27AF0DDDD88B337E85F /* de.lproj */,
+				073C25BF919E4AA9E657A11790E3E060 /* el.lproj */,
+				EEC7184BA3855F694903E1465EDE961E /* en.lproj */,
+				1E0BAFB104BAEB3E041D5C48C7E1F78A /* es.lproj */,
+				ECF6E4A1E9A65F10948332B1324AB88E /* fi.lproj */,
+				BDEF24AD6D4527BF3AC1E6243776EFAD /* fr.lproj */,
+				08E22A2953C8A25A03DD3429FA88F56F /* he.lproj */,
+				0681378E854B0CC06F145840114E3DF1 /* hu.lproj */,
+				6C0AADD7CDB9722A60EA437E09856CE0 /* id.lproj */,
+				4B323BBCEBF62B3F2D654A3AA0463BEA /* it.lproj */,
+				453D654937C0F7DB7016E9BA97D6E531 /* ja.lproj */,
+				1FE8C21C7C0CA0896E5FF29472775CA8 /* ko.lproj */,
+				769C601AD13602D9A562B1B78DAED922 /* ms.lproj */,
+				BFA7D300D6E0D5D943A2EA32597BBE46 /* nb.lproj */,
+				6C15F8A1FEF729E5F2E9BD94E1A0DE4C /* nl.lproj */,
+				79B63FA8AD99905C9FCE8A6B72DCDF08 /* pl.lproj */,
+				B8A364DA84B805DA932629F3ECD6893E /* pt.lproj */,
+				34EF2E39BA711C772E1B43AAF8ACC9E3 /* pt-BR.lproj */,
+				F25C77A81D6D9EAB69FDE187025D30B0 /* ro.lproj */,
+				A3440090A722DA5BCB8A001C31B58CC5 /* ru.lproj */,
+				8E9C4B97909AB5A77C84B7ABBBE9DFAA /* sk.lproj */,
+				BA799CB3F215E55DD59491E9D9104C8D /* sv.lproj */,
+				3E6A8F285848F5E28ADB75A98D730BA5 /* th.lproj */,
+				47159E5CFB707BC0418B378F44A71884 /* tr.lproj */,
+				35CA8F6C59FC7BF1D8B20AA10620D248 /* uk.lproj */,
+				1C7C7000108E237357D81FBCB5AC0D0D /* vi.lproj */,
+				5DB3EF521B8C88FA9BE3012DD8E1C73B /* zh-Hans.lproj */,
+				94CA29675B7B3693462CED7E535B774C /* zh-Hant.lproj */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		345D54F5EDFD9B33AD1EE007F2D7FFBB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F699CA58E3DD13833285F2A8FC610AAE /* Appirater-umbrella.h in Headers */,
+				FDD504C08D0925F7B348E661BED008F7 /* Appirater.h in Headers */,
+				A431632242AB6413745307CB80B9D283 /* AppiraterDelegate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AC4692A34DD31183CC1B5BC10D8DC55 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C337ED3227AC2BAE7F8C858FBF75E118 /* TUSafariActivity-umbrella.h in Headers */,
+				E61A26673571380E9407C92279996E6E /* TUSafariActivity.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		777DB9C44F6698502FAD44F4B8E022E6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A6B7529EDE4921AB24CAFDAF0CF3922 /* Pods-HackerNewsReader-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3AA3C5B9FF2E775130E9BC245ED40823 /* Pods-HackerNewsReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A91EE2C97C1E5B8C46ED7673E51D7793 /* Build configuration list for PBXNativeTarget "Pods-HackerNewsReader" */;
+			buildPhases = (
+				0F5B7549EDA8A0375D29B672E38949EE /* Sources */,
+				9F5DFFB7D44C211CAA241900C6DC4683 /* Frameworks */,
+				777DB9C44F6698502FAD44F4B8E022E6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4E4C311800B623E337DA5FFA905C05D /* PBXTargetDependency */,
+				77B2A96150E7BFE7E1770D36B8C35973 /* PBXTargetDependency */,
+			);
+			name = "Pods-HackerNewsReader";
+			productName = "Pods-HackerNewsReader";
+			productReference = 37C1B9140AB0F89D8D3CCC2C510FFF3D /* Pods_HackerNewsReader.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		473C332A5878173F84D95AB77164CA89 /* TUSafariActivity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33C05BFF10526AEC61EB551A989CF445 /* Build configuration list for PBXNativeTarget "TUSafariActivity" */;
+			buildPhases = (
+				250A60713E22DF418D7D76512123A37E /* Sources */,
+				46352CD432AD5BA30F91F50DA77D36DE /* Frameworks */,
+				1E30F013FD1BF1DD69E6E2DCBD36FFB5 /* Resources */,
+				4AC4692A34DD31183CC1B5BC10D8DC55 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				75A48ED2C0AEF30C1E8023450BE72E14 /* PBXTargetDependency */,
+			);
+			name = TUSafariActivity;
+			productName = TUSafariActivity;
+			productReference = 38AE98BF8243CCF70E88E1D4BBA7BD9E /* TUSafariActivity.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		55D2CDB01F4ABBA4AD47B1EB3A7B58DC /* TUSafariActivity-TUSafariActivity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8780B32BF2B2909621EB722B4BDCA19 /* Build configuration list for PBXNativeTarget "TUSafariActivity-TUSafariActivity" */;
+			buildPhases = (
+				FC5E672C647A3514E6576B8AB76D8B8D /* Sources */,
+				9A0449A4AB00AA003ED5173281168174 /* Frameworks */,
+				BBFEB2A93DCE9AD6CBD0B55134CFDF2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TUSafariActivity-TUSafariActivity";
+			productName = "TUSafariActivity-TUSafariActivity";
+			productReference = D5679CA2A192D6ABF40B517B054C0EC0 /* TUSafariActivity.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		A8C8D601E92B0B40F48C791C48F237AE /* Appirater-Appirater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 475D89C395431FB29C8E3BB0E32A091F /* Build configuration list for PBXNativeTarget "Appirater-Appirater" */;
+			buildPhases = (
+				1AC48A56FB4021E52B6E8A95757EA114 /* Sources */,
+				F1CE9F88CD2E65D601E7C2FF3028290F /* Frameworks */,
+				1FB4665FBE8391B18AE515A6E10024E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Appirater-Appirater";
+			productName = "Appirater-Appirater";
+			productReference = D2C1E5F07965B5AE079B81334E051A9C /* Appirater.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		C7E27398B04EB3E1EDDF1AABEAB23112 /* Appirater */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 622A46AE65AA9D13D2BD6999FDF63F95 /* Build configuration list for PBXNativeTarget "Appirater" */;
+			buildPhases = (
+				F90ACBFECE1AAA7D6D613BE99C365E57 /* Sources */,
+				6B77999FC7701893DA77998C3C39C84B /* Frameworks */,
+				9FEFF750E97C1C37F134920C8EFD3A7A /* Resources */,
+				345D54F5EDFD9B33AD1EE007F2D7FFBB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B35965F161287483DF55DDCD2329CBA /* PBXTargetDependency */,
+			);
+			name = Appirater;
+			productName = Appirater;
+			productReference = 339469E8C07B5EE4D2EB428BEBFBCA31 /* Appirater.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 2EFDC3371422A014A1FB81817BF46116 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C7E27398B04EB3E1EDDF1AABEAB23112 /* Appirater */,
+				A8C8D601E92B0B40F48C791C48F237AE /* Appirater-Appirater */,
+				3AA3C5B9FF2E775130E9BC245ED40823 /* Pods-HackerNewsReader */,
+				473C332A5878173F84D95AB77164CA89 /* TUSafariActivity */,
+				55D2CDB01F4ABBA4AD47B1EB3A7B58DC /* TUSafariActivity-TUSafariActivity */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1E30F013FD1BF1DD69E6E2DCBD36FFB5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2497B3692F8BD025A8472DB58EC56B4 /* TUSafariActivity.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1FB4665FBE8391B18AE515A6E10024E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7283E2BF15CD94AB43402F22F019372 /* ar.lproj in Resources */,
+				76876328878D461763E9DD5D2B28D0B3 /* ca.lproj in Resources */,
+				0613930CE4BE9AFFC32769EC8383D23E /* cs.lproj in Resources */,
+				BA8FDCCDD75A30332CAFA461DCBB239D /* da.lproj in Resources */,
+				69F9B8811DD0A69D1AD805A8F50D9562 /* de.lproj in Resources */,
+				DA0EA60B841C69FC75C503617803CDFB /* el.lproj in Resources */,
+				DCEBE3F854647503DF849E5414D0C958 /* en.lproj in Resources */,
+				4931B820C9FD977F0E19AE7A1B0421F4 /* es.lproj in Resources */,
+				02FABE1669CAAEDA7EF7CAA2831294DE /* fi.lproj in Resources */,
+				27439D0E7749F8E8E4D9700B532D2EA7 /* fr.lproj in Resources */,
+				375E483BD7C0630E14787F377E3C1C3D /* he.lproj in Resources */,
+				98EF54AFF63E0B2AB38143141A14A35B /* hu.lproj in Resources */,
+				D85A70A42894F6B9EC438E5A9357A8FA /* id.lproj in Resources */,
+				7656C4EC91318AE279D2B92E7A164A61 /* it.lproj in Resources */,
+				38B99715207D14F4FBCAB2ED994D9502 /* ja.lproj in Resources */,
+				5E347930A65947CC97DF690BEE0FF2C7 /* ko.lproj in Resources */,
+				109255F460CF656303F5C867EF3FE415 /* ms.lproj in Resources */,
+				C6605A862DC070D4578D72028349D153 /* nb.lproj in Resources */,
+				4FE9A30258F3440ED66B2D6113F6E692 /* nl.lproj in Resources */,
+				A112BD31A75E990E992F96C36D8D4DFC /* pl.lproj in Resources */,
+				55554B26283AE1CC67DCD5B01D9F7710 /* pt-BR.lproj in Resources */,
+				6FA780AAB02A551B955D736DCFE3ADC2 /* pt.lproj in Resources */,
+				581D92C30D24113E05FE0AFE09256611 /* ro.lproj in Resources */,
+				AA948CDB548D0A490471DCA0C3E9BAD3 /* ru.lproj in Resources */,
+				26972794C2FBE7DD8758175B07C9C01E /* sk.lproj in Resources */,
+				5E2F081EBBAEC5B0661D0609417784EF /* sv.lproj in Resources */,
+				52C04BC5A16E7D5DA43317B7622E4B5B /* th.lproj in Resources */,
+				E8979B89210E8201F2850FDE0AB1347F /* tr.lproj in Resources */,
+				DEC3099C0C9045886B467F863DCAC082 /* uk.lproj in Resources */,
+				44FBBB6C9C0F9F99219F55C118D58E33 /* vi.lproj in Resources */,
+				B2009F70FE55DCE47D621C1C1754ADAC /* zh-Hans.lproj in Resources */,
+				077CC403DA16EE7CB0D9FFE27AEA9F5A /* zh-Hant.lproj in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FEFF750E97C1C37F134920C8EFD3A7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5E5CD8E7DB6824518308DE2779A229F /* Appirater.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBFEB2A93DCE9AD6CBD0B55134CFDF2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B425B7BFF8052308B62ECD473E9BDED /* cs.lproj in Resources */,
+				4A36B04C76839E84E06D471BFB71B81A /* de.lproj in Resources */,
+				B290A86198C2043DD6F8600CEB89005D /* en.lproj in Resources */,
+				58D5B7A77712F1310E773063FC9F2ACB /* es.lproj in Resources */,
+				804A1840ACD5AFA2962A58B6B7BC0637 /* eu.lproj in Resources */,
+				52B59D976C806CE137CFCCC8883F273E /* fi.lproj in Resources */,
+				2DADD3C13B9E4DFA26AA7CA0903CD0BA /* fr.lproj in Resources */,
+				A5D1D06615DF780E1AA1302DCC1B980D /* it.lproj in Resources */,
+				EA095585B1454B85C30F1DD53C152DFF /* ja.lproj in Resources */,
+				A75F7A26A9565ED68FC89B565874DB52 /* ko.lproj in Resources */,
+				4F560BC32E19861B5F2CB8B2DD6719C0 /* nl.lproj in Resources */,
+				31B96BBC0DE134F9516AEF51D58F4852 /* no.lproj in Resources */,
+				54ABE169A2C6956B3F17802B03D0087B /* pl.lproj in Resources */,
+				595392D975EE10E374013F4766F37423 /* pt.lproj in Resources */,
+				B8A3C8D14F4B283F501DC8FB3C28715C /* ru.lproj in Resources */,
+				18ABEE2B1746B785D72F404827852BDC /* safari-7.png in Resources */,
+				D4EA8A84E409A03B7C6E7C84F5673F6C /* safari-7@2x.png in Resources */,
+				605DFF8AF5F7C0FAF62F33AA09EDA59F /* safari-7@3x.png in Resources */,
+				457118B4B6DDF97C5D544AD11D1A35FC /* safari-7~iPad.png in Resources */,
+				F0548A32E4CD47BED6DB99DF026FC79F /* safari-7~iPad@2x.png in Resources */,
+				3D43EDEE7757695EE97683B2E421F888 /* safari.png in Resources */,
+				4B34F266BEFA148145CA513BB65304AB /* safari@2x.png in Resources */,
+				6DE60F0CD45C414DF47E5CE9CE89A32E /* safari@3x.png in Resources */,
+				94B05B13B2D86AA74313A632B3C25824 /* safari~iPad.png in Resources */,
+				218F2DE0F0A79FE0950832415D7C209E /* safari~iPad@2x.png in Resources */,
+				6249503A9720BE8A5E79C83F0B2E8877 /* sk.lproj in Resources */,
+				31521C761099E32A7733900F96CEA73D /* sv.lproj in Resources */,
+				8A54F2D2D024DD5EEFF4A502926E141B /* vi.lproj in Resources */,
+				127EF7628310E64A4DE7AD212DA72073 /* zh_CN.lproj in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0F5B7549EDA8A0375D29B672E38949EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				540CF8A57BF2676C3325F2B3F1531A74 /* Pods-HackerNewsReader-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1AC48A56FB4021E52B6E8A95757EA114 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		250A60713E22DF418D7D76512123A37E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1076817CC564FD82F3D4FECB0C9A43A /* TUSafariActivity-dummy.m in Sources */,
+				6431100D4B838C9791C5EB864612A9C9 /* TUSafariActivity.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F90ACBFECE1AAA7D6D613BE99C365E57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BB81B6379B6B721CE16D8B81DD784EA /* Appirater-dummy.m in Sources */,
+				25B481D0CEF9F882498CC8C106751AD3 /* Appirater.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC5E672C647A3514E6576B8AB76D8B8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2B35965F161287483DF55DDCD2329CBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Appirater-Appirater";
+			target = A8C8D601E92B0B40F48C791C48F237AE /* Appirater-Appirater */;
+			targetProxy = 1C8FEC82E6192E2EF9DDE1EABE594C19 /* PBXContainerItemProxy */;
+		};
+		75A48ED2C0AEF30C1E8023450BE72E14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "TUSafariActivity-TUSafariActivity";
+			target = 55D2CDB01F4ABBA4AD47B1EB3A7B58DC /* TUSafariActivity-TUSafariActivity */;
+			targetProxy = 96717508E0A25B9BA2FC5E3DD7251A61 /* PBXContainerItemProxy */;
+		};
+		77B2A96150E7BFE7E1770D36B8C35973 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TUSafariActivity;
+			target = 473C332A5878173F84D95AB77164CA89 /* TUSafariActivity */;
+			targetProxy = B777ACC41DFB60D623D7D712BD070B3C /* PBXContainerItemProxy */;
+		};
+		C4E4C311800B623E337DA5FFA905C05D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Appirater;
+			target = C7E27398B04EB3E1EDDF1AABEAB23112 /* Appirater */;
+			targetProxy = 1BD45AFF1770C1B50DC7718A513B0488 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		211C22639ADDCEB716A1BCE4F3244BB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E7F6831A8614F65AADBAB4BF03D00AB /* Pods-HackerNewsReader.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-HackerNewsReader/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HackerNewsReader/Pods-HackerNewsReader.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_HackerNewsReader;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		25F70A209FB34012D97F51D55A9DEC6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A6F843F984A7F339B67A1A6F9D4AEBF /* TUSafariActivity.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/TUSafariActivity";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/ResourceBundle-TUSafariActivity-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = TUSafariActivity;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		27FEAD8C37F9F8B86593A8DDA0457FAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 073680BCC35AC8BCD983228A4BC4E60C /* Appirater.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Appirater";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Appirater/ResourceBundle-Appirater-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = Appirater;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		38EE8368C2E217599711414DA4177CF2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5708FE0BD50AC09E707E7EFF2F038836 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1191BE182E5E0B9A16581FF97512E73A /* Pods-HackerNewsReader.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-HackerNewsReader/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HackerNewsReader/Pods-HackerNewsReader.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_HackerNewsReader;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		717203CFCF97FBAAC9828ACF699ED117 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		971C0A137EB419ED2B6D04E3A185A528 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 073680BCC35AC8BCD983228A4BC4E60C /* Appirater.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Appirater/Appirater-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Appirater/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Appirater/Appirater.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Appirater;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A62C523D20E5C3099EBCE3720A58EA27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A6F843F984A7F339B67A1A6F9D4AEBF /* TUSafariActivity.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TUSafariActivity/TUSafariActivity-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TUSafariActivity/TUSafariActivity.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TUSafariActivity;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BDADD068F1FE2870EABDC24051CA67CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 073680BCC35AC8BCD983228A4BC4E60C /* Appirater.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Appirater/Appirater-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Appirater/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Appirater/Appirater.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Appirater;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DEA34DE2BECAE1DAE4F204E3B1FF2E7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 073680BCC35AC8BCD983228A4BC4E60C /* Appirater.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Appirater";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Appirater/ResourceBundle-Appirater-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = Appirater;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		EA26088A43F2A7BC43B9056C30EA6FBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A6F843F984A7F339B67A1A6F9D4AEBF /* TUSafariActivity.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/TUSafariActivity";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/ResourceBundle-TUSafariActivity-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = TUSafariActivity;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		F2B8C1B2771CF94C1546180DD8786C8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A6F843F984A7F339B67A1A6F9D4AEBF /* TUSafariActivity.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TUSafariActivity/TUSafariActivity-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TUSafariActivity/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TUSafariActivity/TUSafariActivity.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TUSafariActivity;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				717203CFCF97FBAAC9828ACF699ED117 /* Debug */,
+				38EE8368C2E217599711414DA4177CF2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33C05BFF10526AEC61EB551A989CF445 /* Build configuration list for PBXNativeTarget "TUSafariActivity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2B8C1B2771CF94C1546180DD8786C8D /* Debug */,
+				A62C523D20E5C3099EBCE3720A58EA27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		475D89C395431FB29C8E3BB0E32A091F /* Build configuration list for PBXNativeTarget "Appirater-Appirater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEA34DE2BECAE1DAE4F204E3B1FF2E7F /* Debug */,
+				27FEAD8C37F9F8B86593A8DDA0457FAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		622A46AE65AA9D13D2BD6999FDF63F95 /* Build configuration list for PBXNativeTarget "Appirater" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				971C0A137EB419ED2B6D04E3A185A528 /* Debug */,
+				BDADD068F1FE2870EABDC24051CA67CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A91EE2C97C1E5B8C46ED7673E51D7793 /* Build configuration list for PBXNativeTarget "Pods-HackerNewsReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				211C22639ADDCEB716A1BCE4F3244BB8 /* Debug */,
+				5708FE0BD50AC09E707E7EFF2F038836 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8780B32BF2B2909621EB722B4BDCA19 /* Build configuration list for PBXNativeTarget "TUSafariActivity-TUSafariActivity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25F70A209FB34012D97F51D55A9DEC6F /* Debug */,
+				EA26088A43F2A7BC43B9056C30EA6FBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

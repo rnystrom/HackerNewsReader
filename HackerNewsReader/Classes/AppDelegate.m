@@ -8,11 +8,11 @@
 
 #import "AppDelegate.h"
 
-#import <HackerNewsNetworker/HNQueries.h>
+#import "HNQueries.h"
 
 #import <Appirater/Appirater.h>
 
-#import <HackerNewsNetworker/HNSession.h>
+#import "HNSession.h"
 
 #import "UIToolbar+HackerNews.h"
 #import "UITabBar+HackerNews.h"

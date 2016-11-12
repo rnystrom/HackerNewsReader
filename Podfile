@@ -1,13 +1,8 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '7.0'
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
 
 target 'HackerNewsReader' do
-
-pod 'HackerNewsKit', :path => 'Frameworks/HackerNewsKit'
-pod 'HackerNewsNetworker', :path => 'Frameworks/HackerNewsNetworker'
-
-pod 'TUSafariActivity', '~> 1.0'
-pod "Appirater"
-
+    pod 'TUSafariActivity', '~> 1.0'
+    pod "Appirater"
 end
 

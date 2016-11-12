@@ -15,9 +15,6 @@ DS_Store
 *.xccheckout
 *.xcuserdatad
 
-Pods
-Podfile.lock
-
 DerivedData
 build
 

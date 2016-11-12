@@ -57,8 +57,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2900FA181B30F0E100690100"
-               BuildableName = "HackerNewsReader Tests.xctest"
-               BlueprintName = "HackerNewsReader Tests"
+               BuildableName = "HackerNewsReaderTests.xctest"
+               BlueprintName = "HackerNewsReaderTests"
                ReferencedContainer = "container:HackerNewsReader.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -76,8 +76,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2900FA181B30F0E100690100"
-               BuildableName = "HackerNewsReader Tests.xctest"
-               BlueprintName = "HackerNewsReader Tests"
+               BuildableName = "HackerNewsReaderTests.xctest"
+               BlueprintName = "HackerNewsReaderTests"
                ReferencedContainer = "container:HackerNewsReader.xcodeproj">
             </BuildableReference>
          </TestableReference>

@@ -1,0 +1,25 @@
+{
+  "feed": {
+    "titles": "//table[@id='hnmain']/tr[3]/td/table//td[@class='title'][not(@align)]/a",
+    "details": "//table[@id='hnmain']/tr[3]/td/table//td[@class='subtext']",
+    "score": "//span[@class='score']",
+    "comment_node": "(//a)[last()]"
+  },
+  "comments": {
+    "comments": "//table[@class='comment-tree']/tr",
+    "user": "//span[@class='comhead']/a[1]",
+    "text": "//div[@class='comment']/span",
+    "removed": "//span[@class='comment']",
+    "indent": "//img[@src='s.gif']",
+    "permalink": "//span[@class='age']/a"
+  },
+  "page": {
+    "text": "//table[@id='hnmain']/tr[3]/td/table[1]/tr[4]/td[2]"
+  },
+  "user": {
+    "username": "//table[@id='hnmain']/tr[3]/td//table//tr[1]/td[2]/a",
+    "created": "//table[@id='hnmain']/tr[3]/td//table//tr[2]/td[2]",
+    "karma": "//table[@id='hnmain']/tr[3]/td//table//tr[3]/td[2]",
+    "about": "//table[@id='hnmain']/tr[3]/td//table//tr[4]/td[2]",
+  }
+}
