@@ -8,13 +8,13 @@
 
 #import "HNTextRenderer.h"
 
-#import <libkern/OSAtomic.h>
+#import <os/lock.h>
 
 #define HNTextRendererHeightNotCalculated CGFLOAT_MAX
 
 @interface HNTextRenderer () {
-    OSSpinLock _heightLock;
-    OSSpinLock _contentsLock;
+    os_unfair_lock _heightLock;
+    os_unfair_lock _contentsLock;
 }
 
 @property (nonatomic, strong, readonly) NSLayoutManager *layoutManager;
@@ -32,8 +32,8 @@
     if (self = [super init]) {
         _height = HNTextRendererHeightNotCalculated;
         _width = width;
-        _heightLock = OS_SPINLOCK_INIT;
-        _contentsLock = OS_SPINLOCK_INIT;
+        _heightLock = OS_UNFAIR_LOCK_INIT;
+        _contentsLock = OS_UNFAIR_LOCK_INIT;
 
         _attributedString = attributedString;
 
@@ -53,18 +53,18 @@
 #pragma mark - Getters
 
 - (CGFloat)height {
-    OSSpinLockLock(&_heightLock);
+    os_unfair_lock_lock(&_heightLock);
     if (_height == HNTextRendererHeightNotCalculated) {
         NSRange glyphRange = [self.layoutManager glyphRangeForTextContainer:self.textContainer];
         CGRect bounds = [self.layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:self.textContainer];
         _height = bounds.size.height;
     }
-    OSSpinLockUnlock(&_heightLock);
+    os_unfair_lock_unlock(&_heightLock);
     return _height;
 }
 
 - (id)contents {
-    OSSpinLockLock(&_contentsLock);
+    os_unfair_lock_lock(&_contentsLock);
     if (!_contents) {
         // accessing height here will calculate it if not done so
         CGSize size = CGSizeMake(self.textContainer.size.width, self.height);
@@ -78,7 +78,7 @@
         _contents = (id)UIGraphicsGetImageFromCurrentImageContext().CGImage;
         UIGraphicsEndImageContext();
     }
-    OSSpinLockUnlock(&_contentsLock);
+    os_unfair_lock_unlock(&_contentsLock);
     return _contents;
 }
 
@@ -95,14 +95,14 @@
 }
 
 - (void)invalidate {
-    OSSpinLockLock(&_heightLock);
+    os_unfair_lock_lock(&_heightLock);
     _height = HNTextRendererHeightNotCalculated;
-    OSSpinLockUnlock(&_heightLock);
+    os_unfair_lock_unlock(&_heightLock);
 
-    OSSpinLockLock(&_contentsLock);
+    os_unfair_lock_lock(&_contentsLock);
     CGImageRelease((CGImageRef)_contents);
     _contents = nil;
-    OSSpinLockUnlock(&_contentsLock);
+    os_unfair_lock_unlock(&_contentsLock);
 }
 
 
