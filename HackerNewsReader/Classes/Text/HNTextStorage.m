@@ -8,12 +8,12 @@
 
 #import "HNTextStorage.h"
 
-#import <libkern/OSAtomic.h>
+#import <os/lock.h>
 
 #import "HNTextRenderer.h"
 
 @interface HNTextStorage () {
-    OSSpinLock _propertyLock;
+    os_unfair_lock _propertyLock;
 }
 
 @property (atomic, copy) NSMutableDictionary *cachedTextItems;
@@ -30,7 +30,7 @@
 }
 
 - (HNTextRenderer *)rendererForAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width {
-    OSSpinLockLock(&_propertyLock);
+    os_unfair_lock_lock(&_propertyLock);
     id cacheKey = @(width);
     id rendererKey = attributedString;
     NSMutableDictionary *sizeCache = self.cachedTextItems[cacheKey];
@@ -43,7 +43,7 @@
         renderer = [[HNTextRenderer alloc] initWithAttributedString:attributedString width:width];
         sizeCache[rendererKey] = renderer;
     }
-    OSSpinLockUnlock(&_propertyLock);
+    os_unfair_lock_unlock(&_propertyLock);
     return renderer;
 }
 
