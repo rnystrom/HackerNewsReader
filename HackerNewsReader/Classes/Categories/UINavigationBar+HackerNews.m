@@ -15,7 +15,7 @@
 @implementation UINavigationBar (HackerNews)
 
 + (void)hn_enableAppearance {
-    id appearance = [self appearanceWhenContainedIn:HNNavigationController.class, nil];
+    id appearance = [self appearanceWhenContainedInInstancesOfClasses:@[HNNavigationController.class]];
     [appearance setTitleTextAttributes:@{
                                          NSForegroundColorAttributeName: [UIColor hn_navigationTextColor],
                                          NSFontAttributeName: [UIFont hn_navigationFont]
