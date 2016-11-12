@@ -23,7 +23,7 @@
 /**
  The view controller housing the adapter that created this section controller.
 
- @discussion Use this view controller to push, pop, present, or do other custom transitions. It is considered very bad
+ @note Use this view controller to push, pop, present, or do other custom transitions. It is considered very bad
  practice to cast this to a known view controller and call methods on it other than for navigations and transitions.
  */
 @property (nonatomic, weak, nullable, readonly) UIViewController *viewController;
@@ -33,6 +33,16 @@
  reloading/inserting/deleting, etc.
  */
 @property (nonatomic, weak, nullable, readonly) id <IGListCollectionContext> collectionContext;
+
+/**
+ Returns YES if the section controller is the first section in the list.
+ */
+@property (nonatomic, assign, readonly) BOOL isFirstSection;
+
+/**
+ Returns YES if the section controller is the last section in the list.
+ */
+@property (nonatomic, assign, readonly) BOOL isLastSection;
 
 /**
  The margins used to lay out content in the section controller.
@@ -60,7 +70,7 @@
 
  @return An object that conforms to IGListSupplementaryViewSource or nil.
 
- @discussion You may wish to return self if your section controller implements this protocol.
+ @note You may wish to return self if your section controller implements this protocol.
  */
 @property (nonatomic, weak, nullable) id <IGListSupplementaryViewSource> supplementaryViewSource;
 
@@ -69,7 +79,7 @@
 
  @return An object that conforms to IGListDisplayDelegate or nil.
 
- @discussion You may wish to return self if your section controller implements this protocol.
+ @note You may wish to return self if your section controller implements this protocol.
  */
 @property (nonatomic, weak, nullable) id <IGListDisplayDelegate> displayDelegate;
 
@@ -78,7 +88,7 @@
 
  @return An object that conforms to IGListWorkingRangeDelegate or nil.
 
- @discussion You may wish to return self if your section controller implements this protocol.
+ @note You may wish to return self if your section controller implements this protocol.
  */
 @property (nonatomic, weak, nullable) id <IGListWorkingRangeDelegate> workingRangeDelegate;
 
@@ -87,7 +97,7 @@
 
  @return An object that conforms to IGListDisplayDelegate or nil.
 
- @discussion You may wish to return self if your section controller implements this protocol.
+ @note You may wish to return self if your section controller implements this protocol.
  */
 @property (nonatomic, weak, nullable) id <IGListScrollDelegate> scrollDelegate;
 

@@ -17,6 +17,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Generate a string representation of a reusable view class when registering with a UICollectionView.
+NS_INLINE NSString *IGListReusableViewIdentifier(Class viewClass, NSString * _Nullable nibName, NSString * _Nullable kind) {
+    return [NSString stringWithFormat:@"%@%@%@", kind ?: @"", nibName ?: @"", NSStringFromClass(viewClass)];
+}
+
 @interface IGListAdapter ()
 <
 UICollectionViewDataSource,
@@ -27,7 +32,8 @@ IGListCollectionContext
     __weak UICollectionView *_collectionView;
 }
 
-@property (nonatomic, strong, readonly) id <IGListUpdatingDelegate> updatingDelegate;
+@property (nonatomic, strong) id <IGListUpdatingDelegate> updatingDelegate;
+
 @property (nonatomic, strong, readonly) IGListSectionMap *sectionMap;
 @property (nonatomic, strong, readonly) IGListDisplayHandler *displayHandler;
 @property (nonatomic, strong, readonly) IGListWorkingRangeHandler *workingRangeHandler;
@@ -49,13 +55,14 @@ IGListCollectionContext
 @property (nonatomic, strong, nullable) IGListSectionMap *previoussectionMap;
 
 @property (nonatomic, strong) NSMutableSet<Class> *registeredCellClasses;
+@property (nonatomic, strong) NSMutableSet<NSString *> *registeredNibNames;
 @property (nonatomic, strong) NSMutableSet<NSString *> *registeredSupplementaryViewIdentifiers;
+@property (nonatomic, strong) NSMutableSet<NSString *> *registeredSupplementaryViewNibNames;
 
 - (NSArray *)indexPathsFromSectionController:(IGListSectionController <IGListSectionType> *)sectionController
                                      indexes:(NSIndexSet *)indexes
                         adjustForUpdateBlock:(BOOL)adjustForUpdateBlock;
-
-- (NSString *)reusableViewIdentifierForClass:(Class)viewClass;
+- (NSIndexPath *)indexPathForSectionController:(IGListSectionController *)controller index:(NSInteger)index;
 
 @end
 

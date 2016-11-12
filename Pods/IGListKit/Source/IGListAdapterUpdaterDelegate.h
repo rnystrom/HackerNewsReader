@@ -32,9 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
  Notifies the delegate that the updater succesfully finished -[UICollectionView performBatchUpdates:completion:].
 
  @param listAdapterUpdater The adapter updater owning the transition.
+ @param updates            The batch updates that were applied to the collection view.
  @param collectionView     The collection view that performed the batch updates.
 
- @discussion This event is called in the completion block of the batch update.
+ @note This event is called in the completion block of the batch update.
  */
 - (void)listAdapterUpdater:(IGListAdapterUpdater *)listAdapterUpdater didPerformBatchUpdates:(IGListBatchUpdateData *)updates withCollectionView:(UICollectionView *)collectionView;
 
@@ -45,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param indexPaths         An array of index paths that will be inserted.
  @param collectionView     The collection view that will perform the insert.
 
- @discussion This event is only sent when outside of -[UICollectionView performBatchUpdates:completion:].
+ @note This event is only sent when outside of -[UICollectionView performBatchUpdates:completion:].
  */
 - (void)listAdapterUpdater:(IGListAdapterUpdater *)listAdapterUpdater willInsertIndexPaths:(NSArray<NSIndexPath *> *)indexPaths collectionView:(UICollectionView *)collectionView;
 
@@ -56,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param indexPaths         An array of index paths that will be deleted.
  @param collectionView     The collection view that will perform the delete.
 
- @discussion This event is only sent when outside of -[UICollectionView performBatchUpdates:completion:].
+ @note This event is only sent when outside of -[UICollectionView performBatchUpdates:completion:].
  */
 - (void)listAdapterUpdater:(IGListAdapterUpdater *)listAdapterUpdater willDeleteIndexPaths:(NSArray<NSIndexPath *> *)indexPaths collectionView:(UICollectionView *)collectionView;
 
@@ -67,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param indexPaths         An array of index paths that will be reloaded.
  @param collectionView     The collection view that will perform the reload.
 
- @discussion This event is only sent when outside of -[UICollectionView performBatchUpdates:completion:].
+ @note This event is only sent when outside of -[UICollectionView performBatchUpdates:completion:].
  */
 - (void)listAdapterUpdater:(IGListAdapterUpdater *)listAdapterUpdater willReloadIndexPaths:(NSArray<NSIndexPath *> *)indexPaths collectionView:(UICollectionView *)collectionView;
 
@@ -78,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param sections           The sections that will be reloaded
  @param collectionView     The collection view that will perform the reload.
 
- @discussion This event is only sent when outside of -[UICollectionView performBatchUpdates:completion:].
+ @note This event is only sent when outside of -[UICollectionView performBatchUpdates:completion:].
  */
 - (void)listAdapterUpdater:(IGListAdapterUpdater *)listAdapterUpdater willReloadSections:(NSIndexSet *)sections collectionView:(UICollectionView *)collectionView;
 

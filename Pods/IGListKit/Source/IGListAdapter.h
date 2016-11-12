@@ -59,7 +59,7 @@ IGLK_SUBCLASSING_RESTRICTED
 /**
  The object that receives UICollectionViewDelegate events.
 
- @discussion This object /will not/ receive UIScrollViewDelegate events. Instead use scrollViewDelegate.
+ @note This object /will not/ receive UIScrollViewDelegate events. Instead use scrollViewDelegate.
  */
 @property (nonatomic, nullable, weak) id <UICollectionViewDelegate> collectionViewDelegate;
 
@@ -82,7 +82,7 @@ IGLK_SUBCLASSING_RESTRICTED
 
  @return A new IGListAdapter object.
 
- @discussion The working range is the number of objects beyond the visible objects (plus and minus) that should be
+ @note The working range is the number of objects beyond the visible objects (plus and minus) that should be
  notified when they are close to being visible. For instance, if you have 3 objects on screen and a working range of 2,
  the previous and succeeding 2 objects will be notified that they are within the working range. As you scroll the list
  the range is updated as objects enter and exit the working range.
@@ -103,14 +103,14 @@ IGLK_SUBCLASSING_RESTRICTED
 - (void)performUpdatesAnimated:(BOOL)animated completion:(nullable IGListUpdaterCompletion)completion;
 
 /**
- Perform an immediate reload of the data in the data source, discarding the old objectss.
+ Perform an immediate reload of the data in the data source, discarding the old objects.
 
  @param completion A block executed when the reload completes.
  */
 - (void)reloadDataWithCompletion:(nullable IGListUpdaterCompletion)completion;
 
 /**
- Reload the infra for specific objectss only.
+ Reload the infra for specific objects only.
 
  @param objects The objects to reload.
  */
@@ -167,6 +167,13 @@ IGLK_SUBCLASSING_RESTRICTED
  @return An array of section controllers.
  */
 - (NSArray<IGListSectionController<IGListSectionType> *> *)visibleSectionControllers;
+
+/**
+ An unordered array of the currently visible objects.
+
+ @return An array of objects
+ */
+- (NSArray *)visibleObjects;
 
 /**
  Scroll to an object in the list adapter.

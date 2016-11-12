@@ -2,9 +2,26 @@
   <img src="https://raw.githubusercontent.com/Instagram/IGListKit/master/Resources/logo-animation.gif" width=400 />
 </p>
 
-[![Build Status](https://secure.travis-ci.org/Instagram/IGListKit.svg)](https://travis-ci.org/Instagram/IGListKit) [![Version Status](https://img.shields.io/cocoapods/v/IGListKit.svg)](https://cocoapods.org/pods/IGListKit) [![license BSD](https://img.shields.io/cocoapods/l/IGListKit.svg)](https://opensource.org/licenses/BSD-3-Clause) [![Platform](https://img.shields.io/cocoapods/p/IGListKit.svg)](https://instagram.github.io/IGListKit) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+<p align="center">
+    <a href="https://travis-ci.org/Instagram/IGListKit">
+        <img src="https://travis-ci.org/Instagram/IGListKit.svg?branch=master&style=flat"
+             alt="Build Status">
+    </a>
+    <a href="https://coveralls.io/github/Instagram/IGListKit">
+        <img src="https://coveralls.io/repos/github/Instagram/IGListKit/badge.svg?branch=master&style=flat"
+             alt="Code Coverage">
+    </a>
+    <a href="https://cocoapods.org/pods/IGListKit">
+        <img src="https://img.shields.io/cocoapods/v/IGListKit.svg?style=flat"
+             alt="Pods Version">
+    </a>
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/Carthage-compatible-brightgreen.svg?style=flat"
+             alt="Carthage Compatible">
+    </a>
+</p>
 
-------------------------
+----------------
 
 A data-driven `UICollectionView` framework for building fast and flexible lists.
 
@@ -20,20 +37,37 @@ A data-driven `UICollectionView` framework for building fast and flexible lists.
 &#128640; | Extendable API
 &#128038; | Written in Objective-C with full Swift interop support
 
-`IGListKit` is built and maintained by [Instagram engineering](https://engineering.instagram.com/), using the open source version for the Instagram app.
+`IGListKit` is built and maintained with &#10084;&#65039; by [Instagram engineering](https://engineering.instagram.com/), using the open source version for the Instagram app.
+
+## Requirements
+
+- Xcode 8.0+
+- iOS 8.0+
+- tvOS 9.0+
+- Interoperability with Swift 3.0+
 
 ## Installation
 
-The preferred installation method for `IGListKit` is with [CocoaPods](http://cocoapods.org). Simply add the following to your Podfile:
+### CocoaPods
+
+The preferred installation method for `IGListKit` is with [CocoaPods](http://cocoapods.org). Simply add the following to your `Podfile`:
 
 ```ruby
 # Latest release of IGListKit
 pod 'IGListKit'
 ```
 
-You can also manually install the framework by dragging and dropping the `IGListKit.xcodeproj` into your workspace.
+### Carthage
 
-`IGListKit` supports a minimum iOS version of 8.0.
+To integrate `IGListKit` into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your `Cartfile`:
+
+```ogdl
+github "Instagram/IGListKit" ~> 1.0.0
+```
+
+### Manually
+
+You can also manually install the framework by dragging and dropping the `IGListKit.xcodeproj` into your project or workspace.
 
 ## Creating your first list
 
@@ -57,7 +91,7 @@ After creating at least one section controller, you must create an `IGListCollec
 
 ```swift
 let layout = UICollectionViewFlowLayout()
-let collectionView = IGListCollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+let collectionView = IGListCollectionView(frame: .zero, collectionViewLayout: layout)
 
 let updater = IGListAdapterUpdater()
 let adapter = IGListAdapter(updater: updater, viewController: self, workingRangeSize: 0)
@@ -71,13 +105,12 @@ adapter.collectionView = collectionView
 The last step is the `IGListAdapter`'s data source and returning some data.
 
 ```swift
-func objectsForListAdapter(listAdapter: IGListAdapter) -> [IGListDiffable] {
+func objects(for listAdapter: IGListAdapter) -> [IGListDiffable] {
   // this can be anything!
   return [ "Foo", "Bar", 42, "Biz" ]
 }
 
-func listAdapter(listAdapter: IGListAdapter,
-    sectionControllerForObject(object: Any) -> IGListSectionController {
+func listAdapter(_ listAdapter: IGListAdapter, sectionControllerFor object: Any) -> IGListSectionController {
   if object is String {
     return LabelSectionController()
   } else {
@@ -85,7 +118,7 @@ func listAdapter(listAdapter: IGListAdapter,
   }
 }
 
-func emptyViewForListAdapter(listAdapter: IGListAdapter) -> UIView? {
+func emptyView(for listAdapter: IGListAdapter) -> UIView? {
   return nil
 }
 ```
@@ -110,10 +143,15 @@ class User {
 
 The user's `primaryKey` uniquely identifies user data, and the `name` is just the value for that user.
 
-Consider the following two users:
+Let's say a server returns a `User` object that looks like this:
 
 ```swift
 let shayne = User(primaryKey: 2, name: "Shayne")
+```
+
+But sometime after the client receives `shayne`, someone changes their name:
+
+```swift
 let ann = User(primaryKey: 2, name: "Ann")
 ```
 
@@ -124,7 +162,7 @@ To represent this in `IGListKit`'s diffing, add and implement the `IGListDiffabl
 ```swift
 extension User: IGListDiffable {
   func diffIdentifier() -> NSObjectProtocol {
-    return pk
+    return primaryKey
   }
 
   func isEqual(object: Any?) -> Bool {
@@ -154,19 +192,19 @@ With this you have all of the deletes, reloads, moves, and inserts! There's even
 
 ### Working Range
 
-A *working range* is a distance before and after the visible bounds of the `UICollectionView` where section controllers within this bounds are notified of their entrance and exit. This concept lets your section controllers **prepare content** before they come on screen (e.g. download images).
+A *working range* is a range of section controllers who aren't yet visible, but are near the screen. Section controllers are notified of their entrance and exit to this range. This concept lets your section controllers **prepare content** before they come on screen (e.g. download images).
 
 The `IGListAdapter` must be initialized with a range value in order to work. This value is a multiple of the visible height or width, depending on the scroll-direction.
 
 ```swift
 let adapter = IGListAdapter(updater: IGListAdapterUpdater(),
                      viewController: self,
-                   workingRangeSize: 0.5) // 0.5x the visible size
+                   workingRangeSize: 1) // 1 before/after visible objects
 ```
 
 ![working-range](Resources/workingrange.png)
 
-You can set the weak `workingRangeDelegate` on an section controller to receive events.
+You can set the weak `workingRangeDelegate` on a section controller to receive events.
 
 ### Supplementary Views
 
@@ -188,7 +226,7 @@ You can find [the docs here](https://instagram.github.io/IGListKit). Documentati
 
 ## Contributing
 
-Please see the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out. At Instagram we sync the open source version of `IGListKit` almost daily, so we're always testing the latest changes. But that requires all changes be thoroughly tested follow our style guide.
+Please see the [CONTRIBUTING](.github/CONTRIBUTING.md) file for how to help out. At Instagram we sync the open source version of `IGListKit` almost daily, so we're always testing the latest changes. But that requires all changes be thoroughly tested follow our style guide.
 
 ## License
 

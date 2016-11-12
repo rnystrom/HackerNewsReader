@@ -137,7 +137,7 @@ static id IGListDiffing(BOOL returnIndexPaths,
                 case IGListDiffEquality:
                     // use -[IGListDiffable isEqual:] between both version of data to see if anything has changed
                     // skip the equality check if both indexes point to the same object
-                    if (n != o && ![n isEqual:o]) {
+                    if (n != o && ![n isEqualToDiffableObject:o]) {
                         entry->updated = YES;
                     }
                     break;
@@ -171,10 +171,8 @@ static id IGListDiffing(BOOL returnIndexPaths,
     // section into INDEX SET
     // item, section into ARRAY
     // IGListMoveIndex or IGListMoveIndexPath into ARRAY
-    void (^addIndexToCollection)(id, NSInteger, NSInteger, id) = ^(id collection, NSInteger section, NSInteger index, id obj) {
-        if (obj) {
-            [collection addObject:obj];
-        } else if (returnIndexPaths) {
+    void (^addIndexToCollection)(id, NSInteger, NSInteger) = ^(id collection, NSInteger section, NSInteger index) {
+        if (returnIndexPaths) {
             NSIndexPath *path = [NSIndexPath indexPathForItem:index inSection:section];
             [collection addObject:path];
         } else {
@@ -205,7 +203,7 @@ static id IGListDiffing(BOOL returnIndexPaths,
         const IGListRecord record = oldResultsArray[i];
         // if the record index in the new array doesn't exist, its a delete
         if (record.index == NSNotFound) {
-            addIndexToCollection(mDeletes, fromSection, i, nil);
+            addIndexToCollection(mDeletes, fromSection, i);
             runningOffset++;
         }
 
@@ -221,12 +219,12 @@ static id IGListDiffing(BOOL returnIndexPaths,
         const NSInteger oldIndex = record.index;
         // add to inserts if the opposing index is NSNotFound
         if (record.index == NSNotFound) {
-            addIndexToCollection(mInserts, toSection, i, nil);
+            addIndexToCollection(mInserts, toSection, i);
             runningOffset++;
         } else {
             // note that an entry can be updated /and/ moved
             if (record.entry->updated) {
-                addIndexToCollection(mUpdates, toSection, oldIndex, nil);
+                addIndexToCollection(mUpdates, fromSection, oldIndex);
             }
 
             // calculate the offset and determine if there was a move
@@ -242,7 +240,7 @@ static id IGListDiffing(BOOL returnIndexPaths,
                 } else {
                     move = [[IGListMoveIndex alloc] initWithFrom:oldIndex to:i];
                 }
-                addIndexToCollection(mMoves, NSNotFound, NSNotFound, move);
+                [mMoves addObject:move];
             }
         }
 

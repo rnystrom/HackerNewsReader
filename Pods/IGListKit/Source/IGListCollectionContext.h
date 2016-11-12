@@ -92,6 +92,36 @@ NS_ASSUME_NONNULL_BEGIN
                                                       atIndex:(NSInteger)index;
 
 /**
+ Dequeues a cell from the UICollectionView reuse pool.
+ 
+ @param nibName           The name of the nib file.
+ @param bundle            The bundle in which to search for the nib file. If nil, this method looks for the nib file in the main bundle.
+ @param sectionController The section controller requesting this information.
+ @param index             The index of the cell.
+ 
+ @return A cell dequeued from the reuse pool or newly created.
+ 
+ @note This method uses a string representation of the cell class as the identifier.
+ */
+- (__kindof UICollectionViewCell *)dequeueReusableCellWithNibName:(NSString *)nibName
+                                                           bundle:(nullable NSBundle *)bundle
+                                             forSectionController:(IGListSectionController<IGListSectionType> *)sectionController
+                                                          atIndex:(NSInteger)index;
+
+/**
+ Dequeues a storyboard prototype cell from the UICollectionView reuse pool.
+ 
+ @param identifier        The identifier of the cell prototype in storyboard.
+ @param sectionController The section controller requesting this information.
+ @param index             The index of the cell.
+ 
+ @return A cell dequeued from the reuse pool or newly created.
+ */
+- (__kindof UICollectionViewCell *)dequeueReusableCellFromStoryboardWithIdentifier:(NSString *)identifier
+                                                              forSectionController:(IGListSectionController <IGListSectionType> *)sectionController
+                                                                           atIndex:(NSInteger)index;
+
+/**
  Dequeues a supplementary view from the UICollectionView reuse pool.
 
  @param elementKind       The kind of supplementary veiw.
@@ -106,6 +136,39 @@ NS_ASSUME_NONNULL_BEGIN
 - (__kindof UICollectionReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind
                                                          forSectionController:(IGListSectionController<IGListSectionType> *)sectionController
                                                                         class:(Class)viewClass
+                                                                      atIndex:(NSInteger)index;
+
+/**
+ Dequeues a supplementary view from the UICollectionView reuse pool.
+ 
+ @param elementKind       The kind of supplementary veiw.
+ @param identifier        The identifier of the supplementary view in storyboard.
+ @param sectionController The section controller requesting this information.
+ @param index             The index of the supplementary vew.
+ 
+ @return A supplementary view dequeued from the reuse pool or newly created.
+ */
+- (__kindof UICollectionReusableView *)dequeueReusableSupplementaryViewFromStoryboardOfKind:(NSString *)elementKind
+                                                                             withIdentifier:(NSString *)identifier
+                                                                       forSectionController:(IGListSectionController<IGListSectionType> *)sectionController
+                                                                                    atIndex:(NSInteger)index;
+/**
+ Dequeues a supplementary view from the UICollectionView reuse pool.
+ 
+ @param elementKind       The kind of supplementary veiw.
+ @param sectionController The section controller requesting this information.
+ @param nibName           The name of the nib file.
+ @param bundle            The bundle in which to search for the nib file. If nil, this method looks for the nib file in the main bundle.
+ @param index             The index of the supplementary vew.
+ 
+ @return A supplementary view dequeued from the reuse pool or newly created.
+ 
+ @note This method uses a string representation of the view class as the identifier.
+ */
+- (__kindof UICollectionReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind
+                                                         forSectionController:(IGListSectionController<IGListSectionType> *)sectionController
+                                                                      nibName:(NSString *)nibName
+                                                                       bundle:(nullable NSBundle *)bundle
                                                                       atIndex:(NSInteger)index;
 
 /**
@@ -149,7 +212,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param updates    A block containing all of the cell updates.
  @param completion An optional completion block to execute when the updates are finished.
 
- @discussion Use this method to batch cell updates (inserts, deletes, reloads) into a single transaction. This lets you
+ @note Use this method to batch cell updates (inserts, deletes, reloads) into a single transaction. This lets you
  make many changes to your data store and perform all the transitions at once.
 
  For example, inside your section controllers, you may want to delete /and/ insert into the data source that backs your
