@@ -9,36 +9,98 @@
 
 #import "IGListCollectionView.h"
 
+#import "IGListCollectionViewLayout.h"
+
 @implementation IGListCollectionView
 
-- (void)commonInit {
-    self.backgroundColor = [UIColor whiteColor];
-    self.alwaysBounceVertical = YES;
+#pragma mark - Init
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    IGListCollectionViewLayout *layout = [[IGListCollectionViewLayout alloc] initWithStickyHeaders:NO topContentInset:0 stretchToEdge:YES];
+    return [self initWithFrame:frame listCollectionViewLayout:layout];
 }
 
-- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
-    if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
-        [self commonInit];
+- (instancetype)initWithFrame:(CGRect)frame listCollectionViewLayout:(IGListCollectionViewLayout *)collectionViewLayout {
+    return [super initWithFrame:frame collectionViewLayout:collectionViewLayout];
+}
+
+#pragma mark - IGListCollectionViewLayout
+
+- (IGListCollectionViewLayout *)listLayout {
+    if ([self.collectionViewLayout isKindOfClass:[IGListCollectionViewLayout class]]) {
+        return (IGListCollectionViewLayout *)self.collectionViewLayout;
     }
-    return self;
+
+    return nil;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-        [self commonInit];
+#pragma mark - Overides reloads
+
+- (void)reloadItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
+    [self didModifyIndexPaths:indexPaths];
+    [super reloadItemsAtIndexPaths:indexPaths];
+}
+
+- (void)reloadSections:(NSIndexSet *)sections {
+    [self didModifySections:sections];
+    [super reloadSections:sections];
+}
+
+#pragma mark - Override deletes
+
+- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
+    [self didModifyIndexPaths:indexPaths];
+    [super deleteItemsAtIndexPaths:indexPaths];
+}
+
+- (void)deleteSections:(NSIndexSet *)sections {
+    [self didModifySections:sections];
+    [super deleteSections:sections];
+}
+
+#pragma mark - Override inserts
+
+- (void)insertItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
+    [self didModifyIndexPaths:indexPaths];
+    [super insertItemsAtIndexPaths:indexPaths];
+}
+
+- (void)insertSections:(NSIndexSet *)sections {
+    [self didModifySections:sections];
+    [super insertSections:sections];
+}
+
+#pragma mark - Override moves
+
+- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath {
+    [self didModifyIndexPaths:@[indexPath, newIndexPath]];
+    [super moveItemAtIndexPath:indexPath toIndexPath:newIndexPath];
+}
+
+- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection {
+    [self didModifySection:MIN(section, newSection)];
+    [super moveSection:section toSection:newSection];
+}
+
+#pragma mark - Modify section
+
+- (void)didModifySections:(NSIndexSet *)sections {
+    if (sections.count == 0) {
+        return;
     }
-    return self;
+    [self didModifySection:sections.firstIndex];
 }
 
-- (void)layoutSubviews {
-    /**
-     UICollectionView will sometimes lay its cells out with an animation. This is especially noticeable on older devices
-     while scrolling quickly. The simplest fix is to just disable animations for -layoutSubviews, which is where cells
-     and other views inside the UICollectionView are laid out.
-     */
-    [UIView performWithoutAnimation:^{
-        [super layoutSubviews];
-    }];
+- (void)didModifySection:(NSUInteger)section {
+    [self.listLayout didModifySection:section];
+}
+
+#pragma mark - Modified index path
+
+- (void)didModifyIndexPaths:(NSArray<NSIndexPath *> *)indexPaths {
+    for (NSIndexPath *indexPath in indexPaths) {
+        [self didModifySection:indexPath.section];
+    }
 }
 
 @end

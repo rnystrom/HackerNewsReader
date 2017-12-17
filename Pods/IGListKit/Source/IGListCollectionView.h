@@ -9,31 +9,38 @@
 
 #import <UIKit/UIKit.h>
 
-#import <IGListKit/IGListMacros.h>
+@class IGListCollectionViewLayout;
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
- This class is never actually used by the IGListKit infrastructure. It exists only to give compiler errors when editing
- methods are called on the collection view returned by -[IGListAdapter collectionView].
+ This `UICollectionView` subclass allows for partial layout invalidation using `IGListCollectionViewLayout`.
+
+ @note When updating a collection view (ex: calling `-insertSections`), `-invalidateLayoutWithContext` gets called on
+ the layout object. However, the invalidation context doesn't provide details on which index paths are being modified,
+ which typically forces a full layout re-calculation. `IGListCollectionView` gives `IGListCollectionViewLayout` the
+ missing information to re-calculate only the modified layout attributes.
  */
-IGLK_SUBCLASSING_RESTRICTED
+NS_SWIFT_NAME(ListCollectionView)
 @interface IGListCollectionView : UICollectionView
 
-- (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL))completion IGLK_UNAVAILABLE("Call -[IGListAdapter performUpdatesWithCompletion:] instead");
+/**
+ Create a new view with an `IGListcollectionViewLayout` class or subclass.
 
-- (void)reloadData IGLK_UNAVAILABLE("Call -[IGListAdapter reloadDataWithCompletion:] instead");
-- (void)reloadSections:(NSIndexSet *)sections IGLK_UNAVAILABLE("Call -[IGListAdapter reloadItems:] instead");
+ @param frame The frame to initialize with.
+ @param collectionViewLayout The layout to use with the collection view.
 
-- (void)insertSections:(NSIndexSet *)sections IGLK_UNAVAILABLE("Call -[IGListAdapter performUpdatesWithCompletion:] instead");
-- (void)deleteSections:(NSIndexSet *)sections IGLK_UNAVAILABLE("Call -[IGListAdapter performUpdatesWithCompletion:] instead");
-- (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection IGLK_UNAVAILABLE("Call -[IGListAdapter performUpdatesWithCompletion:] instead");
+ @note You can initialize a new view with a base layout by simply calling `-[IGListCollectionView initWithFrame:]`.
+ */
+- (instancetype)initWithFrame:(CGRect)frame listCollectionViewLayout:(IGListCollectionViewLayout *)collectionViewLayout NS_DESIGNATED_INITIALIZER;
 
-- (void)insertItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths IGLK_UNAVAILABLE("Call -[<IGListCollectionContext> insertSectionController:forItems:completion:] instead");
-- (void)reloadItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths IGLK_UNAVAILABLE("Call -[<IGListCollectionContext> reloadSectionController:forItems:completion:] instead");
-- (void)deleteItemsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths IGLK_UNAVAILABLE("Call -[<IGListCollectionContext> deleteSectionController:forItems:completion:] instead");
-- (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath IGLK_UNAVAILABLE("Moving items currently unsupported");
+/**
+ :nodoc:
+ */
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)collectionViewLayout NS_UNAVAILABLE;
 
-- (void)setDelegate:(id<UICollectionViewDelegate>)delegate IGLK_UNAVAILABLE("IGListAdapter should be the delegate of the collection view");
-- (void)setDataSource:(id<UICollectionViewDataSource>)dataSource IGLK_UNAVAILABLE("IGListAdapter should be the data source of the collection view");
-- (void)setBackgroundView:(UIView *)backgroundView IGLK_UNAVAILABLE("Return a view in -[IGListAdapterDataSource emptyViewForListAdapter:] instead");
+- (instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END

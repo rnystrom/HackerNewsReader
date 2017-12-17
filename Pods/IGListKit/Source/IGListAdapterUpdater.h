@@ -17,24 +17,37 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- This is an out-of-box upater for IGListAdapters. It conforms to IGListUpdatingDelegate and does re-entrant, coalesced
- updating on a UICollectionView.
+ An `IGListAdapterUpdater` is a concrete type that conforms to `IGListUpdatingDelegate`.
+ It is an out-of-box updater for `IGListAdapter` objects to use.
 
- It also uses IGDiffKit (a least-minimal diff) for calculating UI updates when IGListAdapter calls
- -performUpdateWithCollectionView:fromObjects:toObjects:completion:.
+ @note This updater performs re-entrant, coalesced updating for a list. It also uses a least-minimal diff 
+ for calculating UI updates when `IGListAdapter` calls 
+ `-performUpdateWithCollectionView:fromObjects:toObjects:completion:`.
  */
 IGLK_SUBCLASSING_RESTRICTED
+NS_SWIFT_NAME(ListAdapterUpdater)
 @interface IGListAdapterUpdater : NSObject <IGListUpdatingDelegate>
 
 /**
- A delegate that receives events with data on the performance of a transition.
+ The delegate that receives events with data on the performance of a transition.
  */
 @property (nonatomic, weak) id<IGListAdapterUpdaterDelegate> delegate;
 
 /**
- A flag indicating if a move should be treated as a delete+insert.
+ A flag indicating if a move should be treated as a "delete, then insert" operation.
  */
 @property (nonatomic, assign) BOOL movesAsDeletesInserts;
+
+/**
+ A flag indicating whether this updater should skip diffing and simply call
+ `reloadData` for updates when the collection view is not in a window. The default value is `YES`.
+ 
+ @note This will result in better performance, but will not generate the same delegate
+ callbacks. If using a custom layout, it will not receive `prepareForCollectionViewUpdates:`.
+
+ @warning On iOS < 8.3, this behavior is unsupported and will always be treated as `NO`.
+ */
+@property (nonatomic, assign) BOOL allowsBackgroundReloading;
 
 /**
  A bitmask of experiments to conduct on the updater.

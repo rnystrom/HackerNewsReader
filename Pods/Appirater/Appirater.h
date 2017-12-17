@@ -35,8 +35,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "AppiraterDelegate.h"
 #import <StoreKit/StoreKit.h>
+#import "AppiraterDelegate.h"
 
 extern NSString *const kAppiraterFirstUseDate;
 extern NSString *const kAppiraterUseCount;
@@ -85,12 +85,12 @@ extern NSString *const kAppiraterReminderRequestDate;
  */
 #define APPIRATER_RATE_LATER			NSLocalizedStringFromTableInBundle(@"Remind me later", @"AppiraterLocalizable", [Appirater bundle], nil)
 
-@interface Appirater : NSObject <UIAlertViewDelegate, SKStoreProductViewControllerDelegate> {
+@interface Appirater : NSObject <UIAlertViewDelegate, SKStoreProductViewControllerDelegate>
 
-	UIAlertView		*ratingAlert;
-}
-
-@property(nonatomic, strong) UIAlertView *ratingAlert;
+/*!
+ UIAlertController for iOS 8 and later, otherwise UIAlertView
+ */
+@property(nonatomic, strong) id ratingAlert;
 @property(nonatomic) BOOL openInAppStore;
 #if __has_feature(objc_arc_weak)
 @property(nonatomic, weak) NSObject <AppiraterDelegate> *delegate;

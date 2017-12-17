@@ -42,18 +42,18 @@ NSString * const kHNAppDelegateDidTapStatusBar = @"kHNAppDelegateDidTapStatusBar
     [UIToolbar hn_enableAppearance];
     [UITabBar hn_enableAppearance];
 
-    UISplitViewController *rootViewController = (UISplitViewController *)self.window.rootViewController;
-    UITabBarController *tabBarController = rootViewController.viewControllers.firstObject;
-    UINavigationController *profileNavigationController = tabBarController.viewControllers.lastObject;
-    HNSessionManager *sessionManager = [[HNSessionManager alloc] initWithNavigationController:profileNavigationController];
-
-    HNSession *session = [HNSession activeSession];
-    const BOOL animated = NO;
-    if (session != nil) {
-        [sessionManager transitionToLoggedInWithSession:session animated:animated];
-    } else {
-        [sessionManager transitionToLoggedOutAnimated:animated];
-    }
+//    UISplitViewController *rootViewController = (UISplitViewController *)self.window.rootViewController;
+//    UITabBarController *tabBarController = rootViewController.viewControllers.firstObject;
+//    UINavigationController *profileNavigationController = tabBarController.viewControllers.lastObject;
+//    HNSessionManager *sessionManager = [[HNSessionManager alloc] initWithNavigationController:profileNavigationController];
+//
+//    HNSession *session = [HNSession activeSession];
+//    const BOOL animated = NO;
+//    if (session != nil) {
+//        [sessionManager transitionToLoggedInWithSession:session animated:animated];
+//    } else {
+//        [sessionManager transitionToLoggedOutAnimated:animated];
+//    }
 
     return YES;
 }

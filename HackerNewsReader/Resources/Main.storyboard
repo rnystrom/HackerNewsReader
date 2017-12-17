@@ -21,13 +21,12 @@
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Nwj-Rn-yfM" kind="relationship" relationship="viewControllers" id="96f-3K-TR2"/>
                         <segue destination="NZe-6z-rHo" kind="relationship" relationship="viewControllers" id="51M-C3-pL6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZM-C2-d0J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="77" y="-215"/>
+            <point key="canvasLocation" x="1004" y="83"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="3hJ-Eg-WTX">
@@ -407,7 +406,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YwB-nT-Bxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005" y="80"/>
+            <point key="canvasLocation" x="1790" y="83"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AZS-ja-LvS">
@@ -468,7 +467,7 @@
                     <connections>
                         <outlet property="delegate" destination="Mnm-A1-X5d" id="FOk-KX-Zvg"/>
                         <segue destination="Ylf-fd-eh9" kind="relationship" relationship="detailViewController" id="Jkm-uC-O3l"/>
-                        <segue destination="YfM-qO-SRs" kind="relationship" relationship="masterViewController" id="FJq-4e-hmO"/>
+                        <segue destination="Nwj-Rn-yfM" kind="relationship" relationship="masterViewController" id="OZy-SS-AcN"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7SB-Zu-hZw" userLabel="First Responder" sceneMemberID="firstResponder"/>

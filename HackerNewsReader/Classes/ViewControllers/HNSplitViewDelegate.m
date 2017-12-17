@@ -23,10 +23,11 @@ NSString * const kHNSplitViewDelegateWillChangeDisplayMode = @"kHNSplitViewDeleg
 
 // http://stackoverflow.com/a/27965772
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)detailViewController sender:(id)sender {
-    UITabBarController *masterViewController = splitViewController.viewControllers.firstObject;
+    // UITabBarController *masterViewController = splitViewController.viewControllers.firstObject;
+    UIViewController *masterViewController = splitViewController.viewControllers.firstObject;
 
     if (splitViewController.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
-        [masterViewController.selectedViewController showViewController:detailViewController sender:sender];
+        [masterViewController showViewController:detailViewController sender:sender];
     } else {
         [splitViewController setViewControllers:@[masterViewController, detailViewController]];
     }
